@@ -1,0 +1,17 @@
+{
+  "name": "stronghold-monorepo",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "web": "npm run dev --workspace=web",
+    "build:web": "npm run build --workspace=web",
+    "start:web": "npm run start --workspace=web",
+    "lint:web": "npm run lint --workspace=web"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  }
+}
