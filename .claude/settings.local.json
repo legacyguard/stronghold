@@ -13,7 +13,19 @@
       "Bash(git remote add:*)",
       "Bash(git push:*)",
       "Bash(git rm:*)",
-      "Bash(git init:*)"
+      "Bash(git init:*)",
+      "Bash(curl:*)",
+      "Bash(supabase auth login:*)",
+      "Bash(supabase login:*)",
+      "Bash(supabase projects create:*)",
+      "Bash(supabase orgs:*)",
+      "Bash(vercel login:*)",
+      "Bash(vercel:*)",
+      "Bash(\"buildCommand\": \"npm run build:web\",)",
+      "Bash(\"devCommand\": \"npm run web\",)",
+      "Bash(\"installCommand\": \"npm install\",)",
+      "Bash(\"framework\": \"nextjs\",)",
+      "Bash(\"rootDirectory\": \"apps/web\")"
     ],
     "deny": [],
     "ask": []
