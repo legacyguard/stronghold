@@ -25,7 +25,8 @@
       "Bash(\"devCommand\": \"npm run web\",)",
       "Bash(\"installCommand\": \"npm install\",)",
       "Bash(\"framework\": \"nextjs\",)",
-      "Bash(\"rootDirectory\": \"apps/web\")"
+      "Bash(\"rootDirectory\": \"apps/web\")",
+      "Bash(supabase projects list:*)"
     ],
     "deny": [],
     "ask": []
