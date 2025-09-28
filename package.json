@@ -9,7 +9,9 @@
     "web": "npm run dev --workspace=web",
     "build:web": "npm run build --workspace=web",
     "start:web": "npm run start --workspace=web",
-    "lint:web": "npm run lint --workspace=web"
+    "lint:web": "npm run lint --workspace=web",
+    "providers:dry-run": "DRY_RUN=1 bash scripts/configure_supabase_providers.sh",
+    "providers:apply": "bash scripts/configure_supabase_providers.sh"
   },
   "devDependencies": {
     "typescript": "^5.0.0"
