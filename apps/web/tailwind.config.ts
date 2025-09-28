@@ -18,16 +18,25 @@ const config: Config = {
         'text-light': '#666666',
         'neutral-dark': '#5D4037',
         'neutral-light': '#A1887F',
+        'neutral-beige': '#EFEBE9',
         'surface': '#FFFFFF',
         'border': '#F5F5F5',
       },
+      fontFamily: {
+        'sans': ['-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
+      },
       fontSize: {
-        'h1': '32px',
-        'h2': '18px',
-        'h3': '24px',
-        'body': '16px',
-        'caption': '14px',
-        'nav': '12px',
+        'h1': ['32px', { fontWeight: '600' }],
+        'h2': ['18px', { fontWeight: '400' }],
+        'h3': ['24px', { fontWeight: '600' }],
+        'body': ['16px', { fontWeight: '400' }],
+        'caption': ['14px', { fontWeight: '400' }],
+        'nav': ['12px', { fontWeight: '500' }],
+      },
+      fontWeight: {
+        'regular': '400',
+        'medium': '500',
+        'semibold': '600',
       },
       spacing: {
         'xs': '4px',
@@ -38,7 +47,7 @@ const config: Config = {
         '2xl': '48px',
       },
       borderRadius: {
-        'lg': '12px', // Používame 'lg' ako náš štandard, nie 'DEFAULT'
+        'lg': '12px', // Standard border radius pre všetky komponenty
       },
     },
   },

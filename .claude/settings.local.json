@@ -26,7 +26,15 @@
       "Bash(\"installCommand\": \"npm install\",)",
       "Bash(\"framework\": \"nextjs\",)",
       "Bash(\"rootDirectory\": \"apps/web\")",
-      "Bash(supabase projects list:*)"
+      "Bash(supabase projects list:*)",
+      "Read(//Users/luborfedak/Documents/Hero UI/**)",
+      "Read(//Users/luborfedak/Documents/Tailadmin/**)",
+      "Bash(unzip:*)",
+      "Bash(npx shadcn-ui:*)",
+      "Bash(npx shadcn@latest add:*)",
+      "Bash(printf:*)",
+      "Bash(npx:*)",
+      "Bash(npm install:*)"
     ],
     "deny": [],
     "ask": []
