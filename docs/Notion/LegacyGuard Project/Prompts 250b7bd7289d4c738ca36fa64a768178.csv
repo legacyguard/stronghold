@@ -1,0 +1,23 @@
+﻿Prompt Name,Model,Prompt Text,Purpose,Related Results,Tags,Version
+Lovable Super-Prompt,,"Design System & Context:
+You are building components for a premium, secure application called ""LegacyGuard"". The design must be clean, minimalist, and trustworthy. Adhere strictly to the following Tailwind CSS configuration. Do NOT use arbitrary values like bg-[#123456] or p-3.
+
+Tailwind Configuration:
+- Colors: Use semantic names only: bg-primary, text-text-dark, border-border, bg-surface.
+- primary: #6B8E23 (Olive Green)
+- primary-light: #8FBC8F (Dark Sea Green)
+- background: #F0F8E8 (Light Green Background)
+- text-dark: #2E2E2E
+- text-light: #666666
+- surface: #FFFFFF
+- border: #F5F5F5
+- Spacing: Use semantic spacing: p-md, gap-lg, m-xl.
+- xs: 4px, sm: 8px, md: 16px, lg: 24px, xl: 32px
+- Borders: Use rounded-lg for all rounded corners (12px).
+- Fonts: Use semantic font sizes: text-h1, text-body.
+- Icons: Use icons from the lucide-react library.
+
+---
+
+My Request:
+[TU VLOŽ SVOJU KONKRÉTNU POŽIADAVKU]",Spec,,,1
