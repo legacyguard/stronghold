@@ -22,7 +22,7 @@ LegacyGuard je postavený na modernej, oddelenej (jamstack) architektúre, kde j
 ```
 ┌──────────────────┐      ┌──────────────────┐      ┌──────────────────┐
 │   Používateľ     │      │    Frontend      │      │  Backend Služby  │
-│ (Prehliadač)     ├─────►│ (Vite + React)   ├─────►│    (API-first)   │
+│ (Prehliadač)     ├─────►│ (Next.js + React)├─────►│    (API-first)   │
 └──────────────────┘      └──────────────────┘      └──────────────────┘
        ▲                      ▲         │                  ▲
        │                      │         │                  │

@@ -55,6 +55,7 @@ const config: Config = {
       },
       borderRadius: {
         DEFAULT: '12px', // Predvolený radius pre všetky prvky
+        lg: '12px',      // Zabezpečí, že `rounded-lg` zodpovedá dokumentovaným 12 px
       },
     },
   },

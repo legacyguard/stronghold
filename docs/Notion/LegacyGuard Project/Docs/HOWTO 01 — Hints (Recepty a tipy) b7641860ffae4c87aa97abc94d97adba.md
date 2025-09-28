@@ -125,7 +125,7 @@ export function GuardianInviteForm({ onSubmit }: { onSubmit: (data: FormData) =>
       <div>
         <label>Email</label>
         <input type="email" {...register('email')} />
-        {[errors.email](http://errors.email) && <p role="alert">{[errors.email](http://errors.email).message}</p>}
+        {errors.email && <p role="alert">{errors.email.message}</p>}
       </div>
       <div>
         <label>Age</label>
@@ -209,25 +209,9 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
 import { createBrowserClient } from '@supabase/auth-helpers-nextjs'
 
 export const supabase = createBrowserClient(
-  [process.env.NEXT](http://process.env.NEXT)_PUBLIC_SUPABASE_URL!,
-  [process.env.NEXT](http://process.env.NEXT)_PUBLIC_SUPABASE_ANON_KEY!
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 )
-```
-
-### Poskytovateľ session v layoute
-
-```tsx
-// app/layout.tsx
-import './globals.css'
-import { createServerClient } from '@supabase/auth-helpers-nextjs'
-import { cookies } from 'next/headers'
-
-export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  const cookieStore = cookies()
-  const supabase = createServerClient(
-    [process.env.NEXT](http://process.env.NEXT)_PUBLIC_SUPABASE_URL!,
-    [process.env.NEXT](http://process.env.NEXT)_PUBLIC_SUPABASE_ANON_KEY!,
-    { cookies: { get: (key) => cookieStore.get(key)?.value } }
   )
   // optional: fetch user server-side
   await supabase.auth.getUser()
@@ -249,7 +233,7 @@ import type { NextRequest } from 'next/server'
 import { createMiddlewareClient } from '@supabase/auth-helpers-nextjs'
 
 export async function middleware(req: NextRequest) {
-  const res = [NextResponse.next](http://NextResponse.next)()
+  const res = NextResponse.next()
   const supabase = createMiddlewareClient({ req, res })
   const { data: { user } } = await supabase.auth.getUser()
 

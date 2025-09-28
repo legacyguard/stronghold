@@ -12,13 +12,13 @@ Popísať deterministickú logiku presmerovania medzi doménami a výber jazyka 
 ### Krok 1: Detekcia na úrovni servera/edge (Vercel Middleware)
 
 - Zisťovanie IP geolokácie: middleware zistí krajinu návštevníka.
-- Akcia: ak IP pochádza z trhu so samostatnou doménou, vykonaj serverové presmerovanie 308 na lokálnu doménu (napr. CZ IP → [legacyguard.cz](http://legacyguard.cz) namiesto [legacyguard.com](http://legacyguard.com)).
+- Akcia: ak IP pochádza z trhu so samostatnou doménou, vykonaj serverové presmerovanie 308 na lokálnu doménu (napr. CZ IP → legacyguard.cz namiesto legacyguard.com).
     - Prečo 308: trvalé presmerovanie zachová metódu a telo requestu, pomáha SEO a používateľovi okamžite ukazuje lokálnu doménu.
 
 ### Krok 2: Detekcia na úrovni klienta (na lokálnej doméne)
 
 - Spustí sa LocalizationContext.
-    - currentJurisdiction: je pevne daná doménou, napr. [legacyguard.cz](http://legacyguard.cz) → "cz". Táto hodnota sa už na kliente nemení.
+    - currentJurisdiction: je pevne daná doménou, napr. legacyguard.cz → "cz". Táto hodnota sa už na kliente nemení.
     - Detekcia jazyka prehliadača: prečíta sa navigator.language (napr. de-DE → "de").
     - Kontrola voči matici jazykov pre danú doménu: ak je jazyk podporovaný, currentLanguage sa nastaví na daný jazyk (napr. "de").
 
@@ -29,7 +29,7 @@ Popísať deterministickú logiku presmerovania medzi doménami a výber jazyka 
 
 ### Krok 4: Nepodporovaná krajina/doména
 
-- Ak IP geolokácia smeruje na krajinu bez vyhradenej domény/jurisdikcie, presmeruj na medzinárodnú doménu [legacyguard.eu](http://legacyguard.eu).
+- Ak IP geolokácia smeruje na krajinu bez vyhradenej domény/jurisdikcie, presmeruj na medzinárodnú doménu legacyguard.eu.
     - Na .eu: predvolený jazyk je "en" (alebo podporovaný jazyk podľa prehliadača, ak je k dispozícii).
     - Funkcia Tvorcu Závetu: deaktivovaná alebo s jasným upozornením: "Pre vašu krajinu zatiaľ neponúkame právne platné šablóny závetov. Môžete však využiť ostatné funkcie na organizáciu dokumentov a ochranu rodiny."
 
@@ -42,11 +42,11 @@ import { SUPPORTED_LANGS_BY_DOMAIN, PRIMARY_LANG_BY_DOMAIN } from '@/config/lang
 export function middleware(req: Request) {
   const country = geoCountryFrom(req); // napr. 'CZ', 'BR'
   const url = new URL(req.url);
-  const host = [url.host](http://url.host);
+  const host = url.host;
 
-  const target = DOMAIN_BY_COUNTRY[country] ?? '[legacyguard.eu](http://legacyguard.eu)';
+  const target = DOMAIN_BY_COUNTRY[country] ?? 'legacyguard.eu';
   if (host !== target) {
-    [url.host](http://url.host) = target;
+    url.host = target;
     return Response.redirect(url.toString(), 308);
   }
   return undefined;
@@ -61,23 +61,23 @@ export function resolveLanguageForHost(host: string, browserLang: string) {
 ```
 
 ```tsx
-const MARKET_BY_COUNTRY = { CZ: '[legacyguard.cz](http://legacyguard.cz)', SK: '[legacyguard.sk](http://legacyguard.sk)' } as const;
-const DEFAULT_DOMAIN = '[legacyguard.eu](http://legacyguard.eu)';
-const PRIMARY_LANG_BY_DOMAIN = { '[legacyguard.cz](http://legacyguard.cz)': 'cs', '[legacyguard.sk](http://legacyguard.sk)': 'sk', '[legacyguard.eu](http://legacyguard.eu)': 'en' } as const;
+const MARKET_BY_COUNTRY = { CZ: 'legacyguard.cz', SK: 'legacyguard.sk' } as const;
+const DEFAULT_DOMAIN = 'legacyguard.eu';
+const PRIMARY_LANG_BY_DOMAIN = { 'legacyguard.cz': 'cs', 'legacyguard.sk': 'sk', 'legacyguard.eu': 'en' } as const;
 const SUPPORTED_LANGS_BY_DOMAIN = {
-  '[legacyguard.cz](http://legacyguard.cz)': ['cs', 'en', 'de'],
-  '[legacyguard.sk](http://legacyguard.sk)': ['sk', 'en'],
-  '[legacyguard.eu](http://legacyguard.eu)': ['en'],
+  'legacyguard.cz': ['cs', 'en', 'de'],
+  'legacyguard.sk': ['sk', 'en'],
+  'legacyguard.eu': ['en'],
 } as const;
 
 export function middleware(req: Request) {
   const country = geoCountryFrom(req); // napr. 'CZ', 'BR'
   const url = new URL(req.url);
-  const host = [url.host](http://url.host); // napr. [legacyguard.com](http://legacyguard.com)
+  const host = url.host; // napr. legacyguard.com
   const target = MARKET_BY_COUNTRY[country as keyof typeof MARKET_BY_COUNTRY] ?? DEFAULT_DOMAIN;
 
   if (host !== target) {
-    [url.host](http://url.host) = target;
+    url.host = target;
     return Response.redirect(url.toString(), 308);
   }
 
@@ -88,15 +88,15 @@ export function middleware(req: Request) {
 ### Výber jazyka na klientovi (LocalizationContext)
 
 ```tsx
-const host = [window.location.host](http://window.location.host); // napr. [legacyguard.cz](http://legacyguard.cz)
+const host = window.location.host; // napr. legacyguard.cz
 const browserLang = navigator.language.split('-')[0]; // napr. 'de'
 
 const SUPPORTED = {
-  '[legacyguard.cz](http://legacyguard.cz)': ['cs', 'en', 'de'],
-  '[legacyguard.sk](http://legacyguard.sk)': ['sk', 'en'],
-  '[legacyguard.eu](http://legacyguard.eu)': ['en'],
+  'legacyguard.cz': ['cs', 'en', 'de'],
+  'legacyguard.sk': ['sk', 'en'],
+  'legacyguard.eu': ['en'],
 } as const;
-const PRIMARY = { '[legacyguard.cz](http://legacyguard.cz)': 'cs', '[legacyguard.sk](http://legacyguard.sk)': 'sk', '[legacyguard.eu](http://legacyguard.eu)': 'en' } as const;
+const PRIMARY = { 'legacyguard.cz': 'cs', 'legacyguard.sk': 'sk', 'legacyguard.eu': 'en' } as const;
 
 const supported = SUPPORTED[host as keyof typeof SUPPORTED] ?? ['en'];
 const primary = PRIMARY[host as keyof typeof PRIMARY] ?? 'en';

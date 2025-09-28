@@ -197,26 +197,9 @@ This document describes the backend architecture for the Family Protection Assis
     {
       "name": "OCR_PROCESSOR",
       "type": "customTool",
-      "endpoint": "<[https://api.openai.com](https://api.openai.com)>",
+      "endpoint": "https://api.openai.com",
       "description": "Extract text from document images"
     },
-    {
-      "name": "DOCUMENT_ANALYZER",
-      "type": "openaiAssistant",
-      "prompt": "Analyze this family document and extract:\n1. Document type and category\n2. Important dates (expiry, renewal)\n3. Key contacts and phone numbers\n4. Crisis context (what family needs to know in emergency)\n5. Suggested next actions"
-    },
-    {
-      "name": "SUPABASE_UPDATER",
-      "type": "httpRequest",
-      "method": "POST",
-      "url": " $env.SUPABASE_URL /rest/v1/documents",
-      "headers": {
-        "Authorization": "Bearer  $env.SUPABASE_SERVICE_KEY "
-      }
-    }
-  ]
-}
-```
 
 ### Workflow 3: Protection Score Calculator
 
@@ -422,77 +405,23 @@ const { payload } = await jwtVerify(token, JWKS, { issuer: $env.SUPABASE_ISSUER 
 // Option B: Call a small Next.js API route that uses @supabase/auth-helpers to validate
 // and returns user context; then use it here. (Prefer Option A to keep single hop.)
 
-if (!payload?.sub) {
-  throw new Error('Invalid token payload');
-}
-
+// …inside your Supabase JWT verification node…
 return {
   json: {
     userId: payload.sub,
-    email: [payload.email](http://payload.email) || null,
+    email: payload.email || null,
     roles: payload.role ? [payload.role] : [],
   }
 };
-```
 
-Then reference `$json.userId` in downstream nodes and apply per-user rate limits and authorization checks.
-
-- All requests must carry Supabase JWT in `Authorization: Bearer <token>`.
-- First step: `Verify Supabase JWT` node calls Supabase Auth or uses local verification with the public JWKS.
-- Reject invalid/expired tokens with 401 and stop execution.
-- Add basic rate limiting per `userId` and IP at the Orchestrator.
-- Log `requestId` for traceability across sub‑workflows.
-
-### API Endpoints via n8n Webhooks
-
-```tsx
-// Sofia chat interface
-const chatWithSofia = async (message: string, userId: string) => {
-  const response = await fetch('/webhook/sofia/chat', {
-    method: 'POST',
-    body: JSON.stringify({
-      message,
-      userId,
-      context: await getUserContext(userId)
-    })
-  });
-  return response.json();
-};
-
-// Document processing
-const uploadDocument = async (file: File, userId: string) => {
-  const formData = new FormData();
-  formData.append('file', file);
-  formData.append('userId', userId);
-
-  const response = await fetch('/webhook/document/process', {
-    method: 'POST',
-    body: formData
-  });
-  return response.json();
-};
-
-// Protection score update
-const updateProtectionScore = async (userId: string, action: string) => {
-  const response = await fetch('/webhook/protection/score', {
-    method: 'POST',
-    body: JSON.stringify({ userId, action })
-  });
-  return response.json();
-};
-```
-
-### Real-time Updates via Webhooks
-
-```tsx
-// Listen for Sofia notifications
+// …inside your WebSocket setup…
 const setupSofiaWebsocket = () => {
-  const ws = new WebSocket('ws://[n8n-instance.com/webhook/sofia/live](http://n8n-instance.com/webhook/sofia/live)');
+  const ws = new WebSocket('ws://n8n-instance.com/webhook/sofia/live');
 
   ws.onmessage = (event) => {
-    const data = JSON.parse([event.data](http://event.data));
+    const data = JSON.parse(event.data);
 
-    switch(data.type) {
+    switch (data.type) {
       case 'sofia_message':
         updateChatInterface(data.message);
         break;
@@ -508,150 +437,6 @@ const setupSofiaWebsocket = () => {
     }
   };
 };
-```
-
----
-
-## 🎯 Advantages of n8n Agent Architecture
-
-## 🔒 Security & Compliance (n8n Cloud + Supabase)
-
-### Authentication
-
-- Frontend → n8n: Supabase JWT in `Authorization: Bearer <token>` on every request
-- n8n Orchestrator verifies JWT against Supabase Auth or JWKS before any processing
-- Service-to-service secrets stored in n8n Credentials vault, never hardcoded
-
-### Authorization
-
-- Pass `userId` and derived roles/claims from JWT
-- Node-level guards: verify resource ownership before DB writes or reads
-- Callable workflows accept only whitelisted actions via Switch router
-
-### Data Protection and PII
-
-- Store only necessary PII in Supabase with Row Level Security (RLS) policies per `userId`
-- Mask sensitive fields in logs and error payloads; use structured logging with redaction
-- Separate tables for AI outputs vs. source documents to simplify retention
-
-### Encryption
-
-- TLS in transit for all webhooks and external calls
-- At rest: n8n Cloud managed encryption for credentials; Supabase Postgres storage encryption
-- Client-side encryption optional for highly sensitive attachments before upload
-
-### Auditing & Monitoring
-
-- Append-only `audit_logs` table: `requestId`, `userId`, `action`, `workflow`, `nodes`, `status`, `duration`
-- `error_logs` table for failures with correlation to `audit_logs`
-- Alerts: Slack or email on error rate spike, latency SLO breaches, auth failures
-
-### Compliance Posture (baseline)
-
-- Data residency: prefer EU regions for n8n Cloud and Supabase
-- Data retention: define TTL for logs and AI intermediates; periodic purge jobs
-- Access control: least-privilege API keys, rotate credentials, MFA on n8n and Supabase admin
-
-### Development Speed
-
-- ✅ Visual workflow design — see the logic flow
-- ✅ No backend coding — focus on frontend + prompts
-- ✅ Rapid iteration — change AI logic without deployment
-- ✅ Built-in integrations — 400+ service connectors
-
-### AI Capabilities
-
-- ✅ Advanced agent patterns — tools, memory, function calling
-- ✅ Multi-model support — OpenAI, Anthropic, local models
-- ✅ Conversation persistence — automatic memory management
-- ✅ Tool orchestration — complex multi-step AI workflows
-
-### Production Ready
-
-- ✅ Webhook APIs — standard REST interface
-- ✅ Error handling — built-in retry and fallback logic
-- ✅ Monitoring — execution logs and performance tracking
-- ✅ Scalability — cloud deployment options
-
-### Family App Specific
-
-- ✅ Crisis management — complex trigger-based workflows
-- ✅ Multi-channel notifications — email, SMS, push, emergency services
-- ✅ Document processing — AI analysis pipelines
-- ✅ Guardian orchestration — role-based access workflows
-
----
-
-## 📊 Performance Considerations
-
-### Response Times
-
-- Sofia chat: ~2–3 seconds (acceptable for thoughtful responses)
-- Document processing: ~5–10 seconds (background processing OK)
-- Crisis activation: <30 seconds (critical path optimization)
-
-### Reliability
-
-- Webhook redundancy (multiple endpoints)
-- Fallback mechanisms (if AI service down)
-- Queue processing (handle traffic spikes)
-- Data persistence (Supabase backup)
-
-### Monitoring
-
-- n8n execution logs
-- AI token usage tracking
-- Response time metrics
-- Error rate monitoring
-
----
-
-## 🚀 Migration Path
-
-### Current Plan Update
-
-### Week 1–2: [Lovable.dev](http://Lovable.dev) Frontend ✅
-
-- All UI components
-- Chat interface for Sofia
-- Document upload forms
-- Dashboard layouts
-
-### Week 3: n8n Sofia Agent ✅ (NEW)
-
-- Basic conversation agent
-- Memory management
-- Tool integration setup
-- Webhook API endpoints
-
-### Week 4: Document Processing ✅ (NEW)
-
-- Upload workflow
-- AI analysis pipeline
-- Supabase integration
-- Protection score updates
-
-### Week 5–6: Advanced Features ✅ (NEW)
-
-- Guardian network workflows
-- Crisis management system
-- Emergency notifications
-- Production optimization
-
-Total: 6 weeks to production‑ready MVP (adjusted timeline for n8n agent implementation)
-
----
-
-## 💡 Why This Is Actually Brilliant
-
-### For Solo Developer
-
-- No complex backend architecture — n8n handles orchestration
-- Visual debugging — see exactly what the AI agent is doing
-- Rapid prompt engineering — change Sofia's behavior instantly
-- Tool ecosystem — 400+ integrations available immediately
-
-### For Family Protection App
 
 - Crisis workflows — perfect for emergency response automation
 - Multi‑channel communication — essential for guardian notifications

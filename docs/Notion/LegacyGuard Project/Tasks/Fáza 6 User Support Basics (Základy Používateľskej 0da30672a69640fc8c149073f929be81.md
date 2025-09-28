@@ -11,11 +11,11 @@ Status: Backlog
 
 ### Odporúčanie
 
-Vytvorte si v koreňovom priečinku projektu súbor [`FAQ.md`](http://FAQ.md).
+Vytvorte si v koreňovom priečinku projektu súbor [`FAQ.md`](/FAQ.md).
 
 ---
 
-### [FAQ.md](http://FAQ.md)
+### [FAQ.md](/FAQ.md)
 
 ### Často Kladené Otázky (FAQ)
 
