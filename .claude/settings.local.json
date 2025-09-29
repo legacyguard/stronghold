@@ -34,7 +34,9 @@
       "Bash(npx shadcn@latest add:*)",
       "Bash(printf:*)",
       "Bash(npx:*)",
-      "Bash(npm install:*)"
+      "Bash(npm install:*)",
+      "Bash(npm run dev:*)",
+      "Read(//Users/luborfedak/Documents/Github/sprint/**)"
     ],
     "deny": [],
     "ask": []

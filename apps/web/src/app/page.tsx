@@ -1,6 +1,5 @@
 import Image from "next/image";
-import dynamic from "next/dynamic";
-const AuthStatus = dynamic(() => import("./AuthStatus"), { ssr: false });
+import AuthStatus from "./AuthStatus";
 
 export default function Home() {
   return (
