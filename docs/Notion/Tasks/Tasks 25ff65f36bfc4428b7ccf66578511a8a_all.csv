@@ -1,0 +1,8 @@
+﻿Task,Completion %,Due,Effort,Is Sub-task,Links,Parent Stage,Parent Task,Priority,Related Feature,Stage,Stage (Auto),Status,Sub-tasks,Sub-tasks (All),Sub-tasks Done
+Fáza 0: Príprava Infraštruktúry,,"September 27, 2025",,No,,,,High,,Fáza 0: Príprava,,Done,,,
+"Fáza 1: Nastavenie ""Nervového Systému"" (Backend a Auth)",,,,No,,,,High,,Fáza 1: Základy,,Done,,,
+Fáza 2: Oživenie Aplikácie (Prvý Funkčný Prototyp),,,,No,,,,High,,Fáza 2: Prvý Prototyp,,Backlog,,,
+Fáza 3: Inteligentný Mozog (LangGraph + Vercel AI SDK),,,,No,,,,High,,Fáza 3: Prémiové Funkcie,,Backlog,,,
+Fáza 4: localization — Workflow pre Aktualizáciu Textov,,,,No,https://www.deepl.com,,,High,,Backlog (Zásobník Nápadov),,Backlog,,,
+Fáza 5: Roadmap and Tasks (Cestovná Mapa a Úlohy),,,,No,,,,High,,Backlog (Zásobník Nápadov),,Backlog,,,
+Fáza 6: User Support Basics (Základy Používateľskej Podpory),,,,No,,,,High,,Backlog (Zásobník Nápadov),,Backlog,,,

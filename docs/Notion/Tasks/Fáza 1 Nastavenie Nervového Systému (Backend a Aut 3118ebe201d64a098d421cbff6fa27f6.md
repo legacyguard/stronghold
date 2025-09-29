@@ -22,12 +22,12 @@ Mať funkčný a bezpečný backendový základ.
     - [x]  Aplikovať migráciu na remote databázu (`supabase db push`)
 - [x]  **Nastaviť Supabase Auth**
     - [x]  Povoliť prihlasovanie emailom a cez sociálne siete (Google, Apple)
-- [ ]  **Základné UI a Funkcie:**
-    - [ ]  Pripraviť `tailwind.config.ts` s vaším Dizajn Manuálom.
-    - [ ]  Vytvoriť základný layout aplikácie (Sidebar, Header).
-    - [ ]  Implementovať **jednoduchý** `DocumentUploader` komponent, ktorý len nahrá súbor do Supabase Storage a zapíše metadáta do DB.
-    - [ ]  Implementovať `DocumentList` na zobrazenie nahratých dokumentov.
-    - [ ]  Implementovať základnú správu Strážcov (pridanie, zobrazenie).
+- [x]  **Základné UI a Funkcie:**
+    - [x]  Pripraviť `tailwind.config.ts` s vaším Dizajn Manuálom.
+    - [x]  Vytvoriť základný layout aplikácie (Sidebar, Header).
+    - [x]  Implementovať **jednoduchý** `DocumentUploader` komponent, ktorý len nahrá súbor do Supabase Storage a zapíše metadáta do DB.
+    - [x]  Implementovať `DocumentList` na zobrazenie nahratých dokumentov.
+    - [x]  Implementovať základnú správu Strážcov (pridanie, zobrazenie).
     
 
 ---

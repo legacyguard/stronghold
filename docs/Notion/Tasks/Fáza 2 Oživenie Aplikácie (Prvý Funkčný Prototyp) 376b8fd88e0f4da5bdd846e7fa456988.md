@@ -7,37 +7,48 @@ Status: Backlog
 
 ### Cieľ
 
-Vytvoriť funkčnú, viacjazyčnú "kostru" aplikácie a overiť základný end-to-end tok.
+Vytvoriť funkčnú, viacjazyčnú "kostru" aplikácie. Overiť nielen základné používateľské akcie (registrácia, zápis/čítanie dát), ale aj implementovať a otestovať **základy pre kľúčové asynchrónne a plánované procesy**, ktoré tvoria inteligenciu aplikácie.
 
 ---
 
 ### Podúlohy
 
-- [ ]  **Nastavenie Spojenia:**
-    - [ ]  Vo Windmille si vytvoriť "Resources" pre bezpečné uloženie API kľúčov (Supabase service_role_key, Resend API key).
-- [ ]  **Implementácia Notifikačného Systému:**
-    - [ ]  Vytvoriť vo Windmille skript (TypeScript/Python), ktorý načíta dokumenty s blížiacou sa exspiráciou zo Supabase.
-    - [ ]  Vytvoriť ďalší skript, ktorý pošle email cez Resend.
-    - [ ]  Spojiť ich do jedného workflow a nastaviť ho, aby sa spúšťal ako Cron Job raz denne.
-- [ ]  **Implementácia Dead Man's Switch (Základ):**
-    - [ ]  Vytvoriť vo Windmille ďalší Cron Job, ktorý kontroluje neaktivitu používateľov.
-    - [ ]  Vytvoriť skript, ktorý v prípade neaktivity pošle prvú sériu varovných emailov.
-- [ ]  **Implementácia Generovania PDF:**
-    - [ ]  Vytvoriť vo Windmille skript, ktorý prijme dáta (napr. ID závetu), načíta ich zo Supabase a pomocou knižnice (napr. `Puppeteer`) vygeneruje PDF.
-    - [ ]  Vystaviť tento skript ako webhook, ktorý môže volať vaša Next.js aplikácia.
-- [ ]  **Implementovať Supabase Auth v Next.js:**
-    - [ ]  Vytvoriť prihlasovaciu a registračnú stránku (napr. pomocou Supabase Auth UI).
-    - [ ]  Vytvoriť chránené routy pomocou Next.js Middleware, ktoré overuje session zo Supabase.
-- [ ]  **Vytvoriť Základný UI Layout a Internacionalizáciu (i18n):**
-    - [ ]  Implementovať hlavný layout s bočným panelom (Sidebar) a hlavičkou (Header).
-    - [ ]  Nastaviť `i18next` a `react-i18next` pre Next.js.
-    - [ ]  Vytvoriť štruktúru prekladov (`/public/locales/en`, `/public/locales/sk`, `/public/locales/cs`) s logickými mennými priestormi (`common.json`, `navigation.json`).
-    - [ ]  Preložiť základné texty v UI (názvy v navigácii, tlačidlá) pomocou `t()` funkcie.
-    - [ ]  Implementovať jednoduchý prepínač jazykov.
-- [ ]  **Vytvoriť Prvý End-to-End Tok (s Windmillom):**
-    - [ ]  Vytvoriť jednoduchý formulár na stránke `/vault` (napr. len s jedným textovým poľom).
-    - [ ]  Po odoslaní formulár zavolá **webhook vo Windmille** (ktorý ste si vytvorili vo Fáze 1).
-    - [ ]  Workflow vo Windmille prijme dáta, pomocou uložených credentials sa pripojí k Supabase a zapíše testovacie dáta do tabuľky `documents`.
-    - [ ]  Frontend zobrazí správu o úspechu (napr. `t('vault.upload_success')`).
-
----
+- [ ]  **Časť A: Základ Aplikácie a Používateľské Rozhranie**
+    - [ ]  **Implementovať Supabase Auth a Základný Layout:**
+        - [ ]  Vytvoriť prihlasovacie a registračné stránky.
+        - [ ]  Nastaviť `middleware.ts` na ochranu stránok.
+        - [ ]  Implementovať hlavný layout (Sidebar, Header).
+        - [ ]  **Nastaviť `i18next`** a preložiť základné UI texty do SK/CZ/EN.
+- [ ]  **Časť B: Overenie Základného End-to-End Toku (Server Actions)**
+    - [ ]  **Implementovať Základnú Správu Dokumentov:**
+        - [ ]  Vytvoriť Server Action `addDocument` na zápis metadát do Supabase.
+        - [ ]  Vytvoriť Server Action `getDocumentsForUser` na čítanie dát.
+        - [ ]  Vytvoriť na stránke `/vault` formulár (`SimpleDocumentUploader`) a zoznam (`DocumentList`), ktoré tieto akcie používajú.
+        - [ ]  **Overiť, že celý cyklus (pridanie a následné zobrazenie) funguje.**
+- [ ]  **Časť C: Implementácia Základov pre Asynchrónne Procesy (Vercel Functions & Cron)**
+    - [ ]  Cieľ: Nahradiť logiku plánovanú pre n8n/Windmill pomocou Vercel Functions. V tejto fáze vytvoríme "kostru" týchto funkcií a overíme, že sa dajú spustiť.
+    - [ ]  **Nastaviť Vercel Cron Jobs:**
+        - [ ]  Vytvoriť v koreňovom priečinku súbor `vercel.json`.
+        - [ ]  Zadefinovať v ňom dva Cron joby podľa nášho plánu:
+            - [ ]  Jeden, ktorý sa spúšťa raz denne pre kontrolu exspirácií (cesta: `/api/cron/check-expirations`).
+            - [ ]  Druhý, ktorý sa spúšťa raz denne pre kontrolu neaktivity (cesta: `/api/cron/dead-mans-switch`).
+        - [ ]  Pridať do Environment Variables na Verceli tajný kľúč `CRON_SECRET` na zabezpečenie týchto endpointov.
+    - [ ]  **Implementovať "Kostru" Notifikačného Systému:**
+        - [ ]  Vytvoriť súbor `/app/api/cron/check-expirations/route.ts`.
+        - [ ]  V tejto funkcii implementovať základnú logiku:
+            - [ ]  Overiť `CRON_SECRET`.
+            - [ ]  Vytvoriť Supabase klienta so `service_role_key`.
+            - [ ]  **Zatiaľ len zalogovať správu** (napr. `console.log("Checking for expiring documents...")`) namiesto reálneho posielania emailov.
+        - [ ]  Nasadiť na Vercel a v logoch overiť, že sa funkcia naozaj spúšťa raz denne.
+    - [ ]  **Implementovať "Kostru" Dead Man's Switch:**
+        - [ ]  Vytvoriť súbor `/app/api/cron/dead-mans-switch/route.ts`.
+        - [ ]  V tejto funkcii implementovať základnú logiku:
+            - [ ]  Overiť `CRON_SECRET`.
+            - [ ]  **Zatiaľ len zalogovať správu** (napr. `console.log("Checking for inactive users...")`).
+        - [ ]  Nasadiť na Vercel a v logoch overiť, že sa funkcia spúšťa.
+    - [ ]  **Implementovať "Kostru" Generovania PDF:**
+        - [ ]  Vytvoriť súbor `/app/api/generate-pdf/route.ts`.
+        - [ ]  V tejto funkcii implementovať základnú logiku:
+            - [ ]  Overiť, či je používateľ prihlásený.
+            - [ ]  **Zatiaľ vrátiť jednoduchú textovú odpoveď** (napr. `return new Response("PDF generation endpoint is working")`) namiesto reálneho generovania PDF.
+        - [ ]  Vytvoriť na nejakej stránke testovacie tlačidlo, ktoré zavolá tento endpoint, a overiť, že odpoveď príde správne.
