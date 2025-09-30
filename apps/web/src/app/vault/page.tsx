@@ -1,7 +1,7 @@
 "use client";
 
 import { Toaster } from 'react-hot-toast';
-import SimpleDocumentUploader from '@/components/documents/SimpleDocumentUploader';
+import AIDocumentUploader from '@/components/documents/AIDocumentUploader';
 import SimpleDocumentForm from '@/components/SimpleDocumentForm';
 import DocumentList from '@/components/DocumentList';
 import PDFTestButton from '@/components/PDFTestButton';
@@ -86,10 +86,10 @@ export default function VaultPage() {
 
           {/* Document Management */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-2xl">
-            {/* File Upload */}
+            {/* AI Document Upload */}
             <div>
-              <h3 className="text-h3 font-semibold text-text-dark mb-lg">{t('sections.file_upload')}</h3>
-              <SimpleDocumentUploader />
+              <h3 className="text-h3 font-semibold text-text-dark mb-lg">{t('sections.ai_upload')}</h3>
+              <AIDocumentUploader />
             </div>
 
             {/* Simple Document Entry (For Testing) */}

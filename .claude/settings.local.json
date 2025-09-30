@@ -43,7 +43,8 @@
       "Bash(npm run build:*)",
       "Bash(find:*)",
       "Bash(xargs sed:*)",
-      "Read(///**)"
+      "Read(///**)",
+      "Bash(echo:*)"
     ],
     "deny": [],
     "ask": []

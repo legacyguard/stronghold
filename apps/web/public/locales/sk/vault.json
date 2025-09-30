@@ -9,6 +9,7 @@
   },
   "sections": {
     "file_upload": "Nahranie súborov",
+    "ai_upload": "Inteligentné nahranie s AI",
     "quick_add": "Rýchle pridanie (testovací režim)",
     "your_documents": "Vaše dokumenty"
   },
