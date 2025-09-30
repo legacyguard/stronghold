@@ -1,0 +1,51 @@
+{
+  "brand": {
+    "name": "LegacyGuard",
+    "tagline": "Family Protection"
+  },
+  "menu": {
+    "dashboard": "Dashboard",
+    "family_shield": "Family Shield",
+    "will_generator": "Will Generator",
+    "guardians": "Guardian Network",
+    "vault": "Document Vault",
+    "settings": "Settings"
+  },
+  "header": {
+    "search_placeholder": "Search or type command...",
+    "search_shortcut": "⌘K",
+    "notifications": "Notifications",
+    "user_menu": "User menu",
+    "sign_out": "Sign out"
+  },
+  "pages": {
+    "dashboard": {
+      "title": "Dashboard",
+      "subtitle": "Secure your family's future with confidence"
+    },
+    "family_shield": {
+      "title": "Family Shield",
+      "subtitle": "Comprehensive protection for your family"
+    },
+    "will_generator": {
+      "title": "Will Generator",
+      "subtitle": "Create a legally compliant will"
+    },
+    "guardians": {
+      "title": "Guardian Network",
+      "subtitle": "Manage trusted contacts"
+    },
+    "vault": {
+      "title": "Document Vault",
+      "subtitle": "Secure important files"
+    },
+    "settings": {
+      "title": "Settings",
+      "subtitle": "Customize your account"
+    }
+  },
+  "breadcrumbs": {
+    "home": "Home",
+    "back": "Back"
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "buttons": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "confirm": "Confirm",
+    "back": "Back",
+    "next": "Next",
+    "finish": "Finish",
+    "close": "Close",
+    "submit": "Submit",
+    "loading": "Loading...",
+    "retry": "Try again"
+  },
+  "errors": {
+    "required": "This field is required",
+    "invalid_email": "Invalid email address",
+    "password_too_short": "Password must be at least {{min}} characters",
+    "passwords_not_match": "Passwords do not match",
+    "network_error": "Network error, please try again",
+    "unknown_error": "An unexpected error occurred",
+    "unauthorized": "You don't have permission for this action",
+    "not_found": "Content not found",
+    "server_error": "Server error"
+  },
+  "messages": {
+    "success": "Successfully completed",
+    "saved": "Saved",
+    "deleted": "Deleted",
+    "updated": "Updated",
+    "loading": "Loading...",
+    "no_data": "No data",
+    "empty_state": "Nothing here yet"
+  },
+  "forms": {
+    "email": "Email",
+    "password": "Password",
+    "confirm_password": "Confirm password",
+    "name": "Name",
+    "surname": "Surname",
+    "phone": "Phone",
+    "address": "Address",
+    "city": "City",
+    "country": "Country",
+    "date": "Date",
+    "description": "Description",
+    "title": "Title"
+  },
+  "time": {
+    "minutes": "minutes",
+    "hours": "hours",
+    "days": "days",
+    "weeks": "weeks",
+    "months": "months",
+    "years": "years",
+    "ago": "{{time}} ago",
+    "just_now": "just now"
+  },
+  "states": {
+    "active": "Active",
+    "inactive": "Inactive",
+    "pending": "Pending",
+    "completed": "Completed",
+    "expired": "Expired",
+    "draft": "Draft"
+  }
+}

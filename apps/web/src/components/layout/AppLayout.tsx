@@ -1,6 +1,6 @@
 "use client";
 
-import { ReactNode, useState, useEffect } from "react";
+import React, { ReactNode, useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import {
@@ -20,13 +20,15 @@ import {
   X
 } from "lucide-react";
 import { supabase } from "@/lib/supabase";
+import { useNamespace } from "@/contexts/LocalizationContext";
+import { LanguageSwitcher } from "@/components/ui/language-switcher";
 
 interface AppLayoutProps {
   children: ReactNode;
 }
 
 interface NavigationItem {
-  icon: any;
+  icon: React.ComponentType<{ className?: string }>;
   label: string;
   href: string;
 }
@@ -40,6 +42,7 @@ interface User {
 }
 
 const AppLayout = ({ children }: AppLayoutProps) => {
+  const { t } = useNamespace('navigation');
   const pathname = usePathname();
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
@@ -47,12 +50,12 @@ const AppLayout = ({ children }: AppLayoutProps) => {
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
 
   const navigationItems: NavigationItem[] = [
-    { icon: Home, label: "Dashboard", href: "/" },
-    { icon: Shield, label: "Family Shield", href: "/family-shield" },
-    { icon: FileText, label: "Will Generator", href: "/will-generator" },
-    { icon: Users, label: "Guardian Network", href: "/guardians" },
-    { icon: Lock, label: "Document Vault", href: "/vault" },
-    { icon: Settings, label: "Settings", href: "/settings" },
+    { icon: Home, label: t('menu.dashboard'), href: "/" },
+    { icon: Shield, label: t('menu.family_shield'), href: "/family-shield" },
+    { icon: FileText, label: t('menu.will_generator'), href: "/will-generator" },
+    { icon: Users, label: t('menu.guardians'), href: "/guardians" },
+    { icon: Lock, label: t('menu.vault'), href: "/vault" },
+    { icon: Settings, label: t('menu.settings'), href: "/settings" },
   ];
 
   useEffect(() => {
@@ -106,8 +109,8 @@ const AppLayout = ({ children }: AppLayoutProps) => {
               <Shield className="h-6 w-6 text-surface" />
             </div>
             <div>
-              <h1 className="text-h3 text-text-dark font-semibold">LegacyGuard</h1>
-              <p className="text-caption text-text-light">Family Protection</p>
+              <h1 className="text-h3 text-text-dark font-semibold">{t('brand.name')}</h1>
+              <p className="text-caption text-text-light">{t('brand.tagline')}</p>
             </div>
           </div>
           <button
@@ -124,7 +127,7 @@ const AppLayout = ({ children }: AppLayoutProps) => {
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-text-light" />
             <input
               type="text"
-              placeholder="Search or type command..."
+              placeholder={t('header.search_placeholder')}
               className="w-full pl-10 pr-4 py-sm rounded-lg bg-neutral-beige/50 border border-border/20 text-body placeholder-text-light focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
             />
             <div className="absolute right-2 top-1/2 transform -translate-y-1/2 text-xs text-text-light bg-neutral-beige/80 px-1.5 py-0.5 rounded border border-border/20">
@@ -240,12 +243,15 @@ const AppLayout = ({ children }: AppLayoutProps) => {
                   {navigationItems.find(item => isActive(item.href))?.label || 'Dashboard'}
                 </h2>
                 <p className="text-caption text-text-light">
-                  Secure your family's future with confidence
+                  {t('pages.dashboard.subtitle')}
                 </p>
               </div>
             </div>
 
             <div className="flex items-center gap-sm">
+              {/* Language Switcher */}
+              <LanguageSwitcher variant="compact" />
+
               {/* Notifications */}
               <button className="relative p-sm rounded-lg hover:bg-neutral-beige transition-colors duration-200">
                 <Bell className="h-5 w-5 text-text-light" />

@@ -1,0 +1,68 @@
+{
+  "buttons": {
+    "save": "Uložit",
+    "cancel": "Zrušit",
+    "delete": "Smazat",
+    "edit": "Upravit",
+    "confirm": "Potvrdit",
+    "back": "Zpět",
+    "next": "Další",
+    "finish": "Dokončit",
+    "close": "Zavřít",
+    "submit": "Odeslat",
+    "loading": "Načítá...",
+    "retry": "Zkusit znovu"
+  },
+  "errors": {
+    "required": "Toto pole je povinné",
+    "invalid_email": "Neplatná emailová adresa",
+    "password_too_short": "Heslo musí mít alespoň {{min}} znaků",
+    "passwords_not_match": "Hesla se neshodují",
+    "network_error": "Chyba sítě, zkuste znovu",
+    "unknown_error": "Nastala neočekávaná chyba",
+    "unauthorized": "Nemáte oprávnění pro tuto akci",
+    "not_found": "Obsah se nenašel",
+    "server_error": "Chyba serveru"
+  },
+  "messages": {
+    "success": "Úspěšně dokončeno",
+    "saved": "Uloženo",
+    "deleted": "Smazáno",
+    "updated": "Aktualizováno",
+    "loading": "Načítá se...",
+    "no_data": "Žádná data",
+    "empty_state": "Zatím tu nic není"
+  },
+  "forms": {
+    "email": "Email",
+    "password": "Heslo",
+    "confirm_password": "Potvrdit heslo",
+    "name": "Jméno",
+    "surname": "Příjmení",
+    "phone": "Telefon",
+    "address": "Adresa",
+    "city": "Město",
+    "country": "Země",
+    "date": "Datum",
+    "description": "Popis",
+    "title": "Název"
+  },
+  "time": {
+    "minutes": "minut",
+    "hours": "hodin",
+    "days": "dní",
+    "weeks": "týdnů",
+    "months": "měsíců",
+    "years": "let",
+    "ago": "před {{time}}",
+    "just_now": "právě teď"
+  },
+  "states": {
+    "active": "Aktivní",
+    "inactive": "Neaktivní",
+    "pending": "Čekající",
+    "completed": "Dokončený",
+    "expired": "Vypršel",
+    "draft": "Koncept"
+  }
+}

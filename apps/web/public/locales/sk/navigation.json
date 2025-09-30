@@ -1,0 +1,51 @@
+{
+  "brand": {
+    "name": "LegacyGuard",
+    "tagline": "Ochrana rodiny"
+  },
+  "menu": {
+    "dashboard": "Dashboard",
+    "family_shield": "Rodinný štít",
+    "will_generator": "Tvorba závetu",
+    "guardians": "Opatrovateľská sieť",
+    "vault": "Archív dokumentov",
+    "settings": "Nastavenia"
+  },
+  "header": {
+    "search_placeholder": "Hľadať alebo zadať príkaz...",
+    "search_shortcut": "⌘K",
+    "notifications": "Notifikácie",
+    "user_menu": "Používateľské menu",
+    "sign_out": "Odhlásiť sa"
+  },
+  "pages": {
+    "dashboard": {
+      "title": "Dashboard",
+      "subtitle": "Zabezpečte budúcnosť svojej rodiny s dôverou"
+    },
+    "family_shield": {
+      "title": "Rodinný štít",
+      "subtitle": "Komplexná ochrana pre vašu rodinu"
+    },
+    "will_generator": {
+      "title": "Tvorba závetu",
+      "subtitle": "Vytvorte právne platný závet"
+    },
+    "guardians": {
+      "title": "Opatrovateľská sieť",
+      "subtitle": "Spravujte dôveryhodné kontakty"
+    },
+    "vault": {
+      "title": "Archív dokumentov",
+      "subtitle": "Zabezpečte dôležité súbory"
+    },
+    "settings": {
+      "title": "Nastavenia",
+      "subtitle": "Prispôsobte si svoj účet"
+    }
+  },
+  "breadcrumbs": {
+    "home": "Domov",
+    "back": "Späť"
+  }
+}

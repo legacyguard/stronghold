@@ -158,9 +158,13 @@ npm run providers:apply
 - **Crisis Management**: Dead man's switch + emergency response automation
 
 ### Development Phases
-- **Phase 1 (✅ Completed)**: Supabase setup, auth, basic tables with RLS
-- **Phase 2 (🔄 In Progress)**: Windmill workflows, auth integration, i18next setup
-- **Phase 3 (Planned)**: AI agent implementation, content management system
+- **Phase 0 (✅ Completed)**: Prerequisites for Infra - /Users/luborfedak/Documents/Github/stronghold/docs/Notion/Tasks/Fáza\ 0\ Príprava\ Infraštruktúry\ 90241f2dd4b4496e91e950aa9935d4f5.md 
+- **Phase 1 (✅ Completed)**: Supabase setup, auth, basic tables with RLS - /Users/luborfedak/Documents/Github/stronghold/docs/Notion/Tasks/Fáza\ 1\ Nastavenie\ Nervového\ Systému\ \(Backend\ a\ Aut\ 3118ebe201d64a098d421cbff6fa27f6.md 
+- **Phase 2 (Planned)**: First Functional Prototype - /Users/luborfedak/Documents/Github/stronghold/docs/Notion/Tasks/Fáza\ 2\ Oživenie\ Aplikácie\ \(Prvý\ Funkčný\ Prototyp\)\ 376b8fd88e0f4da5bdd846e7fa456988.md 
+- **Phase 3 (Planned)**: LangGraph + Vercel AI SDK - /Users/luborfedak/Documents/Github/stronghold/docs/Notion/Tasks/Fáza\ 3\ Inteligentný\ Mozog\ \(LangGraph\ +\ Vercel\ AI\ S\ 28885e1f3bf24e48b57c535b85bd9212.md 
+- **Phase 4 (Planned)**: Workflow for Texts Actualisation - /Users/luborfedak/Documents/Github/stronghold/docs/Notion/Tasks/Fáza\ 4\ localization\ —\ Workflow\ pre\ Aktualizáciu\ Te\ 1a995308bc6a46e4a1e690d172c743c4.md 
+- **Phase 5 (Planned)**: Roadmap and Tasks - /Users/luborfedak/Documents/Github/stronghold/docs/Notion/Tasks/Fáza\ 5\ Roadmap\ and\ Tasks\ \(Cestovná\ Mapa\ a\ Úlohy\)\ 8e2f5059510c42f2a5d8d406ea8075c9.md 
+- **Phase 6 (Planned)**: User Support Basics - /Users/luborfedak/Documents/Github/stronghold/docs/Notion/Tasks/Fáza\ 6\ User\ Support\ Basics\ \(Základy\ Používateľskej\ 0da30672a69640fc8c149073f929be81.md 
 
 ## Development Guidelines
 

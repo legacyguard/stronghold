@@ -1,0 +1,52 @@
+{
+  "welcome": {
+    "title": "Vitajte späť!",
+    "subtitle": "Ochrana vašej rodiny je naša priorita"
+  },
+  "stats": {
+    "documents_protected": "Chránené dokumenty",
+    "guardians_active": "Aktívni opatrovatelia",
+    "security_score": "Bezpečnostné skóre",
+    "monthly_savings": "Mesačné úspory"
+  },
+  "quick_actions": {
+    "title": "Rýchle akcie",
+    "subtitle": "Začnite s dôležitými úlohami",
+    "generate_will": {
+      "title": "Vytvoriť závet",
+      "description": "Vytvorte právne platný závet"
+    },
+    "add_guardian": {
+      "title": "Pridať opatrovateľa",
+      "description": "Pozvať dôveryhodné kontakty"
+    },
+    "upload_documents": {
+      "title": "Nahrať dokumenty",
+      "description": "Zabezpečiť dôležité súbory"
+    },
+    "family_shield": {
+      "title": "Rodinný štít",
+      "description": "Komplexná ochrana"
+    }
+  },
+  "recent_activity": {
+    "title": "Nedávna aktivita",
+    "subtitle": "Najnovšie aktualizácie a zmeny",
+    "activities": {
+      "document_vault_updated": "Archív dokumentov aktualizovaný",
+      "guardian_invitation_sent": "Pozvánka opatrovateľovi poslaná",
+      "will_template_generated": "Šablóna závetu vygenerovaná",
+      "security_check_completed": "Bezpečnostná kontrola dokončená"
+    },
+    "time": {
+      "hours_ago": "pred {{count}} hodinami",
+      "days_ago": "pred {{count}} dňami",
+      "weeks_ago": "pred {{count}} týždňami"
+    }
+  },
+  "security_alert": {
+    "title": "Bezpečnostné odporúčanie",
+    "description": "Zvážte zapnutie dvojfaktorového overenia pre zvýšenie bezpečnosti účtu.",
+    "action": "Aktualizovať bezpečnostné nastavenia →"
+  }
+}

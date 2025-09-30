@@ -36,7 +36,8 @@
       "Bash(npx:*)",
       "Bash(npm install:*)",
       "Bash(npm run dev:*)",
-      "Read(//Users/luborfedak/Documents/Github/sprint/**)"
+      "Read(//Users/luborfedak/Documents/Github/sprint/**)",
+      "Bash(npm run lint:*)"
     ],
     "deny": [],
     "ask": []

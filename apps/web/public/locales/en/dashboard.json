@@ -1,0 +1,52 @@
+{
+  "welcome": {
+    "title": "Welcome back!",
+    "subtitle": "Your family's protection is our priority"
+  },
+  "stats": {
+    "documents_protected": "Documents Protected",
+    "guardians_active": "Guardians Active",
+    "security_score": "Security Score",
+    "monthly_savings": "Monthly Savings"
+  },
+  "quick_actions": {
+    "title": "Quick Actions",
+    "subtitle": "Get started with essential tasks",
+    "generate_will": {
+      "title": "Generate Will",
+      "description": "Create a legally compliant will"
+    },
+    "add_guardian": {
+      "title": "Add Guardian",
+      "description": "Invite trusted contacts"
+    },
+    "upload_documents": {
+      "title": "Upload Documents",
+      "description": "Secure important files"
+    },
+    "family_shield": {
+      "title": "Family Shield",
+      "description": "Comprehensive protection"
+    }
+  },
+  "recent_activity": {
+    "title": "Recent Activity",
+    "subtitle": "Latest updates and changes",
+    "activities": {
+      "document_vault_updated": "Document vault updated",
+      "guardian_invitation_sent": "Guardian invitation sent",
+      "will_template_generated": "Will template generated",
+      "security_check_completed": "Security check completed"
+    },
+    "time": {
+      "hours_ago": "{{count}} hours ago",
+      "days_ago": "{{count}} days ago",
+      "weeks_ago": "{{count}} weeks ago"
+    }
+  },
+  "security_alert": {
+    "title": "Security Recommendation",
+    "description": "Consider enabling two-factor authentication for enhanced account security.",
+    "action": "Update Security Settings →"
+  }
+}
