@@ -63,7 +63,8 @@ export async function GET(request: NextRequest) {
       email: user.email,
       days_inactive: user.days_inactive,
       inactivity_level: user.inactivity_level,
-      last_sign_in_at: user.last_sign_in_at
+      last_sign_in_at: user.last_sign_in_at,
+      created_at: user.created_at
     }));
 
     // Count users by crisis level

@@ -276,7 +276,8 @@ export const DEAD_MANS_SWITCH_CONFIG = {
 export class DeadMansSwitchService {
   private supabase;
 
-  constructor(supabaseClient?: ReturnType<typeof createClient>) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  constructor(supabaseClient?: any) {
     if (supabaseClient) {
       this.supabase = supabaseClient;
     } else {

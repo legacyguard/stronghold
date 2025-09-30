@@ -1,26 +1,15 @@
 {
   "version": 2,
-  "buildCommand": "npm run build:web",
-  "devCommand": "npm run web",
-  "installCommand": "npm install",
-  "framework": "nextjs",
-  "rootDirectory": "apps/web",
-  "crons": [
+  "builds": [
     {
-      "path": "/api/cron/check-expirations",
-      "schedule": "0 9 * * *"
-    },
-    {
-      "path": "/api/cron/dead-mans-switch",
-      "schedule": "0 10 * * *"
+      "src": "apps/web/package.json",
+      "use": "@vercel/next"
     }
   ],
-  "env": {
-    "CRON_SECRET": "@cron-secret"
-  },
-  "functions": {
-    "apps/web/src/app/api/**": {
-      "maxDuration": 30
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/apps/web/$1"
     }
-  }
+  ]
 }

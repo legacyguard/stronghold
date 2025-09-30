@@ -27,7 +27,7 @@ interface LocalizationContextType {
 
   // Helper methods
   isLanguageSupported: (language: string) => boolean;
-  getLanguageMetadata: (language: string) => any | null;
+  getLanguageMetadata: (language: string) => {name: string; nativeName: string; flag: string} | null;
 
   // Loading states
   isChangingLanguage: boolean;
@@ -108,10 +108,10 @@ export function LocalizationProvider({ children }: LocalizationProviderProps) {
   const getLanguageMetadata = (language: string) => {
     // Simplified metadata
     const metadata = {
-      sk: { name: 'Slovenčina', flag: '🇸🇰' },
-      cs: { name: 'Čeština', flag: '🇨🇿' },
-      en: { name: 'English', flag: '🇺🇸' },
-      de: { name: 'Deutsch', flag: '🇩🇪' }
+      sk: { name: 'Slovenčina', nativeName: 'Slovenčina', flag: '🇸🇰' },
+      cs: { name: 'Čeština', nativeName: 'Čeština', flag: '🇨🇿' },
+      en: { name: 'English', nativeName: 'English', flag: '🇺🇸' },
+      de: { name: 'Deutsch', nativeName: 'Deutsch', flag: '🇩🇪' }
     };
     return metadata[language as keyof typeof metadata] || null;
   };

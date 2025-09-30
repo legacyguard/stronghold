@@ -42,7 +42,8 @@
       "Bash(./test-cron-endpoints.sh:*)",
       "Bash(npm run build:*)",
       "Bash(find:*)",
-      "Bash(xargs sed:*)"
+      "Bash(xargs sed:*)",
+      "Read(///**)"
     ],
     "deny": [],
     "ask": []

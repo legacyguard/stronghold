@@ -2,4 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
-/* You can keep custom CSS here if needed */
+/* Custom styles for warm beige theme */
+@layer base {
+  :root {
+    --background: #F5F1E8;
+    --foreground: #4A3429;
+    --primary: #8B9D6B;
+    --primary-foreground: #FEFCF8;
+    --secondary: #EDE8DD;
+    --secondary-foreground: #4A3429;
+    --accent: #B8956D;
+    --accent-foreground: #FEFCF8;
+    --destructive: #DC2626;
+    --destructive-foreground: #FEFCF8;
+    --border: #E8E0D3;
+    --input: #E8E0D3;
+    --ring: #8B9D6B;
+    --radius: 0.75rem;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+  }
+}

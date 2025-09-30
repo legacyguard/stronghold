@@ -1,0 +1,22 @@
+{
+  "version": 2,
+  "framework": "nextjs",
+  "crons": [
+    {
+      "path": "/api/cron/check-expirations",
+      "schedule": "0 9 * * *"
+    },
+    {
+      "path": "/api/cron/dead-mans-switch",
+      "schedule": "0 10 * * *"
+    }
+  ],
+  "env": {
+    "CRON_SECRET": "@cron-secret"
+  },
+  "functions": {
+    "src/app/api/**": {
+      "maxDuration": 30
+    }
+  }
+}

@@ -11,16 +11,16 @@ const config: Config = {
     // Tu si rozšírime predvolenú tému o naše vlastné hodnoty
     extend: {
       colors: {
-        'primary': '#6B8E23',
-        'primary-light': '#8FBC8F',
-        'background': '#F0F8E8',
-        'text-dark': '#2E2E2E',
-        'text-light': '#666666',
+        'primary': '#8B9D6B',
+        'primary-light': '#A4B584',
+        'background': '#F5F1E8',
+        'text-dark': '#4A3429',
+        'text-light': '#8B7355',
         'neutral-dark': '#5D4037',
-        'neutral-light': '#A1887F',
-        'neutral-beige': '#EFEBE9',
-        'surface': '#FFFFFF',
-        'border': '#F5F5F5',
+        'neutral-light': '#B8956D',
+        'neutral-beige': '#EDE8DD',
+        'surface': '#FEFCF8',
+        'border': '#E8E0D3',
       },
       fontFamily: {
         'sans': ['-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
