@@ -37,7 +37,12 @@
       "Bash(npm install:*)",
       "Bash(npm run dev:*)",
       "Read(//Users/luborfedak/Documents/Github/sprint/**)",
-      "Bash(npm run lint:*)"
+      "Bash(npm run lint:*)",
+      "Bash(chmod:*)",
+      "Bash(./test-cron-endpoints.sh:*)",
+      "Bash(npm run build:*)",
+      "Bash(find:*)",
+      "Bash(xargs sed:*)"
     ],
     "deny": [],
     "ask": []

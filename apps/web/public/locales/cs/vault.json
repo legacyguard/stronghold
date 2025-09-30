@@ -1,0 +1,62 @@
+{
+  "title": "Archiv dokumentů",
+  "subtitle": "Bezpečně ukládejte a spravujte důležité rodinné dokumenty. Všechny soubory jsou šifrované a chráněné bankovní úrovní zabezpečení.",
+  "stats": {
+    "total_documents": "Celkem dokumentů",
+    "storage_used": "Využité úložiště",
+    "last_upload": "Poslední nahrání",
+    "never": "Nikdy"
+  },
+  "sections": {
+    "file_upload": "Nahrání souborů",
+    "quick_add": "Rychlé přidání (testovací režim)",
+    "your_documents": "Vaše dokumenty"
+  },
+  "upload": {
+    "title": "Nahrát dokument",
+    "subtitle": "Přidat dokumenty do bezpečného archivu",
+    "drag_drop": "Přesuňte a pusťte soubor sem",
+    "browse_files": "procházet soubory",
+    "file_types": "PDF, DOC, DOCX, TXT, JPG, PNG až 10MB",
+    "file_selected": "Soubor vybrán",
+    "ready_upload": "Připraveno k nahrání",
+    "upload_button": "Nahrát dokument",
+    "uploading": "Nahrává se...",
+    "select_file": "Vyberte soubor k nahrání",
+    "guidelines": {
+      "title": "Pokyny pro nahrávání",
+      "descriptive_names": "• Používejte popisné názvy souborů",
+      "max_size": "• Maximální velikost souboru: 10MB",
+      "encryption": "• Dokumenty jsou automaticky šifrované",
+      "virus_scan": "• Všechna nahrání jsou kontrolována na viry"
+    }
+  },
+  "quick_add": {
+    "title": "Přidat dokument",
+    "subtitle": "Vytvořit záznam dokumentu (testovací režim)",
+    "document_name": "Název dokumentu",
+    "document_name_placeholder": "např., Závěť a testamentární rozhodnutí",
+    "description": "Popis (volitelné)",
+    "description_placeholder": "Stručný popis dokumentu",
+    "add_button": "Přidat dokument",
+    "adding": "Přidává se dokument...",
+    "name_required": "Zadejte prosím název souboru"
+  },
+  "document_list": {
+    "no_documents": "Zatím jste nenahrali žádné dokumenty.",
+    "document_name": "Název dokumentu",
+    "date_created": "Datum vytvoření",
+    "actions": {
+      "view_details": "Zobrazit podrobnosti",
+      "download": "Stáhnout",
+      "delete": "Smazat"
+    }
+  },
+  "messages": {
+    "upload_success": "Dokument úspěšně nahrán",
+    "upload_failed": "Nahrávání selhalo",
+    "document_added": "Dokument úspěšně přidán",
+    "add_failed": "Přidání dokumentu selhalo",
+    "unexpected_error": "Nastala neočekávaná chyba"
+  }
+}

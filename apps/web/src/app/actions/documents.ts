@@ -146,6 +146,67 @@ export async function uploadDocument(formData: FormData): Promise<UploadResponse
   }
 }
 
+// Simplified addDocument function for metadata only (for testing basic flow)
+export async function addDocument(fileName: string, description?: string) {
+  try {
+    // Create Supabase client with server-side authentication
+    const supabase = createServerComponentClient({ cookies });
+
+    // Get authenticated user
+    const { data: { user }, error: authError } = await supabase.auth.getUser();
+
+    if (authError || !user) {
+      return {
+        success: false,
+        message: 'Authentication required',
+        error: 'AUTH_REQUIRED'
+      };
+    }
+
+    // Insert document metadata only (for basic end-to-end testing)
+    const { data: documentData, error: dbError } = await supabase
+      .from('documents')
+      .insert({
+        file_name: fileName,
+        file_path: `placeholder/${fileName}`, // Placeholder path for testing
+        file_size: 0, // Placeholder size
+        file_type: 'text/plain', // Placeholder type
+        description: description || null,
+        user_id: user.id,
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString()
+      })
+      .select()
+      .single();
+
+    if (dbError) {
+      console.error('Database error:', dbError);
+      return {
+        success: false,
+        message: 'Failed to save document metadata',
+        error: 'DB_INSERT_FAILED'
+      };
+    }
+
+    return {
+      success: true,
+      message: 'Document added successfully',
+      data: {
+        id: documentData.id,
+        fileName: fileName
+      }
+    };
+
+  } catch (error) {
+    console.error('Error in addDocument:', error);
+    return {
+      success: false,
+      message: 'An unexpected error occurred',
+      error: 'UNKNOWN_ERROR'
+    };
+  }
+}
+
 export async function getDocumentsForUser() {
   try {
     // Create Supabase client with server-side authentication
@@ -161,7 +222,7 @@ export async function getDocumentsForUser() {
     // Fetch documents for the authenticated user
     const { data: documents, error: dbError } = await supabase
       .from('documents')
-      .select('id, file_name, created_at')
+      .select('id, file_name, created_at, description')
       .eq('user_id', user.id)
       .order('created_at', { ascending: false });
 

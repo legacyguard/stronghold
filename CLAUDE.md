@@ -6,6 +6,20 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 **IMPORTANT**: The user prefers to communicate in Slovak language, but all code, documentation, comments, variable names, and technical implementation must be written in English only.
 
+## Error Handling Policy
+
+**CRITICAL**: All errors, warnings, and technical issues MUST be immediately investigated and resolved or properly documented. Never leave unresolved errors as "technical debt":
+
+1. **Immediate Resolution Required**: Any HTTP 500 errors, build failures, runtime exceptions, or system errors must be debugged and fixed immediately
+2. **Root Cause Analysis**: Always investigate the root cause, not just symptoms
+3. **Documentation**: If an error cannot be resolved quickly, create a detailed issue tracking record with:
+   - Error description and reproduction steps
+   - Root cause analysis attempts
+   - Temporary workarounds applied
+   - Next steps for resolution
+4. **Cache Issues**: For Turbopack/Next.js cache corruption issues, clean cache with `rm -rf .next` and restart dev server
+5. **Never Ignore**: Never dismiss errors as "minor" or "will fix later" - address them immediately or escalate to user
+
 ## Overview
 
 **LegacyGuard Project** - Multi-jurisdiction family legacy protection platform

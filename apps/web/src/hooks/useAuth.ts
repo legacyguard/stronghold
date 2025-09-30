@@ -84,11 +84,11 @@ export function useAuthActions() {
   };
 
   const signInWithOAuth = async (provider: 'google' | 'apple') => {
-    return executeAction(() => authHelpers.signInWithOAuth(provider));
+    return executeAction(() => authHelpers.signInWithOAuth(provider) as any);
   };
 
   const signInWithPassword = async (email: string, password: string) => {
-    return executeAction(() => authHelpers.signInWithPassword(email, password));
+    return executeAction(() => authHelpers.signInWithPassword(email, password) as any);
   };
 
   const signUp = async (email: string, password: string) => {

@@ -8,7 +8,8 @@ export const AVAILABLE_NAMESPACES = [
   'common',      // Shared texts (buttons, errors, general UI)
   'auth',        // Login, signup, authentication
   'dashboard',   // Dashboard specific texts
-  'navigation'   // Menu, navigation, routing
+  'navigation',  // Menu, navigation, routing
+  'vault'        // Document vault, file management
 ] as const;
 
 export type AvailableNamespace = typeof AVAILABLE_NAMESPACES[number];

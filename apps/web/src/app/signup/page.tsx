@@ -14,7 +14,7 @@ export default function SignupPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [info, setInfo] = useState<string | null>(null);
-  const _router = useRouter(); // For future redirect functionality
+  // const router = useRouter(); // For future redirect functionality
 
   async function signInWithOAuth(provider: "google" | "apple") {
     setError(null);
@@ -80,7 +80,7 @@ export default function SignupPage() {
           </div>
           <div>
             <h1 className="text-h2 text-text-dark font-semibold">Create Account</h1>
-            <p className="text-body text-text-light">Join LegacyGuard to protect your family's future</p>
+            <p className="text-body text-text-light">Join LegacyGuard to protect your family&apos;s future</p>
           </div>
         </div>
 

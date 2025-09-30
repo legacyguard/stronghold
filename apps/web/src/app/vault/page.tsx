@@ -2,9 +2,14 @@
 
 import { Toaster } from 'react-hot-toast';
 import SimpleDocumentUploader from '@/components/documents/SimpleDocumentUploader';
-import AppLayout from '@/components/layout/AppLayout';
+import SimpleDocumentForm from '@/components/SimpleDocumentForm';
+import DocumentList from '@/components/DocumentList';
+import { useNamespace } from '@/contexts/LocalizationContext';
+import { Suspense } from 'react';
 
 export default function VaultPage() {
+  const { t } = useNamespace('vault');
+
   return (
     <>
       <Toaster
@@ -34,16 +39,14 @@ export default function VaultPage() {
         }}
       />
 
-      <AppLayout>
         <div className="space-y-2xl">
           {/* Page Header */}
           <div className="text-center max-w-2xl mx-auto">
             <h1 className="text-h1 font-semibold text-text-dark mb-md">
-              Document Vault
+              {t('title')}
             </h1>
             <p className="text-body text-text-light">
-              Securely store and manage your important family documents.
-              All files are encrypted and protected with bank-level security.
+              {t('subtitle')}
             </p>
           </div>
 
@@ -53,7 +56,7 @@ export default function VaultPage() {
               <div className="flex items-center gap-sm">
                 <div className="w-3 h-3 bg-primary rounded-full"></div>
                 <div>
-                  <p className="text-caption text-text-light">Total Documents</p>
+                  <p className="text-caption text-text-light">{t('stats.total_documents')}</p>
                   <p className="text-h3 font-semibold text-text-dark">0</p>
                 </div>
               </div>
@@ -63,7 +66,7 @@ export default function VaultPage() {
               <div className="flex items-center gap-sm">
                 <div className="w-3 h-3 bg-primary-light rounded-full"></div>
                 <div>
-                  <p className="text-caption text-text-light">Storage Used</p>
+                  <p className="text-caption text-text-light">{t('stats.storage_used')}</p>
                   <p className="text-h3 font-semibold text-text-dark">0 MB</p>
                 </div>
               </div>
@@ -73,34 +76,46 @@ export default function VaultPage() {
               <div className="flex items-center gap-sm">
                 <div className="w-3 h-3 bg-neutral-light rounded-full"></div>
                 <div>
-                  <p className="text-caption text-text-light">Last Upload</p>
-                  <p className="text-h3 font-semibold text-text-dark">Never</p>
+                  <p className="text-caption text-text-light">{t('stats.last_upload')}</p>
+                  <p className="text-h3 font-semibold text-text-dark">{t('stats.never')}</p>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Document Uploader */}
-          <div className="flex justify-center">
-            <SimpleDocumentUploader />
-          </div>
+          {/* Document Management */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-2xl">
+            {/* File Upload */}
+            <div>
+              <h3 className="text-h3 font-semibold text-text-dark mb-lg">{t('sections.file_upload')}</h3>
+              <SimpleDocumentUploader />
+            </div>
 
-          {/* Future: Document List */}
-          <div className="bg-surface rounded-lg p-2xl border border-border/20 shadow-sm text-center">
-            <div className="max-w-md mx-auto">
-              <div className="w-16 h-16 bg-neutral-beige rounded-full flex items-center justify-center mx-auto mb-md">
-                <div className="w-8 h-8 bg-primary/20 rounded-lg"></div>
-              </div>
-              <h3 className="text-h3 font-semibold text-text-dark mb-sm">
-                No documents yet
-              </h3>
-              <p className="text-body text-text-light mb-lg">
-                Upload your first document to get started. We support PDF, DOC, images, and more.
-              </p>
+            {/* Simple Document Entry (For Testing) */}
+            <div>
+              <h3 className="text-h3 font-semibold text-text-dark mb-lg">{t('sections.quick_add')}</h3>
+              <SimpleDocumentForm />
             </div>
           </div>
+
+          {/* Document List */}
+          <div className="space-y-lg">
+            <div className="flex items-center justify-between">
+              <h2 className="text-h2 font-semibold text-text-dark">{t('sections.your_documents')}</h2>
+            </div>
+            <Suspense fallback={
+              <div className="bg-surface rounded-lg p-2xl border border-border/20 shadow-sm text-center">
+                <div className="animate-pulse">
+                  <div className="w-16 h-16 bg-neutral-beige rounded-full mx-auto mb-md"></div>
+                  <div className="h-4 bg-neutral-beige rounded w-32 mx-auto mb-sm"></div>
+                  <div className="h-3 bg-neutral-beige rounded w-48 mx-auto"></div>
+                </div>
+              </div>
+            }>
+              <DocumentList />
+            </Suspense>
+          </div>
         </div>
-      </AppLayout>
     </>
   );
 }

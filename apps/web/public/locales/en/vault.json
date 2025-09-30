@@ -1,0 +1,62 @@
+{
+  "title": "Document Vault",
+  "subtitle": "Securely store and manage your important family documents. All files are encrypted and protected with bank-level security.",
+  "stats": {
+    "total_documents": "Total Documents",
+    "storage_used": "Storage Used",
+    "last_upload": "Last Upload",
+    "never": "Never"
+  },
+  "sections": {
+    "file_upload": "File Upload",
+    "quick_add": "Quick Add (Test Mode)",
+    "your_documents": "Your Documents"
+  },
+  "upload": {
+    "title": "Upload Document",
+    "subtitle": "Add documents to your secure vault",
+    "drag_drop": "Drag and drop your file here",
+    "browse_files": "browse files",
+    "file_types": "PDF, DOC, DOCX, TXT, JPG, PNG up to 10MB",
+    "file_selected": "File selected",
+    "ready_upload": "Ready to upload",
+    "upload_button": "Upload Document",
+    "uploading": "Uploading...",
+    "select_file": "Select a file to upload",
+    "guidelines": {
+      "title": "Upload Guidelines",
+      "descriptive_names": "• Keep file names descriptive",
+      "max_size": "• Maximum file size: 10MB",
+      "encryption": "• Documents are encrypted automatically",
+      "virus_scan": "• All uploads are virus-scanned"
+    }
+  },
+  "quick_add": {
+    "title": "Add Document",
+    "subtitle": "Create a document entry (test mode)",
+    "document_name": "Document Name",
+    "document_name_placeholder": "e.g., Last Will and Testament",
+    "description": "Description (optional)",
+    "description_placeholder": "Brief description of the document",
+    "add_button": "Add Document",
+    "adding": "Adding Document...",
+    "name_required": "Please enter a file name"
+  },
+  "document_list": {
+    "no_documents": "You haven't uploaded any documents yet.",
+    "document_name": "Document Name",
+    "date_created": "Date Created",
+    "actions": {
+      "view_details": "View Details",
+      "download": "Download",
+      "delete": "Delete"
+    }
+  },
+  "messages": {
+    "upload_success": "Document uploaded successfully",
+    "upload_failed": "Upload failed",
+    "document_added": "Document added successfully",
+    "add_failed": "Failed to add document",
+    "unexpected_error": "An unexpected error occurred"
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "title": "Archív dokumentov",
+  "subtitle": "Bezpečne ukladajte a spravujte dôležité rodinné dokumenty. Všetky súbory sú šifrované a chránené bankovou úrovňou zabezpečenia.",
+  "stats": {
+    "total_documents": "Celkom dokumentov",
+    "storage_used": "Využité úložisko",
+    "last_upload": "Posledné nahranie",
+    "never": "Nikdy"
+  },
+  "sections": {
+    "file_upload": "Nahranie súborov",
+    "quick_add": "Rýchle pridanie (testovací režim)",
+    "your_documents": "Vaše dokumenty"
+  },
+  "upload": {
+    "title": "Nahrať dokument",
+    "subtitle": "Pridať dokumenty do bezpečného archívu",
+    "drag_drop": "Presuňte a pustite súbor sem",
+    "browse_files": "prehliadať súbory",
+    "file_types": "PDF, DOC, DOCX, TXT, JPG, PNG až 10MB",
+    "file_selected": "Súbor vybraný",
+    "ready_upload": "Pripravené na nahranie",
+    "upload_button": "Nahrať dokument",
+    "uploading": "Nahráva sa...",
+    "select_file": "Vyberte súbor na nahranie",
+    "guidelines": {
+      "title": "Pokyny pre nahrávanie",
+      "descriptive_names": "• Používajte popisné názvy súborov",
+      "max_size": "• Maximálna veľkosť súboru: 10MB",
+      "encryption": "• Dokumenty sú automaticky šifrované",
+      "virus_scan": "• Všetky nahrania sú kontrolované na vírusy"
+    }
+  },
+  "quick_add": {
+    "title": "Pridať dokument",
+    "subtitle": "Vytvoriť záznam dokumentu (testovací režim)",
+    "document_name": "Názov dokumentu",
+    "document_name_placeholder": "napr., Závet a testamentárne rozhodnutie",
+    "description": "Popis (voliteľné)",
+    "description_placeholder": "Stručný popis dokumentu",
+    "add_button": "Pridať dokument",
+    "adding": "Pridáva sa dokument...",
+    "name_required": "Zadajte prosím názov súboru"
+  },
+  "document_list": {
+    "no_documents": "Zatiaľ ste nenahrali žiadne dokumenty.",
+    "document_name": "Názov dokumentu",
+    "date_created": "Dátum vytvorenia",
+    "actions": {
+      "view_details": "Zobraziť podrobnosti",
+      "download": "Stiahnuť",
+      "delete": "Vymazať"
+    }
+  },
+  "messages": {
+    "upload_success": "Dokument úspešne nahraný",
+    "upload_failed": "Nahrávanie zlyhalo",
+    "document_added": "Dokument úspešne pridaný",
+    "add_failed": "Pridanie dokumentu zlyhalo",
+    "unexpected_error": "Nastala neočakávaná chyba"
+  }
+}

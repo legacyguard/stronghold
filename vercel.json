@@ -1,0 +1,26 @@
+{
+  "version": 2,
+  "buildCommand": "npm run build:web",
+  "devCommand": "npm run web",
+  "installCommand": "npm install",
+  "framework": "nextjs",
+  "rootDirectory": "apps/web",
+  "crons": [
+    {
+      "path": "/api/cron/check-expirations",
+      "schedule": "0 9 * * *"
+    },
+    {
+      "path": "/api/cron/dead-mans-switch",
+      "schedule": "0 10 * * *"
+    }
+  ],
+  "env": {
+    "CRON_SECRET": "@cron-secret"
+  },
+  "functions": {
+    "apps/web/src/app/api/**": {
+      "maxDuration": 30
+    }
+  }
+}

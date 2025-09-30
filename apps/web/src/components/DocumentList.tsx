@@ -1,3 +1,6 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import { FileText, MoreHorizontal } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -15,6 +18,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { getDocumentsForUser } from "@/app/actions/documents";
+import { useNamespace } from "@/contexts/LocalizationContext";
 
 interface Document {
   id: string;
@@ -22,8 +26,41 @@ interface Document {
   created_at: string;
 }
 
-export const DocumentList = async () => {
-  const documents = await getDocumentsForUser();
+export const DocumentList = () => {
+  const { t } = useNamespace('vault');
+  const [documents, setDocuments] = useState<Document[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  const fetchDocuments = async () => {
+    setIsLoading(true);
+    try {
+      const docs = await getDocumentsForUser();
+      setDocuments(docs);
+    } catch (error) {
+      console.error('Failed to fetch documents:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchDocuments();
+  }, []);
+
+  useEffect(() => {
+    // Listen for document changes
+    const handleDocumentChange = () => {
+      fetchDocuments();
+    };
+
+    window.addEventListener('document-uploaded', handleDocumentChange);
+    window.addEventListener('document-added', handleDocumentChange);
+
+    return () => {
+      window.removeEventListener('document-uploaded', handleDocumentChange);
+      window.removeEventListener('document-added', handleDocumentChange);
+    };
+  }, []);
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
     return date.toLocaleDateString('en-US', {
@@ -33,13 +70,25 @@ export const DocumentList = async () => {
     });
   };
 
+  if (isLoading) {
+    return (
+      <div className="flex flex-col items-center justify-center py-2xl text-center">
+        <div className="animate-pulse">
+          <div className="w-16 h-16 bg-neutral-beige rounded-full mx-auto mb-md"></div>
+          <div className="h-4 bg-neutral-beige rounded w-32 mx-auto mb-sm"></div>
+          <div className="h-3 bg-neutral-beige rounded w-48 mx-auto"></div>
+        </div>
+      </div>
+    );
+  }
+
   if (documents.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center py-2xl text-center">
         <div className="p-lg bg-background rounded-lg mb-md">
           <FileText className="w-8 h-8 text-text-light mx-auto" />
         </div>
-        <p className="text-body text-text-light">Zatiaľ ste nenahrali žiadne dokumenty.</p>
+        <p className="text-body text-text-light">{t('document_list.no_documents')}</p>
       </div>
     );
   }
@@ -50,8 +99,8 @@ export const DocumentList = async () => {
         <TableHeader>
           <TableRow>
             <TableHead className="w-12"></TableHead>
-            <TableHead>Document Name</TableHead>
-            <TableHead>Date Created</TableHead>
+            <TableHead>{t('document_list.document_name')}</TableHead>
+            <TableHead>{t('document_list.date_created')}</TableHead>
             <TableHead className="w-12"></TableHead>
           </TableRow>
         </TableHeader>
@@ -78,13 +127,13 @@ export const DocumentList = async () => {
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="end">
                     <DropdownMenuItem>
-                      View Details
+                      {t('document_list.actions.view_details')}
                     </DropdownMenuItem>
                     <DropdownMenuItem>
-                      Download
+                      {t('document_list.actions.download')}
                     </DropdownMenuItem>
                     <DropdownMenuItem className="text-red-600">
-                      Delete
+                      {t('document_list.actions.delete')}
                     </DropdownMenuItem>
                   </DropdownMenuContent>
                 </DropdownMenu>

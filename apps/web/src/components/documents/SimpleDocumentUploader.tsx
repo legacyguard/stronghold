@@ -5,11 +5,13 @@ import { Upload, FileText, X, CheckCircle, Loader2 } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
+// import { Label } from '@/components/ui/label';
 import { uploadDocument } from '@/app/actions/documents';
 import toast from 'react-hot-toast';
+import { useNamespace } from '@/contexts/LocalizationContext';
 
 const SimpleDocumentUploader: React.FC = () => {
+  const { t } = useNamespace('vault');
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [dragActive, setDragActive] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
@@ -45,7 +47,7 @@ const SimpleDocumentUploader: React.FC = () => {
 
   const handleFormAction = async (formData: FormData) => {
     if (!selectedFile) {
-      toast.error('Please select a file first');
+      toast.error(t('upload.select_file'));
       return;
     }
 
@@ -55,17 +57,20 @@ const SimpleDocumentUploader: React.FC = () => {
       const result = await uploadDocument(formData);
 
       if (result.success) {
-        toast.success(result.message);
+        toast.success(t('messages.upload_success'));
 
         // Reset form
         setSelectedFile(null);
         formRef.current?.reset();
+
+        // Trigger document list refresh
+        window.dispatchEvent(new CustomEvent('document-uploaded'));
       } else {
-        toast.error(result.message || 'Upload failed');
+        toast.error(t('messages.upload_failed'));
       }
     } catch (error) {
       console.error('Upload error:', error);
-      toast.error('An unexpected error occurred');
+      toast.error(t('messages.unexpected_error'));
     } finally {
       setIsUploading(false);
     }
@@ -96,8 +101,8 @@ const SimpleDocumentUploader: React.FC = () => {
             <Upload className="h-5 w-5 text-primary" />
           </div>
           <div>
-            <h3 className="text-h3 text-text-dark font-semibold">Upload Document</h3>
-            <p className="text-caption text-text-light">Add documents to your secure vault</p>
+            <h3 className="text-h3 text-text-dark font-semibold">{t('upload.title')}</h3>
+            <p className="text-caption text-text-light">{t('upload.subtitle')}</p>
           </div>
         </div>
       </CardHeader>
@@ -132,17 +137,17 @@ const SimpleDocumentUploader: React.FC = () => {
               </div>
               <div>
                 <p className="text-body font-medium text-text-dark">
-                  Drag and drop your file here
+                  {t('upload.drag_drop')}
                 </p>
                 <p className="text-caption text-text-light mt-xs">
                   or{' '}
                   <span className="text-primary font-medium cursor-pointer hover:underline">
-                    browse files
+                    {t('upload.browse_files')}
                   </span>
                 </p>
               </div>
               <p className="text-caption text-text-light">
-                PDF, DOC, DOCX, TXT, JPG, PNG up to 10MB
+                {t('upload.file_types')}
               </p>
             </div>
           ) : (
@@ -151,8 +156,8 @@ const SimpleDocumentUploader: React.FC = () => {
                 <CheckCircle className="h-6 w-6 text-primary" />
               </div>
               <div>
-                <p className="text-body font-medium text-text-dark">File selected</p>
-                <p className="text-caption text-text-light">Ready to upload</p>
+                <p className="text-body font-medium text-text-dark">{t('upload.file_selected')}</p>
+                <p className="text-caption text-text-light">{t('upload.ready_upload')}</p>
               </div>
             </div>
           )}
@@ -195,12 +200,12 @@ const SimpleDocumentUploader: React.FC = () => {
           {isUploading ? (
             <>
               <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-              Uploading...
+              {t('upload.uploading')}
             </>
           ) : (
             <>
               <Upload className="h-4 w-4 mr-2" />
-              {selectedFile ? 'Upload Document' : 'Select a file to upload'}
+              {selectedFile ? t('upload.upload_button') : t('upload.select_file')}
             </>
           )}
         </Button>
@@ -215,13 +220,13 @@ const SimpleDocumentUploader: React.FC = () => {
             </div>
             <div className="flex-1">
               <p className="text-caption font-medium text-text-dark mb-xs">
-                Upload Guidelines
+                {t('upload.guidelines.title')}
               </p>
               <ul className="text-caption text-text-light space-y-xs">
-                <li>• Keep file names descriptive</li>
-                <li>• Maximum file size: 10MB</li>
-                <li>• Documents are encrypted automatically</li>
-                <li>• All uploads are virus-scanned</li>
+                <li>{t('upload.guidelines.descriptive_names')}</li>
+                <li>{t('upload.guidelines.max_size')}</li>
+                <li>{t('upload.guidelines.encryption')}</li>
+                <li>{t('upload.guidelines.virus_scan')}</li>
               </ul>
             </div>
           </div>
