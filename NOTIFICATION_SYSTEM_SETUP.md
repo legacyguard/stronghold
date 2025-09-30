@@ -147,11 +147,56 @@ Všetky cron joby logujú do Vercel Function logs:
 ❌ Error in check-expirations cron: {...}
 ```
 
+## 💀 Dead Man's Switch Implementation - COMPLETED
+
+### ✅ Enhanced Dead Man's Switch Features:
+- **Multi-level Crisis Detection**: Warning (30d), Critical (60d), Emergency (90d)
+- **Guardian Notification System**: Automated crisis alerts to assigned guardians
+- **Escalation Procedures**: Progressive response based on inactivity severity
+- **Comprehensive Logging**: Detailed console output for monitoring
+- **Flexible Constructor**: Accepts external Supabase client or creates own
+
+### 📊 Dead Man's Switch Configuration:
+```typescript
+DEAD_MANS_SWITCH_CONFIG = {
+  WARNING_THRESHOLD_DAYS: 30,   // First alert after 30 days
+  CRITICAL_THRESHOLD_DAYS: 60,  // Critical alert after 60 days
+  EMERGENCY_THRESHOLD_DAYS: 90, // Emergency procedures after 90 days
+  MAX_INACTIVITY_DAYS: 120      // Maximum before full escalation
+}
+```
+
+### 🚨 Crisis Email Templates:
+- `crisis_warning`: Guardian notification for 30+ day inactivity
+- `crisis_critical`: Critical alert for 60+ day inactivity
+- `crisis_emergency`: Emergency activation for 90+ day inactivity
+
+### 🕒 Cron Schedule:
+- **Dead Man's Switch**: Daily at 10:00 UTC (`0 10 * * *`)
+- **Expiration Check**: Daily at 9:00 UTC (`0 9 * * *`)
+
+### ✅ Local Testing Verified:
+```bash
+# Dead Man's Switch Test
+curl -X GET "http://localhost:3001/api/cron/dead-mans-switch" \
+  -H "Authorization: Bearer stronghold_cron_secret_2024_secure_token_xyz789"
+# Response: HTTP 200 + comprehensive JSON with crisis_levels breakdown
+
+# PDF Generation Tests
+curl -X GET "http://localhost:3001/api/generate-pdf"
+# Response: HTTP 200 + basic endpoint info
+
+curl -X POST "http://localhost:3001/api/generate-pdf" \
+  -H "Content-Type: application/json" \
+  -d '{"document_type": "test"}'
+# Response: HTTP 401 + Unauthorized (expected without auth header)
+```
+
 ## 🔮 Next Steps (Future Implementation)
 
 ### 🚧 TODO:
 - [ ] **Skutočná email integrácia** (Resend, SendGrid, AWS SES)
-- [ ] **Database schema updates** pre will table
+- [ ] **Database schema updates** pre will table a guardian assignments
 - [ ] **Komplexná expiration logic** based on business rules
 - [ ] **Template engine** pre dynamic email content
 - [ ] **Rate limiting** pre email sending
@@ -159,6 +204,11 @@ Všetky cron joby logujú do Vercel Function logs:
 - [ ] **User preferences** pre notification settings
 - [ ] **Notification history** tracking
 - [ ] **Email delivery status** monitoring
+- [ ] **Guardian response tracking** pre Dead Man's Switch alerts
+- [ ] **PDF library integration** (puppeteer, jsPDF, React-PDF)
+- [ ] **PDF template engine** pre document generation
+- [ ] **Document storage** pre generated PDFs
+- [ ] **PDF generation queue** pre batch processing
 
 ### 📧 Email Provider Integration:
 ```typescript
@@ -187,11 +237,28 @@ async function sendActualEmail(recipient: string, template: string, data: any) {
 
 ## ✅ Status: COMPLETED
 
-**Notifikačný systém kostra je úspešne implementovaná a pripravená na deployment!**
+**Kompletný notifikačný systém + Dead Man's Switch kostra je úspešne implementovaná!**
 
-Všetky požadované body sú splnené:
+### Expiration Check System ✅:
 - [x] Vytvorený `/app/api/cron/check-expirations/route.ts`
 - [x] Implementovaná základná logika s CRON_SECRET overením
 - [x] Vytvorený Supabase client so service_role_key
 - [x] Implementované console.log správy namiesto reálnych emailov
 - [x] Ready pre deployment na Vercel s denným spúšťaním
+
+### Dead Man's Switch System ✅:
+- [x] Enhanced `/app/api/cron/dead-mans-switch/route.ts` s DeadMansSwitchService
+- [x] Multi-level crisis detection (Warning/Critical/Emergency)
+- [x] Guardian notification triggers a escalation procedures
+- [x] Comprehensive logging a monitoring
+- [x] Vercel cron job konfigurácia (daily 10:00 UTC)
+- [x] Lokálne testovanie úspešne dokončené
+
+### PDF Generation System ✅:
+- [x] Vytvorený `/app/api/generate-pdf/route.ts` endpoint
+- [x] Implementovaná Supabase JWT authentication
+- [x] GET a POST metódy s rôznymi response patterns
+- [x] Request body parsing pre document_type, template_name, data
+- [x] Comprehensive error handling a logging
+- [x] Skeleton response namiesto reálneho PDF generovania
+- [x] Lokálne testovanie úspešne dokončené

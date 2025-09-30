@@ -276,7 +276,7 @@ export const DEAD_MANS_SWITCH_CONFIG = {
 export class DeadMansSwitchService {
   private supabase;
 
-  constructor(supabaseClient?: any) {
+  constructor(supabaseClient?: ReturnType<typeof createClient>) {
     if (supabaseClient) {
       this.supabase = supabaseClient;
     } else {

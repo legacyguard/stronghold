@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
-import { DeadMansSwitchService, DEAD_MANS_SWITCH_CONFIG } from '@/lib/notifications';
+import { DeadMansSwitchService, DEAD_MANS_SWITCH_CONFIG, InactiveUser } from '@/lib/notifications';
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY!;
@@ -43,7 +43,7 @@ export async function GET(request: NextRequest) {
     const results = {
       timestamp: new Date().toISOString(),
       users_checked: 0,
-      inactive_users: [] as any[],
+      inactive_users: [] as InactiveUser[],
       notifications_sent: 0,
       escalations_triggered: 0,
       crisis_levels: {

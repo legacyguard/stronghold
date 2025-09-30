@@ -4,6 +4,7 @@ import { Toaster } from 'react-hot-toast';
 import SimpleDocumentUploader from '@/components/documents/SimpleDocumentUploader';
 import SimpleDocumentForm from '@/components/SimpleDocumentForm';
 import DocumentList from '@/components/DocumentList';
+import PDFTestButton from '@/components/PDFTestButton';
 import { useNamespace } from '@/contexts/LocalizationContext';
 import { Suspense } from 'react';
 
@@ -96,6 +97,11 @@ export default function VaultPage() {
               <h3 className="text-h3 font-semibold text-text-dark mb-lg">{t('sections.quick_add')}</h3>
               <SimpleDocumentForm />
             </div>
+          </div>
+
+          {/* PDF Generation Testing */}
+          <div className="max-w-md">
+            <PDFTestButton />
           </div>
 
           {/* Document List */}
