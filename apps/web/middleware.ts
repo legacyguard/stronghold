@@ -11,8 +11,22 @@ export async function middleware(req: NextRequest) {
   } = await supabase.auth.getSession();
 
   // Define public routes that don't require authentication
-  const publicRoutes = ['/login', '/signup', '/reset-password'];
-  const isPublicRoute = publicRoutes.some(route => req.nextUrl.pathname.startsWith(route));
+  const publicRoutes = [
+    '/', // Landing page
+    '/login',
+    '/signup',
+    '/reset-password',
+    '/terms-of-service',
+    '/privacy-policy',
+    '/verify' // Trust seal verification
+  ];
+
+  const isPublicRoute = publicRoutes.some(route => {
+    if (route === '/') {
+      return req.nextUrl.pathname === '/';
+    }
+    return req.nextUrl.pathname.startsWith(route);
+  });
 
   // If user is not authenticated and trying to access protected route
   if (!session && !isPublicRoute) {
@@ -21,9 +35,14 @@ export async function middleware(req: NextRequest) {
     return NextResponse.redirect(redirectUrl);
   }
 
+  // If user is authenticated and trying to access landing page, redirect to dashboard
+  if (session && req.nextUrl.pathname === '/') {
+    return NextResponse.redirect(new URL('/dashboard', req.url));
+  }
+
   // If user is authenticated and trying to access auth pages, redirect to dashboard
-  if (session && isPublicRoute) {
-    return NextResponse.redirect(new URL('/', req.url));
+  if (session && ['/login', '/signup', '/reset-password'].some(route => req.nextUrl.pathname.startsWith(route))) {
+    return NextResponse.redirect(new URL('/dashboard', req.url));
   }
 
   return res;
