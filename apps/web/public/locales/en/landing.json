@@ -1,0 +1,174 @@
+{
+  "nav": {
+    "howItWorks": "How It Works",
+    "values": "Our Values",
+    "security": "Security",
+    "login": "Sign In",
+    "getStarted": "Get Started"
+  },
+  "hero": {
+    "greeting": "Hello, I'm Sofia, your digital guardian",
+    "headline": {
+      "line1": "Secure Your",
+      "line2": "Family's Future",
+      "line3": "With Confidence"
+    },
+    "subtitle": "Create legally compliant wills across 5 jurisdictions with AI-powered guidance, military-grade security, and the peace of mind that comes from knowing your legacy is protected.",
+    "cta": {
+      "primary": "Start Your Will Today",
+      "secondary": "See How It Works"
+    }
+  },
+  "problemPromise": {
+    "title": "From Chaos to Certainty",
+    "subtitle": "Transform the overwhelming complexity of estate planning into a clear, confident path forward.",
+    "chaos": {
+      "title": "The Problem: Estate Planning Chaos",
+      "problems": [
+        "Complex legal requirements across jurisdictions",
+        "Expensive lawyer consultations and lengthy processes",
+        "Fear of making costly mistakes with family assets",
+        "Overwhelming paperwork and confusing terminology",
+        "Uncertainty about legal validity and compliance",
+        "Procrastination due to emotional difficulty"
+      ]
+    },
+    "order": {
+      "title": "The Solution: Your Digital Stronghold",
+      "solutions": [
+        "AI-guided process with Sofia's expert assistance",
+        "Legally compliant templates for SK, CZ, AT, DE, PL",
+        "Military-grade encryption protects your sensitive data",
+        "Step-by-step wizard makes complex decisions simple",
+        "Instant validation ensures legal compliance",
+        "Trust Seal verification provides lasting confidence"
+      ]
+    },
+    "promise": {
+      "title": "Our Promise: Peace of Mind Guaranteed",
+      "description": "We transform the most important document of your life from a source of stress into a source of strength. Your family's future deserves nothing less than absolute certainty."
+    }
+  },
+  "howItWorks": {
+    "title": "How Stronghold Works",
+    "subtitle": "Three simple steps to secure your family's future with confidence and legal certainty.",
+    "steps": {
+      "organize": {
+        "title": "Organize",
+        "description": "Sofia guides you through gathering your information with intelligent questions that adapt to your situation. No legal jargon, just clear guidance."
+      },
+      "protect": {
+        "title": "Protect",
+        "description": "Your data is secured with military-grade encryption. Every document is protected with multiple layers of security and verified for legal compliance."
+      },
+      "define": {
+        "title": "Define",
+        "description": "Receive your legally compliant will with a unique Trust Seal. Your document is ready for execution with confidence in its validity."
+      }
+    }
+  },
+  "values": {
+    "title": "Our Core Values",
+    "subtitle": "The principles that guide every decision we make in protecting your family's future.",
+    "empathy": {
+      "title": "Deep Empathy",
+      "description": "We understand that creating a will is one of life's most emotionally challenging tasks. Sofia provides gentle, compassionate guidance through every step."
+    },
+    "security": {
+      "title": "Uncompromising Security",
+      "description": "Your most sensitive information deserves the highest protection. We use military-grade encryption and follow international security standards."
+    },
+    "automation": {
+      "title": "Intelligent Automation",
+      "description": "Complex legal processes become simple through AI-powered guidance. We handle the complexity so you can focus on what matters most."
+    },
+    "legacy": {
+      "title": "Living Legacy",
+      "description": "Your will becomes more than a document—it's a living testament to your values and love for your family, protected for generations."
+    },
+    "unity": {
+      "title": "United in Purpose",
+      "description": "These values work together to create something greater than the sum of their parts: absolute confidence in your family's protected future."
+    }
+  },
+  "socialProof": {
+    "title": "Trusted by Families, Verified by Experts",
+    "subtitle": "Built on enterprise-grade technology and backed by legal professionals across Europe.",
+    "stats": {
+      "encryption": "Encryption",
+      "uptime": "Uptime",
+      "jurisdictions": "Jurisdictions",
+      "compliance": "Compliant"
+    },
+    "technology": {
+      "title": "Enterprise-Grade Technology Stack"
+    },
+    "partners": {
+      "title": "Legal Partners",
+      "visitWebsite": "Visit Website",
+      "verified": "Verified Partner",
+      "legal": "Legal Expert"
+    },
+    "security": {
+      "title": "Security & Compliance Certifications"
+    }
+  },
+  "finalCTA": {
+    "sofia": {
+      "message": "Your journey to peace of mind starts with a single step. I'll be with you every step of the way.",
+      "title": "Your Digital Guardian"
+    },
+    "headline": {
+      "line1": "Ready to Protect",
+      "line2": "Your Family's Future?"
+    },
+    "subtitle": "Join thousands of families who have found peace of mind through Stronghold. Your legacy deserves protection. Your family deserves certainty.",
+    "buttons": {
+      "primary": "Create Your Will Now",
+      "secondary": "Verify a Trust Seal"
+    },
+    "trust": {
+      "secure": "Bank-Level Security",
+      "private": "100% Private",
+      "trusted": "Legally Verified",
+      "instant": "Instant Access"
+    },
+    "peace": {
+      "message": "Tonight, sleep peacefully knowing your family's future is secure. Tomorrow, wake up knowing you've given them the greatest gift: certainty in uncertain times."
+    },
+    "scrollDown": "Continue to Footer"
+  },
+  "footer": {
+    "description": "Secure will generation platform trusted by families across Europe. Military-grade security meets compassionate guidance.",
+    "product": {
+      "title": "Product",
+      "howItWorks": "How It Works",
+      "security": "Security",
+      "trustSeal": "Trust Seal Verification",
+      "getStarted": "Get Started"
+    },
+    "legal": {
+      "title": "Legal",
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Service",
+      "contact": "Contact Support",
+      "legalSupport": "Legal Questions"
+    },
+    "support": {
+      "title": "Support",
+      "language": "Language",
+      "email": "Support Email",
+      "hours": "Support Hours",
+      "businessHours": "Mon-Fri 9AM-6PM CET"
+    },
+    "partners": {
+      "title": "Trusted Partners",
+      "verified": "Verified"
+    },
+    "rights": "All rights reserved.",
+    "status": {
+      "operational": "All Systems Operational",
+      "secure": "Secure Connection"
+    }
+  }
+}

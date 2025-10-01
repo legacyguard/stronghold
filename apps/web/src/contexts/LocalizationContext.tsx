@@ -8,7 +8,7 @@ import React, { createContext, useContext, useEffect, useState, ReactNode } from
 
 // Simplified types for now
 type SupportedLanguage = 'sk' | 'cs' | 'en' | 'de';
-type AvailableNamespace = 'common' | 'auth' | 'dashboard' | 'navigation' | 'vault';
+type AvailableNamespace = 'common' | 'auth' | 'dashboard' | 'navigation' | 'vault' | 'landing';
 
 // Based on ARCH 02 and ADR 001: Separation of legal framework from UI language
 interface LocalizationContextType {

@@ -1,0 +1,174 @@
+{
+  "nav": {
+    "howItWorks": "Ako funguje",
+    "values": "Naše hodnoty",
+    "security": "Bezpečnosť",
+    "login": "Prihlásiť sa",
+    "getStarted": "Začať"
+  },
+  "hero": {
+    "greeting": "Ahoj, som Sofia, vaša digitálna ochrankyňa",
+    "headline": {
+      "line1": "Zabezpečte",
+      "line2": "Budúcnosť Rodiny",
+      "line3": "S Istotou"
+    },
+    "subtitle": "Vytvorte právne platné testamenty v 5 jurisdikciách s pomocou AI, vojenskou bezpečnosťou a pokojom duše, ktorý prichádza s vedomím, že vaše dedičstvo je chránené.",
+    "cta": {
+      "primary": "Začať testament dnes",
+      "secondary": "Pozrieť ako funguje"
+    }
+  },
+  "problemPromise": {
+    "title": "Od chaosu k istote",
+    "subtitle": "Premeňte ohromujúcu zložitosť plánovania dedičstva na jasnú, sebavedomú cestu vpred.",
+    "chaos": {
+      "title": "Problém: Chaos v plánovaní dedičstva",
+      "problems": [
+        "Zložité právne požiadavky naprieč jurisdikciami",
+        "Drahé konzultácie s právnikmi a zdĺhavé procesy",
+        "Strach z nákladných chýb s rodinnými aktívami",
+        "Ohromujúca byrokracia a mätúca terminológia",
+        "Neistota o právnej platnosti a súlade",
+        "Odkladanie kvôli emocionálnej náročnosti"
+      ]
+    },
+    "order": {
+      "title": "Riešenie: Vaša digitálna pevnosť",
+      "solutions": [
+        "AI proces s odbornou pomocou Sofie",
+        "Právne platné šablóny pre SK, CZ, AT, DE, PL",
+        "Vojenské šifrovanie chráni vaše citlivé údaje",
+        "Sprievodca krok za krokom zjednodušuje zložité rozhodnutia",
+        "Okamžité overenie zaručuje právnu platnosť",
+        "Pečať dôvery poskytuje trvalú istotu"
+      ]
+    },
+    "promise": {
+      "title": "Náš sľub: Garantovaný pokoj duše",
+      "description": "Premeníme najdôležitejší dokument vášho života zo zdroja stresu na zdroj sily. Budúcnosť vašej rodiny si nezaslúži nič menšie ako absolútnu istotu."
+    }
+  },
+  "howItWorks": {
+    "title": "Ako Stronghold funguje",
+    "subtitle": "Tri jednoduché kroky na zabezpečenie budúcnosti vašej rodiny s istotou a právnou platnosťou.",
+    "steps": {
+      "organize": {
+        "title": "Organizovať",
+        "description": "Sofia vás prevedie zhromažďovaním informácií inteligentými otázkami, ktoré sa prispôsobia vašej situácii. Žiadny právny žargón, len jasné vedenie."
+      },
+      "protect": {
+        "title": "Chrániť",
+        "description": "Vaše údaje są zabezpečené vojenským šifrovaním. Každý dokument je chránený viacerými vrstvami bezpečnosti a overený pre právnu platnosť."
+      },
+      "define": {
+        "title": "Definovať",
+        "description": "Získajte váš právne platný testament s jedinečnou Pečaťou dôvery. Váš dokument je pripravený na vykonanie s istotou jeho platnosti."
+      }
+    }
+  },
+  "values": {
+    "title": "Naše základné hodnoty",
+    "subtitle": "Princípy, ktoré vedú každé rozhodnutie pri ochrane budúcnosti vašej rodiny.",
+    "empathy": {
+      "title": "Hlboká empatia",
+      "description": "Rozumieme, že vytvorenie testamentu je jedna z najemocionálne náročnejších úloh života. Sofia poskytuje jemné, súcitné vedenie v každom kroku."
+    },
+    "security": {
+      "title": "Nekompromisná bezpečnosť",
+      "description": "Vaše najcitlivejšie informácie si zaslúžia najvyššiu ochranu. Používame vojenské šifrovanie a dodržiavame medzinárodné bezpečnostné štandardy."
+    },
+    "automation": {
+      "title": "Inteligentná automatizácia",
+      "description": "Zložité právne procesy sa stávajú jednoduchými cez AI vedenie. My riešime zložitosť, aby ste sa mohli sústrediť na to, čo je najdôležitejšie."
+    },
+    "legacy": {
+      "title": "Živé dedičstvo",
+      "description": "Váš testament sa stáva viac ako dokument—je to živé svedectvo vašich hodnôt a lásky k rodine, chránené pre generácie."
+    },
+    "unity": {
+      "title": "Zjednotení v účele",
+      "description": "Tieto hodnoty spolupracujú na vytvorení niečoho väčšieho ako súčet ich častí: absolútna istota v chránenej budúcnosti vašej rodiny."
+    }
+  },
+  "socialProof": {
+    "title": "Dôveryhodní pre rodiny, overení odborníkmi",
+    "subtitle": "Postavený na podnikovej technológii a podporovaný právnymi odborníkmi naprieč Európou.",
+    "stats": {
+      "encryption": "Šifrovanie",
+      "uptime": "Dostupnosť",
+      "jurisdictions": "Jurisdikcie",
+      "compliance": "Súladný"
+    },
+    "technology": {
+      "title": "Podnikový technologický stack"
+    },
+    "partners": {
+      "title": "Právni partneri",
+      "visitWebsite": "Navštíviť web",
+      "verified": "Overený partner",
+      "legal": "Právny expert"
+    },
+    "security": {
+      "title": "Bezpečnostné a súladové certifikácie"
+    }
+  },
+  "finalCTA": {
+    "sofia": {
+      "message": "Vaša cesta k pokoju duše začína jediným krokom. Budem s vami na každom kroku cesty.",
+      "title": "Vaša digitálna ochrankyňa"
+    },
+    "headline": {
+      "line1": "Pripravení chrániť",
+      "line2": "budúcnosť svojej rodiny?"
+    },
+    "subtitle": "Pridajte sa k tisíckam rodín, ktoré našli pokoj duše cez Stronghold. Vaše dedičstvo si zaslúži ochranu. Vaša rodina si zaslúži istotu.",
+    "buttons": {
+      "primary": "Vytvoriť testament teraz",
+      "secondary": "Overiť Pečať dôvery"
+    },
+    "trust": {
+      "secure": "Banková bezpečnosť",
+      "private": "100% súkromné",
+      "trusted": "Právne overené",
+      "instant": "Okamžitý prístup"
+    },
+    "peace": {
+      "message": "Dnes večer spia pokojne s vedomím, že budúcnosť vašej rodiny je zabezpečená. Zajtra sa zobuďte s vedomím, že ste im dali najväčší dar: istotu v neistých časoch."
+    },
+    "scrollDown": "Pokračovať na pätičku"
+  },
+  "footer": {
+    "description": "Bezpečná platforma na tvorbu testamentov, ktorej dôverujú rodiny naprieč Európou. Vojenská bezpečnosť stretáva súcitné vedenie.",
+    "product": {
+      "title": "Produkt",
+      "howItWorks": "Ako funguje",
+      "security": "Bezpečnosť",
+      "trustSeal": "Overenie Pečate dôvery",
+      "getStarted": "Začať"
+    },
+    "legal": {
+      "title": "Právne",
+      "privacy": "Zásady ochrany súkromia",
+      "terms": "Podmienky služby",
+      "contact": "Kontaktovať podporu",
+      "legalSupport": "Právne otázky"
+    },
+    "support": {
+      "title": "Podpora",
+      "language": "Jazyk",
+      "email": "Email podpory",
+      "hours": "Hodiny podpory",
+      "businessHours": "Po-Pi 9:00-18:00 CET"
+    },
+    "partners": {
+      "title": "Dôveryhodní partneri",
+      "verified": "Overený"
+    },
+    "rights": "Všetky práva vyhradené.",
+    "status": {
+      "operational": "Všetky systémy funkčné",
+      "secure": "Zabezpečené pripojenie"
+    }
+  }
+}

@@ -9,13 +9,14 @@ export const AVAILABLE_NAMESPACES = [
   'auth',        // Login, signup, authentication
   'dashboard',   // Dashboard specific texts
   'navigation',  // Menu, navigation, routing
-  'vault'        // Document vault, file management
+  'vault',       // Document vault, file management
+  'landing'      // Landing page content
 ] as const;
 
 export type AvailableNamespace = typeof AVAILABLE_NAMESPACES[number];
 
 // Default namespaces to load immediately
-const DEFAULT_NAMESPACES = ['common'];
+const DEFAULT_NAMESPACES = ['common', 'landing'];
 
 // Initialize i18next with modular architecture
 void i18n

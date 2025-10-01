@@ -3,10 +3,10 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from '@/hooks/useTranslationMock';
 
 export function LandingHeader() {
-  const { t, i18n } = useTranslation('landing');
+  const { t } = useTranslation('landing');
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
@@ -19,7 +19,8 @@ export function LandingHeader() {
   }, []);
 
   const handleLanguageChange = (language: string) => {
-    i18n.changeLanguage(language);
+    // Language change functionality disabled for now
+    console.log('Language change to:', language);
   };
 
   return (
@@ -72,7 +73,7 @@ export function LandingHeader() {
                 key={lang}
                 onClick={() => handleLanguageChange(lang)}
                 className={`px-xs py-xs text-caption rounded transition-colors ${
-                  i18n.language === lang
+                  'en' === lang
                     ? 'bg-primary text-white'
                     : 'text-gray-600 hover:text-primary'
                 }`}

@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from '@/hooks/useTranslationMock';
 
 export function HeroSection() {
   const { t } = useTranslation('landing');
