@@ -44,7 +44,8 @@
       "Bash(find:*)",
       "Bash(xargs sed:*)",
       "Read(///**)",
-      "Bash(echo:*)"
+      "Bash(echo:*)",
+      "Bash(SUPABASE_ACCESS_TOKEN=sbp_c0de3e17bb4db3a9db6a4aec3bd1b3b7dfc4a84a npx supabase db push)"
     ],
     "deny": [],
     "ask": []

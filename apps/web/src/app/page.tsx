@@ -1,12 +1,39 @@
-import { Shield, Users, FileText, Lock, TrendingUp, Bell } from "lucide-react";
+'use client'
+
+import { Shield, Users, FileText, Lock, Bell, Heart, Clock, Trophy, Target } from "lucide-react";
 import Link from "next/link";
+import { LegacyGarden } from "@/components/legacy-garden/LegacyGarden";
+import { UserProgressTracker } from "@/components/progress/UserProgressTracker";
+import { RecognitionBanner, useRecognitionBanner } from "@/components/recognition/RecognitionBanner";
 
 export default function Dashboard() {
+  // Recognition banner state
+  const { currentMilestone, dismissCurrent } = useRecognitionBanner();
+
+  // Mock data - In real app, this would come from server actions
+  const mockProgress = {
+    total_points: 85,
+    documents_uploaded: 7,
+    time_capsules_created: 2,
+    milestones_achieved: 4,
+    current_streak_days: 3
+  };
+
+  const mockMilestones = [
+    {
+      id: '1',
+      milestone_type: 'first_document',
+      milestone_title: 'Prvý dokument',
+      is_achieved: true,
+      achieved_at: new Date().toISOString()
+    }
+  ];
+
   const stats = [
     { label: "Documents Protected", value: "12", icon: FileText, color: "text-primary" },
     { label: "Guardians Active", value: "4", icon: Users, color: "text-blue-600" },
     { label: "Security Score", value: "95%", icon: Shield, color: "text-green-600" },
-    { label: "Monthly Savings", value: "$2.4K", icon: TrendingUp, color: "text-purple-600" },
+    { label: "Time Capsules", value: "2", icon: Clock, color: "text-purple-600" },
   ];
 
   const recentActivity = [
@@ -20,23 +47,47 @@ export default function Dashboard() {
     { title: "Generate Will", description: "Create a legally compliant will", href: "/will-generator", icon: FileText },
     { title: "Add Guardian", description: "Invite trusted contacts", href: "/guardians", icon: Users },
     { title: "Upload Documents", description: "Secure important files", href: "/vault", icon: Lock },
-    { title: "Family Shield", description: "Comprehensive protection", href: "/family-shield", icon: Shield },
+    { title: "Create Time Capsule", description: "Message for the future", href: "/time-capsules/create", icon: Clock },
   ];
 
   return (
-    <div className="space-y-2xl">
-      {/* Welcome Section */}
-      <div className="bg-gradient-to-r from-primary to-primary-light rounded-xl p-2xl text-surface shadow-xl">
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-h1 font-bold mb-sm">Welcome back!</h1>
-            <p className="text-xl opacity-90">Your family&apos;s protection is our priority</p>
-          </div>
-          <div className="hidden md:block">
-            <Shield className="h-16 w-16 opacity-20" />
+    <>
+      {/* Recognition Banner */}
+      <RecognitionBanner
+        milestone={currentMilestone}
+        onDismiss={dismissCurrent}
+      />
+
+      <div className="space-y-2xl">
+        {/* Welcome Section with Progress */}
+        <div className="bg-gradient-to-r from-primary to-primary-light rounded-xl p-2xl text-surface shadow-xl">
+          <div className="flex items-center justify-between">
+            <div>
+              <h1 className="text-h1 font-bold mb-sm">Welcome back!</h1>
+              <p className="text-xl opacity-90">Your family&apos;s protection is our priority</p>
+              <div className="flex items-center gap-md mt-md">
+                <div className="flex items-center gap-xs">
+                  <Trophy className="h-5 w-5" />
+                  <span className="text-body font-medium">Level {Math.floor(mockProgress.total_points / 100) + 1}</span>
+                </div>
+                <div className="flex items-center gap-xs">
+                  <Target className="h-5 w-5" />
+                  <span className="text-body font-medium">{mockProgress.total_points} points</span>
+                </div>
+                <div className="flex items-center gap-xs">
+                  <Heart className="h-5 w-5" />
+                  <span className="text-body font-medium">{mockProgress.current_streak_days} day streak</span>
+                </div>
+              </div>
+            </div>
+            <div className="hidden md:block">
+              <div className="text-center">
+                <Shield className="h-16 w-16 opacity-20 mx-auto" />
+                <div className="text-sm opacity-75 mt-xs">Protected & Growing</div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
 
       {/* Stats Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-lg">
@@ -55,6 +106,29 @@ export default function Dashboard() {
             </div>
           </div>
         ))}
+      </div>
+
+      {/* Progress & Legacy Garden */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-2xl">
+        {/* User Progress Tracker */}
+        <div className="lg:col-span-2">
+          <UserProgressTracker showDetailed={false} />
+        </div>
+
+        {/* Legacy Garden */}
+        <div className="bg-surface rounded-lg border border-border/20 shadow-sm p-lg">
+          <div className="mb-lg">
+            <h2 className="text-h3 font-semibold text-text-dark flex items-center gap-sm">
+              <Heart className="h-5 w-5 text-primary" />
+              Legacy Garden
+            </h2>
+            <p className="text-body text-text-light">Watch your dedication grow</p>
+          </div>
+          <LegacyGarden
+            progress={mockProgress}
+            milestones={mockMilestones}
+          />
+        </div>
       </div>
 
       {/* Quick Actions & Recent Activity */}
@@ -129,5 +203,6 @@ export default function Dashboard() {
         </div>
       </div>
     </div>
+    </>
   );
 }
