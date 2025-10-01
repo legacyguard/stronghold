@@ -1,0 +1,304 @@
+{
+  "version": "1.0",
+  "jurisdiction": "BG",
+  "language": "bg",
+  "documents": [
+    {
+      "id": "will_holographic_bg",
+      "type": "will",
+      "variant": "holographic",
+      "title": "Собственоръчно завещание (холографно)",
+      "description": "Шаблон за собственоръчно завещание, изцяло написано и подписано от завещателя.",
+      "schema": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "testator",
+          "heirs",
+          "declarations",
+          "execution"
+        ],
+        "properties": {
+          "testator": {
+            "type": "object",
+            "title": "Данни за завещателя",
+            "required": ["fullName", "dateOfBirth", "address"],
+            "properties": {
+              "fullName": { "type": "string", "title": "Трите имена" },
+              "dateOfBirth": { "type": "string", "format": "date", "title": "Дата на раждане" },
+              "address": { "type": "string", "title": "Постоянен адрес" }
+            }
+          },
+          "heirs": {
+            "type": "array",
+            "title": "Наследници",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "required": ["fullName", "relation", "share"],
+              "properties": {
+                "relation": { "type": "string", "title": "Родствена връзка" },
+                "fullName": { "type": "string", "title": "Трите имена" },
+                "dateOfBirth": { "type": "string", "format": "date", "title": "Дата на раждане" },
+                "address": { "type": "string", "title": "Постоянен адрес" },
+                "share": {
+                  "type": "number",
+                  "title": "Размер на дяла (%)",
+                  "minimum": 0,
+                  "maximum": 100,
+                  "multipleOf": 0.01
+                },
+                "substitute": {
+                  "type": "object",
+                  "title": "Заместник‑наследник (по избор)",
+                  "properties": {
+                    "relation": { "type": "string", "title": "Родствена връзка" },
+                    "fullName": { "type": "string", "title": "Трите имена" },
+                    "dateOfBirth": { "type": "string", "format": "date", "title": "Дата на раждане" },
+                    "address": { "type": "string", "title": "Постоянен адрес" }
+                  }
+                }
+              }
+            }
+          },
+          "declarations": {
+            "type": "object",
+            "title": "Декларации",
+            "required": ["noOtherReservedHeirs", "revokePriorWills"],
+            "properties": {
+              "noOtherReservedHeirs": {
+                "type": "boolean",
+                "const": true,
+                "title": "Декларирам, че нямам запазена част за други наследници освен посочените по‑горе."
+              },
+              "revokePriorWills": {
+                "type": "boolean",
+                "const": true,
+                "title": "Отменям всички предишни завещания."
+              },
+              "revokedWillDate": {
+                "type": "string",
+                "format": "date",
+                "title": "Дата на отменяното завещание (по избор)"
+              },
+              "freeAndInformed": {
+                "type": "boolean",
+                "const": true,
+                "default": true,
+                "title": "Настоящото завещание е съставено обмислено, сериозно и без принуда."
+              }
+            }
+          },
+          "execution": {
+            "type": "object",
+            "title": "Подпис и място на съставяне",
+            "required": ["city", "date", "signatureConfirm"],
+            "properties": {
+              "city": { "type": "string", "title": "Град" },
+              "date": { "type": "string", "format": "date", "title": "Дата" },
+              "signatureConfirm": {
+                "type": "boolean",
+                "const": true,
+                "title": "Ще положа собственоръчен подпис върху окончателния документ."
+              }
+            }
+          },
+          "sumSharesMustEqual100": {
+            "type": "boolean",
+            "const": true,
+            "default": true,
+            "title": "Контролна логика: Сборът на дяловете = 100%",
+            "description": "Техническо поле за pre‑submit проверка; не се попълва от потребителя."
+          }
+        }
+      },
+      "ui": {
+        "sections": [
+          { "key": "testator", "title": "Завещател" },
+          { "key": "heirs", "title": "Наследници и дялове" },
+          { "key": "declarations", "title": "Декларации" },
+          { "key": "execution", "title": "Подпис" }
+        ],
+        "hints": {
+          "heirs.share": "Въведете процент (напр. 100 за един наследник или сумиращи се проценти за няколко).",
+          "sumSharesMustEqual100": "Преди подпис: проверете сбор на дяловете = 100%."
+        },
+        "signing": {
+          "handwrittenRequired": true,
+          "witnessesRequired": 0
+        }
+      },
+      "print": {
+        "template": "Завещание\n\nАз, долуподписаният/ата {{testator.fullName}}, роден/а на {{testator.dateOfBirth}}, с постоянен адрес {{testator.address}}, заявявам, че съм дееспособен/на, че съм в състояние самостоятелно да извършвам правни действия, и че съставям настоящото завещание обмислено, сериозно и без принуда.\n\nI.\n{{#each heirs}}\nНазначавам за наследник на {{#if (eq this.share 100)}}цялото мое имущество{{else}}част от моето имущество в размер на {{this.share}}%{{/if}}: {{this.relation}}, {{this.fullName}}, роден/а на {{this.dateOfBirth}}, с постоянен адрес {{this.address}}.\n{{#if this.substitute}}В случай че горепосоченият/ата наследник не наследи, назначавам за негов/неин заместник: {{this.substitute.relation}}, {{this.substitute.fullName}}, роден/а на {{this.substitute.dateOfBirth}}, с постоянен адрес {{this.substitute.address}}.\n{{/if}}{{/each}}\n\nII.\nДекларирам, че нямам запазена част за наследници, освен посочените по-горе.\n{{#if declarations.revokedWillDate}}Отменям завещанието си, съставено на {{declarations.revokedWillDate}}, както и всички други завещания, които съм съставял/а.{{else}}Отменям всички предишни завещания.{{/if}}\nТова е моята последна воля, освен ако наследниците не се договорят другояче.\n\nВ {{execution.city}} на {{execution.date}}\n\n____________________\nСобственоръчен подпис"
+      }
+    },
+    {
+      "id": "will_alographic_bg",
+      "type": "will",
+      "variant": "alographic",
+      "title": "Алографно завещание (свидетели)",
+      "description": "Шаблон за писмено завещание, подписано в присъствие на двама свидетели.",
+      "schema": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "testator",
+          "heirs",
+          "declarations",
+          "witnesses",
+          "execution"
+        ],
+        "properties": {
+          "testator": {
+            "type": "object",
+            "title": "Данни за завещателя",
+            "required": ["fullName", "dateOfBirth", "address"],
+            "properties": {
+              "fullName": { "type": "string", "title": "Трите имена" },
+              "dateOfBirth": { "type": "string", "format": "date", "title": "Дата на раждане" },
+              "address": { "type": "string", "title": "Постоянен адрес" }
+            }
+          },
+          "heirs": {
+            "type": "array",
+            "title": "Наследници",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "required": ["fullName", "relation", "share"],
+              "properties": {
+                "relation": { "type": "string", "title": "Родствена връзка" },
+                "fullName": { "type": "string", "title": "Трите имена" },
+                "dateOfBirth": { "type": "string", "format": "date", "title": "Дата на раждане" },
+                "address": { "type": "string", "title": "Постоянен адрес" },
+                "share": {
+                  "type": "number",
+                  "title": "Размер на дяла (%)",
+                  "minimum": 0,
+                  "maximum": 100,
+                  "multipleOf": 0.01
+                },
+                "substitute": {
+                  "type": "object",
+                  "title": "Заместник‑наследник (по избор)",
+                  "properties": {
+                    "relation": { "type": "string", "title": "Родствена връзка" },
+                    "fullName": { "type": "string", "title": "Трите имена" },
+                    "dateOfBirth": { "type": "string", "format": "date", "title": "Дата на раждане" },
+                    "address": { "type": "string", "title": "Постоянен адрес" }
+                  }
+                }
+              }
+            }
+          },
+          "declarations": {
+            "type": "object",
+            "title": "Декларации",
+            "required": ["noOtherReservedHeirs", "revokePriorWills"],
+            "properties": {
+              "noOtherReservedHeirs": {
+                "type": "boolean",
+                "const": true,
+                "title": "Декларирам, че нямам запазена част за други наследници освен посочените по‑горе."
+              },
+              "revokePriorWills": {
+                "type": "boolean",
+                "const": true,
+                "title": "Отменям всички предишни завещания."
+              },
+              "revokedWillDate": {
+                "type": "string",
+                "format": "date",
+                "title": "Дата на отменяното завещание (по избор)"
+              },
+              "freeAndInformed": {
+                "type": "boolean",
+                "const": true,
+                "default": true,
+                "title": "Настоящото завещание е съставено обмислено, сериозно и без принуда."
+              }
+            }
+          },
+          "witnesses": {
+            "type": "array",
+            "title": "Свидетели (2 лица)",
+            "minItems": 2,
+            "maxItems": 2,
+            "items": {
+              "type": "object",
+              "required": ["fullName", "dateOfBirth", "address", "attestation"],
+              "properties": {
+                "fullName": { "type": "string", "title": "Трите имена" },
+                "dateOfBirth": { "type": "string", "format": "date", "title": "Дата на раждане" },
+                "address": { "type": "string", "title": "Постоянен адрес" },
+                "attestation": {
+                  "type": "boolean",
+                  "const": true,
+                  "title": "Свидетелското ми изявление: дееспособен съм; владея езика на документа; не съм близък роднина или наследник; присъствах при подписването и заявлението за последна воля."
+                }
+              }
+            }
+          },
+          "execution": {
+            "type": "object",
+            "title": "Подпис и място на съставяне",
+            "required": ["city", "date", "signatureConfirm"],
+            "properties": {
+              "city": { "type": "string", "title": "Град" },
+              "date": { "type": "string", "format": "date", "title": "Дата" },
+              "signatureConfirm": {
+                "type": "boolean",
+                "const": true,
+                "title": "Ще положа собственоръчен подпис върху окончателния документ."
+              }
+            }
+          },
+          "sumSharesMustEqual100": {
+            "type": "boolean",
+            "const": true,
+            "default": true,
+            "title": "Контролна логика: Сборът на дяловете = 100%",
+            "description": "Техническо поле за pre‑submit проверка; не се попълва от потребителя."
+          }
+        }
+      },
+      "ui": {
+        "sections": [
+          { "key": "testator", "title": "Завещател" },
+          { "key": "heirs", "title": "Наследници и дялове" },
+          { "key": "declarations", "title": "Декларации" },
+          { "key": "witnesses", "title": "Свидетели" },
+          { "key": "execution", "title": "Подпис" }
+        ],
+        "hints": {
+          "witnesses": "Въведете точно двама свидетели. Системата ще изиска потвърждението им.",
+          "heirs.share": "Въведете процент (сумират се до 100).",
+          "sumSharesMustEqual100": "Преди подпис: проверете сбор на дяловете = 100%."
+        },
+        "signing": {
+          "handwrittenRequired": true,
+          "witnessesRequired": 2
+        }
+      },
+      "print": {
+        "template": "Завещание\n\nАз, долуподписаният/ата {{testator.fullName}}, роден/а на {{testator.dateOfBirth}}, с постоянен адрес {{testator.address}}, заявявам, че съм дееспособен/на, че съм в състояние самостоятелно да извършвам правни действия, и че съставям настоящото завещание обмислено, сериозно и без принуда.\n\nЧаст А\n\nI.\n{{#each heirs}}\nНазначавам за наследник на {{#if (eq this.share 100)}}цялото мое имущество{{else}}част от моето имущество в размер на {{this.share}}%{{/if}}: {{this.relation}}, {{this.fullName}}, роден/а на {{this.dateOfBirth}}, с постоянен адрес {{this.address}}.\n{{#if this.substitute}}В случай че горепосоченият/ата наследник не наследи, назначавам за негов/неин заместник: {{this.substitute.relation}}, {{this.substitute.fullName}}, роден/а на {{this.substitute.dateOfBirth}}, с постоянен адрес {{this.substitute.address}}.\n{{/if}}{{/each}}\n\nII.\nДекларирам, че нямам запазена част за наследници, освен посочените по-горе.\n{{#if declarations.revokedWillDate}}Отменям завещанието си, съставено на {{declarations.revokedWillDate}}, както и всички други завещания, които съм съставял/а.{{else}}Отменям всички предишни завещания.{{/if}}\nТова е моята последна воля, освен ако наследниците не се договорят другояче.\n\nIII.\nДекларирам, че подписването на настоящото ми завещание се извърши в присъствието на двама едновременно присъстващи свидетели: {{witnesses.[0].fullName}}, роден/а на {{witnesses.[0].dateOfBirth}}, с постоянен адрес {{witnesses.[0].address}}, и {{witnesses.[1].fullName}}, роден/а на {{witnesses.[1].dateOfBirth}}, с постоянен адрес {{witnesses.[1].address}}, и че обявих пред тях, че този документ съдържа моята последна воля.\n\nВ {{execution.city}} на {{execution.date}}\n\n____________________\nСобственоръчен подпис\n\nЧаст Б\n\nСвидетел 1:\nАз, долуподписаният/ата {{witnesses.[0].fullName}}, роден/а на {{witnesses.[0].dateOfBirth}}, с постоянен адрес {{witnesses.[0].address}}, заявявам, че съм дееспособен/на, че владея езика, на който е изготвен този акт, че не съм близък роднина на завещателя, не съм наследник по това завещание и че заедно с {{witnesses.[1].fullName}} присъствах при подписването и заявлението на завещателя, че това е неговата последна воля.\n\nВ {{execution.city}} на {{execution.date}}\n\n____________________\nСобственоръчен подпис на свидетеля\n\nСвидетел 2:\nАз, долуподписаният/ата {{witnesses.[1].fullName}}, роден/а на {{witnesses.[1].dateOfBirth}}, с постоянен адрес {{witnesses.[1].address}}, заявявам, че съм дееспособен/на, че владея езика, на който е изготвен този акт, че не съм близък роднина на завещателя, не съм наследник по това завещание и че заедно с {{witnesses.[0].fullName}} присъствах при подписването и заявлението на завещателя, че това е неговата последна воля.\n\nВ {{execution.city}} на {{execution.date}}\n\n____________________\nСобственоръчен подпис на свидетеля"
+      }
+    }
+  ],
+  "clientRules": [
+    {
+      "id": "shares_sum_100",
+      "appliesTo": ["will_holographic_bg", "will_alographic_bg"],
+      "type": "computedValidation",
+      "messageBg": "Сборът на дяловете трябва да е точно 100%.",
+      "fn": "sum(heirs[*].share) === 100"
+    },
+    {
+      "id": "witness_count_2",
+      "appliesTo": ["will_alographic_bg"],
+      "type": "hardValidation",
+      "messageBg": "Необходими са точно двама свидетели.",
+      "fn": "Array.isArray(witnesses) && witnesses.length === 2"
+    }
+  ]
+}

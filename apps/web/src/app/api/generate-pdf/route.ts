@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
+import { pdfGenerator } from '@/lib/pdf/generator';
+import { WillFormData, renderTemplate, getTemplateById } from '@/lib/will/templates';
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
@@ -43,42 +45,129 @@ export async function POST(request: NextRequest) {
 
     // Parse request body to get PDF generation parameters
     const body = await request.json().catch(() => ({}));
-    const { document_type, template_name, data } = body;
+    const { document_type, template_id, will_data, content } = body;
 
     console.log('📋 PDF generation parameters:', {
-      document_type: document_type || 'not_specified',
-      template_name: template_name || 'not_specified',
-      data_provided: !!data,
+      document_type: document_type || 'will',
+      template_id: template_id || 'not_specified',
+      has_will_data: !!will_data,
+      has_content: !!content,
       user_id: user.id
     });
 
-    // TODO: Implement actual PDF generation logic
-    // For now, return a simple text response as requested
-    console.log('🔄 [SKELETON] Would generate PDF for user:', user.email);
-    console.log('🔄 [SKELETON] Document type:', document_type || 'default');
-    console.log('🔄 [SKELETON] Template:', template_name || 'default_template');
+    // Validate required parameters
+    if (!content && !will_data) {
+      return NextResponse.json(
+        { error: 'Either content or will_data is required' },
+        { status: 400 }
+      );
+    }
 
-    // Skeleton response - in future this would be actual PDF binary data
-    const skeletonResponse = {
-      success: true,
-      message: 'PDF generation endpoint is working',
-      details: {
-        user_id: user.id,
-        user_email: user.email,
-        document_type: document_type || 'default',
-        template_name: template_name || 'default_template',
-        timestamp: new Date().toISOString(),
-        status: 'skeleton_implementation'
+    let willContent: string;
+    let willData: WillFormData;
+
+    // Generate will content if not provided
+    if (content) {
+      willContent = content;
+      willData = will_data || { fullName: user.email || 'Unknown User' } as WillFormData;
+    } else if (will_data && template_id) {
+      willData = will_data;
+      const template = getTemplateById(template_id);
+
+      if (!template) {
+        return NextResponse.json(
+          { error: `Template not found: ${template_id}` },
+          { status: 400 }
+        );
       }
-    };
 
-    console.log('✅ PDF generation skeleton completed:', {
+      console.log(`📋 Using template: ${template.id} for jurisdiction: ${template.jurisdiction}`);
+      willContent = renderTemplate(template, willData);
+    } else {
+      return NextResponse.json(
+        { error: 'Invalid parameters. Either content or (will_data + template_id) required.' },
+        { status: 400 }
+      );
+    }
+
+    console.log('📄 Will content length:', willContent.length, 'characters');
+
+    // Health check PDF service
+    const isHealthy = await pdfGenerator.healthCheck();
+    if (!isHealthy) {
+      console.error('❌ PDF service is not healthy');
+      return NextResponse.json(
+        { error: 'PDF generation service unavailable' },
+        { status: 503 }
+      );
+    }
+
+    // Generate PDF
+    console.log('🔄 Generating PDF with Puppeteer...');
+    const pdfResult = await pdfGenerator.generateWillPDF(willContent, willData);
+
+    if (!pdfResult.success) {
+      console.error('❌ PDF generation failed:', pdfResult.error);
+      return NextResponse.json(
+        {
+          error: 'PDF generation failed',
+          details: pdfResult.error,
+          timestamp: new Date().toISOString()
+        },
+        { status: 500 }
+      );
+    }
+
+    console.log('✅ PDF generated successfully:', {
+      filename: pdfResult.filename,
+      pages: pdfResult.metadata.pages,
+      size: pdfResult.metadata.size,
+      user_id: user.id
+    });
+
+    // Save PDF generation record to database
+    try {
+      const { error: saveError } = await supabase
+        .from('user_documents')
+        .insert({
+          user_id: user.id,
+          document_type: 'will_pdf',
+          filename: pdfResult.filename,
+          file_size: pdfResult.metadata.size,
+          metadata: {
+            pages: pdfResult.metadata.pages,
+            template_id: template_id,
+            generated_at: pdfResult.metadata.generatedAt.toISOString()
+          }
+        });
+
+      if (saveError) {
+        console.warn('⚠️ Failed to save PDF record to database:', saveError);
+      }
+    } catch (dbError) {
+      console.warn('⚠️ Database save error (non-critical):', dbError);
+    }
+
+    // Return PDF as binary response
+    const response = new NextResponse(pdfResult.pdfBuffer as BodyInit, {
+      status: 200,
+      headers: {
+        'Content-Type': 'application/pdf',
+        'Content-Disposition': `attachment; filename="${pdfResult.filename}"`,
+        'Content-Length': pdfResult.metadata.size.toString(),
+        'X-PDF-Pages': pdfResult.metadata.pages.toString(),
+        'X-Generated-At': pdfResult.metadata.generatedAt.toISOString()
+      }
+    });
+
+    console.log('✅ PDF response sent:', {
+      filename: pdfResult.filename,
+      size: pdfResult.metadata.size,
       user_id: user.id,
-      document_type: document_type || 'default',
       timestamp: new Date().toISOString()
     });
 
-    return NextResponse.json(skeletonResponse);
+    return response;
 
   } catch (error) {
     console.error('❌ Error in PDF generation:', error);

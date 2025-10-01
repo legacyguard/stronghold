@@ -47,7 +47,10 @@
       "Bash(echo:*)",
       "Bash(SUPABASE_ACCESS_TOKEN=sbp_c0de3e17bb4db3a9db6a4aec3bd1b3b7dfc4a84a npx supabase db push)",
       "Bash(supabase db:*)",
-      "Bash(supabase link:*)"
+      "Bash(supabase link:*)",
+      "Bash(VERCEL_ORG_ID=legacyguards-projects VERCEL_PROJECT_ID=stronghold vercel env add NEXT_PUBLIC_SUPABASE_URL production --token=sCQdHdoLVf8aAY50aDAa9dGm --yes)",
+      "Bash(/Users/luborfedak/Documents/Github/stronghold/scripts/setup_vercel_env.sh:*)",
+      "WebFetch(domain:stronghold-j7x9kvy17-legacyguards-projects.vercel.app)"
     ],
     "deny": [],
     "ask": []

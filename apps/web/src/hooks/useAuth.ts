@@ -1,35 +1,46 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import { User } from '@supabase/supabase-js';
-import { authHelpers, AuthState } from '@/lib/auth';
+import { User, Session } from '@supabase/supabase-js';
+import { authHelpers } from '@/lib/auth';
 
-export function useAuth(): AuthState {
+export interface ExtendedAuthState {
+  user: User | null;
+  session: Session | null;
+  loading: boolean;
+  error: string | null;
+}
+
+export function useAuth(): ExtendedAuthState {
   const [user, setUser] = useState<User | null>(null);
+  const [session, setSession] = useState<Session | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     let isMounted = true;
 
-    // Get initial user
-    const getInitialUser = async () => {
+    // Get initial session and user
+    const getInitialSession = async () => {
       try {
         setError(null);
-        const { data, error } = await authHelpers.getCurrentUser();
+        const { data: { session }, error } = await authHelpers.getCurrentSession();
 
         if (!isMounted) return;
 
         if (error) {
           setError(error.message);
           setUser(null);
+          setSession(null);
         } else {
-          setUser(data.user);
+          setUser(session?.user || null);
+          setSession(session);
         }
       } catch (err) {
         if (!isMounted) return;
         setError(err instanceof Error ? err.message : 'An error occurred');
         setUser(null);
+        setSession(null);
       } finally {
         if (isMounted) {
           setLoading(false);
@@ -37,7 +48,7 @@ export function useAuth(): AuthState {
       }
     };
 
-    getInitialUser();
+    getInitialSession();
 
     // Listen to auth changes
     const { data: { subscription } } = authHelpers.onAuthStateChange((user) => {
@@ -55,7 +66,7 @@ export function useAuth(): AuthState {
     };
   }, []);
 
-  return { user, loading, error };
+  return { user, session, loading, error };
 }
 
 // Specific auth action hooks

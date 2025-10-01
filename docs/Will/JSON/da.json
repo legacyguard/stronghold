@@ -1,0 +1,438 @@
+{
+  "version": "1.0",
+  "jurisdiction": "DK",
+  "language": "da",
+  "documents": [
+    {
+      "id": "will_notarial_dk",
+      "type": "will",
+      "variant": "notarial",
+      "title": "Notartestamente (for notaren)",
+      "description": "Skriftligt testamente underskrevet eller vedkendt for notaren i overensstemmelse med Arveloven § 63.",
+      "schema": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["testator", "heirs", "declarations", "execution", "notary"],
+        "properties": {
+          "testator": {
+            "type": "object",
+            "title": "Oplysninger om testator",
+            "required": ["fullName", "dateOfBirth", "address"],
+            "properties": {
+              "fullName": { "type": "string", "title": "Fulde navn" },
+              "dateOfBirth": { "type": "string", "format": "date", "title": "Fødselsdato" },
+              "address": { "type": "string", "title": "Bopæl" }
+            }
+          },
+          "heirs": {
+            "type": "array",
+            "title": "Arvinger",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "required": ["fullName", "relation", "share"],
+              "properties": {
+                "relation": { "type": "string", "title": "Familierelation" },
+                "fullName": { "type": "string", "title": "Fulde navn" },
+                "dateOfBirth": { "type": "string", "format": "date", "title": "Fødselsdato" },
+                "address": { "type": "string", "title": "Adresse" },
+                "share": {
+                  "type": "number",
+                  "title": "Andel (%)",
+                  "minimum": 0,
+                  "maximum": 100,
+                  "multipleOf": 0.01
+                },
+                "substitute": {
+                  "type": "object",
+                  "title": "Subsidiær arving (valgfrit)",
+                  "properties": {
+                    "relation": { "type": "string", "title": "Familierelation" },
+                    "fullName": { "type": "string", "title": "Fulde navn" },
+                    "dateOfBirth": { "type": "string", "format": "date", "title": "Fødselsdato" },
+                    "address": { "type": "string", "title": "Adresse" }
+                  }
+                }
+              }
+            }
+          },
+          "declarations": {
+            "type": "object",
+            "title": "Erklæringer",
+            "required": ["freeAndInformed", "revokePriorWills", "awareOfForcedShare"],
+            "properties": {
+              "freeAndInformed": {
+                "type": "boolean",
+                "const": true,
+                "default": true,
+                "title": "Jeg opretter dette testamente velovervejet, alvorligt og uden tvang."
+              },
+              "awareOfForcedShare": {
+                "type": "boolean",
+                "const": true,
+                "title": "Jeg er bekendt med reglerne om tvangsarv (samlet 25 % til ægtefælle og/eller livsarvinger) og disponerer inden for disse rammer."
+              },
+              "revokePriorWills": {
+                "type": "boolean",
+                "const": true,
+                "title": "Jeg tilbagekalder alle tidligere testamenter."
+              },
+              "revokedWillDate": {
+                "type": "string",
+                "format": "date",
+                "title": "Dato for tilbagekaldt testamente (valgfrit)"
+              }
+            }
+          },
+          "notary": {
+            "type": "object",
+            "title": "Notarialforretning",
+            "required": ["courtDistrict", "appointmentDate", "notaryAttestationPlanned"],
+            "properties": {
+              "courtDistrict": { "type": "string", "title": "Byret/Notarialkontor" },
+              "appointmentDate": { "type": "string", "format": "date", "title": "Dato for fremmøde" },
+              "notaryAttestationPlanned": {
+                "type": "boolean",
+                "const": true,
+                "title": "Jeg underskriver/vedkender testamentet for notaren i overensstemmelse med Arveloven § 63."
+              }
+            }
+          },
+          "execution": {
+            "type": "object",
+            "title": "Sted, dato og underskrift",
+            "required": ["city", "date", "signatureConfirm"],
+            "properties": {
+              "city": { "type": "string", "title": "Sted" },
+              "date": { "type": "string", "format": "date", "title": "Dato" },
+              "signatureConfirm": {
+                "type": "boolean",
+                "const": true,
+                "title": "Jeg vil påføre min egenhændige underskrift på den endelige udskrift."
+              }
+            }
+          },
+          "sumSharesMustEqual100": {
+            "type": "boolean",
+            "const": true,
+            "default": true,
+            "title": "Kontrol: Summen af arveandele = 100 %",
+            "description": "Teknisk felt til kontrol før indsendelse; udfyldes ikke af brugeren."
+          }
+        }
+      },
+      "ui": {
+        "sections": [
+          { "key": "testator", "title": "Testator" },
+          { "key": "heirs", "title": "Arvinger og andele" },
+          { "key": "declarations", "title": "Erklæringer" },
+          { "key": "notary", "title": "Notarialforretning" },
+          { "key": "execution", "title": "Underskrift" }
+        ],
+        "hints": {
+          "heirs.share": "Angiv procent (100 for én arving eller fordelte procenter for flere).",
+          "sumSharesMustEqual100": "Kontrollér før underskrift, at summen er 100 %. ",
+          "declarations.awareOfForcedShare": "Tvangsarv udgør samlet 25 % til ægtefælle og/eller livsarvinger. Beløbsgrænsen pr. barn er årligt indeksreguleret; disponér inden for disse rammer."
+        },
+        "signing": {
+          "handwrittenRequired": true,
+          "witnessesRequired": 0
+        }
+      },
+      "print": {
+        "template": "TESTAMENTE (NOTAR)\n\nJeg, {{testator.fullName}}, født {{testator.dateOfBirth}}, med bopæl {{testator.address}}, erklærer, at jeg opretter dette testamente velovervejet, alvorligt og uden tvang.\n\nI.\n{{#each heirs}}\nJeg indsætter som arving {{#if (eq this.share 100)}}til hele min formue{{else}}til en andel på {{this.share}} %{{/if}}: {{this.relation}}, {{this.fullName}}, født {{this.dateOfBirth}}, adresse {{this.address}}.\n{{#if this.substitute}}Hvis ovennævnte arving ikke skulle komme til at arve, indsættes som subsidiær arving: {{this.substitute.relation}}, {{this.substitute.fullName}}, født {{this.substitute.dateOfBirth}}, adresse {{this.substitute.address}}.\n{{/if}}{{/each}}\n\nII.\nJeg er bekendt med reglerne om tvangsarv og disponerer inden for disse. {{#if declarations.revokedWillDate}}Jeg tilbagekalder mit testamente af {{declarations.revokedWillDate}} samt alle andre tidligere testamenter.{{else}}Jeg tilbagekalder alle tidligere testamenter.{{/if}}\nDette er min sidste vilje, medmindre arvingerne aftaler andet inden for lovens rammer.\n\nIII. (Notarialforretning)\nJeg underskriver/vedkender nærværende testamente for notaren ved {{notary.courtDistrict}} den {{notary.appointmentDate}}.\n\n{{execution.city}}, {{execution.date}}\n\n____________________\nEgenhændig underskrift"
+      }
+    },
+    {
+      "id": "will_witnessed_dk",
+      "type": "will",
+      "variant": "witnessed",
+      "title": "Vidnetestamente (to vidner)",
+      "description": "Skriftligt testamente underskrevet/vedkendt i samtidig tilstedeværelse af to vidner efter Arveloven § 64.",
+      "schema": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["testator", "heirs", "declarations", "witnesses", "execution"],
+        "properties": {
+          "testator": {
+            "type": "object",
+            "title": "Oplysninger om testator",
+            "required": ["fullName", "dateOfBirth", "address"],
+            "properties": {
+              "fullName": { "type": "string", "title": "Fulde navn" },
+              "dateOfBirth": { "type": "string", "format": "date", "title": "Fødselsdato" },
+              "address": { "type": "string", "title": "Bopæl" }
+            }
+          },
+          "heirs": {
+            "type": "array",
+            "title": "Arvinger",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "required": ["fullName", "relation", "share"],
+              "properties": {
+                "relation": { "type": "string", "title": "Familierelation" },
+                "fullName": { "type": "string", "title": "Fulde navn" },
+                "dateOfBirth": { "type": "string", "format": "date", "title": "Fødselsdato" },
+                "address": { "type": "string", "title": "Adresse" },
+                "share": {
+                  "type": "number",
+                  "title": "Andel (%)",
+                  "minimum": 0,
+                  "maximum": 100,
+                  "multipleOf": 0.01
+                },
+                "substitute": {
+                  "type": "object",
+                  "title": "Subsidiær arving (valgfrit)",
+                  "properties": {
+                    "relation": { "type": "string", "title": "Familierelation" },
+                    "fullName": { "type": "string", "title": "Fulde navn" },
+                    "dateOfBirth": { "type": "string", "format": "date", "title": "Fødselsdato" },
+                    "address": { "type": "string", "title": "Adresse" }
+                  }
+                }
+              }
+            }
+          },
+          "declarations": {
+            "type": "object",
+            "title": "Erklæringer",
+            "required": ["freeAndInformed", "revokePriorWills", "awareOfForcedShare"],
+            "properties": {
+              "freeAndInformed": {
+                "type": "boolean",
+                "const": true,
+                "default": true,
+                "title": "Jeg opretter dette testamente velovervejet, alvorligt og uden tvang."
+              },
+              "awareOfForcedShare": {
+                "type": "boolean",
+                "const": true,
+                "title": "Jeg er bekendt med reglerne om tvangsarv (25 %) og disponerer inden for disse rammer."
+              },
+              "revokePriorWills": {
+                "type": "boolean",
+                "const": true,
+                "title": "Jeg tilbagekalder alle tidligere testamenter."
+              },
+              "revokedWillDate": {
+                "type": "string",
+                "format": "date",
+                "title": "Dato for tilbagekaldt testamente (valgfrit)"
+              }
+            }
+          },
+          "witnesses": {
+            "type": "array",
+            "title": "Vidner (præcis 2)",
+            "minItems": 2,
+            "maxItems": 2,
+            "items": {
+              "type": "object",
+              "required": ["fullName", "dateOfBirth", "address", "attestation"],
+              "properties": {
+                "fullName": { "type": "string", "title": "Fulde navn" },
+                "dateOfBirth": { "type": "string", "format": "date", "title": "Fødselsdato" },
+                "address": { "type": "string", "title": "Adresse" },
+                "attestation": {
+                  "type": "boolean",
+                  "const": true,
+                  "title": "Vidneerklæring: Jeg er fyldt 18 år, til stede efter testators ønske, kender til at jeg bevidner oprettelsen af et testamente, er ikke begunstiget eller nær pårørende, og jeg overværede underskrift/vedkendelse samtidig med det andet vidne (Arveloven § 64)."
+                }
+              }
+            }
+          },
+          "execution": {
+            "type": "object",
+            "title": "Sted, dato og underskrift",
+            "required": ["city", "date", "signatureConfirm"],
+            "properties": {
+              "city": { "type": "string", "title": "Sted" },
+              "date": { "type": "string", "format": "date", "title": "Dato" },
+              "signatureConfirm": {
+                "type": "boolean",
+                "const": true,
+                "title": "Jeg vil egenhændigt underskrive den endelige udskrift."
+              }
+            }
+          },
+          "sumSharesMustEqual100": {
+            "type": "boolean",
+            "const": true,
+            "default": true,
+            "title": "Kontrol: Summen af arveandele = 100 %",
+            "description": "Teknisk felt til kontrol før indsendelse; udfyldes ikke af brugeren."
+          }
+        }
+      },
+      "ui": {
+        "sections": [
+          { "key": "testator", "title": "Testator" },
+          { "key": "heirs", "title": "Arvinger og andele" },
+          { "key": "declarations", "title": "Erklæringer" },
+          { "key": "witnesses", "title": "Vidner" },
+          { "key": "execution", "title": "Underskrift" }
+        ],
+        "hints": {
+          "witnesses": "Angiv præcis to vidner; systemet kræver deres bekræftelse.",
+          "heirs.share": "Angiv procenter så summen bliver 100.",
+          "sumSharesMustEqual100": "Kontrollér før underskrift, at summen er 100 %.",
+          "declarations.awareOfForcedShare": "Tvangsarv: 25 % samlet til ægtefælle og/eller livsarvinger; beløbsloftet pr. barn er årligt indeksreguleret."
+        },
+        "signing": {
+          "handwrittenRequired": true,
+          "witnessesRequired": 2
+        }
+      },
+      "print": {
+        "template": "TESTAMENTE (VIDNER)\n\nJeg, {{testator.fullName}}, født {{testator.dateOfBirth}}, med bopæl {{testator.address}}, erklærer, at jeg opretter dette testamente velovervejet, alvorligt og uden tvang.\n\nA. FORDELING\n{{#each heirs}}\nJeg indsætter som arving {{#if (eq this.share 100)}}til hele min formue{{else}}til en andel på {{this.share}} %{{/if}}: {{this.relation}}, {{this.fullName}}, født {{this.dateOfBirth}}, adresse {{this.address}}.\n{{#if this.substitute}}Hvis ovennævnte arving ikke skulle komme til at arve, indsættes som subsidiær arving: {{this.substitute.relation}}, {{this.substitute.fullName}}, født {{this.substitute.dateOfBirth}}, adresse {{this.substitute.address}}.\n{{/if}}{{/each}}\n\nB. ERKLÆRINGER\nJeg er bekendt med tvangsarv og disponerer inden for lovens rammer. {{#if declarations.revokedWillDate}}Jeg tilbagekalder mit testamente af {{declarations.revokedWillDate}} samt alle andre tidligere testamenter.{{else}}Jeg tilbagekalder alle tidligere testamenter.{{/if}}\n\nC. VIDNEPÅTEGNING (Arveloven § 64)\nTestamentet er underskrevet/vedkendt i samtidig tilstedeværelse af følgende to vidner, som bekræfter de lovpligtige betingelser:\n1) {{witnesses.[0].fullName}}, født {{witnesses.[0].dateOfBirth}}, adresse {{witnesses.[0].address}}.\n2) {{witnesses.[1].fullName}}, født {{witnesses.[1].dateOfBirth}}, adresse {{witnesses.[1].address}}.\n\n{{execution.city}}, {{execution.date}}\n\n____________________\nEgenhændig underskrift"
+      }
+    },
+    {
+      "id": "will_emergency_dk",
+      "type": "will",
+      "variant": "emergency",
+      "title": "Nødtestamente (midlertidigt)",
+      "description": "Testamente oprettet i nødstilfælde på enhver måde, jf. Arveloven § 65. Gyldigheden ophører som udgangspunkt efter 3 måneder, hvis hindringen for § 63/§ 64 er bortfaldet.",
+      "schema": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["testator", "heirs", "declarations", "emergency", "execution"],
+        "properties": {
+          "testator": {
+            "type": "object",
+            "title": "Oplysninger om testator",
+            "required": ["fullName", "dateOfBirth", "address"],
+            "properties": {
+              "fullName": { "type": "string", "title": "Fulde navn" },
+              "dateOfBirth": { "type": "string", "format": "date", "title": "Fødselsdato" },
+              "address": { "type": "string", "title": "Bopæl" }
+            }
+          },
+          "heirs": {
+            "type": "array",
+            "title": "Arvinger",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "required": ["fullName", "relation", "share"],
+              "properties": {
+                "relation": { "type": "string", "title": "Familierelation" },
+                "fullName": { "type": "string", "title": "Fulde navn" },
+                "dateOfBirth": { "type": "string", "format": "date", "title": "Fødselsdato" },
+                "address": { "type": "string", "title": "Adresse" },
+                "share": {
+                  "type": "number",
+                  "title": "Andel (%)",
+                  "minimum": 0,
+                  "maximum": 100,
+                  "multipleOf": 0.01
+                }
+              }
+            }
+          },
+          "declarations": {
+            "type": "object",
+            "title": "Erklæringer",
+            "required": ["freeAndInformed", "awareOfForcedShare", "revokePriorWills"],
+            "properties": {
+              "freeAndInformed": {
+                "type": "boolean",
+                "const": true,
+                "title": "Jeg opretter dette nødtestamente velovervejet og uden tvang."
+              },
+              "awareOfForcedShare": {
+                "type": "boolean",
+                "const": true,
+                "title": "Jeg er bekendt med reglerne om tvangsarv (25 %)."
+              },
+              "revokePriorWills": {
+                "type": "boolean",
+                "const": true,
+                "title": "Jeg tilbagekalder alle tidligere testamenter i det omfang, dette ikke strider mod loven."
+              }
+            }
+          },
+          "emergency": {
+            "type": "object",
+            "title": "Nødsituation",
+            "required": ["reason", "hindranceForFormalWill", "validityAwareness"],
+            "properties": {
+              "reason": { "type": "string", "title": "Kort beskrivelse af nødstilfældet (fx sygdom/ulykke)" },
+              "hindranceForFormalWill": {
+                "type": "boolean",
+                "const": true,
+                "title": "Jeg er hindret i at oprette notartestamente eller vidnetestamente (§ 63/§ 64)."
+              },
+              "validityAwareness": {
+                "type": "boolean",
+                "const": true,
+                "title": "Jeg er bekendt med, at nødtestamentet som udgangspunkt bortfalder efter 3 måneder, når hindringen er ophørt (§ 65, stk. 2)."
+              }
+            }
+          },
+          "execution": {
+            "type": "object",
+            "title": "Sted, dato og underskrift",
+            "required": ["city", "date", "signatureConfirm"],
+            "properties": {
+              "city": { "type": "string", "title": "Sted" },
+              "date": { "type": "string", "format": "date", "title": "Dato" },
+              "signatureConfirm": {
+                "type": "boolean",
+                "const": true,
+                "title": "Jeg vil, hvor muligt, egenhændigt underskrive denne erklæring."
+              }
+            }
+          },
+          "sumSharesMustEqual100": {
+            "type": "boolean",
+            "const": true,
+            "default": true,
+            "title": "Kontrol: Summen af arveandele = 100 %",
+            "description": "Teknisk felt til kontrol før indsendelse; udfyldes ikke af brugeren."
+          }
+        }
+      },
+      "ui": {
+        "sections": [
+          { "key": "testator", "title": "Testator" },
+          { "key": "heirs", "title": "Arvinger og andele" },
+          { "key": "declarations", "title": "Erklæringer" },
+          { "key": "emergency", "title": "Nødsituation" },
+          { "key": "execution", "title": "Underskrift" }
+        ],
+        "hints": {
+          "emergency.validityAwareness": "Nødtestamenter bør snarest erstattes af notar- eller vidnetestamente.",
+          "sumSharesMustEqual100": "Kontrollér før afslutning, at summen er 100 %.",
+          "declarations.awareOfForcedShare": "Tvangsarv gælder også ved nødtestamente; disponér inden for 25 %-reglen og gældende beløbsgrænser."
+        },
+        "signing": {
+          "handwrittenRequired": true,
+          "witnessesRequired": 0
+        }
+      },
+      "print": {
+        "template": "NØDTESTAMENTE\n\nJeg, {{testator.fullName}}, født {{testator.dateOfBirth}}, bopæl {{testator.address}}, opretter i nødstilfælde dette nødtestamente.\n\nI.\n{{#each heirs}}\nJeg indsætter som arving {{#if (eq this.share 100)}}til hele min formue{{else}}til en andel på {{this.share}} %{{/if}}: {{this.relation}}, {{this.fullName}}, født {{this.dateOfBirth}}, adresse {{this.address}}.\n{{/each}}\n\nII.\nJeg er bekendt med tvangsarv og bortfaldsreglen i § 65, stk. 2, og jeg tilbagekalder i det omfang loven tillader, alle tidligere testamenter.\n\nNødsituation: {{emergency.reason}}. Jeg er forhindret i at oprette testamente efter § 63/§ 64.\n\n{{execution.city}}, {{execution.date}}\n\n____________________\nUnderskrift (hvis muligt)"
+      }
+    }
+  ],
+  "clientRules": [
+    {
+      "id": "shares_sum_100",
+      "appliesTo": ["will_notarial_dk", "will_witnessed_dk", "will_emergency_dk"],
+      "type": "computedValidation",
+      "messageDa": "Summen af andele skal være præcis 100 %.",
+      "fn": "sum(heirs[*].share) === 100"
+    },
+    {
+      "id": "witness_count_2",
+      "appliesTo": ["will_witnessed_dk"],
+      "type": "hardValidation",
+      "messageDa": "Der skal angives præcis to vidner i henhold til Arveloven § 64.",
+      "fn": "Array.isArray(witnesses) && witnesses.length === 2"
+    }
+  ]
+}

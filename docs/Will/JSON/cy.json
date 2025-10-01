@@ -1,0 +1,359 @@
+```json
+{
+  "version": "1.0",
+  "jurisdiction": "WLS",
+  "language": "cy",
+  "documents": [
+    {
+      "id": "will_attested_cy",
+      "type": "will",
+      "variant": "attested",
+      "title": "Ewyllys Olaf a Thestament (gyda dau dyst)",
+      "description": "Ffurf safonol ar ewyllys ysgrifenedig i Gymru, i’w llofnodi yng nghwmni dau dyst.",
+      "schema": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["testator", "executors", "residuaryBeneficiaries", "execution", "witnesses", "declarations"],
+        "properties": {
+          "testator": {
+            "type": "object",
+            "title": "Manylion y testator",
+            "required": ["fullName", "dateOfBirth", "address"],
+            "properties": {
+              "fullName": { "type": "string", "title": "Enw llawn" },
+              "dateOfBirth": { "type": "string", "format": "date", "title": "Dyddiad geni" },
+              "address": { "type": "string", "title": "Cyfeiriad parhaol" }
+            }
+          },
+          "executors": {
+            "type": "array",
+            "title": "Gweithredwyr",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "required": ["fullName", "address"],
+              "properties": {
+                "fullName": { "type": "string", "title": "Enw llawn" },
+                "address": { "type": "string", "title": "Cyfeiriad" },
+                "replacement": {
+                  "type": "object",
+                  "title": "Gweithredwr amgen (dewisol)",
+                  "required": ["fullName", "address"],
+                  "properties": {
+                    "fullName": { "type": "string", "title": "Enw llawn" },
+                    "address": { "type": "string", "title": "Cyfeiriad" }
+                  }
+                }
+              }
+            }
+          },
+          "guardians": {
+            "type": "array",
+            "title": "Gwarcheidwaid ar gyfer plant dan oed (dewisol)",
+            "items": {
+              "type": "object",
+              "required": ["fullName", "address"],
+              "properties": {
+                "fullName": { "type": "string", "title": "Enw llawn" },
+                "address": { "type": "string", "title": "Cyfeiriad" }
+              }
+            }
+          },
+          "specificGifts": {
+            "type": "array",
+            "title": "Rhoddion penodol (dewisol)",
+            "items": {
+              "type": "object",
+              "required": ["description", "beneficiary"],
+              "properties": {
+                "description": { "type": "string", "title": "Disgrifiad y rhodd (e.e. ased penodol, swm o arian)" },
+                "beneficiary": {
+                  "type": "object",
+                  "title": "Buddiolwr",
+                  "required": ["fullName", "address"],
+                  "properties": {
+                    "relation": { "type": "string", "title": "Perthynas (dewisol)" },
+                    "fullName": { "type": "string", "title": "Enw llawn" },
+                    "address": { "type": "string", "title": "Cyfeiriad" }
+                  }
+                },
+                "substitute": {
+                  "type": "object",
+                  "title": "Buddiolwr wrth gefn (dewisol)",
+                  "properties": {
+                    "relation": { "type": "string", "title": "Perthynas" },
+                    "fullName": { "type": "string", "title": "Enw llawn" },
+                    "address": { "type": "string", "title": "Cyfeiriad" }
+                  }
+                }
+              }
+            }
+          },
+          "residuaryBeneficiaries": {
+            "type": "array",
+            "title": "Buddiolwyr y gweddill (Rhan weddilliol yr ystâd)",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "required": ["fullName", "address", "share"],
+              "properties": {
+                "relation": { "type": "string", "title": "Perthynas (dewisol)" },
+                "fullName": { "type": "string", "title": "Enw llawn" },
+                "address": { "type": "string", "title": "Cyfeiriad" },
+                "share": {
+                  "type": "number",
+                  "title": "Canran o weddill yr ystâd (%)",
+                  "minimum": 0,
+                  "maximum": 100,
+                  "multipleOf": 0.01
+                },
+                "substitute": {
+                  "type": "object",
+                  "title": "Buddiolwr wrth gefn (dewisol)",
+                  "properties": {
+                    "relation": { "type": "string", "title": "Perthynas" },
+                    "fullName": { "type": "string", "title": "Enw llawn" },
+                    "address": { "type": "string", "title": "Cyfeiriad" }
+                  }
+                }
+              }
+            }
+          },
+          "funeralWishes": {
+            "type": "string",
+            "title": "Dymuniadau angladdol (dewisol)"
+          },
+          "charitableRequests": {
+            "type": "array",
+            "title": "Rhoddion elusennol (dewisol)",
+            "items": {
+              "type": "object",
+              "required": ["charityName", "charityNumber", "address", "amountOrShare"],
+              "properties": {
+                "charityName": { "type": "string", "title": "Enw'r elusen" },
+                "charityNumber": { "type": "string", "title": "Rhif cofrestredig" },
+                "address": { "type": "string", "title": "Cyfeiriad" },
+                "amountOrShare": { "type": "string", "title": "Swm/Canran" }
+              }
+            }
+          },
+          "declarations": {
+            "type": "object",
+            "title": "Datganiadau",
+            "required": ["capacityFreeWill", "revokePriorWills"],
+            "properties": {
+              "capacityFreeWill": {
+                "type": "boolean",
+                "const": true,
+                "title": "Datganiad: Rwy’n meddu ar allu meddyliol ac yn gwneud yr ewyllys hon yn rhydd ac yn wirfoddol."
+              },
+              "revokePriorWills": {
+                "type": "boolean",
+                "const": true,
+                "title": "Rwy’n dirymu pob ewyllys a chodisil blaenorol."
+              }
+            }
+          },
+          "execution": {
+            "type": "object",
+            "title": "Lle a dyddiad llofnodi",
+            "required": ["city", "date", "signatureConfirm"],
+            "properties": {
+              "city": { "type": "string", "title": "Dinas/Tref" },
+              "date": { "type": "string", "format": "date", "title": "Dyddiad" },
+              "signatureConfirm": {
+                "type": "boolean",
+                "const": true,
+                "title": "Byddaf yn llofnodi’r ddogfen hon yn bersonol."
+              }
+            }
+          },
+          "witnesses": {
+            "type": "array",
+            "title": "Tystion (2 berson)",
+            "minItems": 2,
+            "maxItems": 2,
+            "items": {
+              "type": "object",
+              "required": ["fullName", "address"],
+              "properties": {
+                "fullName": { "type": "string", "title": "Enw llawn" },
+                "address": { "type": "string", "title": "Cyfeiriad" }
+              }
+            }
+          },
+          "sumSharesMustEqual100": {
+            "type": "boolean",
+            "const": true,
+            "default": true,
+            "title": "Gwiriad technegol: cyfanswm cyfrannau y gweddill = 100%",
+            "description": "Defnyddir ar gyfer dilysu cyn llofnodi; nid yw’r defnyddiwr yn ei lenwi."
+          }
+        }
+      },
+      "ui": {
+        "sections": [
+          { "key": "testator", "title": "1. Testator" },
+          { "key": "executors", "title": "2. Gweithredwyr" },
+          { "key": "guardians", "title": "3. Gwarcheidwaid (os yn berthnasol)" },
+          { "key": "specificGifts", "title": "4. Rhoddion penodol" },
+          { "key": "residuaryBeneficiaries", "title": "5. Gweddill yr ystâd" },
+          { "key": "charitableRequests", "title": "6. Rhoddion elusennol" },
+          { "key": "funeralWishes", "title": "7. Dymuniadau angladdol" },
+          { "key": "declarations", "title": "8. Datganiadau" },
+          { "key": "execution", "title": "9. Dyddiad a lle" },
+          { "key": "witnesses", "title": "10. Tystion" }
+        ],
+        "hints": {
+          "executors": "Penodwch o leiaf un gweithredwr (yn aml 2).",
+          "residuaryBeneficiaries.share": "Rhowch ganrannau sy’n adio i 100%.",
+          "witnesses": "Rhaid cael union ddau dyst nad ydynt yn fuddiolwyr.",
+          "sumSharesMustEqual100": "Rhaid i gyfanswm y cyfrannau fod yn 100% cyn llofnodi."
+        },
+        "signing": {
+          "handwrittenRequired": true,
+          "witnessesRequired": 2
+        }
+      },
+      "print": {
+        "template": "Ewyllys Olaf a Thestament\n\nFi, {{testator.fullName}}, wedi’i eni ar {{testator.dateOfBirth}}, gyda chyfeiriad parhaol yn {{testator.address}}, yn datgan fy mod yn meddu ar allu meddyliol ac yn gwneud yr ewyllys hon yn rhydd ac yn wirfoddol. Rwy’n dirymu pob ewyllys a chodisil blaenorol.\n\n1. Gweithredwyr\n{{#each executors}}Rwy’n penodi {{this.fullName}}, o {{this.address}}, yn weithredwr.\n{{#if this.replacement}}Pe na all {{this.fullName}} weithredu, rwy’n penodi {{this.replacement.fullName}}, o {{this.replacement.address}}, yn weithredwr amgen.\n{{/if}}{{/each}}\n\n{{#if guardians.length}}2. Gwarcheidwaid\n{{#each guardians}}Rwy’n penodi {{this.fullName}}, o {{this.address}}, yn warcheidwad.\n{{/each}}\n{{/if}}{{#if specificGifts.length}}3. Rhoddion penodol\n{{#each specificGifts}}Rwy’n rhoi’r canlynol i {{this.beneficiary.fullName}} ({{#if this.beneficiary.relation}}{{this.beneficiary.relation}}, {{/if}}{{this.beneficiary.address}}): {{this.description}}.\n{{#if this.substitute}}Os na fydd y buddiolwr hwn yn gallu derbyn, rwy’n rhoi i {{this.substitute.fullName}} ({{this.substitute.address}}).{{/if}}\n{{/each}}\n{{/if}}4. Gweddill yr ystâd\n{{#each residuaryBeneficiaries}}Rwy’n rhoi {{#if (eq this.share 100)}}gweddill fy ystâd i gyd{{else}}{{this.share}}% o weddill fy ystâd{{/if}} i {{this.fullName}} ({{#if this.relation}}{{this.relation}}, {{/if}}{{this.address}}).\n{{#if this.substitute}}Os na fydd {{this.fullName}} yn etifeddu, rwy’n rhoi ei gyfran i {{this.substitute.fullName}} ({{this.substitute.address}}).{{/if}}\n{{/each}}\n\n{{#if charitableRequests.length}}5. Rhoddion elusennol\n{{#each charitableRequests}}Rwy’n rhoi {{this.amountOrShare}} i {{this.charityName}} (Rhif Elusen: {{this.charityNumber}}; cyfeiriad: {{this.address}}).\n{{/each}}\n{{/if}}{{#if funeralWishes}}6. Dymuniadau angladdol\n{{funeralWishes}}\n{{/if}}Llofnodwyd yn {{execution.city}} ar {{execution.date}}.\n\n____________________\nLlofnod y Testator\n\nDatganiad Tystiolaeth\nLlofnodwyd y ddogfen hon gan y Testator yn ein presenoldeb ni, ac yna llofnodwyd ganddom ni yn bresenoldeb y Testator a’n gilydd.\n\nTyst 1: ____________________  Enw: {{witnesses.[0].fullName}}  Cyfeiriad: {{witnesses.[0].address}}\nTyst 2: ____________________  Enw: {{witnesses.[1].fullName}}  Cyfeiriad: {{witnesses.[1].address}}"
+      }
+    },
+    {
+      "id": "codicil_cy",
+      "type": "codicil",
+      "variant": "standard",
+      "title": "Codisil i Ewyllys",
+      "description": "Dodatog safonol i ddiwygio ewyllys flaenorol yng Nghymru.",
+      "schema": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["testator", "referencedWill", "amendments", "execution", "witnesses", "declarations"],
+        "properties": {
+          "testator": {
+            "type": "object",
+            "title": "Manylion y testator",
+            "required": ["fullName", "address"],
+            "properties": {
+              "fullName": { "type": "string", "title": "Enw llawn" },
+              "address": { "type": "string", "title": "Cyfeiriad parhaol" }
+            }
+          },
+          "referencedWill": {
+            "type": "object",
+            "title": "Cyfeiriad at yr ewyllys",
+            "required": ["date", "place"],
+            "properties": {
+              "date": { "type": "string", "format": "date", "title": "Dyddiad yr ewyllys" },
+              "place": { "type": "string", "title": "Lle llofnodi’r ewyllys" }
+            }
+          },
+          "amendments": {
+            "type": "array",
+            "title": "Addasiadau",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "required": ["text"],
+              "properties": {
+                "text": { "type": "string", "title": "Testun yr addasiad" }
+              }
+            }
+          },
+          "declarations": {
+            "type": "object",
+            "title": "Datganiadau",
+            "required": ["confirmRemainder"],
+            "properties": {
+              "confirmRemainder": {
+                "type": "boolean",
+                "const": true,
+                "title": "Cadarnhaf fod pob darpariaeth arall yn yr ewyllys yn aros mewn grym."
+              }
+            }
+          },
+          "execution": {
+            "type": "object",
+            "title": "Lle a dyddiad",
+            "required": ["city", "date", "signatureConfirm"],
+            "properties": {
+              "city": { "type": "string", "title": "Dinas/Tref" },
+              "date": { "type": "string", "format": "date", "title": "Dyddiad" },
+              "signatureConfirm": {
+                "type": "boolean",
+                "const": true,
+                "title": "Byddaf yn llofnodi’r codisil hwn yn bersonol."
+              }
+            }
+          },
+          "witnesses": {
+            "type": "array",
+            "title": "Tystion (2 berson)",
+            "minItems": 2,
+            "maxItems": 2,
+            "items": {
+              "type": "object",
+              "required": ["fullName", "address"],
+              "properties": {
+                "fullName": { "type": "string", "title": "Enw llawn" },
+                "address": { "type": "string", "title": "Cyfeiriad" }
+              }
+            }
+          }
+        }
+      },
+      "ui": {
+        "sections": [
+          { "key": "testator", "title": "1. Testator" },
+          { "key": "referencedWill", "title": "2. Ewyllys a gyfeirir ati" },
+          { "key": "amendments", "title": "3. Addasiadau" },
+          { "key": "declarations", "title": "4. Cadarnhau gweddill darpariaethau" },
+          { "key": "execution", "title": "5. Dyddiad a lle" },
+          { "key": "witnesses", "title": "6. Tystion" }
+        ],
+        "hints": {
+          "amendments": "Disgrifiwch bob newid (e.e. penodi gweithredwr newydd; diwygio buddiolwyr).",
+          "witnesses": "Rhaid cael dau dyst nad ydynt yn fuddiolwyr."
+        },
+        "signing": {
+          "handwrittenRequired": true,
+          "witnessesRequired": 2
+        }
+      },
+      "print": {
+        "template": "Codisil i Ewyllys\n\nFi, {{testator.fullName}}, o {{testator.address}}, yn gwneud y Codisil hwn i’m hewyllys dyddiedig {{referencedWill.date}} a lofnodwyd yn {{referencedWill.place}}.\n\nRwy’n gwneud y newidiadau canlynol:\n{{#each amendments}}- {{this.text}}\n{{/each}}\n\nAc eithrio fel y nodir uchod, cadarnhaf fod pob darpariaeth arall yn fy ewyllys yn aros mewn grym llawn.\n\nLlofnodwyd yn {{execution.city}} ar {{execution.date}}.\n\n____________________\nLlofnod y Testator\n\nDatganiad Tystiolaeth\nLlofnodwyd y Codisil hwn gan y Testator yn ein presenoldeb ni, ac yna llofnodwyd ganddom ni yn bresenoldeb y Testator a’n gilydd.\n\nTyst 1: ____________________  Enw: {{witnesses.[0].fullName}}  Cyfeiriad: {{witnesses.[0].address}}\nTyst 2: ____________________  Enw: {{witnesses.[1].fullName}}  Cyfeiriad: {{witnesses.[1].address}}"
+      }
+    }
+  ],
+  "clientRules": [
+    {
+      "id": "residuary_shares_sum_100",
+      "appliesTo": ["will_attested_cy"],
+      "type": "computedValidation",
+      "messageCy": "Rhaid i gyfanswm y cyfrannau yn adran ‘Gweddill yr ystâd’ fod yn union 100%.",
+      "fn": "sum(residuaryBeneficiaries[*].share) === 100"
+    },
+    {
+      "id": "witness_count_2_will",
+      "appliesTo": ["will_attested_cy"],
+      "type": "hardValidation",
+      "messageCy": "Rhaid darparu union DDAU dyst ar gyfer llofnodi’r ewyllys.",
+      "fn": "Array.isArray(witnesses) && witnesses.length === 2"
+    },
+    {
+      "id": "witness_count_2_codicil",
+      "appliesTo": ["codicil_cy"],
+      "type": "hardValidation",
+      "messageCy": "Rhaid darparu union DDAU dyst ar gyfer llofnodi’r codisil.",
+      "fn": "Array.isArray(witnesses) && witnesses.length === 2"
+    },
+    {
+      "id": "at_least_one_executor",
+      "appliesTo": ["will_attested_cy"],
+      "type": "hardValidation",
+      "messageCy": "Rhaid penodi o leiaf UN gweithredwr.",
+      "fn": "Array.isArray(executors) && executors.length >= 1"
+    }
+  ]
+}
+```

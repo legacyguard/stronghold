@@ -1,0 +1,324 @@
+{
+  "schemaVersion": "1.0-fr-FR-legacyguard",
+  "jurisdiction": {
+    "country": "FR",
+    "language": "fr",
+    "legal_system": "droit civil",
+    "date_format": "DD/MM/YYYY",
+    "currency": "EUR"
+  },
+  "meta": {
+    "title_fr": "Modèles de dispositions testamentaires — France",
+    "generator": "LegacyGuard",
+    "version": "2025-08-16",
+    "disclaimer_fr": "Ce modèle est fourni à titre informatif et doit être relu par un notaire/avocat. En droit français, le testament olographe doit être ENTIEREMENT écrit, daté et signé de la main du testateur (art. 970 C. civ.). Les autres formes requièrent l’intervention d’un notaire et/ou de témoins. Le respect de la réserve héréditaire est impératif.",
+    "template_engine": "mustache"
+  },
+  "legalReferences": {
+    "forms": {
+      "olographe": ["Code civil art. 970"],
+      "authentique": ["Code civil arts. 971 à 975"],
+      "mystique": ["Code civil arts. 976 à 980"],
+      "international": ["Loi n°94-125 du 11/02/1994 (Conv. de Washington 1973)"]
+    },
+    "executor": ["Code civil arts. 1025 à 1034"],
+    "revocation": ["Code civil arts. 1035 à 1038"],
+    "reserve": ["Code civil art. 912 et s."],
+    "spouse_special_quota": ["Code civil art. 1094-1"],
+    "guardianship_minors": ["Code civil arts. 403 à 408-1"],
+    "digital_directives": ["Loi 78-17 (Informatique et Libertés), art. 85"],
+    "eu_succession": ["Règlement (UE) n°650/2012, art. 21 et 22"],
+    "reserve_conflicts_2021": ["Loi n°2021-1109 du 24/08/2021 (prélèvement compensatoire)"],
+    "fcddv": ["Décret n°78-262 et pratique notariale — FCDDV"]
+  },
+  "placeholders": {
+    "TESTATOR": {
+      "full_name": "{{TESTATOR.FULL_NAME}}",
+      "given_name": "{{TESTATOR.GIVEN_NAME}}",
+      "family_name": "{{TESTATOR.FAMILY_NAME}}",
+      "birth_date": "{{TESTATOR.BIRTH_DATE}}",
+      "birth_place": "{{TESTATOR.BIRTH_PLACE}}",
+      "nationality": "{{TESTATOR.NATIONALITY}}",
+      "address": "{{TESTATOR.ADDRESS}}",
+      "marital_status": "{{TESTATOR.MARITAL_STATUS}}",
+      "matrimonial_regime": "{{TESTATOR.MATRIMONIAL_REGIME}}",
+      "id_number_optional": "{{TESTATOR.ID_NUMBER}}"
+    },
+    "SPOUSE": {
+      "full_name": "{{SPOUSE.FULL_NAME}}",
+      "birth_date": "{{SPOUSE.BIRTH_DATE}}"
+    },
+    "BENEFICIARY": {
+      "full_name": "{{BENEFICIARY.FULL_NAME}}",
+      "birth_date": "{{BENEFICIARY.BIRTH_DATE}}",
+      "address": "{{BENEFICIARY.ADDRESS}}",
+      "relationship": "{{BENEFICIARY.RELATIONSHIP}}"
+    },
+    "EXECUTOR": {
+      "full_name": "{{EXECUTOR.FULL_NAME}}",
+      "address": "{{EXECUTOR.ADDRESS}}",
+      "powers": "{{EXECUTOR.POWERS}}"
+    },
+    "TUTOR": {
+      "full_name": "{{TUTOR.FULL_NAME}}",
+      "address": "{{TUTOR.ADDRESS}}"
+    },
+    "WITNESS": {
+      "w1_full_name": "{{WITNESS1.FULL_NAME}}",
+      "w1_address": "{{WITNESS1.ADDRESS}}",
+      "w2_full_name": "{{WITNESS2.FULL_NAME}}",
+      "w2_address": "{{WITNESS2.ADDRESS}}"
+    },
+    "SIGNING": {
+      "place": "{{SIGNING.PLACE}}",
+      "date": "{{SIGNING.DATE}}",
+      "signature_line": "{{SIGNING.SIGNATURE_LINE}}"
+    }
+  },
+  "commonClauses_fr": {
+    "revocation": "Je révoque par les présentes toutes dispositions antérieures (testaments et codicilles), sauf stipulation contraire expresse ci-dessous.",
+    "universal_legatee_reserved": "J’institue {{BENEFICIARY.full_name}} légataire universel, dans la limite de la quotité disponible et sous réserve des droits des héritiers réservataires.",
+    "universal_title_legatee": "J’institue {{BENEFICIARY.full_name}} légataire à titre universel à hauteur de {{PERCENT_OR_FRACTION}} de ma succession, sous réserve des droits réservataires.",
+    "particular_legacy": "Je lègue à {{BENEFICIARY.full_name}} le bien suivant : {{ASSET_DESCRIPTION}} (ou la somme de {{AMOUNT}} €).",
+    "usufruct_spouse": "J’accorde à mon conjoint {{SPOUSE.full_name}} l’usufruit de {{USUFRUCT_SCOPE}} conformément à l’article 1094-1 du Code civil.",
+    "executor": "Je désigne {{EXECUTOR.full_name}}, demeurant {{EXECUTOR.address}}, en qualité d’exécuteur testamentaire, avec les pouvoirs légaux des articles 1025 à 1034 du Code civil, y compris la faculté d’accomplir les actes conservatoires et de veiller à l’exécution de mes volontés.",
+    "guardian_minors": "Pour le cas où je laisserais des enfants mineurs, je désigne {{TUTOR.full_name}}, demeurant {{TUTOR.address}}, comme tuteur conformément aux articles 403 et suivants du Code civil.",
+    "funeral": "Je souhaite des funérailles {{FUNERAL_TYPE}} et la dispersion/inhumation de mes cendres selon les modalités suivantes : {{FUNERAL_WISHES}}.",
+    "digital_directives": "Conformément à l’article 85 de la loi Informatique et Libertés, je donne les directives suivantes concernant mes données et comptes numériques : {{DIGITAL_INSTRUCTIONS}} et je désigne {{DIGITAL_AGENT}} pour leur exécution.",
+    "choice_of_law_eu650_2012": "Si ma succession présente des éléments d’extranéité, je choisis, en application de l’article 22 du Règlement (UE) n°650/2012, la loi de ma nationalité ({{TESTATOR.NATIONALITY}}) pour régir l’ensemble de ma succession.",
+    "severability": "Si l’une des clauses de ce testament devait être réputée nulle, les autres dispositions conserveront leurs effets.",
+    "closing_holograph_notice": "Écrit en entier, daté et signé de ma main."
+  },
+  "types": {
+    "olographe": {
+      "title_fr": "Testament olographe (entièrement manuscrit)",
+      "description_fr": "Doit être entièrement écrit, daté et signé de la main du testateur (art. 970 C. civ.). Aucun témoin ni notaire requis. Recommandé de déposer l’original chez un notaire pour enregistrement au FCDDV.",
+      "validationRules": {
+        "mustHandwrite": true,
+        "requiresNotary": false,
+        "requiresWitnesses": false,
+        "requiresDate": true,
+        "requiresSignature": true,
+        "forbidsTypedText": true,
+        "note": "Le texte ci-dessous est une matrice à recopier intégralement à la main."
+      },
+      "signing_instructions_fr": [
+        "Recopiez intégralement le modèle à la main (sans aucune insertion imprimée).",
+        "Indiquez le lieu et la date en toutes lettres.",
+        "Signez de votre main à la fin du texte.",
+        "Option conseillé: déposez l’original chez un notaire (enregistrement FCDDV)."
+      ],
+      "body_template_fr": "TESTAMENT OLOGRAPHE\n\nJe soussigné(e) {{TESTATOR.full_name}}, né(e) le {{TESTATOR.birth_date}} à {{TESTATOR.birth_place}}, de nationalité {{TESTATOR.nationality}}, demeurant {{TESTATOR.address}}, sain(e) d’esprit et libre de toute contrainte, exprime mes dernières volontés comme suit :\n\n1) Révocation. {{common.revocation}}\n\n2) Dispositions patrimoniales.\n{{#LEGACIES}}\n- {{.}}\n{{/LEGACIES}}\n\n3) Dispositions particulières.\n- {{common.executor}}\n- {{#HAS_SPOUSE}}{{common.usufruct_spouse}}{{/HAS_SPOUSE}}\n- {{#HAS_MINORS}}{{common.guardian_minors}}{{/HAS_MINORS}}\n- Directives numériques : {{common.digital_directives}}\n- Souhaits funéraires : {{common.funeral}}\n\n4) Loi applicable le cas échéant : {{common.choice_of_law_eu650_2012}}\n\n5) Clause de sauvegarde : {{common.severability}}\n\nFait à {{SIGNING.place}}, le {{SIGNING.date}}.\n\n{{common.closing_holograph_notice}}\n\nSignature :\n{{SIGNING.signature_line}"
+    },
+    "authentique": {
+      "title_fr": "Testament authentique (notarié)",
+      "description_fr": "Reçu par deux notaires ou un notaire + deux témoins ; dicté par le testateur, lu et signé (arts. 971 à 975 C. civ.). Le notaire conserve l’original et en assure l’inscription au FCDDV.",
+      "validationRules": {
+        "requiresNotary": true,
+        "requiresWitnesses": true,
+        "dictationAndReading": true,
+        "requiresSignature": true
+      },
+      "signing_instructions_fr": [
+        "Prendre rendez-vous chez le notaire (prévoir pièce d’identité et, le cas échéant, la présence de deux témoins).",
+        "Le notaire rédigera l’acte selon votre dictée, puis en fera lecture avant signature.",
+        "L’acte original est conservé par le notaire et inscrit au FCDDV."
+      ],
+      "dispositive_clauses_fr": [
+        "Révocation : {{common.revocation}}",
+        "Institution de légataire universel/à titre universel : {{common.universal_legatee_reserved}}",
+        "Legs particuliers : {{common.particular_legacy}}",
+        "Usufruit au profit du conjoint : {{common.usufruct_spouse}}",
+        "Exécuteur testamentaire : {{common.executor}}",
+        "Tuteur pour enfants mineurs : {{common.guardian_minors}}",
+        "Directives numériques : {{common.digital_directives}}",
+        "Souhaits funéraires : {{common.funeral}}",
+        "Choix de la loi (UE 650/2012) : {{common.choice_of_law_eu650_2012}}",
+        "Clause de sauvegarde : {{common.severability}}"
+      ]
+    },
+    "mystique": {
+      "title_fr": "Testament mystique (secret)",
+      "description_fr": "Testament remis au notaire clos, cacheté et scellé, en présence de deux témoins, avec acte de suscription (arts. 976 et s. C. civ.). Peut être dactylographié mais DOIT être signé par le testateur ; il doit être lisible par lui.",
+      "validationRules": {
+        "requiresNotary": true,
+        "requiresWitnesses": true,
+        "sealedEnvelope": true,
+        "requiresSignature": true,
+        "readerAbilityRequired": true
+      },
+      "signing_instructions_fr": [
+        "Rédigez et SIGNEZ votre texte testamentaire (manuscrit ou dactylographié).",
+        "Placez le document dans une enveloppe clos/cacheté/scellé.",
+        "Présentez l’enveloppe au notaire en présence de deux témoins ; l’acte de suscription sera dressé et signé.",
+        "Le notaire en assure l’inscription au FCDDV."
+      ],
+      "inner_text_template_fr": "DERNIÈRES VOLONTÉS (contenu du testament secret)\n\nJe soussigné(e) {{TESTATOR.full_name}}, né(e) le {{TESTATOR.birth_date}} à {{TESTATOR.birth_place}}, de nationalité {{TESTATOR.nationality}}, demeurant {{TESTATOR.address}}, déclare :\n\n- Révocation : {{common.revocation}}\n- Dispositions patrimoniales :\n{{#LEGACIES}}\n  * {{.}}\n{{/LEGACIES}}\n- Exécuteur : {{common.executor}}\n- Tuteur mineurs : {{common.guardian_minors}}\n- Directives numériques : {{common.digital_directives}}\n- Souhaits funéraires : {{common.funeral}}\n- Choix de loi : {{common.choice_of_law_eu650_2012}}\n- Clause de sauvegarde : {{common.severability}}\n\nFait à {{SIGNING.place}}, le {{SIGNING.date}}.\nSignature manuscrite du testateur :\n{{SIGNING.signature_line}}"
+    },
+    "international": {
+      "title_fr": "Testament international (Convention de Washington 1973)",
+      "description_fr": "Forme valide dans les États parties ; reçu par notaire ou autorité habilitée, présence de témoins, avec certificat en annexe. Reconnu en France depuis 1994.",
+      "validationRules": {
+        "requiresNotaryOrAuthorizedPerson": true,
+        "requiresWitnesses": true,
+        "annexCertificateRequired": true
+      },
+      "signing_instructions_fr": [
+        "Préparez le texte des dispositions (ci-dessous).",
+        "Signez en présence de l’autorité habilitée et de deux témoins.",
+        "Faites annexer le certificat conforme à la Convention (formulaire standard) ; l’original est conservé et référencé."
+      ],
+      "dispositive_clauses_fr": [
+        "Révocation : {{common.revocation}}",
+        "Légataire universel / à titre universel : {{common.universal_legatee_reserved}}",
+        "Legs particuliers : {{common.particular_legacy}}",
+        "Usufruit au profit du conjoint : {{common.usufruct_spouse}}",
+        "Exécuteur testamentaire : {{common.executor}}",
+        "Tuteur mineurs : {{common.guardian_minors}}",
+        "Directives numériques : {{common.digital_directives}}",
+        "Souhaits funéraires : {{common.funeral}}",
+        "Choix de la loi : {{common.choice_of_law_eu650_2012}}",
+        "Clause de sauvegarde : {{common.severability}}"
+      ],
+      "certificate_fields_fr": {
+        "authority": "{{CERTIFICATE.AUTHORITY}}",
+        "witness1": "{{CERTIFICATE.W1_NAME}}",
+        "witness2": "{{CERTIFICATE.W2_NAME}}",
+        "place": "{{CERTIFICATE.PLACE}}",
+        "date": "{{CERTIFICATE.DATE}}",
+        "statement": "Certificat conforme à la Convention du 26 octobre 1973 — testament international (atteste des formalités de signature et présence des témoins)."
+      }
+    }
+  },
+  "uiForm": {
+    "sections_fr": [
+      {
+        "key": "identite",
+        "title": "Identité du testateur",
+        "fields": [
+          {"key": "TESTATOR.FULL_NAME", "label": "Nom et prénom", "type": "text", "required": true},
+          {"key": "TESTATOR.BIRTH_DATE", "label": "Date de naissance", "type": "date", "required": true},
+          {"key": "TESTATOR.BIRTH_PLACE", "label": "Lieu de naissance", "type": "text", "required": true},
+          {"key": "TESTATOR.NATIONALITY", "label": "Nationalité", "type": "text", "required": true},
+          {"key": "TESTATOR.ADDRESS", "label": "Adresse", "type": "textarea", "required": true},
+          {"key": "TESTATOR.MARITAL_STATUS", "label": "État civil", "type": "select", "options": ["célibataire","marié(e)","pacsé(e)","divorcé(e)","veuf/veuve"]},
+          {"key": "TESTATOR.MATRIMONIAL_REGIME", "label": "Régime matrimonial (le cas échéant)", "type": "select", "options": ["communauté réduite aux acquêts","séparation de biens","participation aux acquêts","communauté universelle","autre/étranger"]}
+        ]
+      },
+      {
+        "key": "heritiers",
+        "title": "Héritiers et réserve",
+        "fields": [
+          {"key": "HEIRS.CHILDREN_COUNT", "label": "Nombre d’enfants", "type": "number", "min": 0, "required": true},
+          {"key": "HEIRS.SPOUSE_EXISTS", "label": "Conjoint survivant potentiel", "type": "boolean"},
+          {"key": "HEIRS.RESERVED_HEIRS", "label": "Héritiers réservataires identifiés", "type": "chips", "help": "Enfants (ou à défaut, conjoint dans certains cas)."}
+        ],
+        "computed": [
+          {"key": "QUOTITE_DISPONIBLE", "formula": "if(CHILDREN_COUNT==0, 1.0, if(CHILDREN_COUNT==1, 0.5, if(CHILDREN_COUNT==2, 1/3, 0.25)))", "label": "Quotité disponible (ordinaire) — approximation pédagogique"}
+        ],
+        "warnings_fr": [
+          "Le respect de la réserve héréditaire (art. 912 et s.) est obligatoire ; toute libéralité excédentaire est sujette à réduction.",
+          "Entre époux, l’article 1094-1 autorise des quotités spéciales (usufruit total, 1/4 PP + 3/4 usufruit, etc.)."
+        ]
+      },
+      {
+        "key": "dispositions",
+        "title": "Dispositions (legs)",
+        "fields": [
+          {"key": "LEGACIES", "label": "Liste des dispositions", "type": "repeater", "item_schema": {
+            "type_select": {"type": "select", "options": ["universel","à titre universel","particulier","usufruit"]},
+            "beneficiary": {"type": "person"},
+            "asset_description": {"type": "textarea"},
+            "amount": {"type": "money"},
+            "share": {"type": "percent_or_fraction"}
+          }},
+          {"key": "EXECUTOR", "label": "Exécuteur testamentaire", "type": "person"},
+          {"key": "DIGITAL_INSTRUCTIONS", "label": "Directives numériques (comptes, données)", "type": "textarea"},
+          {"key": "DIGITAL_AGENT", "label": "Personne chargée d’exécuter les directives numériques", "type": "person"},
+          {"key": "HAS_MINORS", "label": "Enfants mineurs", "type": "boolean"},
+          {"key": "TUTOR", "label": "Tuteur pressenti", "type": "person", "visible_if": "HAS_MINORS==true"},
+          {"key": "FUNERAL_TYPE", "label": "Souhaits funéraires (ex.: inhumation, crémation)", "type": "text"},
+          {"key": "FUNERAL_WISHES", "label": "Précisions funéraires", "type": "textarea"}
+        ]
+      },
+      {
+        "key": "choix_de_loi",
+        "title": "Choix de loi (UE 650/2012)",
+        "fields": [
+          {"key": "CHOICE_OF_LAW_ENABLE", "label": "Insérer une professio juris", "type": "boolean"},
+          {"key": "CHOICE_OF_LAW_VALUE", "label": "Loi choisie (nationalité du testateur)", "type": "text", "visible_if": "CHOICE_OF_LAW_ENABLE==true"}
+        ],
+        "notes_fr": [
+          "Par défaut, la loi de la dernière résidence habituelle s’applique (art. 21).",
+          "Option : choisir la loi de votre nationalité (art. 22)."
+        ]
+      },
+      {
+        "key": "signature",
+        "title": "Signature et finalisation",
+        "fields": [
+          {"key": "SIGNING.PLACE", "label": "Lieu", "type": "text"},
+          {"key": "SIGNING.DATE", "label": "Date", "type": "date"},
+          {"key": "SIGNING.SIGNATURE_LINE", "label": "Signature (ligne)", "type": "text"}
+        ],
+        "holograph_alert_fr": "Pour la forme olographe : recopiez intégralement à la main avant de signer. La version imprimée n’a pas de valeur."
+      }
+    ]
+  },
+  "rendering": {
+    "engine": "mustache",
+    "mappings": [
+      {"type": "olographe", "template_key": "types.olographe.body_template_fr"},
+      {"type": "authentique", "template_key": "types.authentique.dispositive_clauses_fr"},
+      {"type": "mystique", "template_key": "types.mystique.inner_text_template_fr"},
+      {"type": "international", "template_key": "types.international.dispositive_clauses_fr"}
+    ],
+    "common_alias": {
+      "common.revocation": "commonClauses_fr.revocation",
+      "common.universal_legatee_reserved": "commonClauses_fr.universal_legatee_reserved",
+      "common.universal_title_legatee": "commonClauses_fr.universal_title_legatee",
+      "common.particular_legacy": "commonClauses_fr.particular_legacy",
+      "common.usufruct_spouse": "commonClauses_fr.usufruct_spouse",
+      "common.executor": "commonClauses_fr.executor",
+      "common.guardian_minors": "commonClauses_fr.guardian_minors",
+      "common.funeral": "commonClauses_fr.funeral",
+      "common.digital_directives": "commonClauses_fr.digital_directives",
+      "common.choice_of_law_eu650_2012": "commonClauses_fr.choice_of_law_eu650_2012",
+      "common.severability": "commonClauses_fr.severability",
+      "common.closing_holograph_notice": "commonClauses_fr.closing_holograph_notice"
+    }
+  },
+  "complianceChecks": {
+    "reserve_check": {
+      "enabled": true,
+      "rule_fr": "Les legs ne doivent pas entamer la réserve héréditaire (art. 912 et s.). Toute quotité excédentaire sera signalée.",
+      "inputs": ["HEIRS.CHILDREN_COUNT", "HEIRS.SPOUSE_EXISTS", "LEGACIES"],
+      "outputs": ["WARNING_IF_EXCESS"]
+    },
+    "executor_conflicts": {
+      "enabled": true,
+      "rule_fr": "Alerte si l’exécuteur est mineur ou juridiquement incapable.",
+      "inputs": ["EXECUTOR"]
+    },
+    "mystique_reader_ability": {
+      "enabled": true,
+      "rule_fr": "Alerte si testateur ne peut pas lire le texte dactylographié (jurisprudence)."
+    },
+    "eu_choice_of_law": {
+      "enabled": true,
+      "rule_fr": "Si CHOICE_OF_LAW_ENABLE==true, vérifier que la loi choisie correspond à une nationalité du testateur (art. 22, Règl. 650/2012)."
+    },
+    "2021_reserve_protection": {
+      "enabled": true,
+      "rule_fr": "Informer sur le prélèvement compensatoire si une loi étrangère prive les enfants de leur réserve sur des biens situés en France (Loi 24/08/2021)."
+    }
+  },
+  "examples_fr": {
+    "legacies_examples": [
+      "Institution de {{BENEFICIARY.full_name}} comme légataire universel (dans la limite de la quotité disponible).",
+      "Legs particulier de mon appartement sis {{ASSET_DESCRIPTION}} à {{BENEFICIARY.full_name}}.",
+      "Legs de {{AMOUNT}} € à {{BENEFICIARY.full_name}}."
+    ],
+    "usufruct_scopes": ["la totalité de ma succession", "ma résidence principale située à {{ADDRESS}}", "mon portefeuille-titres n° {{ACCOUNT_REF}}"]
+  }
+}

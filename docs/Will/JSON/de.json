@@ -1,0 +1,500 @@
+{
+  "version": "1.0",
+  "jurisdiction": "DE",
+  "language": "de",
+  "documents": [
+    {
+      "id": "will_holographic_de",
+      "type": "will",
+      "variant": "holographic",
+      "title": "Eigenhändiges Testament (handschriftlich)",
+      "description": "Vorlage für ein vollständig eigenhändig geschriebenes und unterschriebenes Testament (§ 2247 BGB).",
+      "schema": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["testator", "heirs", "declarations", "execution"],
+        "properties": {
+          "testator": {
+            "type": "object",
+            "title": "Daten des Erblassers",
+            "required": ["fullName", "dateOfBirth", "address"],
+            "properties": {
+              "fullName": { "type": "string", "title": "Vor- und Nachname" },
+              "dateOfBirth": { "type": "string", "format": "date", "title": "Geburtsdatum" },
+              "address": { "type": "string", "title": "Anschrift (Hauptwohnsitz)" }
+            }
+          },
+          "heirs": {
+            "type": "array",
+            "title": "Erben",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "required": ["fullName", "relation", "share"],
+              "properties": {
+                "relation": { "type": "string", "title": "Verwandtschafts-/Beziehungsgrad" },
+                "fullName": { "type": "string", "title": "Vor- und Nachname" },
+                "dateOfBirth": { "type": "string", "format": "date", "title": "Geburtsdatum (optional)" },
+                "address": { "type": "string", "title": "Anschrift (optional)" },
+                "share": {
+                  "type": "number",
+                  "title": "Erbquote (%)",
+                  "minimum": 0,
+                  "maximum": 100,
+                  "multipleOf": 0.01
+                },
+                "substitute": {
+                  "type": "object",
+                  "title": "Ersatzerbe (optional)",
+                  "properties": {
+                    "relation": { "type": "string", "title": "Beziehungsgrad" },
+                    "fullName": { "type": "string", "title": "Vor- und Nachname" },
+                    "dateOfBirth": { "type": "string", "format": "date", "title": "Geburtsdatum (optional)" },
+                    "address": { "type": "string", "title": "Anschrift (optional)" }
+                  }
+                }
+              }
+            }
+          },
+          "declarations": {
+            "type": "object",
+            "title": "Erklärungen",
+            "required": ["awarenessOfPflichtteil", "revokePriorWills", "madeFreely"],
+            "properties": {
+              "awarenessOfPflichtteil": {
+                "type": "boolean",
+                "const": true,
+                "title": "Mir ist bekannt, dass pflichtteilsberechtigte Personen nach § 2303 BGB einen Pflichtteilsanspruch haben."
+              },
+              "revokePriorWills": {
+                "type": "boolean",
+                "const": true,
+                "title": "Ich widerrufe alle meine früheren Testamente."
+              },
+              "revokedWillDate": {
+                "type": "string",
+                "format": "date",
+                "title": "Datum eines ausdrücklich widerrufenen Testaments (optional)"
+              },
+              "madeFreely": {
+                "type": "boolean",
+                "const": true,
+                "default": true,
+                "title": "Diese Verfügung treffe ich überlegt, ernsthaft und ohne Zwang."
+              }
+            }
+          },
+          "execution": {
+            "type": "object",
+            "title": "Ort, Datum, Unterschrift",
+            "required": ["city", "date", "signatureConfirm"],
+            "properties": {
+              "city": { "type": "string", "title": "Ort der Errichtung" },
+              "date": { "type": "string", "format": "date", "title": "Datum der Errichtung" },
+              "signatureConfirm": {
+                "type": "boolean",
+                "const": true,
+                "title": "Ich werde die Endfassung eigenhändig unterschreiben (vollständiger Name)."
+              }
+            }
+          },
+          "sumSharesMustEqual100": {
+            "type": "boolean",
+            "const": true,
+            "default": true,
+            "title": "Kontrolle: Summe der Erbquoten = 100 %",
+            "description": "Technisches Feld für die Prüfung vor dem Abspeichern; vom Nutzer nicht auszufüllen."
+          }
+        }
+      },
+      "ui": {
+        "sections": [
+          { "key": "testator", "title": "Erblasser" },
+          { "key": "heirs", "title": "Erben und Quoten" },
+          { "key": "declarations", "title": "Erklärungen" },
+          { "key": "execution", "title": "Unterschrift" }
+        ],
+        "hints": {
+          "heirs.share": "Geben Sie Prozentsätze ein, die insgesamt 100 % ergeben.",
+          "sumSharesMustEqual100": "Vor dem Unterschreiben prüfen: Gesamtsumme = 100 %.",
+          "execution": "Das Testament muss vollständig handschriftlich verfasst und unterschrieben sein (§ 2247 BGB)."
+        },
+        "signing": {
+          "handwrittenRequired": true,
+          "witnessesRequired": 0
+        }
+      },
+      "print": {
+        "template": "Testament (eigenhändig)\n\nIch, {{testator.fullName}}, geboren am {{testator.dateOfBirth}}, wohnhaft {{testator.address}}, erkläre, dass ich geschäftsfähig bin und diese Verfügung überlegt, ernsthaft und ohne Zwang treffe.\n\nI.\n{{#each heirs}}\nZum {{#if (eq this.share 100)}}Alleinerben{{else}}Miterben in Höhe von {{this.share}} %{{/if}} setze ich {{this.relation}}, {{this.fullName}}{{#if this.dateOfBirth}}, geb. am {{this.dateOfBirth}}{{/if}}{{#if this.address}}, wohnhaft {{this.address}}{{/if}} ein.\n{{#if this.substitute}}Sollte der vorgenannte Erbe aus irgendeinem Grund nicht erben, bestimme ich als Ersatzerben: {{this.substitute.relation}}, {{this.substitute.fullName}}{{#if this.substitute.dateOfBirth}}, geb. am {{this.substitute.dateOfBirth}}{{/if}}{{#if this.substitute.address}}, wohnhaft {{this.substitute.address}}{{/if}}.\n{{/if}}{{/each}}\n\nII.\nMir ist bewusst, dass pflichtteilsberechtigte Personen nach § 2303 BGB einen Pflichtteilsanspruch haben.\n{{#if declarations.revokedWillDate}}Ich widerrufe mein Testament vom {{declarations.revokedWillDate}} sowie alle weiteren früheren Testamente.{{else}}Ich widerrufe alle meine früheren Testamente.{{/if}}\nDies ist meine letzte Willenserklärung.\n\n{{execution.city}}, am {{execution.date}}\n\n____________________\nEigenhändige Unterschrift"
+      }
+    },
+    {
+      "id": "will_notarial_de",
+      "type": "will",
+      "variant": "notarial",
+      "title": "Öffentliches (notarielles) Testament",
+      "description": "Vorlage für ein notarielles Testament zur Niederschrift eines Notars (§ 2232 BGB).",
+      "schema": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["testator", "heirs", "declarations", "notary", "execution"],
+        "properties": {
+          "testator": {
+            "type": "object",
+            "title": "Daten des Erblassers",
+            "required": ["fullName", "dateOfBirth", "address"],
+            "properties": {
+              "fullName": { "type": "string", "title": "Vor- und Nachname" },
+              "dateOfBirth": { "type": "string", "format": "date", "title": "Geburtsdatum" },
+              "address": { "type": "string", "title": "Anschrift (Hauptwohnsitz)" }
+            }
+          },
+          "heirs": {
+            "type": "array",
+            "title": "Erben",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "required": ["fullName", "relation", "share"],
+              "properties": {
+                "relation": { "type": "string", "title": "Beziehungsgrad" },
+                "fullName": { "type": "string", "title": "Vor- und Nachname" },
+                "dateOfBirth": { "type": "string", "format": "date", "title": "Geburtsdatum (optional)" },
+                "address": { "type": "string", "title": "Anschrift (optional)" },
+                "share": {
+                  "type": "number",
+                  "title": "Erbquote (%)",
+                  "minimum": 0,
+                  "maximum": 100,
+                  "multipleOf": 0.01
+                },
+                "substitute": {
+                  "type": "object",
+                  "title": "Ersatzerbe (optional)",
+                  "properties": {
+                    "relation": { "type": "string", "title": "Beziehungsgrad" },
+                    "fullName": { "type": "string", "title": "Vor- und Nachname" },
+                    "dateOfBirth": { "type": "string", "format": "date", "title": "Geburtsdatum (optional)" },
+                    "address": { "type": "string", "title": "Anschrift (optional)" }
+                  }
+                }
+              }
+            }
+          },
+          "declarations": {
+            "type": "object",
+            "title": "Erklärungen",
+            "required": ["awarenessOfPflichtteil", "revokePriorWills", "madeFreely"],
+            "properties": {
+              "awarenessOfPflichtteil": {
+                "type": "boolean",
+                "const": true,
+                "title": "Hinweis auf Pflichtteilsrecht (§ 2303 BGB) zur Kenntnis genommen."
+              },
+              "revokePriorWills": {
+                "type": "boolean",
+                "const": true,
+                "title": "Widerruf aller früheren Testamente."
+              },
+              "revokedWillDate": {
+                "type": "string",
+                "format": "date",
+                "title": "Datum eines ausdrücklich widerrufenen Testaments (optional)"
+              },
+              "madeFreely": {
+                "type": "boolean",
+                "const": true,
+                "default": true,
+                "title": "Erklärung erfolgt ernsthaft, freiwillig und ohne Zwang."
+              }
+            }
+          },
+          "notary": {
+            "type": "object",
+            "title": "Notar",
+            "required": ["name", "office", "registerHint"],
+            "properties": {
+              "name": { "type": "string", "title": "Name des Notars" },
+              "office": { "type": "string", "title": "Amtssitz" },
+              "registerHint": {
+                "type": "boolean",
+                "const": true,
+                "title": "Hinweis: Der Notar veranlasst die Registrierung im Zentralen Testamentsregister (amtliche Praxis)."
+              }
+            }
+          },
+          "execution": {
+            "type": "object",
+            "title": "Ort und Datum",
+            "required": ["city", "date"],
+            "properties": {
+              "city": { "type": "string", "title": "Ort" },
+              "date": { "type": "string", "format": "date", "title": "Datum" }
+            }
+          },
+          "sumSharesMustEqual100": {
+            "type": "boolean",
+            "const": true,
+            "default": true,
+            "title": "Kontrolle: Summe der Erbquoten = 100 %",
+            "description": "Technisches Feld für die Prüfung vor dem Abspeichern."
+          }
+        }
+      },
+      "ui": {
+        "sections": [
+          { "key": "testator", "title": "Erblasser" },
+          { "key": "heirs", "title": "Erben und Quoten" },
+          { "key": "declarations", "title": "Erklärungen" },
+          { "key": "notary", "title": "Notar" },
+          { "key": "execution", "title": "Beurkundung" }
+        ],
+        "hints": {
+          "notary": "Das Testament wird gegenüber dem Notar zur Niederschrift erklärt (§ 2232 BGB).",
+          "sumSharesMustEqual100": "Gesamtsumme der Quoten muss 100 % betragen."
+        },
+        "signing": {
+          "handwrittenRequired": false,
+          "witnessesRequired": 0,
+          "notaryRequired": true
+        }
+      },
+      "print": {
+        "template": "Öffentliches Testament (notariell)\n\nIch, {{testator.fullName}}, geb. am {{testator.dateOfBirth}}, wohnhaft {{testator.address}}, erkläre gegenüber dem Notar {{notary.name}} am Amtssitz {{notary.office}} meinen letzten Willen wie folgt:\n\nI.\n{{#each heirs}}\nIch setze {{this.relation}}, {{this.fullName}}{{#if this.dateOfBirth}}, geb. am {{this.dateOfBirth}}{{/if}}{{#if this.address}}, wohnhaft {{this.address}}{{/if}}, zum {{#if (eq this.share 100)}}Alleinerben{{else}}Miterben mit einer Quote von {{this.share}} %{{/if}} ein.\n{{#if this.substitute}}Für den Fall des Wegfalls bestimme ich als Ersatzerben: {{this.substitute.relation}}, {{this.substitute.fullName}}{{#if this.substitute.dateOfBirth}}, geb. am {{this.substitute.dateOfBirth}}{{/if}}{{#if this.substitute.address}}, wohnhaft {{this.substitute.address}}{{/if}}.\n{{/if}}{{/each}}\n\nII.\nPflichtteilsrecht wurde erörtert; mir ist der Anspruch nach § 2303 BGB bekannt. {{#if declarations.revokedWillDate}}Frühere Testamente, insbesondere vom {{declarations.revokedWillDate}}, widerrufe ich hiermit.{{else}}Ich widerrufe alle früheren Testamente.{{/if}}\n\n{{execution.city}}, am {{execution.date}}\n(Beurkundung gemäß § 2232 BGB)"
+      }
+    },
+    {
+      "id": "will_joint_spouses_berlin_de",
+      "type": "will",
+      "variant": "joint_berlin",
+      "title": "Gemeinschaftliches Testament von Ehegatten – Berliner Testament",
+      "description": "Vorlage für ein gemeinschaftliches Testament von Ehegatten nach §§ 2265 ff. BGB (gegenseitige Einsetzung als Vollerben und Einsetzung von Schlusserben).",
+      "schema": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["spouses", "heirs", "clauses", "execution"],
+        "properties": {
+          "spouses": {
+            "type": "object",
+            "title": "Ehegatten",
+            "required": ["spouseA", "spouseB"],
+            "properties": {
+              "spouseA": {
+                "type": "object",
+                "required": ["fullName", "dateOfBirth", "address"],
+                "properties": {
+                  "fullName": { "type": "string", "title": "Name Ehegatte A" },
+                  "dateOfBirth": { "type": "string", "format": "date", "title": "Geburtsdatum" },
+                  "address": { "type": "string", "title": "Anschrift" }
+                }
+              },
+              "spouseB": {
+                "type": "object",
+                "required": ["fullName", "dateOfBirth", "address"],
+                "properties": {
+                  "fullName": { "type": "string", "title": "Name Ehegatte B" },
+                  "dateOfBirth": { "type": "string", "format": "date", "title": "Geburtsdatum" },
+                  "address": { "type": "string", "title": "Anschrift" }
+                }
+              }
+            }
+          },
+          "heirs": {
+            "type": "object",
+            "title": "Erbeinsetzungen",
+            "required": ["mutualHeirs", "finalHeirs"],
+            "properties": {
+              "mutualHeirs": {
+                "type": "string",
+                "const": "Ehegatten setzen sich gegenseitig zu Alleinerben ein.",
+                "title": "Vollerbeneinsetzung (gegenseitig)"
+              },
+              "finalHeirs": {
+                "type": "array",
+                "title": "Schlusserben (z. B. gemeinsame Kinder) – Quoten zusammen 100 %",
+                "minItems": 1,
+                "items": {
+                  "type": "object",
+                  "required": ["fullName", "relation", "share"],
+                  "properties": {
+                    "relation": { "type": "string", "title": "Beziehungsgrad (z. B. Kind)" },
+                    "fullName": { "type": "string", "title": "Vor- und Nachname" },
+                    "dateOfBirth": { "type": "string", "format": "date", "title": "Geburtsdatum (optional)" },
+                    "address": { "type": "string", "title": "Anschrift (optional)" },
+                    "share": { "type": "number", "title": "Quote als Schlusserbe (%)", "minimum": 0, "maximum": 100, "multipleOf": 0.01 }
+                  }
+                }
+              }
+            }
+          },
+          "clauses": {
+            "type": "object",
+            "title": "Klauseln",
+            "required": ["wechselbezug", "penaltyClausePflichtteil"],
+            "properties": {
+              "wechselbezug": {
+                "type": "boolean",
+                "title": "Wechselbezüglichkeit gewollt (Bindungswirkung gem. § 2270 BGB)",
+                "default": true
+              },
+              "penaltyClausePflichtteil": {
+                "type": "boolean",
+                "title": "Pflichtteilsstrafklausel: Macht ein Abkömmling beim Erstversterbenden den Pflichtteil geltend, so soll er beim Letztversterbenden als Schlusserbe enterbt sein.",
+                "default": true
+              },
+              "remarriageClause": {
+                "type": "string",
+                "title": "Wiederverheiratungsklausel (optional, Freitext)"
+              },
+              "administrationNotes": {
+                "type": "string",
+                "title": "Anordnungen (z. B. Testamentsvollstreckung, Vor- und Nacherbfolge-Varianten) – optional"
+              }
+            }
+          },
+          "execution": {
+            "type": "object",
+            "title": "Ort, Datum, Unterschriften",
+            "required": ["city", "date", "signConfirmA", "signConfirmB"],
+            "properties": {
+              "city": { "type": "string", "title": "Ort der Errichtung" },
+              "date": { "type": "string", "format": "date", "title": "Datum der Errichtung" },
+              "signConfirmA": { "type": "boolean", "const": true, "title": "Eigenhändige Unterschrift Ehegatte A" },
+              "signConfirmB": { "type": "boolean", "const": true, "title": "Eigenhändige Unterschrift Ehegatte B" }
+            }
+          },
+          "sumFinalHeirShares100": {
+            "type": "boolean",
+            "const": true,
+            "default": true,
+            "title": "Kontrolle: Schlusserben-Quoten = 100 %",
+            "description": "Technisches Feld für die Prüfung vor dem Abspeichern."
+          }
+        }
+      },
+      "ui": {
+        "sections": [
+          { "key": "spouses", "title": "Ehegatten" },
+          { "key": "heirs", "title": "Erben (Vollerben & Schlusserben)" },
+          { "key": "clauses", "title": "Klauseln" },
+          { "key": "execution", "title": "Unterschriften" }
+        ],
+        "hints": {
+          "heirs.finalHeirs": "Quoten der Schlusserben müssen 100 % ergeben.",
+          "execution": "Bei gemeinschaftlichem handschriftlichem Testament genügt Eigenhändigkeit eines Ehegatten; beide müssen unterschreiben (§ 2267 BGB).",
+          "clauses.wechselbezug": "Bindungswirkung beachten; Widerruf nach dem Tod eines Ehegatten nur eingeschränkt möglich (§§ 2270–2271 BGB)."
+        },
+        "signing": {
+          "handwrittenRequired": true,
+          "witnessesRequired": 0
+        }
+      },
+      "print": {
+        "template": "Gemeinschaftliches Testament (Berliner Testament)\n\nWir, die Ehegatten {{spouses.spouseA.fullName}}, geb. am {{spouses.spouseA.dateOfBirth}}, und {{spouses.spouseB.fullName}}, geb. am {{spouses.spouseB.dateOfBirth}}, wohnhaft {{spouses.spouseA.address}}/{{spouses.spouseB.address}}, errichten folgendes gemeinschaftliches Testament:\n\nI. Vollerben\nWir setzen uns gegenseitig zu Alleinerben ein.\n\nII. Schlusserben\n{{#each heirs.finalHeirs}}\nZu Schlusserben des Längerlebenden bestimmen wir {{this.relation}}, {{this.fullName}}{{#if this.dateOfBirth}}, geb. am {{this.dateOfBirth}}{{/if}}{{#if this.address}}, wohnhaft {{this.address}}{{/if}}, mit einer Quote von {{this.share}} %.\n{{/each}}\n\nIII. Klauseln\n{{#if clauses.penaltyClausePflichtteil}}Pflichtteilsstrafklausel: Macht ein Abkömmling nach dem Erstversterbenden den Pflichtteil geltend, so ist er nach dem Letztversterbenden von der Erbfolge ausgeschlossen.{{/if}}\n{{#if clauses.remarriageClause}}Wiederverheiratungsklausel: {{clauses.remarriageClause}}{{/if}}\nHinweis: Pflichtteilsrechte nach § 2303 BGB bleiben unberührt.\n\n{{execution.city}}, am {{execution.date}}\n\n____________________            ____________________\nUnterschrift Ehegatte A          Unterschrift Ehegatte B"
+      }
+    },
+    {
+      "id": "will_emergency_three_witnesses_de",
+      "type": "will",
+      "variant": "emergency_three_witnesses",
+      "title": "Nottestament vor drei Zeugen (Ausnahmefall)",
+      "description": "Vorlage nur für Notfälle gem. § 2250 BGB (mündliche Erklärung vor drei Zeugen; strenge Voraussetzungen).",
+      "schema": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["testator", "emergencyGround", "witnesses", "statement", "execution"],
+        "properties": {
+          "testator": {
+            "type": "object",
+            "required": ["fullName", "dateOfBirth", "address"],
+            "properties": {
+              "fullName": { "type": "string", "title": "Name des Erblassers" },
+              "dateOfBirth": { "type": "string", "format": "date", "title": "Geburtsdatum" },
+              "address": { "type": "string", "title": "Anschrift" }
+            }
+          },
+          "emergencyGround": {
+            "type": "string",
+            "title": "Grund der Notsituation (z. B. Todesgefahr, Absperrung)"
+          },
+          "witnesses": {
+            "type": "array",
+            "title": "Drei Zeugen (keiner darf bedacht sein)",
+            "minItems": 3,
+            "maxItems": 3,
+            "items": {
+              "type": "object",
+              "required": ["fullName", "dateOfBirth", "address", "attestation"],
+              "properties": {
+                "fullName": { "type": "string", "title": "Name" },
+                "dateOfBirth": { "type": "string", "format": "date", "title": "Geburtsdatum" },
+                "address": { "type": "string", "title": "Anschrift" },
+                "attestation": {
+                  "type": "boolean",
+                  "const": true,
+                  "title": "Zeugenerklärung: geschäftsfähig; Sprache verstanden; nicht bedacht; mündliche Erklärung gehört."
+                }
+              }
+            }
+          },
+          "statement": {
+            "type": "string",
+            "title": "Wortlaut der mündlichen letztwilligen Erklärung (von Zeugen niederzuschreiben)"
+          },
+          "execution": {
+            "type": "object",
+            "required": ["city", "date"],
+            "properties": {
+              "city": { "type": "string", "title": "Ort" },
+              "date": { "type": "string", "format": "date", "title": "Datum" }
+            }
+          }
+        }
+      },
+      "ui": {
+        "sections": [
+          { "key": "testator", "title": "Erblasser" },
+          { "key": "emergencyGround", "title": "Notsituation" },
+          { "key": "witnesses", "title": "Zeugen (3 Personen)" },
+          { "key": "statement", "title": "Erklärung" },
+          { "key": "execution", "title": "Niederschrift" }
+        ],
+        "hints": {
+          "witnesses": "§ 2250 BGB verlangt drei Zeugen. Keiner darf im Testament bedacht sein.",
+          "statement": "Die Zeugen müssen die Erklärung unverzüglich niederlegen und unterschreiben.",
+          "warning": "Nur für echte Notlagen – ansonsten eigenhändiges oder notarielles Testament verwenden."
+        },
+        "signing": {
+          "handwrittenRequired": false,
+          "witnessesRequired": 3
+        }
+      },
+      "print": {
+        "template": "Nottestament vor drei Zeugen (§ 2250 BGB)\n\nErblasser: {{testator.fullName}}, geb. am {{testator.dateOfBirth}}, wohnhaft {{testator.address}}.\nGrund der Notsituation: {{emergencyGround}}\n\nErklärung des Erblassers (mündlich abgegeben, hier niedergeschrieben):\n\"{{statement}}\"\n\nZeugenbestätigungen:\n1) {{witnesses.[0].fullName}}, geb. am {{witnesses.[0].dateOfBirth}}, {{witnesses.[0].address}} – Erklärung verstanden, nicht bedacht, geschäftsfähig.\n2) {{witnesses.[1].fullName}}, geb. am {{witnesses.[1].dateOfBirth}}, {{witnesses.[1].address}} – Erklärung verstanden, nicht bedacht, geschäftsfähig.\n3) {{witnesses.[2].fullName}}, geb. am {{witnesses.[2].dateOfBirth}}, {{witnesses.[2].address}} – Erklärung verstanden, nicht bedacht, geschäftsfähig.\n\n{{execution.city}}, am {{execution.date}}\n\n____________________   ____________________   ____________________\nUnterschrift Zeuge 1    Unterschrift Zeuge 2   Unterschrift Zeuge 3"
+      }
+    }
+  ],
+  "clientRules": [
+    {
+      "id": "shares_sum_100",
+      "appliesTo": ["will_holographic_de", "will_notarial_de"],
+      "type": "computedValidation",
+      "messageDe": "Die Summe aller Erbquoten muss genau 100 % betragen.",
+      "fn": "sum(heirs[*].share) === 100"
+    },
+    {
+      "id": "final_heirs_sum_100",
+      "appliesTo": ["will_joint_spouses_berlin_de"],
+      "type": "computedValidation",
+      "messageDe": "Die Summe der Quoten der Schlusserben muss 100 % betragen.",
+      "fn": "sum(heirs.finalHeirs[*].share) === 100"
+    },
+    {
+      "id": "three_witnesses_required",
+      "appliesTo": ["will_emergency_three_witnesses_de"],
+      "type": "hardValidation",
+      "messageDe": "Für das Nottestament sind genau drei Zeugen erforderlich (§ 2250 BGB).",
+      "fn": "Array.isArray(witnesses) && witnesses.length === 3"
+    }
+  ]
+}

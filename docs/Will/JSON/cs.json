@@ -1,0 +1,586 @@
+{
+  "version": "1.0",
+  "jurisdiction": "CZ",
+  "language": "cs",
+  "documents": [
+    {
+      "id": "will_holographic_cz",
+      "type": "will",
+      "variant": "holographic",
+      "title": "Vlastnoruční závěť (holografní)",
+      "description": "Šablona pro vlastnoruční závěť sepsanou a podepsanou pořizovatelem.",
+      "schema": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["testator", "heirs", "declarations", "execution"],
+        "properties": {
+          "testator": {
+            "type": "object",
+            "title": "Údaje o zůstaviteli",
+            "required": ["fullName", "dateOfBirth", "address"],
+            "properties": {
+              "fullName": { "type": "string", "title": "Jméno a příjmení" },
+              "dateOfBirth": { "type": "string", "format": "date", "title": "Datum narození" },
+              "address": { "type": "string", "title": "Trvalý pobyt" }
+            }
+          },
+          "heirs": {
+            "type": "array",
+            "title": "Dědicové",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "required": ["fullName", "relation", "share"],
+              "properties": {
+                "relation": { "type": "string", "title": "Vztah k osobě" },
+                "fullName": { "type": "string", "title": "Jméno a příjmení" },
+                "dateOfBirth": { "type": "string", "format": "date", "title": "Datum narození" },
+                "address": { "type": "string", "title": "Trvalý pobyt" },
+                "share": {
+                  "type": "number",
+                  "title": "Výše podílu (%)",
+                  "minimum": 0,
+                  "maximum": 100,
+                  "multipleOf": 0.01
+                },
+                "substitute": {
+                  "type": "object",
+                  "title": "Náhradník (volitelně)",
+                  "properties": {
+                    "relation": { "type": "string", "title": "Vztah k osobě" },
+                    "fullName": { "type": "string", "title": "Jméno a příjmení" },
+                    "dateOfBirth": { "type": "string", "format": "date", "title": "Datum narození" },
+                    "address": { "type": "string", "title": "Trvalý pobyt" }
+                  }
+                }
+              }
+            }
+          },
+          "declarations": {
+            "type": "object",
+            "title": "Prohlášení",
+            "required": ["noOtherReservedHeirs", "revokePriorWills"],
+            "properties": {
+              "noOtherReservedHeirs": {
+                "type": "boolean",
+                "const": true,
+                "title": "Prohlašuji, že nemám žádných dalších, než výše uvedených, nepominutelných dědiců ve smyslu § 1643 občanského zákoníku."
+              },
+              "revokePriorWills": {
+                "type": "boolean",
+                "const": true,
+                "title": "Odvolávám všechny své předchozí závěti."
+              },
+              "revokedWillDate": {
+                "type": "string",
+                "format": "date",
+                "title": "Datum odvolávané závěti (volitelně)"
+              },
+              "freeAndInformed": {
+                "type": "boolean",
+                "const": true,
+                "default": true,
+                "title": "Tuto závěť činím s rozvahou, vážně a bez donucení."
+              }
+            }
+          },
+          "execution": {
+            "type": "object",
+            "title": "Místo, datum a podpis",
+            "required": ["city", "date", "signatureConfirm"],
+            "properties": {
+              "city": { "type": "string", "title": "Město" },
+              "date": { "type": "string", "format": "date", "title": "Datum" },
+              "signatureConfirm": {
+                "type": "boolean",
+                "const": true,
+                "title": "V závěru dokument vlastnoručně podepíšu."
+              }
+            }
+          },
+          "sumSharesMustEqual100": {
+            "type": "boolean",
+            "const": true,
+            "default": true,
+            "title": "Kontrola: Součet podílů = 100 %",
+            "description": "Technické pole pro kontrolu před odesláním; uživatel nevyplňuje."
+          }
+        }
+      },
+      "ui": {
+        "sections": [
+          { "key": "testator", "title": "Zůstavitel" },
+          { "key": "heirs", "title": "Dědicové a podíly" },
+          { "key": "declarations", "title": "Prohlášení" },
+          { "key": "execution", "title": "Podpis" }
+        ],
+        "hints": {
+          "heirs.share": "Zadejte procento (např. 100 pro jednoho dědice nebo součtově pro více dědiců).",
+          "sumSharesMustEqual100": "Před podpisem zkontrolujte, že součet podílů je 100 %."
+        },
+        "signing": {
+          "handwrittenRequired": true,
+          "witnessesRequired": 0
+        }
+      },
+      "print": {
+        "template": "Závěť\n\nJá, níže podepsaný/á {{testator.fullName}}, datum narození {{testator.dateOfBirth}}, s trvalým pobytem {{testator.address}}, prohlašuji, že jsem svéprávný/á, způsobilý/á samostatně právně jednat a že tuto závěť činím s rozvahou, vážně a bez donucení.\n\nI.\n{{#each heirs}}\nDědicem {{#if (eq this.share 100)}}veškerého mého majetku{{else}}části mého majetku ve výši {{this.share}} %{{/if}} ustanovuji {{this.relation}}, {{this.fullName}}, datum narození {{this.dateOfBirth}}, s trvalým pobytem {{this.address}}.\n{{#if this.substitute}}Pokud by shora uvedený/á dědic/čka z jakéhokoliv důvodu nedědil/a, ustanovuji na jeho/jejím místě jako náhradníka {{this.substitute.relation}}, {{this.substitute.fullName}}, datum narození {{this.substitute.dateOfBirth}}, s trvalým pobytem {{this.substitute.address}}.\n{{/if}}{{/each}}\n\nII.\nProhlašuji, že nemám žádných dalších, než výše uvedených, nepominutelných dědiců ve smyslu § 1643 občanského zákoníku.\n{{#if declarations.revokedWillDate}}Odvolávám svoji závěť sepsanou dne {{declarations.revokedWillDate}}, a veškeré další závěti, které jsem kdy učinil/a.{{else}}Odvolávám všechny své předchozí závěti.{{/if}}\nToto je má poslední vůle, pokud se dědicové nedohodnou jinak.\n\nV {{execution.city}} dne {{execution.date}}\n\n____________________\nvlastnoruční podpis"
+      }
+    },
+    {
+      "id": "will_alographic_cz",
+      "type": "will",
+      "variant": "alographic",
+      "title": "Alografní závěť (se svědky)",
+      "description": "Šablona pro písemnou závěť podepsanou za současné přítomnosti dvou svědků.",
+      "schema": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["testator", "heirs", "declarations", "witnesses", "execution"],
+        "properties": {
+          "testator": {
+            "type": "object",
+            "title": "Údaje o zůstaviteli",
+            "required": ["fullName", "dateOfBirth", "address"],
+            "properties": {
+              "fullName": { "type": "string", "title": "Jméno a příjmení" },
+              "dateOfBirth": { "type": "string", "format": "date", "title": "Datum narození" },
+              "address": { "type": "string", "title": "Trvalý pobyt" }
+            }
+          },
+          "heirs": {
+            "type": "array",
+            "title": "Dědicové",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "required": ["fullName", "relation", "share"],
+              "properties": {
+                "relation": { "type": "string", "title": "Vztah k osobě" },
+                "fullName": { "type": "string", "title": "Jméno a příjmení" },
+                "dateOfBirth": { "type": "string", "format": "date", "title": "Datum narození" },
+                "address": { "type": "string", "title": "Trvalý pobyt" },
+                "share": {
+                  "type": "number",
+                  "title": "Výše podílu (%)",
+                  "minimum": 0,
+                  "maximum": 100,
+                  "multipleOf": 0.01
+                },
+                "substitute": {
+                  "type": "object",
+                  "title": "Náhradník (volitelně)",
+                  "properties": {
+                    "relation": { "type": "string", "title": "Vztah k osobě" },
+                    "fullName": { "type": "string", "title": "Jméno a příjmení" },
+                    "dateOfBirth": { "type": "string", "format": "date", "title": "Datum narození" },
+                    "address": { "type": "string", "title": "Trvalý pobyt" }
+                  }
+                }
+              }
+            }
+          },
+          "declarations": {
+            "type": "object",
+            "title": "Prohlášení",
+            "required": ["noOtherReservedHeirs", "revokePriorWills"],
+            "properties": {
+              "noOtherReservedHeirs": {
+                "type": "boolean",
+                "const": true,
+                "title": "Prohlašuji, že nemám žádných dalších, než výše uvedených, nepominutelných dědiců ve smyslu § 1643 občanského zákoníku."
+              },
+              "revokePriorWills": {
+                "type": "boolean",
+                "const": true,
+                "title": "Odvolávám všechny své předchozí závěti."
+              },
+              "revokedWillDate": {
+                "type": "string",
+                "format": "date",
+                "title": "Datum odvolávané závěti (volitelně)"
+              },
+              "freeAndInformed": {
+                "type": "boolean",
+                "const": true,
+                "default": true,
+                "title": "Tuto závěť činím s rozvahou, vážně a bez donucení."
+              }
+            }
+          },
+          "witnesses": {
+            "type": "array",
+            "title": "Svědci (2 osoby)",
+            "minItems": 2,
+            "maxItems": 2,
+            "items": {
+              "type": "object",
+              "required": ["fullName", "dateOfBirth", "address", "attestation"],
+              "properties": {
+                "fullName": { "type": "string", "title": "Jméno a příjmení" },
+                "dateOfBirth": { "type": "string", "format": "date", "title": "Datum narození" },
+                "address": { "type": "string", "title": "Trvalý pobyt" },
+                "attestation": {
+                  "type": "boolean",
+                  "const": true,
+                  "title": "Prohlašuji, že jsem svéprávný/á, způsobilý/á samostatně právně jednat, že ovládám jazyk, v němž je tento projev vůle učiněn, že nejsem osobou blízkou pořizovatele této závěti, nejsem dědicem z této závěti a že jsem byl/a spolu s druhým svědkem přítomen/a podpisu a prohlášení pořizovatele, že se jedná o jeho poslední vůli."
+                }
+              }
+            }
+          },
+          "execution": {
+            "type": "object",
+            "title": "Místo, datum a podpis",
+            "required": ["city", "date", "signatureConfirm"],
+            "properties": {
+              "city": { "type": "string", "title": "Město" },
+              "date": { "type": "string", "format": "date", "title": "Datum" },
+              "signatureConfirm": {
+                "type": "boolean",
+                "const": true,
+                "title": "V závěru dokument vlastnoručně podepíšu."
+              }
+            }
+          },
+          "sumSharesMustEqual100": {
+            "type": "boolean",
+            "const": true,
+            "default": true,
+            "title": "Kontrola: Součet podílů = 100 %",
+            "description": "Technické pole pro kontrolu před odesláním; uživatel nevyplňuje."
+          }
+        }
+      },
+      "ui": {
+        "sections": [
+          { "key": "testator", "title": "Zůstavitel" },
+          { "key": "heirs", "title": "Dědicové a podíly" },
+          { "key": "declarations", "title": "Prohlášení" },
+          { "key": "witnesses", "title": "Svědci" },
+          { "key": "execution", "title": "Podpis" }
+        ],
+        "hints": {
+          "witnesses": "Uveďte přesně dva svědky. Systém vyžaduje jejich potvrzení.",
+          "heirs.share": "Zadejte procenta tak, aby součet činil 100 %. ",
+          "sumSharesMustEqual100": "Před podpisem zkontrolujte, že součet podílů je 100 %."
+        },
+        "signing": {
+          "handwrittenRequired": true,
+          "witnessesRequired": 2
+        }
+      },
+      "print": {
+        "template": "Závěť\n\nJá, níže podepsaný/á {{testator.fullName}}, datum narození {{testator.dateOfBirth}}, s trvalým pobytem {{testator.address}}, prohlašuji, že jsem svéprávný/á, že jsem způsobilý/á samostatně právně jednat a že tuto závěť činím s rozvahou, vážně a bez donucení.\n\nČást A\n\nI.\n{{#each heirs}}\nDědicem {{#if (eq this.share 100)}}veškerého mého majetku{{else}}části mého majetku ve výši {{this.share}} %{{/if}} ustanovuji {{this.relation}}, {{this.fullName}}, datum narození {{this.dateOfBirth}}, s trvalým pobytem {{this.address}}.\n{{#if this.substitute}}Pokud by shora uvedený/á dědic/čka z jakéhokoliv důvodu nedědil/a, ustanovuji na jeho/jejím místě jako náhradníka {{this.substitute.relation}}, {{this.substitute.fullName}}, datum narození {{this.substitute.dateOfBirth}}, s trvalým pobytem {{this.substitute.address}}.\n{{/if}}{{/each}}\n\nII.\nProhlašuji, že nemám žádných dalších, než výše uvedených, nepominutelných dědiců ve smyslu § 1643 občanského zákoníku.\n{{#if declarations.revokedWillDate}}Odvolávám svoji závěť sepsanou dne {{declarations.revokedWillDate}}, a veškeré další závěti, které jsem kdy učinil/a.{{else}}Odvolávám všechny své předchozí závěti.{{/if}}\nToto je má poslední vůle, pokud se dědicové nedohodnou jinak.\n\nIII.\nProhlašuji, že k podpisu této mé závěti došlo před dvěma současně přítomnými svědky, {{witnesses.[0].fullName}}, datum narození {{witnesses.[0].dateOfBirth}}, s trvalým pobytem {{witnesses.[0].address}}, a {{witnesses.[1].fullName}}, datum narození {{witnesses.[1].dateOfBirth}}, s trvalým pobytem {{witnesses.[1].address}}, a současně, že jsem prohlásil/a, že tato listina obsahuje moji poslední vůli.\n\nV {{execution.city}} dne {{execution.date}}\n\n____________________\nvlastnoruční podpis\n\nČást B\n\nJá, níže podepsaný/á, svědek závěti {{witnesses.[0].fullName}}, datum narození {{witnesses.[0].dateOfBirth}}, s trvalým pobytem {{witnesses.[0].address}}, prohlašuji, že jsem svéprávný/á, způsobilý/á samostatně právně jednat, že ovládám jazyk, v němž je tento projev vůle činěn, že nejsem osobou blízkou pořizovatele této závěti, že nejsem ani dědicem z této závěti, a že jsem byl/a spolu s {{witnesses.[1].fullName}} svědkem podpisu a prohlášení pořizovatele závěti o tom, že se jedná o jeho poslední vůli.\n\nV {{execution.city}} dne {{execution.date}}\n\n____________________\nsvědek – vlastnoruční podpis\n\nJá, níže podepsaný/á, svědek závěti {{witnesses.[1].fullName}}, datum narození {{witnesses.[1].dateOfBirth}}, s trvalým pobytem {{witnesses.[1].address}}, prohlašuji, že jsem svéprávný/á, způsobilý/á samostatně právně jednat, že ovládám jazyk, v němž je tento projev vůle činěn, že nejsem osobou blízkou pořizovatele této závěti, že nejsem ani dědicem z této závěti, a že jsem byl/a spolu s {{witnesses.[0].fullName}} svědkem podpisu a prohlášení pořizovatele závěti o tom, že se jedná o jeho poslední vůli.\n\nV {{execution.city}} dne {{execution.date}}\n\n____________________\nsvědek – vlastnoruční podpis"
+      }
+    }
+  ],
+  "clientRules": [
+    {
+      "id": "shares_sum_100",
+      "appliesTo": ["will_holographic_cz", "will_alographic_cz"],
+      "type": "computedValidation",
+      "messageCs": "Součet podílů musí být přesně 100 %.",
+      "fn": "sum(heirs[*].share) === 100"
+    },
+    {
+      "id": "witness_count_2",
+      "appliesTo": ["will_alographic_cz"],
+      "type": "hardValidation",
+      "messageCs": "Jsou vyžadováni přesně dva svědci.",
+      "fn": "Array.isArray(witnesses) && witnesses.length === 2"
+    }
+  ]
+}
+{
+  "version": "1.0",
+  "jurisdiction": "CZ",
+  "language": "cs",
+  "documents": [
+    {
+      "id": "will_holographic_cz",
+      "type": "will",
+      "variant": "holographic",
+      "title": "Vlastnoruční závěť (holografní)",
+      "description": "Šablona pro vlastnoruční závěť sepsanou a podepsanou pořizovatelem.",
+      "schema": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["testator", "heirs", "declarations", "execution"],
+        "properties": {
+          "testator": {
+            "type": "object",
+            "title": "Údaje o zůstaviteli",
+            "required": ["fullName", "dateOfBirth", "address"],
+            "properties": {
+              "fullName": { "type": "string", "title": "Jméno a příjmení" },
+              "dateOfBirth": { "type": "string", "format": "date", "title": "Datum narození" },
+              "address": { "type": "string", "title": "Trvalý pobyt" }
+            }
+          },
+          "heirs": {
+            "type": "array",
+            "title": "Dědicové",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "required": ["fullName", "relation", "share"],
+              "properties": {
+                "relation": { "type": "string", "title": "Vztah k osobě" },
+                "fullName": { "type": "string", "title": "Jméno a příjmení" },
+                "dateOfBirth": { "type": "string", "format": "date", "title": "Datum narození" },
+                "address": { "type": "string", "title": "Trvalý pobyt" },
+                "share": {
+                  "type": "number",
+                  "title": "Výše podílu (%)",
+                  "minimum": 0,
+                  "maximum": 100,
+                  "multipleOf": 0.01
+                },
+                "substitute": {
+                  "type": "object",
+                  "title": "Náhradník (volitelně)",
+                  "properties": {
+                    "relation": { "type": "string", "title": "Vztah k osobě" },
+                    "fullName": { "type": "string", "title": "Jméno a příjmení" },
+                    "dateOfBirth": { "type": "string", "format": "date", "title": "Datum narození" },
+                    "address": { "type": "string", "title": "Trvalý pobyt" }
+                  }
+                }
+              }
+            }
+          },
+          "declarations": {
+            "type": "object",
+            "title": "Prohlášení",
+            "required": ["noOtherReservedHeirs", "revokePriorWills"],
+            "properties": {
+              "noOtherReservedHeirs": {
+                "type": "boolean",
+                "const": true,
+                "title": "Prohlašuji, že nemám žádných dalších, než výše uvedených, nepominutelných dědiců ve smyslu § 1643 občanského zákoníku."
+              },
+              "revokePriorWills": {
+                "type": "boolean",
+                "const": true,
+                "title": "Odvolávám všechny své předchozí závěti."
+              },
+              "revokedWillDate": {
+                "type": "string",
+                "format": "date",
+                "title": "Datum odvolávané závěti (volitelně)"
+              },
+              "freeAndInformed": {
+                "type": "boolean",
+                "const": true,
+                "default": true,
+                "title": "Tuto závěť činím s rozvahou, vážně a bez donucení."
+              }
+            }
+          },
+          "execution": {
+            "type": "object",
+            "title": "Místo, datum a podpis",
+            "required": ["city", "date", "signatureConfirm"],
+            "properties": {
+              "city": { "type": "string", "title": "Město" },
+              "date": { "type": "string", "format": "date", "title": "Datum" },
+              "signatureConfirm": {
+                "type": "boolean",
+                "const": true,
+                "title": "V závěru dokument vlastnoručně podepíšu."
+              }
+            }
+          },
+          "sumSharesMustEqual100": {
+            "type": "boolean",
+            "const": true,
+            "default": true,
+            "title": "Kontrola: Součet podílů = 100 %",
+            "description": "Technické pole pro kontrolu před odesláním; uživatel nevyplňuje."
+          }
+        }
+      },
+      "ui": {
+        "sections": [
+          { "key": "testator", "title": "Zůstavitel" },
+          { "key": "heirs", "title": "Dědicové a podíly" },
+          { "key": "declarations", "title": "Prohlášení" },
+          { "key": "execution", "title": "Podpis" }
+        ],
+        "hints": {
+          "heirs.share": "Zadejte procento (např. 100 pro jednoho dědice nebo součtově pro více dědiců).",
+          "sumSharesMustEqual100": "Před podpisem zkontrolujte, že součet podílů je 100 %."
+        },
+        "signing": {
+          "handwrittenRequired": true,
+          "witnessesRequired": 0
+        }
+      },
+      "print": {
+        "template": "Závěť\n\nJá, níže podepsaný/á {{testator.fullName}}, datum narození {{testator.dateOfBirth}}, s trvalým pobytem {{testator.address}}, prohlašuji, že jsem svéprávný/á, způsobilý/á samostatně právně jednat a že tuto závěť činím s rozvahou, vážně a bez donucení.\n\nI.\n{{#each heirs}}\nDědicem {{#if (eq this.share 100)}}veškerého mého majetku{{else}}části mého majetku ve výši {{this.share}} %{{/if}} ustanovuji {{this.relation}}, {{this.fullName}}, datum narození {{this.dateOfBirth}}, s trvalým pobytem {{this.address}}.\n{{#if this.substitute}}Pokud by shora uvedený/á dědic/čka z jakéhokoliv důvodu nedědil/a, ustanovuji na jeho/jejím místě jako náhradníka {{this.substitute.relation}}, {{this.substitute.fullName}}, datum narození {{this.substitute.dateOfBirth}}, s trvalým pobytem {{this.substitute.address}}.\n{{/if}}{{/each}}\n\nII.\nProhlašuji, že nemám žádných dalších, než výše uvedených, nepominutelných dědiců ve smyslu § 1643 občanského zákoníku.\n{{#if declarations.revokedWillDate}}Odvolávám svoji závěť sepsanou dne {{declarations.revokedWillDate}}, a veškeré další závěti, které jsem kdy učinil/a.{{else}}Odvolávám všechny své předchozí závěti.{{/if}}\nToto je má poslední vůle, pokud se dědicové nedohodnou jinak.\n\nV {{execution.city}} dne {{execution.date}}\n\n____________________\nvlastnoruční podpis"
+      }
+    },
+    {
+      "id": "will_alographic_cz",
+      "type": "will",
+      "variant": "alographic",
+      "title": "Alografní závěť (se svědky)",
+      "description": "Šablona pro písemnou závěť podepsanou za současné přítomnosti dvou svědků.",
+      "schema": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["testator", "heirs", "declarations", "witnesses", "execution"],
+        "properties": {
+          "testator": {
+            "type": "object",
+            "title": "Údaje o zůstaviteli",
+            "required": ["fullName", "dateOfBirth", "address"],
+            "properties": {
+              "fullName": { "type": "string", "title": "Jméno a příjmení" },
+              "dateOfBirth": { "type": "string", "format": "date", "title": "Datum narození" },
+              "address": { "type": "string", "title": "Trvalý pobyt" }
+            }
+          },
+          "heirs": {
+            "type": "array",
+            "title": "Dědicové",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "required": ["fullName", "relation", "share"],
+              "properties": {
+                "relation": { "type": "string", "title": "Vztah k osobě" },
+                "fullName": { "type": "string", "title": "Jméno a příjmení" },
+                "dateOfBirth": { "type": "string", "format": "date", "title": "Datum narození" },
+                "address": { "type": "string", "title": "Trvalý pobyt" },
+                "share": {
+                  "type": "number",
+                  "title": "Výše podílu (%)",
+                  "minimum": 0,
+                  "maximum": 100,
+                  "multipleOf": 0.01
+                },
+                "substitute": {
+                  "type": "object",
+                  "title": "Náhradník (volitelně)",
+                  "properties": {
+                    "relation": { "type": "string", "title": "Vztah k osobě" },
+                    "fullName": { "type": "string", "title": "Jméno a příjmení" },
+                    "dateOfBirth": { "type": "string", "format": "date", "title": "Datum narození" },
+                    "address": { "type": "string", "title": "Trvalý pobyt" }
+                  }
+                }
+              }
+            }
+          },
+          "declarations": {
+            "type": "object",
+            "title": "Prohlášení",
+            "required": ["noOtherReservedHeirs", "revokePriorWills"],
+            "properties": {
+              "noOtherReservedHeirs": {
+                "type": "boolean",
+                "const": true,
+                "title": "Prohlašuji, že nemám žádných dalších, než výše uvedených, nepominutelných dědiců ve smyslu § 1643 občanského zákoníku."
+              },
+              "revokePriorWills": {
+                "type": "boolean",
+                "const": true,
+                "title": "Odvolávám všechny své předchozí závěti."
+              },
+              "revokedWillDate": {
+                "type": "string",
+                "format": "date",
+                "title": "Datum odvolávané závěti (volitelně)"
+              },
+              "freeAndInformed": {
+                "type": "boolean",
+                "const": true,
+                "default": true,
+                "title": "Tuto závěť činím s rozvahou, vážně a bez donucení."
+              }
+            }
+          },
+          "witnesses": {
+            "type": "array",
+            "title": "Svědci (2 osoby)",
+            "minItems": 2,
+            "maxItems": 2,
+            "items": {
+              "type": "object",
+              "required": ["fullName", "dateOfBirth", "address", "attestation"],
+              "properties": {
+                "fullName": { "type": "string", "title": "Jméno a příjmení" },
+                "dateOfBirth": { "type": "string", "format": "date", "title": "Datum narození" },
+                "address": { "type": "string", "title": "Trvalý pobyt" },
+                "attestation": {
+                  "type": "boolean",
+                  "const": true,
+                  "title": "Prohlašuji, že jsem svéprávný/á, způsobilý/á samostatně právně jednat, že ovládám jazyk, v němž je tento projev vůle učiněn, že nejsem osobou blízkou pořizovatele této závěti, nejsem dědicem z této závěti a že jsem byl/a spolu s druhým svědkem přítomen/a podpisu a prohlášení pořizovatele, že se jedná o jeho poslední vůli."
+                }
+              }
+            }
+          },
+          "execution": {
+            "type": "object",
+            "title": "Místo, datum a podpis",
+            "required": ["city", "date", "signatureConfirm"],
+            "properties": {
+              "city": { "type": "string", "title": "Město" },
+              "date": { "type": "string", "format": "date", "title": "Datum" },
+              "signatureConfirm": {
+                "type": "boolean",
+                "const": true,
+                "title": "V závěru dokument vlastnoručně podepíšu."
+              }
+            }
+          },
+          "sumSharesMustEqual100": {
+            "type": "boolean",
+            "const": true,
+            "default": true,
+            "title": "Kontrola: Součet podílů = 100 %",
+            "description": "Technické pole pro kontrolu před odesláním; uživatel nevyplňuje."
+          }
+        }
+      },
+      "ui": {
+        "sections": [
+          { "key": "testator", "title": "Zůstavitel" },
+          { "key": "heirs", "title": "Dědicové a podíly" },
+          { "key": "declarations", "title": "Prohlášení" },
+          { "key": "witnesses", "title": "Svědci" },
+          { "key": "execution", "title": "Podpis" }
+        ],
+        "hints": {
+          "witnesses": "Uveďte přesně dva svědky. Systém vyžaduje jejich potvrzení.",
+          "heirs.share": "Zadejte procenta tak, aby součet činil 100 %. ",
+          "sumSharesMustEqual100": "Před podpisem zkontrolujte, že součet podílů je 100 %."
+        },
+        "signing": {
+          "handwrittenRequired": true,
+          "witnessesRequired": 2
+        }
+      },
+      "print": {
+        "template": "Závěť\n\nJá, níže podepsaný/á {{testator.fullName}}, datum narození {{testator.dateOfBirth}}, s trvalým pobytem {{testator.address}}, prohlašuji, že jsem svéprávný/á, že jsem způsobilý/á samostatně právně jednat a že tuto závěť činím s rozvahou, vážně a bez donucení.\n\nČást A\n\nI.\n{{#each heirs}}\nDědicem {{#if (eq this.share 100)}}veškerého mého majetku{{else}}části mého majetku ve výši {{this.share}} %{{/if}} ustanovuji {{this.relation}}, {{this.fullName}}, datum narození {{this.dateOfBirth}}, s trvalým pobytem {{this.address}}.\n{{#if this.substitute}}Pokud by shora uvedený/á dědic/čka z jakéhokoliv důvodu nedědil/a, ustanovuji na jeho/jejím místě jako náhradníka {{this.substitute.relation}}, {{this.substitute.fullName}}, datum narození {{this.substitute.dateOfBirth}}, s trvalým pobytem {{this.substitute.address}}.\n{{/if}}{{/each}}\n\nII.\nProhlašuji, že nemám žádných dalších, než výše uvedených, nepominutelných dědiců ve smyslu § 1643 občanského zákoníku.\n{{#if declarations.revokedWillDate}}Odvolávám svoji závěť sepsanou dne {{declarations.revokedWillDate}}, a veškeré další závěti, které jsem kdy učinil/a.{{else}}Odvolávám všechny své předchozí závěti.{{/if}}\nToto je má poslední vůle, pokud se dědicové nedohodnou jinak.\n\nIII.\nProhlašuji, že k podpisu této mé závěti došlo před dvěma současně přítomnými svědky, {{witnesses.[0].fullName}}, datum narození {{witnesses.[0].dateOfBirth}}, s trvalým pobytem {{witnesses.[0].address}}, a {{witnesses.[1].fullName}}, datum narození {{witnesses.[1].dateOfBirth}}, s trvalým pobytem {{witnesses.[1].address}}, a současně, že jsem prohlásil/a, že tato listina obsahuje moji poslední vůli.\n\nV {{execution.city}} dne {{execution.date}}\n\n____________________\nvlastnoruční podpis\n\nČást B\n\nJá, níže podepsaný/á, svědek závěti {{witnesses.[0].fullName}}, datum narození {{witnesses.[0].dateOfBirth}}, s trvalým pobytem {{witnesses.[0].address}}, prohlašuji, že jsem svéprávný/á, způsobilý/á samostatně právně jednat, že ovládám jazyk, v němž je tento projev vůle činěn, že nejsem osobou blízkou pořizovatele této závěti, že nejsem ani dědicem z této závěti, a že jsem byl/a spolu s {{witnesses.[1].fullName}} svědkem podpisu a prohlášení pořizovatele závěti o tom, že se jedná o jeho poslední vůli.\n\nV {{execution.city}} dne {{execution.date}}\n\n____________________\nsvědek – vlastnoruční podpis\n\nJá, níže podepsaný/á, svědek závěti {{witnesses.[1].fullName}}, datum narození {{witnesses.[1].dateOfBirth}}, s trvalým pobytem {{witnesses.[1].address}}, prohlašuji, že jsem svéprávný/á, způsobilý/á samostatně právně jednat, že ovládám jazyk, v němž je tento projev vůle činěn, že nejsem osobou blízkou pořizovatele této závěti, že nejsem ani dědicem z této závěti, a že jsem byl/a spolu s {{witnesses.[0].fullName}} svědkem podpisu a prohlášení pořizovatele závěti o tom, že se jedná o jeho poslední vůli.\n\nV {{execution.city}} dne {{execution.date}}\n\n____________________\nsvědek – vlastnoruční podpis"
+      }
+    }
+  ],
+  "clientRules": [
+    {
+      "id": "shares_sum_100",
+      "appliesTo": ["will_holographic_cz", "will_alographic_cz"],
+      "type": "computedValidation",
+      "messageCs": "Součet podílů musí být přesně 100 %.",
+      "fn": "sum(heirs[*].share) === 100"
+    },
+    {
+      "id": "witness_count_2",
+      "appliesTo": ["will_alographic_cz"],
+      "type": "hardValidation",
+      "messageCs": "Jsou vyžadováni přesně dva svědci.",
+      "fn": "Array.isArray(witnesses) && witnesses.length === 2"
+    }
+  ]
+}

@@ -3,7 +3,10 @@
   "builds": [
     {
       "src": "apps/web/package.json",
-      "use": "@vercel/next"
+      "use": "@vercel/next",
+      "config": {
+        "distDir": ".next"
+      }
     }
   ],
   "routes": [
@@ -11,5 +14,15 @@
       "src": "/(.*)",
       "dest": "/apps/web/$1"
     }
-  ]
+  ],
+  "build": {
+    "env": {
+      "NEXT_TELEMETRY_DISABLED": "1"
+    }
+  },
+  "installCommand": "npm install",
+  "buildCommand": "npm run build:web",
+  "devCommand": "npm run web",
+  "framework": "nextjs",
+  "outputDirectory": "apps/web/.next"
 }
