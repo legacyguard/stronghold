@@ -1,0 +1,124 @@
+{
+  "dashboard": {
+    "title": "Family Shield Command Center",
+    "subtitle": "Centralized management of your family protection network",
+    "stats": {
+      "members": "Family Members",
+      "documents": "Protected Documents",
+      "notifications": "Active Notifications",
+      "security": "Security Score"
+    }
+  },
+  "invitations": {
+    "title": "Family Network Invitations",
+    "subtitle": "Expand your Family Shield protection network",
+    "form": {
+      "title": "Invite Family Member",
+      "subtitle": "Add a trusted person to your Family Shield network",
+      "name": "Full Name",
+      "email": "Email Address",
+      "phone": "Phone Number (Optional)",
+      "role": "Family Role",
+      "accessLevel": "Access Level",
+      "send": "Send Invitation",
+      "sending": "Sending Invitation...",
+      "cancel": "Cancel"
+    },
+    "roles": {
+      "spouse": "Spouse/Partner",
+      "child": "Child",
+      "parent": "Parent", 
+      "sibling": "Sibling",
+      "guardian": "Guardian",
+      "executor": "Executor",
+      "trustee": "Trustee",
+      "beneficiary": "Beneficiary",
+      "advisor": "Advisor",
+      "other": "Other"
+    },
+    "accessLevels": {
+      "minimal": {
+        "title": "Minimal Access",
+        "description": "Basic contact information only"
+      },
+      "emergency": {
+        "title": "Emergency Access", 
+        "description": "Access to emergency information and contacts"
+      },
+      "health": {
+        "title": "Health Access",
+        "description": "Medical information and healthcare decisions"
+      },
+      "full": {
+        "title": "Full Access",
+        "description": "Complete access to all family protection information"
+      }
+    }
+  },
+  "tree": {
+    "title": "Family Protection Network",
+    "primaryFamily": "Primary Family",
+    "supportNetwork": "Professional Support Network",
+    "extendedNetwork": "Extended Network",
+    "pendingInvitations": "Pending Invitations ({{count}})",
+    "invitationPending": "Invitation Pending",
+    "expires": "Expires: {{date}}",
+    "empty": {
+      "title": "No Family Members Yet",
+      "description": "Start building your Family Shield by inviting trusted members"
+    },
+    "legend": {
+      "title": "Access Levels",
+      "fullAccess": "Full Access",
+      "healthAccess": "Health Access", 
+      "emergencyAccess": "Emergency Access",
+      "minimalAccess": "Minimal Access"
+    }
+  },
+  "member": {
+    "details": "Member Details",
+    "contact": "Contact Information",
+    "permissions": "Access Permissions",
+    "documents": "Shared Documents",
+    "activity": "Recent Activity",
+    "edit": "Edit Member",
+    "remove": "Remove Member",
+    "resendInvitation": "Resend Invitation",
+    "cancelInvitation": "Cancel Invitation"
+  },
+  "permissions": {
+    "viewDocuments": "View Documents",
+    "editWills": "Edit Wills",
+    "downloadDocuments": "Download Documents",
+    "accessEmergency": "Emergency Access",
+    "triggerEmergencyProtocol": "Trigger Emergency Protocol",
+    "inviteMembers": "Invite Members",
+    "manageCalendar": "Manage Calendar",
+    "viewFamilyTree": "View Family Tree",
+    "manageRoles": "Manage Roles",
+    "accessBilling": "Access Billing"
+  },
+  "notifications": {
+    "invitationSent": "Invitation sent successfully",
+    "memberAdded": "Family member added to your network",
+    "memberRemoved": "Family member removed from network",
+    "accessUpdated": "Member access level updated",
+    "invitationCancelled": "Invitation cancelled",
+    "invitationResent": "Invitation resent successfully"
+  },
+  "errors": {
+    "invitationFailed": "Failed to send invitation",
+    "memberNotFound": "Family member not found",
+    "accessDenied": "You don't have permission for this action",
+    "emailAlreadyInvited": "This email address has already been invited",
+    "maxMembersReached": "Maximum number of family members reached"
+  },
+  "actions": {
+    "manageContacts": "Manage Contacts",
+    "configureTriggers": "Configure Triggers",
+    "adjustSettings": "Adjust Settings",
+    "runTest": "Run Test",
+    "viewHistory": "View History",
+    "manualTrigger": "Manual Trigger"
+  }
+}

@@ -64,5 +64,21 @@
     "completed": "Completed",
     "expired": "Expired",
     "draft": "Draft"
+  },
+  "login": {
+    "title": "Sign In",
+    "subtitle": "Sign in to your account",
+    "google_button": "Continue with Google",
+    "apple_button": "Continue with Apple",
+    "email_label": "Email",
+    "email_placeholder": "Enter your email",
+    "password_label": "Password",
+    "password_placeholder": "Enter your password",
+    "sign_in_button": "Sign In",
+    "magic_link_button": "Send me a sign in link",
+    "forgot_password_button": "Forgot password?",
+    "no_account": "Don't have an account?",
+    "create_account": "Create account",
+    "signing_in": "Signing in..."
   }
 }

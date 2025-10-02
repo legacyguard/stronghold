@@ -5,7 +5,7 @@ Related Feature: UI i18n Layer (../Features%2065472ecceccf486fa4e2b758eb9d3e12/U
 Status: Draft
 Type: Spec
 
-### TIER 1 LAUNCH MARKETS (Western & Central Europe)
+## TIER 1 LAUNCH MARKETS (Western & Central Europe)
 
 - [legacyguard.de](http://legacyguard.de) - Germany
 - [legacyguard.fr](http://legacyguard.fr) - France
@@ -37,7 +37,7 @@ Type: Spec
 - [legacyguard.no](http://legacyguard.no) - Norway
 - [legacyguard.is](http://legacyguard.is) - Iceland
 
-### TIER 2 EXPANSION MARKETS (Eastern Europe & Balkans)
+## TIER 2 EXPANSION MARKETS (Eastern Europe & Balkans)
 
 - [legacyguard.ro](http://legacyguard.ro) - Romania
 - [legacyguard.bg](http://legacyguard.bg) - Bulgaria
@@ -53,7 +53,7 @@ Type: Spec
 
 ---
 
-# IMPLEMENTATION STRATEGY
+## IMPLEMENTATION STRATEGY
 
 ## PHASE 1: TIER 1 MARKETS (Months 1-6)
 
@@ -69,7 +69,7 @@ Type: Spec
 
 ---
 
-### Linkage
+## Linkage
 
 - Related: I18N 02 — Language Matrix per Domain
 - Routes: ROUTE 01 — Logika Presmerovania a Fallbackov

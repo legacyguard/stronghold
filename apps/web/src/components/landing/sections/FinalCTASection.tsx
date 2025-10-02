@@ -8,7 +8,6 @@ import { useTranslation } from '@/hooks/useTranslationMock';
 export function FinalCTASection() {
   const { t } = useTranslation('landing');
   const [isVisible, setIsVisible] = useState(false);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -28,260 +27,157 @@ export function FinalCTASection() {
     return () => observer.disconnect();
   }, []);
 
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      if (sectionRef.current) {
-        const rect = sectionRef.current.getBoundingClientRect();
-        setMousePosition({
-          x: (e.clientX - rect.left) / rect.width,
-          y: (e.clientY - rect.top) / rect.height,
-        });
-      }
-    };
-
-    const section = sectionRef.current;
-    if (section) {
-      section.addEventListener('mousemove', handleMouseMove);
-      return () => section.removeEventListener('mousemove', handleMouseMove);
-    }
-  }, []);
-
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-slate-800 via-slate-900 to-black"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-900 via-navy-900 to-slate-800"
       id="final-cta"
     >
-      {/* Night Sky Background */}
+      {/* Professional Executive Background */}
       <div className="absolute inset-0">
-        {/* Stars */}
-        {[...Array(100)].map((_, i) => (
+        {/* Sophisticated geometric pattern */}
+        <div className="absolute inset-0 opacity-5">
           <div
-            key={i}
-            className="absolute bg-white rounded-full animate-twinkle"
+            className="absolute inset-0"
             style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 70}%`,
-              width: `${Math.random() * 3 + 1}px`,
-              height: `${Math.random() * 3 + 1}px`,
-              animationDelay: `${Math.random() * 5}s`,
-              animationDuration: `${Math.random() * 3 + 2}s`,
+              backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='M50 50L50 0L100 50L50 100L0 50Z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
             }}
-          />
-        ))}
-
-        {/* Moon */}
-        <div
-          className="absolute w-32 h-32 bg-gradient-to-br from-yellow-100 to-yellow-200 rounded-full shadow-2xl transition-all duration-1000"
-          style={{
-            top: '10%',
-            right: `${20 + mousePosition.x * 5}%`,
-            transform: `scale(${0.8 + mousePosition.y * 0.2})`,
-          }}
-        >
-          {/* Moon craters */}
-          <div className="absolute top-4 left-6 w-3 h-3 bg-yellow-300/50 rounded-full" />
-          <div className="absolute top-8 right-8 w-2 h-2 bg-yellow-300/50 rounded-full" />
-          <div className="absolute bottom-6 left-8 w-4 h-4 bg-yellow-300/50 rounded-full" />
-
-          {/* Moon glow */}
-          <div className="absolute inset-0 bg-yellow-200 rounded-full opacity-30 blur-xl scale-150" />
+          ></div>
         </div>
 
-        {/* Mountain Silhouettes */}
-        <div className="absolute bottom-0 left-0 right-0">
-          {/* Back mountains */}
-          <svg
-            className="absolute bottom-0 w-full h-64 fill-slate-700"
-            viewBox="0 0 1200 300"
-            preserveAspectRatio="xMidYMax slice"
-          >
-            <path d="M0,300 L0,180 Q200,120 400,160 T800,140 L1200,100 L1200,300 Z" />
-          </svg>
-
-          {/* Front mountains */}
-          <svg
-            className="absolute bottom-0 w-full h-48 fill-slate-800"
-            viewBox="0 0 1200 200"
-            preserveAspectRatio="xMidYMax slice"
-          >
-            <path d="M0,200 L0,120 Q300,80 600,100 T1200,80 L1200,200 Z" />
-          </svg>
-
-          {/* Ground */}
-          <div className="absolute bottom-0 w-full h-20 bg-gradient-to-t from-slate-900 to-transparent" />
-        </div>
-
-        {/* Floating particles */}
-        {[...Array(20)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute w-1 h-1 bg-white/40 rounded-full animate-float-slow"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 10}s`,
-              animationDuration: `${8 + Math.random() * 4}s`,
-            }}
-          />
-        ))}
+        {/* Executive gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-primary/10 via-transparent to-transparent"></div>
       </div>
 
-      {/* Sofia's Farewell Light */}
-      <div
-        className="absolute transition-all duration-2000 ease-out pointer-events-none z-10"
-        style={{
-          left: `${30 + mousePosition.x * 40}%`,
-          top: `${20 + mousePosition.y * 10}%`,
-          transform: `translate(-50%, -50%) scale(${0.6 + mousePosition.x * 0.4})`,
-        }}
-      >
-        <div className="relative">
-          {/* Soft outer glow */}
-          <div className="absolute inset-0 w-40 h-40 bg-primary rounded-full opacity-10 blur-2xl animate-pulse" />
-
-          {/* Main light */}
-          <div className="relative w-20 h-20 bg-gradient-to-r from-primary-light to-primary rounded-full flex items-center justify-center shadow-2xl">
-            <div className="w-12 h-12 bg-white/30 rounded-full flex items-center justify-center">
-              <div className="w-6 h-6 bg-white/50 rounded-full animate-pulse" />
+      {/* Sofia - Executive Advisor */}
+      <div className="absolute top-20 left-20 hidden xl:block">
+        <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-xl max-w-md">
+          <div className="flex items-start space-x-lg mb-lg">
+            <div className="w-16 h-16 bg-gradient-to-r from-primary to-primary-light rounded-full flex items-center justify-center flex-shrink-0">
+              <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+              </svg>
             </div>
-
-            {/* Gentle rays */}
-            {[...Array(8)].map((_, i) => (
-              <div
-                key={i}
-                className="absolute w-px h-8 bg-gradient-to-t from-primary-light to-transparent opacity-60"
-                style={{
-                  transform: `rotate(${i * 45}deg) translateY(-40px)`,
-                  transformOrigin: 'bottom',
-                }}
-              />
-            ))}
+            <div>
+              <h4 className="text-white font-bold text-lg">Sofia</h4>
+              <p className="text-primary-light text-sm font-medium">Senior Family Protection Advisor</p>
+              <p className="text-gray-400 text-xs mt-xs">Certified Legal Technology Specialist</p>
+            </div>
           </div>
-
-          {/* Trail effect */}
-          <div className="absolute inset-0 w-20 h-20 bg-primary-light/20 rounded-full animate-ping" style={{ animationDuration: '3s' }} />
+          <blockquote className="text-gray-300 text-base leading-relaxed italic border-l-2 border-primary pl-md">
+            &quot;Your family&apos;s protection requires precision, not perfection. Let&apos;s build your Family Shield with the expertise your legacy deserves.&quot;
+          </blockquote>
         </div>
       </div>
+      {/* Main Content - Executive Decision */}
+      <div className="relative z-20 max-w-6xl mx-auto px-lg text-center">
+        <div className={`transition-all duration-800 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
 
-      {/* Main Content */}
-      <div className="relative z-20 max-w-4xl mx-auto px-lg text-center">
-        <div className={`transition-all duration-1500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
-          {/* Sofia's Farewell Message */}
-          <div className="mb-2xl">
-            <div className={`inline-block bg-white/10 backdrop-blur-sm rounded-2xl px-lg py-md mb-lg transition-all duration-1000 ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}
-                 style={{ transitionDelay: '0.5s' }}>
-              <p className="text-primary-light text-lg italic">
-                "{t('finalCTA.sofia.message')}"
-              </p>
-              <p className="text-white/80 text-sm mt-xs">
-                - Sofia, {t('finalCTA.sofia.title')}
-              </p>
-            </div>
+          {/* Executive Summary */}
+          <div className="mb-xl">
+            <p className="text-primary-light text-lg font-medium tracking-wide">
+              EXECUTIVE DECISION POINT
+            </p>
           </div>
 
-          {/* Main Headline */}
-          <h2 className={`text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-lg leading-tight transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
-              style={{ transitionDelay: '1s' }}>
-            <span className="block">
-              {t('finalCTA.headline.line1')}
-            </span>
-            <span className="block text-primary-light">
-              {t('finalCTA.headline.line2')}
-            </span>
+          {/* Direct Call to Action */}
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-lg leading-tight max-w-5xl mx-auto">
+            Your Family Shield
+            <span className="block text-primary-light mt-sm">Awaits Activation</span>
           </h2>
 
-          {/* Subtitle */}
-          <p className={`text-xl md:text-2xl text-gray-300 mb-2xl max-w-3xl mx-auto leading-relaxed transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
-             style={{ transitionDelay: '1.3s' }}>
-            {t('finalCTA.subtitle')}
+          {/* Value Summary */}
+          <p className="text-xl md:text-2xl text-gray-300 mb-2xl max-w-4xl mx-auto leading-relaxed font-light">
+            Deploy comprehensive protection with military-grade security and legal precision.
+            <span className="block mt-sm text-primary-light">Your thoughtful preparation is a gift of peace of mind.</span>
           </p>
 
-          {/* CTA Buttons */}
-          <div className={`flex flex-col sm:flex-row gap-lg justify-center items-center mb-2xl transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
-               style={{ transitionDelay: '1.6s' }}>
-            <Link href="/signup">
-              <Button size="lg" className="bg-primary hover:bg-primary-dark text-white px-2xl py-lg text-xl font-bold shadow-2xl hover:shadow-primary/25 transition-all duration-300 transform hover:scale-105">
-                {t('finalCTA.buttons.primary')}
+          {/* Key Benefits - Executive Format */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-lg mb-2xl max-w-5xl mx-auto">
+            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg p-lg">
+              <div className="text-primary text-3xl font-bold mb-sm">2-5</div>
+              <p className="text-white font-medium text-sm">Minutes to Complete</p>
+              <p className="text-gray-400 text-xs">Guided Setup Process</p>
+            </div>
+
+            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg p-lg">
+              <div className="text-primary text-3xl font-bold mb-sm">5</div>
+              <p className="text-white font-medium text-sm">Jurisdictions</p>
+              <p className="text-gray-400 text-xs">SK, CZ, AT, DE, PL</p>
+            </div>
+
+            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg p-lg">
+              <div className="text-primary text-3xl font-bold mb-sm">24/7</div>
+              <p className="text-white font-medium text-sm">Protection Monitoring</p>
+              <p className="text-gray-400 text-xs">Intelligent Safeguards</p>
+            </div>
+
+            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg p-lg">
+              <div className="text-primary text-3xl font-bold mb-sm">∞</div>
+              <p className="text-white font-medium text-sm">Peace of Mind</p>
+              <p className="text-gray-400 text-xs">For Your Family</p>
+            </div>
+          </div>
+
+          {/* Executive Action Buttons */}
+          <div className="flex flex-col sm:flex-row gap-lg justify-center items-center mb-2xl">
+            <Link href="/onboarding">
+              <Button size="lg" className="bg-primary hover:bg-primary-dark text-white px-2xl py-lg text-xl font-bold shadow-lg hover:shadow-xl transition-all duration-200 border border-primary-light/20">
+                Configure Family Shield Now
               </Button>
             </Link>
 
             <Link href="/verify">
-              <Button variant="outline" size="lg" className="border-2 border-white/30 text-white hover:bg-white/10 px-xl py-lg text-lg font-semibold backdrop-blur-sm transition-all duration-300">
-                {t('finalCTA.buttons.secondary')}
+              <Button variant="outline" size="lg" className="border-2 border-gray-300 text-gray-300 hover:bg-white/5 hover:text-white px-xl py-lg text-lg font-semibold backdrop-blur-sm transition-all duration-200">
+                Verify Existing Setup
               </Button>
             </Link>
           </div>
 
-          {/* Trust Indicators */}
-          <div className={`flex flex-wrap justify-center items-center gap-lg text-white/60 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
-               style={{ transitionDelay: '1.9s' }}>
-            <div className="flex items-center space-x-xs">
-              <svg className="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-              </svg>
-              <span className="text-sm font-medium">{t('finalCTA.trust.secure')}</span>
+          {/* Trust & Security Indicators */}
+          <div className="grid md:grid-cols-4 gap-lg text-center max-w-4xl mx-auto">
+            <div className="flex flex-col items-center space-y-xs">
+              <div className="w-12 h-12 bg-green-500/20 rounded-lg flex items-center justify-center">
+                <svg className="w-6 h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                </svg>
+              </div>
+              <p className="text-white font-medium text-sm">Military-Grade</p>
+              <p className="text-gray-400 text-xs">End-to-End Encryption</p>
             </div>
 
-            <div className="flex items-center space-x-xs">
-              <svg className="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-              </svg>
-              <span className="text-sm font-medium">{t('finalCTA.trust.private')}</span>
+            <div className="flex flex-col items-center space-y-xs">
+              <div className="w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center">
+                <svg className="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                </svg>
+              </div>
+              <p className="text-white font-medium text-sm">Privacy First</p>
+              <p className="text-gray-400 text-xs">GDPR Compliant</p>
             </div>
 
-            <div className="flex items-center space-x-xs">
-              <svg className="w-5 h-5 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
-              </svg>
-              <span className="text-sm font-medium">{t('finalCTA.trust.trusted')}</span>
+            <div className="flex flex-col items-center space-y-xs">
+              <div className="w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center">
+                <svg className="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                </svg>
+              </div>
+              <p className="text-white font-medium text-sm">Legal Precision</p>
+              <p className="text-gray-400 text-xs">Multi-Jurisdiction</p>
             </div>
 
-            <div className="flex items-center space-x-xs">
-              <svg className="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-              </svg>
-              <span className="text-sm font-medium">{t('finalCTA.trust.instant')}</span>
-            </div>
-          </div>
-
-          {/* Final Peace Message */}
-          <div className={`mt-2xl transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
-               style={{ transitionDelay: '2.2s' }}>
-            <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-xl border border-white/10">
-              <p className="text-lg text-white/90 italic leading-relaxed">
-                {t('finalCTA.peace.message')}
-              </p>
+            <div className="flex flex-col items-center space-y-xs">
+              <div className="w-12 h-12 bg-purple-500/20 rounded-lg flex items-center justify-center">
+                <svg className="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+              </div>
+              <p className="text-white font-medium text-sm">Instant Activation</p>
+              <p className="text-gray-400 text-xs">Deploy Immediately</p>
             </div>
           </div>
         </div>
       </div>
-
-      {/* Gentle scroll indicator */}
-      <div className="absolute bottom-lg left-1/2 transform -translate-x-1/2">
-        <div className="flex flex-col items-center space-y-sm text-white/40">
-          <span className="text-sm font-medium">{t('finalCTA.scrollDown')}</span>
-          <div className="w-px h-8 bg-gradient-to-b from-white/40 to-transparent" />
-        </div>
-      </div>
-
-      {/* CSS animations */}
-      <style jsx>{`
-        @keyframes twinkle {
-          0%, 100% { opacity: 0.3; transform: scale(1); }
-          50% { opacity: 1; transform: scale(1.2); }
-        }
-        @keyframes float-slow {
-          0%, 100% { transform: translateY(0px) translateX(0px); opacity: 0.3; }
-          50% { transform: translateY(-20px) translateX(10px); opacity: 0.8; }
-        }
-        .animate-twinkle {
-          animation: twinkle var(--duration, 3s) ease-in-out infinite;
-        }
-        .animate-float-slow {
-          animation: float-slow var(--duration, 10s) ease-in-out infinite;
-        }
-      `}</style>
     </section>
   );
 }

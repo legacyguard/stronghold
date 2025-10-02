@@ -68,34 +68,34 @@ function calculateDataCompleteness(userData: Record<string, unknown>): number {
 
   // Required fields (60% of completeness score)
   const requiredComplete = requiredFields.filter(field => {
-    const value = userData[field];
+    const value = userData[field] as any;
     if (field === 'executor') {
       return value && value.name;
     }
-    return value && value.trim && value.trim().length > 0;
+    return value && typeof value === 'string' && value.trim().length > 0;
   }).length;
 
   const requiredScore = (requiredComplete / requiredFields.length) * 60;
 
   // Optional fields (30% of completeness score)
   const optionalComplete = optionalButImportantFields.filter(field => {
-    const value = userData[field];
+    const value = userData[field] as any;
     if (field === 'children') {
-      return userData.hasChildren ? (value && value.length > 0) : true;
+      return userData.hasChildren ? (value && Array.isArray(value) && value.length > 0) : true;
     }
     if (field === 'digitalAssets') {
-      return value && value.length > 0;
+      return value && Array.isArray(value) && value.length > 0;
     }
     if (field === 'guardian') {
       return userData.hasChildren ? (value && value.name) : true;
     }
-    return value && value.trim && value.trim().length > 0;
+    return value && typeof value === 'string' && value.trim().length > 0;
   }).length;
 
   const optionalScore = (optionalComplete / optionalButImportantFields.length) * 30;
 
   // Assets completeness (10% of completeness score)
-  const assetScore = assets.length > 0 ? 10 : 0;
+  const assetScore = Array.isArray(assets) && assets.length > 0 ? 10 : 0;
 
   return requiredScore + optionalScore + assetScore;
 }

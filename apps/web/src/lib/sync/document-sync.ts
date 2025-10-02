@@ -52,7 +52,7 @@ export class DocumentSyncManager {
   private static deviceId: string;
   private static syncInterval: NodeJS.Timeout | null = null;
   private static isInitialized = false;
-  private static eventListeners: Map<string, Function[]> = new Map();
+  private static eventListeners: Map<string, ((...args: unknown[]) => void)[]> = new Map();
 
   // Initialize sync manager
   static async initialize(userId: string): Promise<void> {
@@ -532,14 +532,14 @@ export class DocumentSyncManager {
   }
 
   // Event system
-  static on(event: string, callback: Function): void {
+  static on(event: string, callback: (...args: unknown[]) => void): void {
     if (!this.eventListeners.has(event)) {
       this.eventListeners.set(event, []);
     }
     this.eventListeners.get(event)!.push(callback);
   }
 
-  static off(event: string, callback: Function): void {
+  static off(event: string, callback: (...args: unknown[]) => void): void {
     const callbacks = this.eventListeners.get(event);
     if (callbacks) {
       const index = callbacks.indexOf(callback);

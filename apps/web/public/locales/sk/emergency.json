@@ -1,0 +1,113 @@
+{
+  "dashboard": {
+    "title": "Emergency Activation System",
+    "subtitle": "Dead man's switch and emergency notification system",
+    "systemStatus": "System Status",
+    "activate": "Activate",
+    "deactivate": "Deactivate",
+    "updating": "Updating...",
+    "stats": {
+      "emergencyContacts": "Emergency Contacts",
+      "activeTriggers": "Active Triggers", 
+      "pendingActivations": "Pending Activations",
+      "escalationLevels": "Escalation Levels"
+    }
+  },
+  "status": {
+    "active": "Active",
+    "inactive": "Inactive",
+    "systemActive": "System is operational and monitoring",
+    "systemInactive": "System is currently disabled"
+  },
+  "setup": {
+    "title": "Emergency System Setup Required",
+    "description": "Your emergency system is not fully configured. Complete these steps to ensure your Family Shield can protect your loved ones.",
+    "steps": {
+      "contacts": "Add emergency contacts",
+      "triggers": "Configure activation triggers",
+      "test": "Test the system"
+    }
+  },
+  "cards": {
+    "contacts": {
+      "title": "Emergency Contacts",
+      "description": "Manage the people who will be notified during an emergency",
+      "action": "Manage Contacts"
+    },
+    "triggers": {
+      "title": "Activation Triggers",
+      "description": "Configure when emergency notifications should be sent",
+      "action": "Configure Triggers"
+    },
+    "settings": {
+      "title": "System Settings",
+      "description": "Customize notification preferences and security settings",
+      "action": "Adjust Settings"
+    },
+    "test": {
+      "title": "Test System",
+      "description": "Run a test activation to verify everything works correctly",
+      "action": "Run Test"
+    },
+    "activity": {
+      "title": "Activity Log",
+      "description": "View recent system activity and activation history",
+      "action": "View History"
+    },
+    "override": {
+      "title": "Emergency Override",
+      "description": "Manually trigger emergency notification immediately",
+      "action": "Manual Trigger"
+    }
+  },
+  "activity": {
+    "title": "Recent Emergency Activity",
+    "noActivity": "No emergency activity recorded",
+    "activationType": "{{type}} activation",
+    "triggeredAt": "Triggered at {{time}}",
+    "status": {
+      "completed": "Completed",
+      "cancelled": "Cancelled", 
+      "failed": "Failed",
+      "pending": "Pending",
+      "active": "Active"
+    }
+  },
+  "triggers": {
+    "deadManSwitch": "Dead Man's Switch",
+    "manualActivation": "Manual Activation",
+    "familyRequest": "Family Request",
+    "healthEvent": "Health Event",
+    "travelEmergency": "Travel Emergency",
+    "securityBreach": "Security Breach"
+  },
+  "notifications": {
+    "systemActivated": "Emergency system activated successfully",
+    "systemDeactivated": "Emergency system deactivated",
+    "testCompleted": "Emergency system test completed successfully",
+    "testFailed": "Emergency system test failed",
+    "contactAdded": "Emergency contact added",
+    "triggerConfigured": "Emergency trigger configured",
+    "manualTriggerSent": "Manual emergency notification sent"
+  },
+  "errors": {
+    "systemError": "Emergency system error",
+    "activationFailed": "Failed to activate emergency system",
+    "deactivationFailed": "Failed to deactivate emergency system",
+    "testFailed": "Emergency system test failed",
+    "noContacts": "No emergency contacts configured",
+    "invalidTrigger": "Invalid trigger configuration"
+  },
+  "warnings": {
+    "noContacts": "Warning: No emergency contacts configured",
+    "noTriggers": "Warning: No activation triggers configured",
+    "testOverdue": "Warning: System test is overdue",
+    "systemInactive": "Warning: Emergency system is currently inactive"
+  },
+  "protocols": {
+    "immediate": "Immediate Notification",
+    "escalated": "Escalated Response",
+    "delayed": "Delayed Activation",
+    "conditional": "Conditional Trigger"
+  }
+}

@@ -4,17 +4,17 @@ Docs: ARCH 02 — Architektúra: Multi‑domain, Multi‑jurisdiction, Multi‑l
 Goal: Dynamicky načítať legal_rules, validation_rules a will_templates podľa currentJurisdiction.
 Status: Idea
 
-### Cieľ
+## Cieľ
 
 Oddeliť a lazy‑loadovať právne dáta a validačné funkcie podľa jurisdikcie.
 
-### Scope
+## Scope
 
 - Import z /content/jurisdictions/{code}/...
 - Typové kontrakty pre legal_rules a validation_rules
 - Fallback a error handling
 
-### Akceptačné kritériá
+## Akceptačné kritériá
 
 - Úspešné načítanie pre SK a CZ
 - Typová bezpečnosť v TS pre načítané moduly

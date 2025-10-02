@@ -5,30 +5,30 @@ Related Feature: LocalizationContext (../Features%2065472ecceccf486fa4e2b758eb9d
 Status: Draft
 Type: Architecture
 
-### Prehľad
+## Prehľad
 
 Oddelenie obsahu od kódu, škálovateľnosť naprieč doménami, jurisdikciami a jazykmi.
 
-### Ciele
+## Ciele
 
 - Jediný zdroj pravdy pre právne pravidlá a šablóny
 - UI preklady oddelené od právneho obsahu
 - Deterministická detekcia kontextu (doména, jazyk)
 
-### Návrh
+## Návrh
 
 - LocalizationContext pre distribúciu currentDomain, currentJurisdiction, currentLanguage
 - Štruktúra /content (jurisdictions, locales)
 - Middleware pre mapovanie host a accept-language
 - Dynamické načítavanie legal_rules, validation_rules a will_templates
 
-### Nefunkčné požiadavky
+## Nefunkčné požiadavky
 
 - Výkon: lazy loading, code-splitting
 - Bezpečnosť: kontrola vstupov a obsahové schémy
 - Rozšíriteľnosť: jednoduché pridanie krajiny/jazyka
 
-### Otvorené otázky
+## Otvorené otázky
 
 - Strategia fallbacku pri chýbajúcich prekladoch alebo šablónach
 - Konvencie versioningu obsahu

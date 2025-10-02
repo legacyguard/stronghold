@@ -199,10 +199,12 @@ export function TrustSealVerificationWidget({
                                 <span className="font-medium">Typ:</span>{' '}
                                 {verificationResult.metadata.documentInfo.documentType}
                               </div>
-                              <div>
-                                <span className="font-medium">Vytvorené:</span>{' '}
-                                {new Date(verificationResult.metadata.documentInfo.createdAt).toLocaleDateString('sk-SK')}
-                              </div>
+                              {verificationResult.metadata.documentInfo.createdAt && (
+                                <div>
+                                  <span className="font-medium">Vytvorené:</span>{' '}
+                                  {new Date(verificationResult.metadata.documentInfo.createdAt).toLocaleDateString('sk-SK')}
+                                </div>
+                              )}
                             </>
                           )}
                         </div>

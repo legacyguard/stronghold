@@ -4,28 +4,28 @@ Area: Product
 Status: Draft
 Type: Spec
 
-### Účel
+## Účel
 
 Detailné špecifikácie kľúčových používateľských ciest.
 
-### Scenáre
+## Scenáre
 
 - Magic Onboarding
 - Inteligentný Organizátor Dokumentov
 - Rodinný Štít
 
-### Akceptačné kritériá
+## Akceptačné kritériá
 
 - Kritériá úspechu pre každý krok
 
-### Metriky
+## Metriky
 
 - TTFT, konverzie, retencia
 
-### Vzťahy
+## Vzťahy
 
 - Súvisiace Features a Tasks
 
-### Revízia
+## Revízia
 
 - Last Reviewed:

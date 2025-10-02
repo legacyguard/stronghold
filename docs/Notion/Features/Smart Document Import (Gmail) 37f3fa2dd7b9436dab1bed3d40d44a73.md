@@ -3,17 +3,17 @@
 Goal: Bezpečný hromadný import príloh z Gmailu s AI rozpoznaním a kategorizáciou
 Status: Idea
 
-### Popis
+## Popis
 
 OAuth2 prístup len k prílohám, AI filtrovanie a metadáta, batch kategorizácia a deduplikácia.
 
-### Kľúčové prvky
+## Kľúčové prvky
 
 - OAuth2 + read‑only prílohy
 - AI kategorizácia a extrakcia
-- Import summary a „time saved“
+- Import summary a „time saved"
 
-### Merania úspechu
+## Merania úspechu
 
 - Počet importovaných dokumentov
 - Ušetrený čas

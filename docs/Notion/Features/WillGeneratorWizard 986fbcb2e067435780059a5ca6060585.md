@@ -4,17 +4,17 @@ Docs: ARCH 02 — Architektúra: Multi‑domain, Multi‑jurisdiction, Multi‑l
 Goal: “Hlúpy” sprievodca, ktorý berie texty z i18n a logiku z Content Loaderu.
 Status: Idea
 
-### Cieľ
+## Cieľ
 
 Zostaviť modulárny wizard bez pevne zakódovaných textov a právnej logiky.
 
-### Scope
+## Scope
 
 - Prepojenie s useLocalization a useTranslation
 - Vstupy, kroky, stav a validácie cez injekciu
 - Chybové stavy a accessibility
 
-### Akceptačné kritériá
+## Akceptačné kritériá
 
 - Funkčný základný tok pre SK a CZ
 - Validácie sa volajú z dynamicky načítanej funkcie

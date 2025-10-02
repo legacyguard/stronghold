@@ -3,17 +3,17 @@
 Goal: Pokročilé metriky, skórovanie ochrany a AI odporúčania
 Status: Idea
 
-### Popis
+## Popis
 
 Dashboard s live metrikami, risk modelmi, odporúčaniami a trendami, gamifikácia progresu.
 
-### Kľúčové prvky
+## Kľúčové prvky
 
 - Protection score, risk factors
 - Recommendations engine
 - Legacy completion tracking
 
-### Merania úspechu
+## Merania úspechu
 
 - Zvýšenie skóre
 - Adopcia odporúčaní

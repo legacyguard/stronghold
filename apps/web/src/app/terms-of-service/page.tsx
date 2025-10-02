@@ -45,7 +45,7 @@ export default function TermsOfServicePage() {
           <div className="bg-primary/5 border border-primary/20 rounded-xl p-lg mb-xl">
             <h2 className="text-xl font-semibold text-primary mb-sm">Important Notice</h2>
             <p className="text-gray-700 mb-0">
-              These Terms of Service govern your use of Stronghold's will generation platform.
+              These Terms of Service govern your use of Stronghold&apos;s will generation platform.
               By using our service, you agree to these terms. Please read them carefully.
             </p>
           </div>
@@ -53,7 +53,7 @@ export default function TermsOfServicePage() {
           <section className="mb-xl">
             <h2 className="text-2xl font-bold text-text-dark mb-md">1. Acceptance of Terms</h2>
             <p className="text-gray-700 leading-relaxed mb-md">
-              By accessing or using Stronghold ("Service", "Platform", "we", "us", or "our"),
+              By accessing or using Stronghold (&quot;Service&quot;, &quot;Platform&quot;, &quot;we&quot;, &quot;us&quot;, or &quot;our&quot;),
               you agree to be bound by these Terms of Service and our Privacy Policy.
               If you disagree with any part of these terms, you may not access the Service.
             </p>

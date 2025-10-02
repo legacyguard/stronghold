@@ -5,9 +5,7 @@ Chapter #: 2
 Status: Final
 Type: Spec
 
-**Kapitola 2: Používateľská Cesta a Kľúčové Zážitky**
-
-**2.1 Psychológia Používateľa: Od Zahltenia k Zmocneniu**
+## 2.1 Psychológia Používateľa: Od Zahltenia k Zmocneniu
 
 Naša používateľská cesta je navrhnutá tak, aby prekonala najväčšiu prekážku: **prokrastináciu spôsobenú pocitom zahltenia**. Chápeme, že používateľ (najmä Persona "Family Protector Maria") je zaneprázdnený a myšlienka na organizáciu celého života je paralyzujúca.
 
@@ -17,7 +15,7 @@ Preto je naša stratégia postavená na troch fázach, ktoré postupne budujú d
 2. **Formovanie Návyku (Prvý Mesiac):** Prostredníctvom inteligentnej organizácie dokumentov a proaktívnych upozornení (pilier "DNES") sa stávame nenahraditeľným pomocníkom v každodennom živote. Používateľ sa učí spoliehať na LegacyGuard.
 3. **Eskalácia Dôvery (Po Prvom Mesiaci):** Až keď je vybudovaný návyk a dôvera, začneme používateľa jemne viesť k zložitejším a citlivejším témam – ochrane rodiny (pilier "ZAJTRA") a plánovaniu odkazu (pilier "NAVŽDY").
 
-**2.2 Detailný Scenár Kľúčových Zážitkov**
+### 2.2 Detailný Scenár Kľúčových Zážitkov
 
 Zážitok 1: "Magic Onboarding" (Prvých 5 minút)
 
@@ -27,13 +25,13 @@ Zážitok 1: "Magic Onboarding" (Prvých 5 minút)
     1. **Otázka Životnej Situácie:** *"Povedzte mi niečo o vašej rodine. Koho chcete najviac chrániť?"* (Výber z ikon: Sám/Pár/Rodina s deťmi/Podnikateľ/Starostlivosť o seniorov).
     2. **Otázka Hlavnej Obavy:** *"Čo vás momentálne trápi najviac?"* (Výber: Chaos v dokumentoch/Núdzová situácia v rodine/Právne záležitosti/Finančný prehľad).
 - **Krok 2: Generovanie Personalizovaného Plánu:**
-    - Na základe odpovedí AI okamžite vygeneruje **personalizovaný dashboard**.
-    - **Žiadna prázdna obrazovka.** Používateľ okamžite vidí 3-5 konkrétnych, pre neho relevantných "5-minútových výziev".
-    - **Príklad pre "Rodina s deťmi" + "Núdzová situácia":**
-        - Výzva 1: "Nahrajte rodné listy detí. Je to základ pre akékoľvek úradné jednanie."
-        - Výzva 2: "Určite aspoň jedného Strážcu pre prípad núdze."
-        - Výzva 3: "Zaznamenajte kontakt na detského lekára."
-    - **Okamžitý Pocit Progresu:** Dashboard hneď na začiatku ukazuje 15-20% "Pripravenosti", čo používateľa motivuje pokračovať.
+  - Na základe odpovedí AI okamžite vygeneruje **personalizovaný dashboard**.
+  - **Žiadna prázdna obrazovka.** Používateľ okamžite vidí 3-5 konkrétnych, pre neho relevantných "5-minútových výziev".
+  - **Príklad pre "Rodina s deťmi" + "Núdzová situácia":**
+    - Výzva 1: "Nahrajte rodné listy detí. Je to základ pre akékoľvek úradné jednanie."
+    - Výzva 2: "Určite aspoň jedného Strážcu pre prípad núdze."
+    - Výzva 3: "Zaznamenajte kontakt na detského lekára."
+  - **Okamžitý Pocit Progresu:** Dashboard hneď na začiatku ukazuje 15-20% "Pripravenosti", čo používateľa motivuje pokračovať.
 
 Zážitok 2: "Inteligentný Organizátor Dokumentov" (Prvý Týždeň)
 
@@ -64,6 +62,6 @@ Zážitok 4: Prechod k Prémiovým Funkciám (Po 1-3 Mesiacoch)
 
 - **Kontext:** Používateľ má zorganizované dokumenty a nastavený základný "Rodinný Štít".
 - **Inteligentný Návrh od Sofie:**
-    - *"Jana, na základe dokumentov, ktoré ste nahrali, vidím, že vlastníte nehnuteľnosť a máte dve deti. Podľa slovenského práva by bolo veľmi rozumné spísať závet, aby ste predišli komplikáciám v dedičskom konaní. Náš 'Sprievodca Poslednou Vôľou' vám dokáže pripraviť prvý návrh na jedno kliknutie. Chcete to vyskúšať?"*
+  - *"Jana, na základe dokumentov, ktoré ste nahrali, vidím, že vlastníte nehnuteľnosť a máte dve deti. Podľa slovenského práva by bolo veľmi rozumné spísať závet, aby ste predišli komplikáciám v dedičskom konaní. Náš 'Sprievodca Poslednou Vôľou' vám dokáže pripraviť prvý návrh na jedno kliknutie. Chcete to vyskúšať?"*
 - **Priebeh:** Používateľ je pozvaný do prémiovej funkcie v momente, keď je pre neho najviac relevantná. Nevidí to ako "predaj", ale ako logický a nápomocný ďalší krok na jeho ceste.
 - **Výsledok:** Konverzia na platený plán je prirodzeným dôsledkom vybudovanej dôvery a preukázanej hodnoty, nie výsledkom agresívnych marketingových výziev.

@@ -1,0 +1,123 @@
+{
+  "wizard": {
+    "title": "[CS] Family Shield Configuration",
+    "subtitle": "[CS] Deploy your comprehensive family protection system in 2 strategic steps",
+    "progress": "[CS] Step {{current}} of {{total}}",
+    "continue": "[CS] Continue Deployment",
+    "back": "[CS] Previous Step",
+    "finish": "[CS] Complete Deployment"
+  },
+  "welcome": {
+    "title": "[CS] Welcome to Strategic Family Protection",
+    "subtitle": "[CS] Deploy military-grade security for your family's future",
+    "description": "[CS] Configure your Family Shield to protect what matters most. This deployment takes less than 3 minutes and provides lifetime security for your loved ones.",
+    "benefits": {
+      "security": "[CS] Bank-grade encryption and security protocols",
+      "legal": "[CS] Multi-jurisdiction legal compliance and validation",
+      "automation": "[CS] Automated emergency response and family notifications",
+      "support": "[CS] 24/7 strategic support and monitoring"
+    },
+    "cta": "[CS] Begin Shield Deployment"
+  },
+  "protection": {
+    "title": "[CS] Primary Protection Objectives",
+    "subtitle": "[CS] Define your core family protection requirements",
+    "description": "[CS] Select your primary protection focus to customize your Family Shield configuration:",
+    "options": {
+      "comprehensive": {
+        "title": "[CS] Comprehensive Legacy Protection",
+        "description": "[CS] Complete family security including wills, emergency protocols, and digital asset management",
+        "features": "[CS] Will Generation,Emergency Response,Digital Vault,Family Network"
+      },
+      "emergency": {
+        "title": "[CS] Emergency Response Protocol",
+        "description": "[CS] Focus on dead man's switch and emergency family notification systems",
+        "features": "[CS] Dead Man's Switch,Auto Notifications,Emergency Contacts,Crisis Management"
+      },
+      "legal": {
+        "title": "[CS] Legal Document Management",
+        "description": "[CS] Comprehensive will generation and legal document security",
+        "features": "[CS] Multi-Jurisdiction Wills,Legal Updates,Document Vault,Compliance Monitoring"
+      },
+      "family": {
+        "title": "[CS] Family Coordination Hub",
+        "description": "[CS] Secure platform for family collaboration and information sharing",
+        "features": "[CS] Family Network,Secure Messaging,Document Sharing,Role Management"
+      }
+    }
+  },
+  "deployment": {
+    "title": "[CS] Deployment Configuration",
+    "subtitle": "[CS] Configure your operational parameters",
+    "description": "[CS] Fine-tune your Family Shield for optimal performance:",
+    "jurisdiction": {
+      "label": "[CS] Legal Jurisdiction",
+      "description": "[CS] Primary legal framework for document generation",
+      "options": {
+        "SK": "[CS] Slovakia (Slovak Republic)",
+        "CZ": "[CS] Czech Republic",
+        "EU": "[CS] European Union (General)",
+        "US": "[CS] United States",
+        "CA": "[CS] Canada",
+        "UK": "[CS] United Kingdom"
+      }
+    },
+    "security": {
+      "label": "[CS] Security Level",
+      "description": "[CS] Choose your operational security requirements",
+      "options": {
+        "standard": {
+          "title": "[CS] Standard Security",
+          "description": "[CS] Industry-standard encryption and protocols"
+        },
+        "enhanced": {
+          "title": "[CS] Enhanced Security",
+          "description": "[CS] Military-grade security with advanced monitoring"
+        },
+        "maximum": {
+          "title": "[CS] Maximum Security",
+          "description": "[CS] Highest security level with real-time threat analysis"
+        }
+      }
+    },
+    "notifications": {
+      "label": "[CS] Notification Protocol",
+      "description": "[CS] Configure how your family receives critical updates",
+      "options": {
+        "immediate": "[CS] Immediate notifications for all events",
+        "critical": "[CS] Critical events only",
+        "scheduled": "[CS] Scheduled digest reports",
+        "minimal": "[CS] Essential notifications only"
+      }
+    }
+  },
+  "completion": {
+    "title": "[CS] Family Shield Deployed Successfully",
+    "subtitle": "[CS] Your comprehensive protection system is now active",
+    "description": "[CS] Your Family Shield has been configured and deployed. All systems are operational and monitoring your family's security.",
+    "nextSteps": {
+      "title": "[CS] Strategic Next Steps",
+      "steps": "[CS] Review your personalized family protection dashboard,Configure emergency contacts and family network,Generate your first legally compliant will,Set up automated backup and monitoring systems"
+    },
+    "actions": {
+      "dashboard": "[CS] Access Command Center",
+      "setup": "[CS] Complete Family Setup",
+      "documentation": "[CS] Review Security Protocols"
+    },
+    "assurance": "[CS] Your family's future is now secured with military-grade protection protocols."
+  },
+  "validation": {
+    "required": "[CS] This configuration is required",
+    "selectOption": "[CS] Please select at least one option",
+    "jurisdictionRequired": "[CS] Legal jurisdiction must be specified",
+    "securityRequired": "[CS] Security level must be configured"
+  },
+  "features": {
+    "willGeneration": "[CS] AI-Powered Will Generation",
+    "emergencyResponse": "[CS] Emergency Response Protocol",
+    "digitalVault": "[CS] Secure Digital Vault",
+    "familyNetwork": "[CS] Family Shield Network",
+    "legalCompliance": "[CS] Multi-Jurisdiction Compliance",
+    "monitoring": "[CS] 24/7 Security Monitoring"
+  }
+}

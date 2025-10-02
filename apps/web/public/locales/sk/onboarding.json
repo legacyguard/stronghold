@@ -1,0 +1,128 @@
+{
+  "wizard": {
+    "title": "Family Shield Configuration",
+    "subtitle": "Deploy your comprehensive family protection system in 2 strategic steps",
+    "progress": "Step {{current}} of {{total}}",
+    "continue": "Continue Deployment",
+    "back": "Previous Step",
+    "finish": "Complete Deployment"
+  },
+  "welcome": {
+    "title": "Welcome to Strategic Family Protection",
+    "subtitle": "Deploy military-grade security for your family's future",
+    "description": "Configure your Family Shield to protect what matters most. This deployment takes less than 3 minutes and provides lifetime security for your loved ones.",
+    "benefits": {
+      "security": "Bank-grade encryption and security protocols",
+      "legal": "Multi-jurisdiction legal compliance and validation",
+      "automation": "Automated emergency response and family notifications",
+      "support": "24/7 strategic support and monitoring"
+    },
+    "cta": "Begin Shield Deployment"
+  },
+  "protection": {
+    "title": "Primary Protection Objectives",
+    "subtitle": "Define your core family protection requirements",
+    "description": "Select your primary protection focus to customize your Family Shield configuration:",
+    "options": {
+      "comprehensive": {
+        "title": "Comprehensive Legacy Protection",
+        "description": "Complete family security including wills, emergency protocols, and digital asset management",
+        "features": ["Will Generation", "Emergency Response", "Digital Vault", "Family Network"]
+      },
+      "emergency": {
+        "title": "Emergency Response Protocol",
+        "description": "Focus on dead man's switch and emergency family notification systems",
+        "features": ["Dead Man's Switch", "Auto Notifications", "Emergency Contacts", "Crisis Management"]
+      },
+      "legal": {
+        "title": "Legal Document Management",
+        "description": "Comprehensive will generation and legal document security",
+        "features": ["Multi-Jurisdiction Wills", "Legal Updates", "Document Vault", "Compliance Monitoring"]
+      },
+      "family": {
+        "title": "Family Coordination Hub",
+        "description": "Secure platform for family collaboration and information sharing",
+        "features": ["Family Network", "Secure Messaging", "Document Sharing", "Role Management"]
+      }
+    }
+  },
+  "deployment": {
+    "title": "Deployment Configuration",
+    "subtitle": "Configure your operational parameters",
+    "description": "Fine-tune your Family Shield for optimal performance:",
+    "jurisdiction": {
+      "label": "Legal Jurisdiction",
+      "description": "Primary legal framework for document generation",
+      "options": {
+        "SK": "Slovakia (Slovak Republic)",
+        "CZ": "Czech Republic",
+        "EU": "European Union (General)",
+        "US": "United States",
+        "CA": "Canada",
+        "UK": "United Kingdom"
+      }
+    },
+    "security": {
+      "label": "Security Level",
+      "description": "Choose your operational security requirements",
+      "options": {
+        "standard": {
+          "title": "Standard Security",
+          "description": "Industry-standard encryption and protocols"
+        },
+        "enhanced": {
+          "title": "Enhanced Security",
+          "description": "Military-grade security with advanced monitoring"
+        },
+        "maximum": {
+          "title": "Maximum Security",
+          "description": "Highest security level with real-time threat analysis"
+        }
+      }
+    },
+    "notifications": {
+      "label": "Notification Protocol",
+      "description": "Configure how your family receives critical updates",
+      "options": {
+        "immediate": "Immediate notifications for all events",
+        "critical": "Critical events only",
+        "scheduled": "Scheduled digest reports",
+        "minimal": "Essential notifications only"
+      }
+    }
+  },
+  "completion": {
+    "title": "Family Shield Deployed Successfully",
+    "subtitle": "Your comprehensive protection system is now active",
+    "description": "Your Family Shield has been configured and deployed. All systems are operational and monitoring your family's security.",
+    "nextSteps": {
+      "title": "Strategic Next Steps",
+      "steps": [
+        "Review your personalized family protection dashboard",
+        "Configure emergency contacts and family network",
+        "Generate your first legally compliant will",
+        "Set up automated backup and monitoring systems"
+      ]
+    },
+    "actions": {
+      "dashboard": "Access Command Center",
+      "setup": "Complete Family Setup",
+      "documentation": "Review Security Protocols"
+    },
+    "assurance": "Your family's future is now secured with military-grade protection protocols."
+  },
+  "validation": {
+    "required": "This configuration is required",
+    "selectOption": "Please select at least one option",
+    "jurisdictionRequired": "Legal jurisdiction must be specified",
+    "securityRequired": "Security level must be configured"
+  },
+  "features": {
+    "willGeneration": "AI-Powered Will Generation",
+    "emergencyResponse": "Emergency Response Protocol",
+    "digitalVault": "Secure Digital Vault",
+    "familyNetwork": "Family Shield Network",
+    "legalCompliance": "Multi-Jurisdiction Compliance",
+    "monitoring": "24/7 Security Monitoring"
+  }
+}

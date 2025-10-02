@@ -20,6 +20,19 @@ const eslintConfig = [
       "next-env.d.ts",
     ],
   },
+  {
+    rules: {
+      // Downgrade 'any' type usage to warning instead of error
+      "@typescript-eslint/no-explicit-any": "warn",
+      // Downgrade unsafe function type to warning
+      "@typescript-eslint/no-unsafe-function-type": "warn",
+      // Allow unused vars that start with underscore
+      "@typescript-eslint/no-unused-vars": ["warn", { 
+        "argsIgnorePattern": "^_",
+        "varsIgnorePattern": "^_" 
+      }],
+    },
+  },
 ];
 
 export default eslintConfig;

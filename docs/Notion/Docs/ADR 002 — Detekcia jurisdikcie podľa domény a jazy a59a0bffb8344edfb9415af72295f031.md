@@ -5,19 +5,19 @@ Related Feature: Domain and Language Middleware (../Features%2065472ecceccf486fa
 Status: Draft
 Type: ADR
 
-### Kontext
+## Kontext
 
 Potrebujeme spoľahlivo odvodiť currentJurisdiction a vhodný default currentLanguage.
 
-### Rozhodnutie
+## Rozhodnutie
 
 Použiť host (doménu) ako primárny signál pre jurisdikciu a accept-language pre výber default jazyka.
 
-### Dôsledky
+## Dôsledky
 
 - Predvídateľnosť správania
 - Možnosť manuálneho prepnutia používateľom
 
-### Riziká
+## Riziká
 
 - Netypické proxy a multi-tenant scenáre — mitigovať explicitnými pravidlami

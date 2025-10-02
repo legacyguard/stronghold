@@ -3,17 +3,17 @@
 Goal: Kurátorovaná sieť právnikov s onboardingom, matchingom a rezerváciami
 Status: Idea
 
-### Popis
+## Popis
 
 Onboarding právnikov, AI‑matching klientov, cenové balíky review, rezervačný systém a provízny model.
 
-### Kľúčové prvky
+## Kľúčové prvky
 
 - Overenie a špecializácie
 - Matching + booking
 - Trust Seal integrácia
 
-### Merania úspechu
+## Merania úspechu
 
 - Conversion na review
 - SLA dokončenia

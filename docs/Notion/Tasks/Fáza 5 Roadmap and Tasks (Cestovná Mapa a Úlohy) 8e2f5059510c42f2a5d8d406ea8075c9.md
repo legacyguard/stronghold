@@ -9,30 +9,30 @@ Status: Backlog
 
 ---
 
-### Odporúčanie
+## Odporúčanie
 
 Vytvorte si v koreňovom priečinku projektu súbor [`ROADMAP.md`](http://ROADMAP.md).
 
 ---
 
-### [ROADMAP.md](http://ROADMAP.md)
+## [ROADMAP.md](http://ROADMAP.md)
 
-### Hlavná Vízia (Horizont 3)
+## Hlavná Vízia (Horizont 3)
 
 - Stať sa vedúcou platformou pre správu digitálneho dedičstva a ochranu rodiny v Európe, s plnou podporou pre všetky krajiny EÚ, digitálnym notárstvom a pokročilými AI funkciami.
 
-### Strednodobé Ciele (Horizont 2 - 6-12 mesiacov po spustení)
+## Strednodobé Ciele (Horizont 2 - 6-12 mesiacov po spustení)
 
 - [ ]  **Spustiť "Sieť Profesionálov":** Integrovať marketplace pre právnikov a notárov.
 - [ ]  **Rozšíriť do Tier 1 Krajín:** Pridať podporu pre Nemecko, Poľsko, Rakúsko.
 - [ ]  **Implementovať Pokročilé Rodinné Funkcie:** Zdieľané účty, rodinné míľniky.
 - [ ]  **Vytvoriť Mobilnú Aplikáciu (React Native):** Začať vývoj zdieľaním komponentov z monorepa.
 
-### Aktuálny Míľnik: MVP Launch (Horizont 1 - Na čom pracujem teraz)
+## Aktuálny Míľnik: MVP Launch (Horizont 1 - Na čom pracujem teraz)
 
 **Cieľ:** Spustiť prvú, plne funkčnú a prémiovú verziu produktu pre SK a CZ trh.
 
-### "Definition of Done" (Definícia Hotového) pre MVP
+## "Definition of Done" (Definícia Hotového) pre MVP
 
 - [ ]  **Funkčné Jadro:** Používatelia sa môžu registrovať, nahrávať dokumenty, pridávať strážcov.
 - [ ]  **Inteligentný Organizátor:** AI analýza, balíčky a verzovanie dokumentov sú implementované.

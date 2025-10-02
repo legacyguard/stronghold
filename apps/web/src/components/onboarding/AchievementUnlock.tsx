@@ -29,7 +29,7 @@ export function AchievementUnlock({ achievement, onClose }: AchievementUnlockPro
           duration: 0.6
         }}
         className="bg-gradient-to-br from-white to-blue-50 rounded-2xl p-2xl text-center shadow-2xl border border-blue-100 max-w-md mx-lg"
-        onClick={(e) => e.stopPropagation()}
+        onClick={(e: React.MouseEvent) => e.stopPropagation()}
       >
         {/* Achievement Icon */}
         <motion.div

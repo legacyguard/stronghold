@@ -5,19 +5,19 @@ Related Feature: Content Repository (../Features%2065472ecceccf486fa4e2b758eb9d3
 Status: Draft
 Type: ADR
 
-### Kontext
+## Kontext
 
 Právne pravidlá a UI preklady majú rozdielne tempo zmien a odlišnú zodpovednosť.
 
-### Rozhodnutie
+## Rozhodnutie
 
 Oddeliť právny obsah podľa jurisdikcie (/content/jurisdictions) od jazykových prekladov (/content/locales).
 
-### Dôsledky
+## Dôsledky
 
 - UI môže byť v EN pri zachovaní právne platných SK pravidiel
 - Jednoduchšie revízie a audity právneho obsahu
 
-### Alternatívy
+## Alternatívy
 
 - Jednotný monolitický i18n súbor — zamietnuté pre ťažkú údržbu

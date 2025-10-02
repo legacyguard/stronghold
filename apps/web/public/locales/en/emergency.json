@@ -1,0 +1,113 @@
+{
+  "dashboard": {
+    "title": "[EN] Emergency Activation System",
+    "subtitle": "[EN] Dead man's switch and emergency notification system",
+    "systemStatus": "[EN] System Status",
+    "activate": "[EN] Activate",
+    "deactivate": "[EN] Deactivate",
+    "updating": "[EN] Updating...",
+    "stats": {
+      "emergencyContacts": "[EN] Emergency Contacts",
+      "activeTriggers": "[EN] Active Triggers",
+      "pendingActivations": "[EN] Pending Activations",
+      "escalationLevels": "[EN] Escalation Levels"
+    }
+  },
+  "status": {
+    "active": "[EN] Active",
+    "inactive": "[EN] Inactive",
+    "systemActive": "[EN] System is operational and monitoring",
+    "systemInactive": "[EN] System is currently disabled"
+  },
+  "setup": {
+    "title": "[EN] Emergency System Setup Required",
+    "description": "[EN] Your emergency system is not fully configured. Complete these steps to ensure your Family Shield can protect your loved ones.",
+    "steps": {
+      "contacts": "[EN] Add emergency contacts",
+      "triggers": "[EN] Configure activation triggers",
+      "test": "[EN] Test the system"
+    }
+  },
+  "cards": {
+    "contacts": {
+      "title": "[EN] Emergency Contacts",
+      "description": "[EN] Manage the people who will be notified during an emergency",
+      "action": "[EN] Manage Contacts"
+    },
+    "triggers": {
+      "title": "[EN] Activation Triggers",
+      "description": "[EN] Configure when emergency notifications should be sent",
+      "action": "[EN] Configure Triggers"
+    },
+    "settings": {
+      "title": "[EN] System Settings",
+      "description": "[EN] Customize notification preferences and security settings",
+      "action": "[EN] Adjust Settings"
+    },
+    "test": {
+      "title": "[EN] Test System",
+      "description": "[EN] Run a test activation to verify everything works correctly",
+      "action": "[EN] Run Test"
+    },
+    "activity": {
+      "title": "[EN] Activity Log",
+      "description": "[EN] View recent system activity and activation history",
+      "action": "[EN] View History"
+    },
+    "override": {
+      "title": "[EN] Emergency Override",
+      "description": "[EN] Manually trigger emergency notification immediately",
+      "action": "[EN] Manual Trigger"
+    }
+  },
+  "activity": {
+    "title": "[EN] Recent Emergency Activity",
+    "noActivity": "[EN] No emergency activity recorded",
+    "activationType": "[EN] {{type}} activation",
+    "triggeredAt": "[EN] Triggered at {{time}}",
+    "status": {
+      "completed": "[EN] Completed",
+      "cancelled": "[EN] Cancelled",
+      "failed": "[EN] Failed",
+      "pending": "[EN] Pending",
+      "active": "[EN] Active"
+    }
+  },
+  "triggers": {
+    "deadManSwitch": "[EN] Dead Man's Switch",
+    "manualActivation": "[EN] Manual Activation",
+    "familyRequest": "[EN] Family Request",
+    "healthEvent": "[EN] Health Event",
+    "travelEmergency": "[EN] Travel Emergency",
+    "securityBreach": "[EN] Security Breach"
+  },
+  "notifications": {
+    "systemActivated": "[EN] Emergency system activated successfully",
+    "systemDeactivated": "[EN] Emergency system deactivated",
+    "testCompleted": "[EN] Emergency system test completed successfully",
+    "testFailed": "[EN] Emergency system test failed",
+    "contactAdded": "[EN] Emergency contact added",
+    "triggerConfigured": "[EN] Emergency trigger configured",
+    "manualTriggerSent": "[EN] Manual emergency notification sent"
+  },
+  "errors": {
+    "systemError": "[EN] Emergency system error",
+    "activationFailed": "[EN] Failed to activate emergency system",
+    "deactivationFailed": "[EN] Failed to deactivate emergency system",
+    "testFailed": "[EN] Emergency system test failed",
+    "noContacts": "[EN] No emergency contacts configured",
+    "invalidTrigger": "[EN] Invalid trigger configuration"
+  },
+  "warnings": {
+    "noContacts": "[EN] Warning: No emergency contacts configured",
+    "noTriggers": "[EN] Warning: No activation triggers configured",
+    "testOverdue": "[EN] Warning: System test is overdue",
+    "systemInactive": "[EN] Warning: Emergency system is currently inactive"
+  },
+  "protocols": {
+    "immediate": "[EN] Immediate Notification",
+    "escalated": "[EN] Escalated Response",
+    "delayed": "[EN] Delayed Activation",
+    "conditional": "[EN] Conditional Trigger"
+  }
+}

@@ -1,0 +1,124 @@
+{
+  "dashboard": {
+    "title": "[CS] Family Shield Command Center",
+    "subtitle": "[CS] Centralized management of your family protection network",
+    "stats": {
+      "members": "[CS] Family Members",
+      "documents": "[CS] Protected Documents",
+      "notifications": "[CS] Active Notifications",
+      "security": "[CS] Security Score"
+    }
+  },
+  "invitations": {
+    "title": "[CS] Family Network Invitations",
+    "subtitle": "[CS] Expand your Family Shield protection network",
+    "form": {
+      "title": "[CS] Invite Family Member",
+      "subtitle": "[CS] Add a trusted person to your Family Shield network",
+      "name": "[CS] Full Name",
+      "email": "[CS] Email Address",
+      "phone": "[CS] Phone Number (Optional)",
+      "role": "[CS] Family Role",
+      "accessLevel": "[CS] Access Level",
+      "send": "[CS] Send Invitation",
+      "sending": "[CS] Sending Invitation...",
+      "cancel": "[CS] Cancel"
+    },
+    "roles": {
+      "spouse": "[CS] Spouse/Partner",
+      "child": "[CS] Child",
+      "parent": "[CS] Parent",
+      "sibling": "[CS] Sibling",
+      "guardian": "[CS] Guardian",
+      "executor": "[CS] Executor",
+      "trustee": "[CS] Trustee",
+      "beneficiary": "[CS] Beneficiary",
+      "advisor": "[CS] Advisor",
+      "other": "[CS] Other"
+    },
+    "accessLevels": {
+      "minimal": {
+        "title": "[CS] Minimal Access",
+        "description": "[CS] Basic contact information only"
+      },
+      "emergency": {
+        "title": "[CS] Emergency Access",
+        "description": "[CS] Access to emergency information and contacts"
+      },
+      "health": {
+        "title": "[CS] Health Access",
+        "description": "[CS] Medical information and healthcare decisions"
+      },
+      "full": {
+        "title": "[CS] Full Access",
+        "description": "[CS] Complete access to all family protection information"
+      }
+    }
+  },
+  "tree": {
+    "title": "[CS] Family Protection Network",
+    "primaryFamily": "[CS] Primary Family",
+    "supportNetwork": "[CS] Professional Support Network",
+    "extendedNetwork": "[CS] Extended Network",
+    "pendingInvitations": "[CS] Pending Invitations ({{count}})",
+    "invitationPending": "[CS] Invitation Pending",
+    "expires": "[CS] Expires: {{date}}",
+    "empty": {
+      "title": "[CS] No Family Members Yet",
+      "description": "[CS] Start building your Family Shield by inviting trusted members"
+    },
+    "legend": {
+      "title": "[CS] Access Levels",
+      "fullAccess": "[CS] Full Access",
+      "healthAccess": "[CS] Health Access",
+      "emergencyAccess": "[CS] Emergency Access",
+      "minimalAccess": "[CS] Minimal Access"
+    }
+  },
+  "member": {
+    "details": "[CS] Member Details",
+    "contact": "[CS] Contact Information",
+    "permissions": "[CS] Access Permissions",
+    "documents": "[CS] Shared Documents",
+    "activity": "[CS] Recent Activity",
+    "edit": "[CS] Edit Member",
+    "remove": "[CS] Remove Member",
+    "resendInvitation": "[CS] Resend Invitation",
+    "cancelInvitation": "[CS] Cancel Invitation"
+  },
+  "permissions": {
+    "viewDocuments": "[CS] View Documents",
+    "editWills": "[CS] Edit Wills",
+    "downloadDocuments": "[CS] Download Documents",
+    "accessEmergency": "[CS] Emergency Access",
+    "triggerEmergencyProtocol": "[CS] Trigger Emergency Protocol",
+    "inviteMembers": "[CS] Invite Members",
+    "manageCalendar": "[CS] Manage Calendar",
+    "viewFamilyTree": "[CS] View Family Tree",
+    "manageRoles": "[CS] Manage Roles",
+    "accessBilling": "[CS] Access Billing"
+  },
+  "notifications": {
+    "invitationSent": "[CS] Invitation sent successfully",
+    "memberAdded": "[CS] Family member added to your network",
+    "memberRemoved": "[CS] Family member removed from network",
+    "accessUpdated": "[CS] Member access level updated",
+    "invitationCancelled": "[CS] Invitation cancelled",
+    "invitationResent": "[CS] Invitation resent successfully"
+  },
+  "errors": {
+    "invitationFailed": "[CS] Failed to send invitation",
+    "memberNotFound": "[CS] Family member not found",
+    "accessDenied": "[CS] You don't have permission for this action",
+    "emailAlreadyInvited": "[CS] This email address has already been invited",
+    "maxMembersReached": "[CS] Maximum number of family members reached"
+  },
+  "actions": {
+    "manageContacts": "[CS] Manage Contacts",
+    "configureTriggers": "[CS] Configure Triggers",
+    "adjustSettings": "[CS] Adjust Settings",
+    "runTest": "[CS] Run Test",
+    "viewHistory": "[CS] View History",
+    "manualTrigger": "[CS] Manual Trigger"
+  }
+}

@@ -4,7 +4,7 @@ Area: Frontend, Product
 Status: Final
 Type: Design System
 
-### 1. Základná koncepcia
+## 1. Základná koncepcia
 
 **Vízia:** Bezpečná platforma pre správu a zdieľanie dôležitých informácií s blízkymi.
 
@@ -261,15 +261,16 @@ css
 
 css
 
-`<i>/* Focus viditeľnosť */</i>
+`/*Focus viditeľnosť*/`
 .focusable:focus {
   outline: 2px solid #6B8E23;
   outline-offset: 2px;
 }
 
-<i>/* Responsive text scaling */</i>
+*/*Responsive text scaling*/*
 @media (prefers-reduced-motion: reduce) {
-  * {
+
+- {
     transition: none !important;
   }
 }`

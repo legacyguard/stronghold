@@ -133,4 +133,146 @@ function GeneratingView({ progress, message }: GeneratingViewProps) {
 
           {/* Progress Steps */}
           <div className="flex justify-center space-x-lg">
-            {generationSteps.map((step, index) => (\n              <div key={index} className=\"flex flex-col items-center space-y-sm\">\n                <div\n                  className={`w-12 h-12 rounded-full flex items-center justify-center transition-all duration-500 ${\n                    progress >= step.progress\n                      ? 'bg-primary text-white'\n                      : 'bg-gray-200 text-gray-500'\n                  }`}\n                >\n                  <span className=\"text-lg\">{step.icon}</span>\n                </div>\n                <span className=\"text-small text-gray-600 max-w-20 text-center leading-tight\">\n                  {step.title}\n                </span>\n              </div>\n            ))}\n          </div>\n        </motion.div>\n      </div>\n    </div>\n  );\n}\n\ninterface CompletedDashboardProps {\n  scenario: any;\n}\n\nfunction CompletedDashboard({ scenario }: CompletedDashboardProps) {\n  return (\n    <div className=\"min-h-screen bg-gradient-to-br from-slate-50 to-blue-50\">\n      <ProfessionalValueCalculator />\n\n      <div className=\"max-w-6xl mx-auto px-lg py-2xl\">\n        {/* Success Header */}\n        <motion.div\n          initial={{ opacity: 0, y: -20 }}\n          animate={{ opacity: 1, y: 0 }}\n          transition={{ duration: 0.5 }}\n          className=\"text-center mb-2xl\"\n        >\n          <div className=\"w-20 h-20 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-lg\">\n            <svg className=\"w-10 h-10 text-white\" fill=\"currentColor\" viewBox=\"0 0 20 20\">\n              <path fillRule=\"evenodd\" d=\"M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z\" clipRule=\"evenodd\" />\n            </svg>\n          </div>\n          <h1 className=\"text-4xl font-bold text-gray-800 mb-md\">\n            Váš plán je pripravený!\n          </h1>\n          <p className=\"text-xl text-gray-600 max-w-2xl mx-auto\">\n            Personalizovaný dashboard pre scenár <span className=\"font-semibold text-primary\">{scenario.name}</span> je aktívny.\n            Máte {scenario.missions.length} prioritných úloh.\n          </p>\n        </motion.div>\n\n        {/* Scenario Overview */}\n        <motion.div\n          initial={{ opacity: 0, y: 20 }}\n          animate={{ opacity: 1, y: 0 }}\n          transition={{ duration: 0.5, delay: 0.2 }}\n          className=\"bg-white rounded-2xl shadow-lg border border-gray-100 p-2xl mb-2xl\"\n        >\n          <h2 className=\"text-2xl font-bold text-gray-800 mb-lg\">\n            {scenario.name}\n          </h2>\n          <p className=\"text-body text-gray-600 mb-xl\">\n            {scenario.description}\n          </p>\n\n          {/* Missions Grid */}\n          <div className=\"grid md:grid-cols-2 lg:grid-cols-3 gap-lg\">\n            {scenario.missions.map((mission: any, index: number) => (\n              <MissionCard key={mission.id} mission={mission} index={index} />\n            ))}\n          </div>\n        </motion.div>\n\n        {/* Action Buttons */}\n        <motion.div\n          initial={{ opacity: 0 }}\n          animate={{ opacity: 1 }}\n          transition={{ duration: 0.5, delay: 0.4 }}\n          className=\"flex justify-center space-x-lg\"\n        >\n          <Button size=\"lg\" className=\"bg-primary hover:bg-primary-dark px-2xl py-lg\">\n            Začať s prvou úlohou\n          </Button>\n          <Button variant=\"outline\" size=\"lg\" className=\"px-2xl py-lg\">\n            Preskúmať dashboard\n          </Button>\n        </motion.div>\n      </div>\n    </div>\n  );\n}\n\ninterface MissionCardProps {\n  mission: any;\n  index: number;\n}\n\nfunction MissionCard({ mission, index }: MissionCardProps) {\n  const priorityColors = {\n    high: 'border-red-200 bg-red-50',\n    medium: 'border-yellow-200 bg-yellow-50',\n    low: 'border-blue-200 bg-blue-50'\n  };\n\n  const priorityTextColors = {\n    high: 'text-red-700',\n    medium: 'text-yellow-700',\n    low: 'text-blue-700'\n  };\n\n  return (\n    <motion.div\n      initial={{ opacity: 0, y: 20 }}\n      animate={{ opacity: 1, y: 0 }}\n      transition={{ duration: 0.3, delay: 0.3 + index * 0.1 }}\n    >\n      <Card className={`border-2 ${priorityColors[mission.priority as keyof typeof priorityColors]} hover:shadow-md transition-shadow`}>\n        <CardHeader className=\"pb-sm\">\n          <div className=\"flex items-start justify-between\">\n            <CardTitle className=\"text-body font-semibold text-gray-800\">\n              {mission.title}\n            </CardTitle>\n            <span className={`text-xs font-medium px-sm py-xs rounded-full ${priorityTextColors[mission.priority as keyof typeof priorityTextColors]} bg-white`}>\n              {mission.priority === 'high' ? 'Vysoká' : mission.priority === 'medium' ? 'Stredná' : 'Nízka'}\n            </span>\n          </div>\n        </CardHeader>\n        <CardContent>\n          <p className=\"text-caption text-gray-600 mb-md leading-relaxed\">\n            {mission.description}\n          </p>\n          <div className=\"flex items-center justify-between text-small text-gray-500\">\n            <span>⏱️ {mission.estimatedTime}</span>\n            <span className=\"font-medium\">Čaká</span>\n          </div>\n        </CardContent>\n      </Card>\n    </motion.div>\n  );\n}
+            {generationSteps.map((step, index) => (
+              <div key={index} className="flex flex-col items-center space-y-sm">
+                <div
+                  className={`w-12 h-12 rounded-full flex items-center justify-center transition-all duration-500 ${
+                    progress >= step.progress
+                      ? 'bg-primary text-white'
+                      : 'bg-gray-200 text-gray-500'
+                  }`}
+                >
+                  <span className="text-lg">{step.icon}</span>
+                </div>
+                <span className="text-small text-gray-600 max-w-20 text-center leading-tight">
+                  {step.title}
+                </span>
+              </div>
+            ))}
+          </div>
+        </motion.div>
+      </div>
+    </div>
+  );
+}
+
+interface CompletedDashboardProps {
+  scenario: any;
+}
+
+function CompletedDashboard({ scenario }: CompletedDashboardProps) {
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
+      <ProfessionalValueCalculator />
+
+      <div className="max-w-6xl mx-auto px-lg py-2xl">
+        {/* Success Header */}
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="text-center mb-2xl"
+        >
+          <div className="w-20 h-20 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-lg">
+            <svg className="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+            </svg>
+          </div>
+          <h1 className="text-4xl font-bold text-gray-800 mb-md">
+            Váš plán je pripravený!
+          </h1>
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            Personalizovaný dashboard pre scenár <span className="font-semibold text-primary">{scenario.name}</span> je aktívny.
+            Máte {scenario.missions.length} prioritných úloh.
+          </p>
+        </motion.div>
+
+        {/* Scenario Overview */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="bg-white rounded-2xl shadow-lg border border-gray-100 p-2xl mb-2xl"
+        >
+          <h2 className="text-2xl font-bold text-gray-800 mb-lg">
+            {scenario.name}
+          </h2>
+          <p className="text-body text-gray-600 mb-xl">
+            {scenario.description}
+          </p>
+
+          {/* Missions Grid */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-lg">
+            {scenario.missions.map((mission: any, index: number) => (
+              <MissionCard key={mission.id} mission={mission} index={index} />
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Action Buttons */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+          className="flex justify-center space-x-lg"
+        >
+          <Button size="lg" className="bg-primary hover:bg-primary-dark px-2xl py-lg">
+            Začať s prvou úlohou
+          </Button>
+          <Button variant="outline" size="lg" className="px-2xl py-lg">
+            Preskúmať dashboard
+          </Button>
+        </motion.div>
+      </div>
+    </div>
+  );
+}
+
+interface MissionCardProps {
+  mission: any;
+  index: number;
+}
+
+function MissionCard({ mission, index }: MissionCardProps) {
+  const priorityColors = {
+    high: 'border-red-200 bg-red-50',
+    medium: 'border-yellow-200 bg-yellow-50',
+    low: 'border-blue-200 bg-blue-50'
+  };
+
+  const priorityTextColors = {
+    high: 'text-red-700',
+    medium: 'text-yellow-700',
+    low: 'text-blue-700'
+  };
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.3, delay: 0.3 + index * 0.1 }}
+    >
+      <Card className={`border-2 ${priorityColors[mission.priority as keyof typeof priorityColors]} hover:shadow-md transition-shadow`}>
+        <CardHeader className="pb-sm">
+          <div className="flex items-start justify-between">
+            <CardTitle className="text-body font-semibold text-gray-800">
+              {mission.title}
+            </CardTitle>
+            <span className={`text-xs font-medium px-sm py-xs rounded-full ${priorityTextColors[mission.priority as keyof typeof priorityTextColors]} bg-white`}>
+              {mission.priority === 'high' ? 'Vysoká' : mission.priority === 'medium' ? 'Stredná' : 'Nízka'}
+            </span>
+          </div>
+        </CardHeader>
+        <CardContent>
+          <p className="text-caption text-gray-600 mb-md leading-relaxed">
+            {mission.description}
+          </p>
+          <div className="flex items-center justify-between text-small text-gray-500">
+            <span>⏱️ {mission.estimatedTime}</span>
+            <span className="font-medium">Čaká</span>
+          </div>
+        </CardContent>
+      </Card>
+    </motion.div>
+  );
+}

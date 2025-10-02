@@ -17,7 +17,13 @@
     "cta": {
       "primary": "Start Your Will Today",
       "secondary": "See How It Works"
-    }
+    },
+    "title": "Deploy Your Family Shield with",
+    "titleHighlight": "Military-Grade Security",
+    "titleSuffix": "and Legal Precision",
+    "ctaPrimary": "Deploy Family Shield",
+    "ctaSecondary": "View Security Architecture",
+    "tagline": "[EN] KOMPLEXNÝ SYSTÉM OCHRANY RODINY"
   },
   "problemPromise": {
     "title": "From Chaos to Certainty",
@@ -170,5 +176,84 @@
       "operational": "All Systems Operational",
       "secure": "Secure Connection"
     }
+  },
+  "features": {
+    "title": "Strategic Protection Architecture",
+    "subtitle": "Military-grade security meets legal precision in our comprehensive family protection platform",
+    "wills": {
+      "title": "Will Generation Engine",
+      "description": "AI-powered legal document creation with multi-jurisdiction compliance and automated updates"
+    },
+    "emergency": {
+      "title": "Emergency Response Protocol",
+      "description": "Dead man's switch system with intelligent escalation and automated family notification chains"
+    },
+    "family": {
+      "title": "Family Shield Network",
+      "description": "Secure collaboration platform connecting family members, advisors, and trusted guardians"
+    },
+    "vault": {
+      "title": "Digital Asset Vault",
+      "description": "Bank-grade encryption for sensitive documents, credentials, and digital inheritance management"
+    },
+    "guidance": {
+      "title": "Strategic Legal Guidance",
+      "description": "AI-powered advisory system providing jurisdiction-specific recommendations and compliance monitoring"
+    },
+    "monitoring": {
+      "title": "Continuous Monitoring",
+      "description": "Real-time threat detection and automated security updates to protect your family's digital assets"
+    }
+  },
+  "security": {
+    "title": "Enterprise-Grade Security",
+    "subtitle": "Your family's protection demands the highest security standards",
+    "encryption": {
+      "title": "Military-Grade Encryption",
+      "description": "AES-256 encryption with end-to-end security protocols"
+    },
+    "compliance": {
+      "title": "Multi-Jurisdiction Compliance",
+      "description": "Legal frameworks validated across EU and international jurisdictions"
+    },
+    "audit": {
+      "title": "Continuous Security Auditing",
+      "description": "Real-time monitoring and automated threat detection systems"
+    },
+    "backup": {
+      "title": "Redundant Backup Systems",
+      "description": "Geographic distribution with 99.99% uptime guarantee"
+    }
+  },
+  "testimonials": {
+    "title": "Trusted by Strategic Leaders",
+    "subtitle": "See how professionals are securing their family's future",
+    "cta": "Join Strategic Leaders"
+  },
+  "cta": {
+    "title": "Deploy Your Family Shield Today",
+    "subtitle": "Join thousands of strategic leaders who trust their family's future to our platform",
+    "button": "Start Deployment",
+    "guarantee": "30-day strategic evaluation period"
+  },
+  "navigation": {
+    "features": "Strategic Features",
+    "security": "Security Protocol",
+    "pricing": "Investment Plans",
+    "resources": "Strategic Resources",
+    "contact": "Mission Command"
+  },
+  "trust": {
+    "title": "Institutional Trust Indicators",
+    "bankGrade": "Bank-Grade Security",
+    "compliance": "Multi-Jurisdiction Compliant",
+    "uptime": "99.99% Uptime SLA",
+    "support": "24/7 Strategic Support"
+  },
+  "stats": {
+    "families": "{{count}}+ Families Protected",
+    "documents": "{{count}}+ Legal Documents Secured",
+    "countries": "{{count}}+ Countries Supported",
+    "uptime": "{{percent}}% Uptime Achieved"
   }
 }

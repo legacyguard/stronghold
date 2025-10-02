@@ -1,0 +1,95 @@
+{
+  "wizard": {
+    "title": "[CS] Will Generation Assistant",
+    "subtitle": "[CS] Create legally compliant will documents with AI guidance",
+    "progress": "[CS] Step {{current}} of {{total}}",
+    "continue": "[CS] Continue",
+    "back": "[CS] Previous",
+    "save": "[CS] Save Progress",
+    "generate": "[CS] Generate Will"
+  },
+  "steps": {
+    "personal": {
+      "title": "[CS] Personal Information",
+      "subtitle": "[CS] Basic details for will generation",
+      "fullName": "[CS] Full Legal Name",
+      "birthDate": "[CS] Date of Birth",
+      "birthPlace": "[CS] Place of Birth",
+      "address": "[CS] Current Address",
+      "nationality": "[CS] Nationality",
+      "maritalStatus": "[CS] Marital Status"
+    },
+    "beneficiaries": {
+      "title": "[CS] Beneficiaries",
+      "subtitle": "[CS] Define who will inherit your assets",
+      "addBeneficiary": "[CS] Add Beneficiary",
+      "name": "[CS] Beneficiary Name",
+      "relationship": "[CS] Relationship",
+      "share": "[CS] Inheritance Share",
+      "conditions": "[CS] Special Conditions"
+    },
+    "assets": {
+      "title": "[CS] Assets & Property",
+      "subtitle": "[CS] Document your estate for distribution",
+      "addAsset": "[CS] Add Asset",
+      "type": "[CS] Asset Type",
+      "description": "[CS] Description",
+      "value": "[CS] Estimated Value",
+      "location": "[CS] Location"
+    },
+    "executor": {
+      "title": "[CS] Executor Selection",
+      "subtitle": "[CS] Choose who will execute your will",
+      "primaryExecutor": "[CS] Primary Executor",
+      "backupExecutor": "[CS] Backup Executor",
+      "executorName": "[CS] Executor Name",
+      "executorAddress": "[CS] Executor Address",
+      "executorPhone": "[CS] Executor Phone"
+    },
+    "guardian": {
+      "title": "[CS] Guardian Designation",
+      "subtitle": "[CS] Appoint guardians for minor children",
+      "primaryGuardian": "[CS] Primary Guardian",
+      "backupGuardian": "[CS] Backup Guardian",
+      "guardianName": "[CS] Guardian Name",
+      "guardianAddress": "[CS] Guardian Address"
+    },
+    "review": {
+      "title": "[CS] Review & Generate",
+      "subtitle": "[CS] Review your will before generation",
+      "personalInfo": "[CS] Personal Information",
+      "beneficiariesInfo": "[CS] Beneficiaries",
+      "assetsInfo": "[CS] Assets",
+      "executorInfo": "[CS] Executor",
+      "guardianInfo": "[CS] Guardian"
+    }
+  },
+  "validation": {
+    "required": "[CS] This field is required",
+    "invalidDate": "[CS] Invalid date format",
+    "invalidEmail": "[CS] Invalid email address",
+    "invalidPhone": "[CS] Invalid phone number",
+    "minBeneficiaries": "[CS] At least one beneficiary is required",
+    "totalSharesError": "[CS] Total shares must equal 100%"
+  },
+  "assetTypes": {
+    "realEstate": "[CS] Real Estate",
+    "bankAccount": "[CS] Bank Account",
+    "investment": "[CS] Investment Account",
+    "vehicle": "[CS] Vehicle",
+    "jewelry": "[CS] Jewelry",
+    "artwork": "[CS] Artwork",
+    "business": "[CS] Business Interest",
+    "other": "[CS] Other"
+  },
+  "relationships": {
+    "spouse": "[CS] Spouse",
+    "child": "[CS] Child",
+    "parent": "[CS] Parent",
+    "sibling": "[CS] Sibling",
+    "grandchild": "[CS] Grandchild",
+    "friend": "[CS] Friend",
+    "charity": "[CS] Charity",
+    "other": "[CS] Other"
+  }
+}

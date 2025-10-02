@@ -4,7 +4,7 @@ Area: Frontend, Product
 Status: Draft
 Type: Design System
 
-### Krok 1: Základný kameň dizajnu v tailwind.config.ts
+## Krok 1: Základný kameň dizajnu v tailwind.config.ts
 
 Tvoj tailwind.config.ts je jediný zdroj pravdy pre vizuálne prvky. Definuj farby, typografiu, spacing a radius skôr, než začneš generovať UI.
 
@@ -70,7 +70,7 @@ export default config
 
 Používaj túto hlavičku pre každý prompt, aby AI striktne dodržiavala tvoj systém.
 
-```
+```text
 Design System & Context: You are building components for a premium, secure application called "LegacyGuard". The design must be clean, minimalist, and trustworthy. Adhere strictly to the following Tailwind CSS configuration. Do NOT use arbitrary values like `bg-[#123456]` or `p-3`.
 
 Tailwind Configuration:
@@ -96,7 +96,7 @@ My Request: [Describe the exact component you need]
 
 ### Krok 3: Použitie v praxi — príklad promptu
 
-```
+```text
 Design System & Context: ... (full header above) ...
 ---
 My Request: Create a React component for a feature card. It should be a `div` with a white background (`bg-surface`) and a subtle border (`border-border`). It should have medium padding (`p-md`) and large rounded corners (`rounded-lg`). Inside the card, create a flex container with a medium gap (`gap-md`). The first item is a circular icon using `lucide-react` (ShieldCheck). The second item is a vertical flex container for text with: (1) h3 heading `text-text-dark` `text-h3`: "Family Shield"; (2) paragraph `text-text-light` `text-body`: "Proactively protect your family with emergency plans and trusted guardians."

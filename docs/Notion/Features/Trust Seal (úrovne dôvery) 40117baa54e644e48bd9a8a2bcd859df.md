@@ -3,15 +3,15 @@
 Goal: Viditeľná pečať dôvery s automatickými upgradmi podľa úrovne kontroly
 Status: Idea
 
-### Popis
+## Popis
 
 Štvorúrovňová pečať (Basic→Verified→Professional→Premium) s automatickými upgradmi po review.
 
-### Kľúčové prvky
+## Kľúčové prvky
 
 - Generovanie pečate v PDF
 - Napojenie na výsledky review
 
-### Merania úspechu
+## Merania úspechu
 
 - Vplyv na konverzie premium

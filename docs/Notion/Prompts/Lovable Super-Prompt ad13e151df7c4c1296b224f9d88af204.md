@@ -4,6 +4,7 @@ Prompt Text: Design System & Context:
 You are building components for a premium, secure application called "LegacyGuard". The design must be clean, minimalist, and trustworthy. Adhere strictly to the following Tailwind CSS configuration. Do NOT use arbitrary values like bg-[#123456] or p-3.
 
 Tailwind Configuration:
+
 - Colors: Use semantic names only: bg-primary, text-text-dark, border-border, bg-surface.
 - primary: #6B8E23 (Olive Green)
 - primary-light: #8FBC8F (Dark Sea Green)

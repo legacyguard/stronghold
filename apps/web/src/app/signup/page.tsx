@@ -1,7 +1,6 @@
 "use client";
 import { useState } from "react";
 import dynamic from "next/dynamic";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Shield } from "lucide-react";
 const Toast = dynamic(() => import("../Toast"), { ssr: false });

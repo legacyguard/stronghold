@@ -1,0 +1,95 @@
+{
+  "wizard": {
+    "title": "Will Generation Assistant",
+    "subtitle": "Create legally compliant will documents with AI guidance",
+    "progress": "Step {{current}} of {{total}}",
+    "continue": "Continue",
+    "back": "Previous",
+    "save": "Save Progress",
+    "generate": "Generate Will"
+  },
+  "steps": {
+    "personal": {
+      "title": "Personal Information",
+      "subtitle": "Basic details for will generation",
+      "fullName": "Full Legal Name",
+      "birthDate": "Date of Birth",
+      "birthPlace": "Place of Birth",
+      "address": "Current Address",
+      "nationality": "Nationality",
+      "maritalStatus": "Marital Status"
+    },
+    "beneficiaries": {
+      "title": "Beneficiaries",
+      "subtitle": "Define who will inherit your assets",
+      "addBeneficiary": "Add Beneficiary",
+      "name": "Beneficiary Name",
+      "relationship": "Relationship",
+      "share": "Inheritance Share",
+      "conditions": "Special Conditions"
+    },
+    "assets": {
+      "title": "Assets & Property",
+      "subtitle": "Document your estate for distribution",
+      "addAsset": "Add Asset",
+      "type": "Asset Type",
+      "description": "Description",
+      "value": "Estimated Value",
+      "location": "Location"
+    },
+    "executor": {
+      "title": "Executor Selection",
+      "subtitle": "Choose who will execute your will",
+      "primaryExecutor": "Primary Executor",
+      "backupExecutor": "Backup Executor",
+      "executorName": "Executor Name",
+      "executorAddress": "Executor Address",
+      "executorPhone": "Executor Phone"
+    },
+    "guardian": {
+      "title": "Guardian Designation",
+      "subtitle": "Appoint guardians for minor children",
+      "primaryGuardian": "Primary Guardian",
+      "backupGuardian": "Backup Guardian",
+      "guardianName": "Guardian Name",
+      "guardianAddress": "Guardian Address"
+    },
+    "review": {
+      "title": "Review & Generate",
+      "subtitle": "Review your will before generation",
+      "personalInfo": "Personal Information",
+      "beneficiariesInfo": "Beneficiaries",
+      "assetsInfo": "Assets",
+      "executorInfo": "Executor",
+      "guardianInfo": "Guardian"
+    }
+  },
+  "validation": {
+    "required": "This field is required",
+    "invalidDate": "Invalid date format",
+    "invalidEmail": "Invalid email address",
+    "invalidPhone": "Invalid phone number",
+    "minBeneficiaries": "At least one beneficiary is required",
+    "totalSharesError": "Total shares must equal 100%"
+  },
+  "assetTypes": {
+    "realEstate": "Real Estate",
+    "bankAccount": "Bank Account",
+    "investment": "Investment Account",
+    "vehicle": "Vehicle",
+    "jewelry": "Jewelry",
+    "artwork": "Artwork",
+    "business": "Business Interest",
+    "other": "Other"
+  },
+  "relationships": {
+    "spouse": "Spouse",
+    "child": "Child",
+    "parent": "Parent",
+    "sibling": "Sibling",
+    "grandchild": "Grandchild",
+    "friend": "Friend",
+    "charity": "Charity",
+    "other": "Other"
+  }
+}

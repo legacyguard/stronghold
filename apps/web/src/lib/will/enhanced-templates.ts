@@ -460,3 +460,14 @@ export function getTemplatesByJurisdiction(jurisdiction: string): WillTemplate[]
     template => template.jurisdiction === jurisdiction
   );
 }
+
+export async function getEnhancedWillTemplate(
+  jurisdiction: string,
+  userTier: string
+): Promise<WillTemplate | null> {
+  const templates = getTemplatesByUserTier(
+    jurisdiction,
+    userTier as 'free' | 'paid' | 'family_edition'
+  );
+  return templates.length > 0 ? templates[0] : null;
+}

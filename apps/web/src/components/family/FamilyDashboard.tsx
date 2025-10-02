@@ -18,8 +18,6 @@ import {
   CheckCircle,
   Crown,
   Mail,
-  Phone,
-  MapPin
 } from 'lucide-react';
 
 import { FamilyCollaborationManager } from '@/lib/family/collaboration-manager';
@@ -29,7 +27,6 @@ import {
   FamilyInvitation,
   getRoleDisplayName,
   getRoleDescription,
-  getTierLimits
 } from '@/lib/family/types';
 
 interface FamilyDashboardProps {
@@ -114,7 +111,7 @@ export function FamilyDashboard({
   // Configure emergency access
   const configureEmergencyAccess = () => {
     if (tierCapabilities.emergencyAccess) {
-      familyManager.configureEmergencyAccess(30, members.map(m => m.userId));
+      familyManager.configureEmergencyAccess(30, members.map(m => m.userId).filter((id): id is string => id !== undefined));
       setEmergencyStatus(familyManager.getEmergencyStatus());
     }
   };
@@ -378,7 +375,7 @@ export function FamilyDashboard({
                   Emergency Access
                 </CardTitle>
                 <CardDescription>
-                  Konfigurácia núdzového prístupu a Dead Man's Switch
+                  Konfigurácia núdzového prístupu a Dead Man&apos;s Switch
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -441,7 +438,7 @@ export function FamilyDashboard({
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                {members.filter(m => m.permissions.accessEmergency).length === 0 ? (
+                {members.filter(m => m.permissions?.accessEmergency).length === 0 ? (
                   <div className="text-center py-6 text-gray-500">
                     <AlertTriangle className="h-8 w-8 mx-auto mb-2 opacity-30" />
                     <p>Žiadne núdzové kontakty.</p>
@@ -449,7 +446,7 @@ export function FamilyDashboard({
                 ) : (
                   <div className="space-y-2">
                     {members
-                      .filter(m => m.permissions.accessEmergency)
+                      .filter(m => m.permissions?.accessEmergency)
                       .map((member) => (
                         <div
                           key={member.id}

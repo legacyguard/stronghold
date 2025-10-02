@@ -11,6 +11,7 @@ export type SofiaCommand = {
 }
 
 export type CompleteWillData = WillFormData & {
+  userId: string;
   userTier: 'free' | 'paid' | 'family_edition';
   targetTrustLevel?: TrustSealLevel;
   jurisdiction: 'SK' | 'CZ' | 'AT' | 'DE' | 'PL';
@@ -535,7 +536,7 @@ ${userData.assets?.map(asset => `- ${asset.description} → ${asset.beneficiary}
 SPECIAL INSTRUCTIONS:
 - Funeral Wishes: ${userData.funeralWishes || 'Not specified'}
 - Digital Assets: ${userData.digitalAssets?.length ? userData.digitalAssets.map(d => d.platform).join(', ') : 'Not specified'}
-- Special Requests: ${userData.specialRequests || 'None'}
+- Special Requests: ${'specialRequests' in userData ? (userData as any).specialRequests : 'None'}
 
 JURISDICTION REQUIREMENTS:
 - Legal Framework: ${userData.jurisdiction}

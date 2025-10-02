@@ -5,17 +5,19 @@ const CACHE_VERSION = '2.0.0';
 const CACHE_NAME = `stronghold-will-v${CACHE_VERSION}`;
 const STATIC_CACHE_NAME = `stronghold-static-v${CACHE_VERSION}`;
 const DYNAMIC_CACHE_NAME = `stronghold-dynamic-v${CACHE_VERSION}`;
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const AI_CACHE_NAME = `stronghold-ai-v${CACHE_VERSION}`;
 
 // Performance optimizations
 const CACHE_MAX_AGE = 86400000; // 24 hours in milliseconds
 const AI_CACHE_MAX_AGE = 3600000; // 1 hour for AI responses
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const PRELOAD_TIMEOUT = 5000; // 5 seconds timeout for preloading
 
 // Files to cache for offline use
 const STATIC_FILES = [
   '/',
-  '/offline.html',
+  '/offline',
   '/manifest.json',
   // Add critical CSS and JS files here
 ];
@@ -223,7 +225,7 @@ function handlePageRequest(request) {
           }
 
           // Return offline page
-          return caches.match('/offline.html')
+          return caches.match('/offline')
             .then((offlinePage) => {
               return offlinePage || new Response('Offline - Page not available', {
                 status: 503,
@@ -250,8 +252,9 @@ function handleOtherRequests(request) {
 
 // Helper functions
 function isStaticFile(pathname) {
-  return pathname.match(/\.(css|js|png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot|ico)$/) ||
-         pathname.startsWith('/_next/static/');
+  return pathname.match(/\.(css|js|png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot|ico|json)$/) ||
+         pathname.startsWith('/_next/static/') ||
+         pathname.startsWith('/locales/');
 }
 
 function isAPIRequest(pathname) {
@@ -264,7 +267,7 @@ function isPageRequest(request) {
 }
 
 function isCacheableAPI(pathname) {
-  return CACHEABLE_APIS.some(api => pathname.startsWith(api));
+  return CACHEABLE_APIS.some(api => pathname.startsWith(api.path));
 }
 
 // Background sync for document updates

@@ -82,8 +82,8 @@ export async function generateFromTemplate(
         'Odporúčame overenie u kvalifikovaného právnika',
         'Uistite sa, že sú splnené všetky formálne požiadavky'
       ],
-      generatedBy: 'template',
-      templateId: template.id
+      estimatedCost: 0,
+      actualCost: 0
     };
 
     return result;
@@ -157,7 +157,7 @@ export async function getTemplateWithFallback(
         id: template.id,
         jurisdiction: template.jurisdiction,
         type: template.type,
-        template: template.content,
+        template: template.template,
         requiredFields: template.requiredFields || []
       };
     }

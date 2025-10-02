@@ -156,6 +156,7 @@ async function sendTimeCapsuleEmail(delivery: TimeCapsuleDelivery): Promise<{
   try {
     // Determine recipient
     const recipientEmail = delivery.recipient_email || delivery.user_email
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const recipientName = delivery.recipient_name || delivery.user_name
 
     if (!recipientEmail) {

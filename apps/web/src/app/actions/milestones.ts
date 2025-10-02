@@ -269,6 +269,7 @@ async function checkStreakMilestones(userId: string, currentStreak: number, long
   }
 }
 
+ 
 function getMilestoneDefinition(type: string, _customData?: Record<string, unknown>) {
   const definitions: Record<string, { title: string; description: string; points: number }> = {
     // First achievements

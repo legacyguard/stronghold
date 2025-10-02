@@ -5,14 +5,11 @@ Related Feature: UI i18n Layer (../Features%2065472ecceccf486fa4e2b758eb9d3e12/U
 Status: Draft
 Type: Architecture
 
-### Overview
+## Overview
 
-<aside>
-🔧
-
-Auth and Framework baseline: This architecture uses Supabase Auth (JWT) for authentication and Next.js (App Router) for the frontend. All mentions of previous Clerk/Vite examples should be read as Supabase Auth and Next.js equivalents.
-
-</aside>
+> 🔧
+>
+> Auth and Framework baseline: This architecture uses Supabase Auth (JWT) for authentication and Next.js (App Router) for the frontend. All mentions of previous Clerk/Vite examples should be read as Supabase Auth and Next.js equivalents.
 
 This document describes the backend architecture for the Family Protection Assistant using the n8n Cloud application as the orchestration and agent runtime. All descriptive text is in English. Code, JSON, and TypeScript examples remain in English for codebase consistency.
 
@@ -20,14 +17,14 @@ This document describes the backend architecture for the Family Protection Assis
 
 ## 🎯 Why n8n Agent Makes Perfect Sense
 
-### Traditional Backend Problems:
+### Traditional Backend Problems
 
 - Complex conversation state management
 - Tool integration overhead
 - Memory handling complexity
 - API orchestration logic
 
-### n8n Agent Solutions:
+### n8n Agent Solutions
 
 - ✅ Built-in conversation memory — automatic context retention
 - ✅ Tool integration framework — easy external service connections
@@ -121,7 +118,7 @@ This document describes the backend architecture for the Family Protection Assis
 
 ### Workflow 1: Sofia Chat Interface
 
-```
+```mermaid
 [Webhook: /sofia/chat]
     ↓
 [Extract Message + Context]
@@ -167,7 +164,7 @@ This document describes the backend architecture for the Family Protection Assis
 
 ### Workflow 2: Document Processing Pipeline
 
-```
+```mermaid
 [Document Upload Webhook]
     ↓
 [File Processing]
@@ -203,7 +200,8 @@ This document describes the backend architecture for the Family Protection Assis
 
 ### Workflow 3: Protection Score Calculator
 
-```
+```mermaid
+
 [Score Update Trigger]
     ↓
 [Fetch User Data]
@@ -224,11 +222,13 @@ This document describes the backend architecture for the Family Protection Assis
     ↓
 [Sofia Celebration/Encouragement]
     └─ "Your protection score increased to 67%! 🎉"
+
 ```
 
 ### Workflow 4: Crisis Mode Activation
 
-```
+```mermaid
+
 [Crisis Trigger]
     ├─ Manual activation
     ├─ Dead man's switch (48h inactive)
@@ -254,6 +254,7 @@ This document describes the backend architecture for the Family Protection Assis
     ↓
 [Continuous Monitoring]
     └─ Track response, escalate if needed
+
 ```
 
 ---
@@ -357,18 +358,18 @@ Emergency Response System:
 
 - Break down logic into reusable units and call them via `Execute Workflow` nodes.
 - Examples:
-    - `SendMultiChannelNotification(userId, message)` → email, SMS, push
-    - `PersistAnalysisToSupabase(userId, docMeta, aiFindings)`
-    - `UpdateProtectionScore(userId, delta, reasons)`
+  - `SendMultiChannelNotification(userId, message)` → email, SMS, push
+  - `PersistAnalysisToSupabase(userId, docMeta, aiFindings)`
+  - `UpdateProtectionScore(userId, delta, reasons)`
 - Benefits: readability, reuse, focused unit testing of each building block.
 
 ## 🧯 Robust Error Handling
 
 - Use `Error Trigger` workflows to capture failures from any workflow.
 - Error handler responsibilities:
-    - Persist detailed error entry in `error_logs` table (correlate `requestId`, `userId`, `action`, `node`, `error`)
-    - Notify ops channel (Slack or email) with severity and context
-    - Return safe, localized error payload to frontend
+  - Persist detailed error entry in `error_logs` table (correlate `requestId`, `userId`, `action`, `node`, `error`)
+  - Notify ops channel (Slack or email) with severity and context
+  - Return safe, localized error payload to frontend
 
 ```json
 {

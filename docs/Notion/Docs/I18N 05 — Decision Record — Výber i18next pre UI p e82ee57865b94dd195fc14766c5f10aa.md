@@ -5,20 +5,20 @@ Related Feature: UI i18n Layer (../Features%2065472ecceccf486fa4e2b758eb9d3e12/U
 Status: Draft
 Type: Decision Record
 
-### Kontext
+## Kontext
 
 Potrebujeme zrelú knižnicu s podporou namespaces, lazy loadingu a širokej komunity.
 
-### Rozhodnutie
+## Rozhodnutie
 
 Použiť i18next pre UI preklady.
 
-### Dôsledky
+## Dôsledky
 
 - Rýchla integrácia s Reactom
 - Overený ekosystém pluginov a nástrojov
 
-### Alternatívy
+## Alternatívy
 
 - Vlastné riešenie — vysoké TCO
 - Iné knižnice — nesplnili požiadavky na namespaces alebo lazy loading

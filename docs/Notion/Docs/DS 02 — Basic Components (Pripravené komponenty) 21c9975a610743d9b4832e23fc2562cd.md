@@ -4,24 +4,24 @@ Area: Frontend
 Status: Draft
 Type: Design System
 
-### Účel
+## Účel
 
 Katalóg základných UI komponentov pripravených na použitie.
 
-### Zoznam komponentov
+## Zoznam komponentov
 
 - Button, Input, Select, Modal, Card, Toast
 - Stav načítania, prázdny stav, chyba
 
-### API a príklady
+## API a príklady
 
 - Props, varianty, accessibility
 - Kódy snippetov
 
-### Testy a kvalita
+## Testy a kvalita
 
 - Vizualne regresné testy
 
-### Revízia
+## Revízia
 
 - Last Reviewed:

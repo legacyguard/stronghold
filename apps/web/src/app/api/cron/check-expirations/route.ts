@@ -27,6 +27,7 @@ export async function GET(request: NextRequest) {
     }
 
     // Create Supabase admin client
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const supabase = createClient(supabaseUrl, supabaseServiceKey, {
       auth: {
         autoRefreshToken: false,

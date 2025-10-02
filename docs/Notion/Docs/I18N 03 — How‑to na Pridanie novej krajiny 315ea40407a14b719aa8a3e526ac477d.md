@@ -5,18 +5,18 @@ Related Feature: Content Repository (../Features%2065472ecceccf486fa4e2b758eb9d3
 Status: Draft
 Type: How-to
 
-### Cieľ
+## Cieľ
 
 Bez zásahu do aplikačného kódu pridať novú jurisdikciu.
 
-### Kroky
+## Kroky
 
 1. Pridaj doménu na Verceli ([legacyguard.at](http://legacyguard.at))
 2. Vytvor /content/jurisdictions/at/ a vyplň právne šablóny a pravidlá
 3. Dopln /content/locales/de/ alebo iné jazyky podľa potreby
 4. Otestuj flows (UI jazyk × právna jurisdikcia)
 
-### Kontrola
+## Kontrola
 
 - Prejde CI validácia schém
 - E2E test s preklopeným jazykom

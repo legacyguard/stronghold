@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { useTranslation } from '@/hooks/useTranslationMock';
+import { useTranslation } from 'react-i18next';
 
 export function LandingFooter() {
   const { t } = useTranslation('landing');

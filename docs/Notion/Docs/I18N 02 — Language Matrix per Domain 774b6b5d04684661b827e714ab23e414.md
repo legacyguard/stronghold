@@ -5,11 +5,11 @@ Related Feature: UI i18n Layer (../Features%2065472ecceccf486fa4e2b758eb9d3e12/U
 Status: Draft
 Type: Dev Guidelines
 
-### Purpose
+## Purpose
 
 Central map of supported languages per domain to power middleware routing and client language selection.
 
-### Tier 1 launch markets (domains → languages)
+## Tier 1 launch markets (domains → languages)
 
 - [legacyguard.de](http://legacyguard.de): DE (primary), EN, PL, UK, RU
 - [legacyguard.cz](http://legacyguard.cz): CS (primary), SK, EN, DE, UK
@@ -42,7 +42,7 @@ Central map of supported languages per domain to power middleware routing and cl
 - [legacyguard.no](http://legacyguard.no): NO (primary), EN, SV, DA, UK
 - [legacyguard.is](http://legacyguard.is): IS (primary), EN, DA, NO, UK
 
-### Tier 2 expansion markets
+## Tier 2 expansion markets
 
 - [legacyguard.ro](http://legacyguard.ro): RO (primary), EN, DE, HU, UK
 - [legacyguard.bg](http://legacyguard.bg): BG (primary), EN, DE, RU, UK
@@ -54,20 +54,20 @@ Central map of supported languages per domain to power middleware routing and cl
 - [legacyguard.ua](http://legacyguard.ua): UK (primary), RU, EN, PL, RO
 - [legacyguard.ba](http://legacyguard.ba): BS (primary), HR, SR, EN, DE
 
-### Implementation notes
+## Implementation notes
 
 - Use these sets in Edge middleware for geolocation-based 308 redirects and in client boot for language availability.
 - The first language in each list is the primary fallback for the domain.
 - Keep this doc as the single source of truth for SUPPORTED_LANGS_BY_DOMAIN and PRIMARY_LANG_BY_DOMAIN.
 
-### Success criteria linkage
+## Success criteria linkage
 
 - Each domain exposes 4–5 languages in the language switcher.
 - Primary language is defaulted when browser language is unsupported.
 
-### Review
+## Review
 
-### Related
+## Related
 
 - [ADR 002 — Detekcia jurisdikcie podľa domény a jazyka](ADR%20002%20%E2%80%94%20Detekcia%20jurisdikcie%20pod%C4%BEa%20dom%C3%A9ny%20a%20jazy%20a59a0bffb8344edfb9415af72295f031.md)
 - Last Reviewed:

@@ -4,17 +4,17 @@ Docs: ARCH 02 — Architektúra: Multi‑domain, Multi‑jurisdiction, Multi‑l
 Goal: Globálny kontext v Reacte poskytujúci currentDomain, currentJurisdiction a currentLanguage pre celú aplikáciu.
 Status: Idea
 
-### Cieľ
+## Cieľ
 
 Poskytovať jednotný zdroj pravdy pre lokalizačné a právne kontexty v UI.
 
-### Scope
+## Scope
 
 - React Context + hook useLocalization
 - Persistencia a prepinanie používateľom
 - Bez biznis logiky (len stav a distribúcia)
 
-### Akceptačné kritériá
+## Akceptačné kritériá
 
 - Komponenty neobsahujú hard‑coded texty ani jurisdikčnú logiku
 - Zmena jazyka/jurisdikcie sa prejaví v UI aj validáciách bez reloadu

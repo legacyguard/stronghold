@@ -1,0 +1,71 @@
+{
+  "jurisdictions": {
+    "SK": "[EN] Slovakia",
+    "CZ": "[EN] Czech Republic",
+    "AT": "[EN] Austria",
+    "DE": "[EN] Germany",
+    "PL": "[EN] Poland",
+    "EU": "[EN] European Union",
+    "US": "[EN] United States",
+    "CA": "[EN] Canada",
+    "UK": "[EN] United Kingdom"
+  },
+  "documents": {
+    "will": "[EN] Last Will and Testament",
+    "powerOfAttorney": "[EN] Power of Attorney",
+    "livingWill": "[EN] Living Will",
+    "trust": "[EN] Trust Agreement",
+    "guardianship": "[EN] Guardianship Designation"
+  },
+  "legalTerms": {
+    "testator": "[EN] Testator",
+    "beneficiary": "[EN] Beneficiary",
+    "executor": "[EN] Executor",
+    "guardian": "[EN] Guardian",
+    "trustee": "[EN] Trustee",
+    "heir": "[EN] Heir",
+    "estate": "[EN] Estate",
+    "probate": "[EN] Probate",
+    "intestate": "[EN] Intestate",
+    "codicil": "[EN] Codicil"
+  },
+  "requirements": {
+    "witnessRequired": "[EN] Witness signature required",
+    "notarizationRequired": "[EN] Notarization required",
+    "ageRequirement": "[EN] Must be {{age}} years or older",
+    "mentalCapacity": "[EN] Must be of sound mind",
+    "writtenForm": "[EN] Must be in written form",
+    "signature": "[EN] Must be personally signed"
+  },
+  "compliance": {
+    "title": "[EN] Legal Compliance Information",
+    "subtitle": "[EN] Important jurisdictional requirements",
+    "warning": "[EN] This document is provided for informational purposes only",
+    "disclaimer": "[EN] Consult with a qualified attorney for legal advice",
+    "lastUpdated": "[EN] Last updated: {{date}}",
+    "jurisdiction": "[EN] Jurisdiction: {{jurisdiction}}"
+  },
+  "validation": {
+    "invalidWitness": "[EN] Invalid witness information",
+    "missingSignature": "[EN] Signature is required",
+    "incompleteBeneficiary": "[EN] Beneficiary information incomplete",
+    "invalidDate": "[EN] Date does not meet legal requirements",
+    "duplicateExecutor": "[EN] Executor cannot also be primary beneficiary"
+  },
+  "statuses": {
+    "draft": "[EN] Draft",
+    "review": "[EN] Under Review",
+    "valid": "[EN] Legally Valid",
+    "expired": "[EN] Expired",
+    "revoked": "[EN] Revoked",
+    "superseded": "[EN] Superseded"
+  },
+  "actions": {
+    "validate": "[EN] Validate Document",
+    "review": "[EN] Legal Review",
+    "finalize": "[EN] Finalize Document",
+    "revoke": "[EN] Revoke Document",
+    "amend": "[EN] Create Amendment",
+    "archive": "[EN] Archive Document"
+  }
+}

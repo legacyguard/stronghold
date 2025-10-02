@@ -4,17 +4,17 @@ Docs: ARCH 02 — Architektúra: Multi‑domain, Multi‑jurisdiction, Multi‑l
 Goal: Štruktúrovaný adresár /content s konvenciami, schémami a CI validáciou.
 Status: Idea
 
-### Cieľ
+## Cieľ
 
 Udržiavať obsah mimo kódu s jasnými konvenciami a automatickou kontrolou kvality.
 
-### Scope
+## Scope
 
 - Štruktúra /content/jurisdictions a /content/locales
 - JSON schémy, TS typy, lint a CI kontroly
 - Guidelines pre templaty a verzovanie obsahu
 
-### Akceptačné kritériá
+## Akceptačné kritériá
 
 - CI zlyhá pri nevalidných legal_rules alebo chýbajúcich prekladoch
 - Dokumentované naming konvencie a príklady

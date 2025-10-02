@@ -3,49 +3,49 @@
 
 import { useMemo } from 'react';
 
-// Translation data - just for landing page
+// Translation data - Family Shield Professional Messaging
 const translations = {
   'landing': {
-    // Hero section
-    'hero.greeting': 'Hello, I\'m Sofia, your digital guardian',
-    'hero.headline.line1': 'Secure Your',
-    'hero.headline.line2': 'Family\'s Future',
-    'hero.headline.line3': 'With Confidence',
-    'hero.subtitle': 'Create legally compliant wills across 5 jurisdictions with AI guidance, military-grade security, and the peace of mind that comes with knowing your legacy is protected.',
-    'hero.cta.primary': 'Start Your Will Today',
+    // Hero section - Professional Family Shield messaging
+    'hero.greeting': 'Sofia, Senior Family Protection Advisor',
+    'hero.headline.line1': 'Deploy Your Family Shield',
+    'hero.headline.line2': 'Military-Grade Security',
+    'hero.headline.line3': 'Legal Precision',
+    'hero.subtitle': 'Establish comprehensive succession safeguards across 5 European jurisdictions with sophisticated permissions and graduated access control.',
+    'hero.cta.primary': 'Configure Your Family Shield',
     'hero.cta.secondary': 'See How It Works',
 
-    // Problem Promise section
-    'problemPromise.title': 'From Chaos to Certainty',
-    'problemPromise.subtitle': 'Transform the overwhelming complexity of estate planning into a clear, confident path forward.',
-    'problemPromise.chaos.title': 'The Problem: Estate Planning Chaos',
-    'problemPromise.order.title': 'The Solution: Your Digital Stronghold',
-    'problemPromise.promise.title': 'Our Promise: Guaranteed Peace of Mind',
-    'problemPromise.promise.description': 'We transform your life\'s most important document from a source of stress into a source of strength. Your family\'s future deserves nothing less than absolute certainty.',
+    // Problem Promise section - Family Shield messaging
+    'problemPromise.title': 'From Uncertainty to Systematic Protection',
+    'problemPromise.subtitle': 'Deploy intelligent family protection measures with graduated access and sophisticated permissions.',
+    'problemPromise.chaos.title': 'The Challenge: Fragmented Protection Systems',
+    'problemPromise.order.title': 'The Solution: Your Integrated Family Shield',
+    'problemPromise.promise.title': 'Our Commitment: Operational Excellence',
+    'problemPromise.promise.description': 'Your Family Shield operates with surgical accuracy, providing graduated access levels that ensure appropriate information sharing while maintaining absolute privacy.',
 
-    // How It Works
-    'howItWorks.title': 'How Stronghold Works',
-    'howItWorks.subtitle': 'Three simple steps to securing your family\'s future with confidence and legal compliance.',
-    'howItWorks.steps.organize.title': 'Organize',
-    'howItWorks.steps.organize.description': 'Sofia guides you through gathering information with intelligent questions that adapt to your situation. No legal jargon, just clear guidance.',
-    'howItWorks.steps.protect.title': 'Protect',
-    'howItWorks.steps.protect.description': 'Your data is secured with military-grade encryption. Every document is protected by multiple layers of security and verified for legal compliance.',
-    'howItWorks.steps.define.title': 'Define',
-    'howItWorks.steps.define.description': 'Get your legally compliant will with a unique Trust Seal. Your document is ready for execution with confidence in its validity.',
+    // How It Works - Professional Family Shield process
+    'howItWorks.title': 'How Your Family Shield Operates',
+    'howItWorks.subtitle': 'Three strategic phases to establish comprehensive family protection with military-grade security.',
+    'howItWorks.steps.organize.title': 'Configure',
+    'howItWorks.steps.organize.description': 'Sofia conducts systematic assessment of your family protection requirements with precision-engineered workflows. Professional guidance without complexity.',
+    'howItWorks.steps.protect.title': 'Secure',
+    'howItWorks.steps.protect.description': 'Your Family Shield deploys multi-layered security protocols with end-to-end encryption. Every component operates under strict compliance standards.',
+    'howItWorks.steps.define.title': 'Activate',
+    'howItWorks.steps.define.description': 'Your Family Shield stands vigilant with graduated access permissions. The system monitors discretely and activates precisely when needed.',
 
-    // Values
-    'values.title': 'Our Core Values',
-    'values.subtitle': 'The principles that guide every decision in protecting your family\'s future.',
-    'values.empathy.title': 'Deep Empathy',
-    'values.empathy.description': 'We understand that creating a will is one of life\'s most emotionally challenging tasks. Sofia provides gentle, compassionate guidance every step of the way.',
-    'values.security.title': 'Uncompromising Security',
-    'values.security.description': 'Your most sensitive information deserves the highest protection. We use military-grade encryption and comply with international security standards.',
-    'values.automation.title': 'Intelligent Automation',
-    'values.automation.description': 'Complex legal processes become simple through AI guidance. We handle the complexity so you can focus on what matters most.',
-    'values.legacy.title': 'Living Legacy',
-    'values.legacy.description': 'Your will becomes more than a document—it\'s a living testament to your values and love for your family, protected for generations.',
-    'values.unity.title': 'United in Purpose',
-    'values.unity.description': 'These values work together to create something greater than the sum of their parts: absolute confidence in your family\'s protected future.',
+    // Values - Family Shield principles
+    'values.title': 'Core Operating Principles',
+    'values.subtitle': 'Strategic foundations that govern every aspect of your Family Shield deployment.',
+    'values.empathy.title': 'Professional Competence',
+    'values.empathy.description': 'Your family protection requires expertise, not sympathy. Sofia delivers authoritative guidance with the precision your legacy demands.',
+    'values.security.title': 'Operational Security',
+    'values.security.description': 'Your Family Shield operates under military-grade protocols with end-to-end encryption and international compliance standards. Security is not optional.',
+    'values.automation.title': 'Systematic Intelligence',
+    'values.automation.description': 'Complex succession planning becomes manageable through precision-engineered workflows. Sophisticated automation handles complexity while maintaining control.',
+    'values.legacy.title': 'Legacy Continuity',
+    'values.legacy.description': 'Your Family Shield ensures seamless transfer of wisdom and resources. Protection that operates across generations with unwavering reliability.',
+    'values.unity.title': 'Strategic Integration',
+    'values.unity.description': 'Every component operates in perfect coordination to create comprehensive family protection. The whole system exceeds the sum of its parts.',
 
     // Social Proof
     'socialProof.title': 'Trusted by Families, Verified by Experts',
@@ -61,35 +61,35 @@ const translations = {
     'socialProof.partners.legal': 'Legal Expert',
     'socialProof.security.title': 'Security & Compliance Certifications',
 
-    // Final CTA
-    'finalCTA.sofia.message': 'Your journey to peace of mind starts with a single step. I\'ll be with you every step of the way.',
-    'finalCTA.sofia.title': 'Your Digital Guardian',
-    'finalCTA.headline.line1': 'Ready to protect',
-    'finalCTA.headline.line2': 'your family\'s future?',
-    'finalCTA.subtitle': 'Join thousands of families who have found peace of mind through Stronghold. Your legacy deserves protection. Your family deserves certainty.',
-    'finalCTA.buttons.primary': 'Create Your Will Now',
-    'finalCTA.buttons.secondary': 'Verify Trust Seal',
-    'finalCTA.trust.secure': 'Bank-level Security',
-    'finalCTA.trust.private': '100% Private',
-    'finalCTA.trust.trusted': 'Legally Verified',
-    'finalCTA.trust.instant': 'Instant Access',
-    'finalCTA.peace.message': 'Sleep peacefully tonight knowing your family\'s future is secure. Wake up tomorrow knowing you\'ve given them the greatest gift: certainty in uncertain times.',
+    // Final CTA - Executive Family Shield decision
+    'finalCTA.sofia.message': 'Your family\'s protection requires precision, not perfection. Let\'s deploy your Family Shield with the expertise your legacy deserves.',
+    'finalCTA.sofia.title': 'Senior Family Protection Advisor',
+    'finalCTA.headline.line1': 'Your Family Shield',
+    'finalCTA.headline.line2': 'Awaits Activation',
+    'finalCTA.subtitle': 'Deploy comprehensive protection with military-grade security and legal precision. Your thoughtful preparation is a gift of peace of mind.',
+    'finalCTA.buttons.primary': 'Configure Family Shield Now',
+    'finalCTA.buttons.secondary': 'Verify Existing Setup',
+    'finalCTA.trust.secure': 'Military-Grade Security',
+    'finalCTA.trust.private': 'Privacy First',
+    'finalCTA.trust.trusted': 'Legal Precision',
+    'finalCTA.trust.instant': 'Instant Activation',
+    'finalCTA.peace.message': 'Your Family Shield monitors discretely and activates precisely when needed. Each guardian receives exactly what they need to help, when they need it.',
     'finalCTA.scrollDown': 'Continue to Footer',
 
-    // Navigation
-    'nav.howItWorks': 'How It Works',
-    'nav.values': 'Our Values',
+    // Navigation - Family Shield
+    'nav.howItWorks': 'Shield Operations',
+    'nav.values': 'Core Principles',
     'nav.security': 'Security',
-    'nav.login': 'Log In',
-    'nav.getStarted': 'Get Started',
+    'nav.login': 'Access Control',
+    'nav.getStarted': 'Deploy Shield',
 
-    // Footer
-    'footer.description': 'Secure will generation platform trusted by families across Europe. Military-grade security meets compassionate guidance.',
-    'footer.product.title': 'Product',
-    'footer.product.howItWorks': 'How It Works',
-    'footer.product.security': 'Security',
-    'footer.product.trustSeal': 'Trust Seal Verification',
-    'footer.product.getStarted': 'Get Started',
+    // Footer - Family Shield messaging
+    'footer.description': 'Comprehensive Family Shield platform trusted by families across Europe. Military-grade security meets professional competence.',
+    'footer.product.title': 'Family Shield',
+    'footer.product.howItWorks': 'Shield Operations',
+    'footer.product.security': 'Security Protocols',
+    'footer.product.trustSeal': 'System Verification',
+    'footer.product.getStarted': 'Deploy Shield',
     'footer.legal.title': 'Legal',
     'footer.legal.privacy': 'Privacy Policy',
     'footer.legal.terms': 'Terms of Service',
@@ -117,22 +117,22 @@ export function useTranslation(namespace: string = 'landing') {
       if (options?.returnObjects) {
         if (key === 'problemPromise.chaos.problems') {
           return [
-            "Complex legal requirements across jurisdictions",
-            "Expensive lawyer consultations and lengthy processes",
-            "Fear of making costly mistakes with family assets",
-            "Overwhelming paperwork and confusing terminology",
-            "Uncertainty about legal validity and compliance",
-            "Procrastination due to emotional difficulty"
+            "Fragmented protection systems across jurisdictions",
+            "Inefficient access control and permission management",
+            "Operational security gaps in succession planning",
+            "Complex legal compliance requirements and validation",
+            "Inadequate monitoring and emergency response protocols",
+            "Delayed deployment due to systematic uncertainty"
           ];
         }
         if (key === 'problemPromise.order.solutions') {
           return [
-            "AI-guided process with Sofia's expert assistance",
-            "Legally compliant templates for SK, CZ, AT, DE, PL",
-            "Military-grade encryption protects your sensitive data",
-            "Step-by-step wizard makes complex decisions simple",
-            "Instant validation ensures legal compliance",
-            "Trust Seal verification provides lasting confidence"
+            "Integrated Family Shield with Sofia's strategic guidance",
+            "Multi-jurisdiction compliance templates (SK, CZ, AT, DE, PL)",
+            "End-to-end encryption with graduated access control",
+            "Precision-engineered workflows simplify complex decisions",
+            "Real-time validation ensures operational compliance",
+            "System verification provides continuous operational confidence"
           ];
         }
       }

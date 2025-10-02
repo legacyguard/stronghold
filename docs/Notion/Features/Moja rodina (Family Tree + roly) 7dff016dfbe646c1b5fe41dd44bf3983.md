@@ -3,7 +3,7 @@
 Goal: Centrálna správa osôb s interaktívnym rodokmeňom a rolami
 Status: Idea
 
-### Popis
+## Popis
 
 Interaktívny rodokmeň, priraďovanie rolí (heir, guardian, executor, emergency contact), vizuálna detekcia konfliktov.
 

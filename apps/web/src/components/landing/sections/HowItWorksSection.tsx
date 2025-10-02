@@ -18,6 +18,18 @@ export function HowItWorksSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
+  // Auto-advance steps
+  useEffect(() => {
+    if (!isVisible) return;
+    
+    const timer = setTimeout(() => {
+      const nextStep = (activeStep + 1) % 4; // Assuming 4 steps
+      setActiveStep(nextStep);
+    }, 5000);
+    
+    return () => clearTimeout(timer);
+  }, [isVisible, activeStep]);
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -271,16 +283,6 @@ export function HowItWorksSection() {
           </div>
         </div>
       </div>
-
-      {/* Auto-advance steps */}
-      {isVisible && (
-        <div className="hidden">
-          {setTimeout(() => {
-            const nextStep = (activeStep + 1) % steps.length;
-            scrollToStep(nextStep);
-          }, 5000)}
-        </div>
-      )}
 
       {/* Custom animations */}
       <style jsx>{`

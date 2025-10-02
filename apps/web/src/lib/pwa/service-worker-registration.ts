@@ -160,6 +160,11 @@ class ServiceWorkerManager {
           resolve(event.data.success);
         };
 
+        if (!navigator.serviceWorker.controller) {
+          resolve(false);
+          return;
+        }
+
         navigator.serviceWorker.controller.postMessage(
           {
             type: 'CACHE_DOCUMENT',
@@ -188,6 +193,11 @@ class ServiceWorkerManager {
           resolve(event.data.status || {});
         };
 
+        if (!navigator.serviceWorker.controller) {
+          resolve({ isOfflineReady: false, caches: [], totalSize: 0 });
+          return;
+        }
+
         navigator.serviceWorker.controller.postMessage(
           { type: 'GET_CACHE_STATUS' },
           [messageChannel.port2]
@@ -207,7 +217,7 @@ class ServiceWorkerManager {
     }
 
     try {
-      await this.registration.sync.register(tag);
+      await (this.registration as any).sync.register(tag);
       console.log(`Background sync registered: ${tag}`);
       return true;
     } catch (error) {

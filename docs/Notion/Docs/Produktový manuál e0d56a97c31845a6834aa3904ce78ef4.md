@@ -4,7 +4,7 @@ Area: Product
 Status: Final
 Type: Spec
 
-### Produktový manuál — kapitoly (zoradené podľa čísla)
+## Produktový manuál — kapitoly (zoradené podľa čísla)
 
 1. [Kapitola 1: Produktová Vízia a Filozofia](Kapitola%201%20Produktov%C3%A1%20V%C3%ADzia%20a%20Filozofia%20eccce1561f1342ad9a6a4b3613c43783.md)
 2. [Kapitola 2: Používateľská Cesta a Kľúčové Zážitky](Kapitola%202%20Pou%C5%BE%C3%ADvate%C4%BEsk%C3%A1%20Cesta%20a%20K%C4%BE%C3%BA%C4%8Dov%C3%A9%20Z%C3%A1%C5%BEitky%20d2192c80d7034715b62c53f7f59d1608.md)

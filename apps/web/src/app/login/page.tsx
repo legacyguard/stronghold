@@ -1,15 +1,15 @@
 "use client";
-import { useState } from "react";
+import { useState, Suspense } from "react";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Shield } from "lucide-react";
-import { useNamespace } from "@/contexts/LocalizationContext";
+import { useTranslation } from 'react-i18next';
 const Toast = dynamic(() => import("../Toast"), { ssr: false });
 import { supabase } from "@/lib/supabase";
 
-export default function LoginPage() {
-  const { t } = useNamespace('auth');
+function LoginPageContent() {
+  const { t } = useTranslation('common');
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -213,4 +213,31 @@ export default function LoginPage() {
   );
 }
 
+function LoadingFallback() {
+  return (
+    <div className="min-h-screen flex items-center justify-center p-lg bg-background">
+      <div className="w-full max-w-md space-y-lg bg-surface rounded-xl shadow-xl p-2xl border border-border/20">
+        <div className="text-center space-y-md">
+          <div className="flex justify-center">
+            <div className="p-md bg-gradient-to-br from-primary to-primary-light rounded-lg shadow-lg">
+              <Shield className="h-8 w-8 text-surface" />
+            </div>
+          </div>
+          <div>
+            <h1 className="text-h2 text-text-dark font-semibold">Načítava sa...</h1>
+            <p className="text-body text-text-light">Príprava prihlásenia...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense fallback={<LoadingFallback />}>
+      <LoginPageContent />
+    </Suspense>
+  );
+}
 

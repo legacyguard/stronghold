@@ -11,7 +11,15 @@ export interface VerificationResult {
   issuedAt?: Date;
   validUntil?: Date;
   warnings?: string[];
-  metadata?: Record<string, unknown>;
+  metadata?: {
+    confidenceScore?: number;
+    documentInfo?: {
+      jurisdiction?: string;
+      documentType?: string;
+      createdAt?: string;
+    };
+    [key: string]: unknown;
+  };
 }
 
 export interface TrustSealCertificate {
@@ -138,11 +146,10 @@ export class TrustSealVerifier {
           confidenceScore: seal.confidence_score,
           validations: seal.validations,
           documentInfo: seal.will_documents ? {
-            title: seal.will_documents.title,
             jurisdiction: seal.will_documents.jurisdiction,
             documentType: seal.will_documents.document_type,
             createdAt: seal.will_documents.created_at
-          } : null
+          } : undefined
         };
       }
 

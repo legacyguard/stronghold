@@ -4,11 +4,11 @@ Area: Backend, Frontend
 Status: Draft
 Type: Dev Guidelines
 
-### Účel
+## Účel
 
 Štandard pre štruktúru frontend projektu a pomenovacie konvencie.
 
-```
+```text
 /src
 ├── /api                  # volania na n8n
 ├── /assets               # obrázky, SVG
@@ -23,6 +23,6 @@ Type: Dev Guidelines
 └── /types                # definície typov
 ```
 
-### Revízia
+## Revízia
 
 - Last Reviewed:

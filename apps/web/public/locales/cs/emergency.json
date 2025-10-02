@@ -1,0 +1,113 @@
+{
+  "dashboard": {
+    "title": "[CS] Emergency Activation System",
+    "subtitle": "[CS] Dead man's switch and emergency notification system",
+    "systemStatus": "[CS] System Status",
+    "activate": "[CS] Activate",
+    "deactivate": "[CS] Deactivate",
+    "updating": "[CS] Updating...",
+    "stats": {
+      "emergencyContacts": "[CS] Emergency Contacts",
+      "activeTriggers": "[CS] Active Triggers",
+      "pendingActivations": "[CS] Pending Activations",
+      "escalationLevels": "[CS] Escalation Levels"
+    }
+  },
+  "status": {
+    "active": "[CS] Active",
+    "inactive": "[CS] Inactive",
+    "systemActive": "[CS] System is operational and monitoring",
+    "systemInactive": "[CS] System is currently disabled"
+  },
+  "setup": {
+    "title": "[CS] Emergency System Setup Required",
+    "description": "[CS] Your emergency system is not fully configured. Complete these steps to ensure your Family Shield can protect your loved ones.",
+    "steps": {
+      "contacts": "[CS] Add emergency contacts",
+      "triggers": "[CS] Configure activation triggers",
+      "test": "[CS] Test the system"
+    }
+  },
+  "cards": {
+    "contacts": {
+      "title": "[CS] Emergency Contacts",
+      "description": "[CS] Manage the people who will be notified during an emergency",
+      "action": "[CS] Manage Contacts"
+    },
+    "triggers": {
+      "title": "[CS] Activation Triggers",
+      "description": "[CS] Configure when emergency notifications should be sent",
+      "action": "[CS] Configure Triggers"
+    },
+    "settings": {
+      "title": "[CS] System Settings",
+      "description": "[CS] Customize notification preferences and security settings",
+      "action": "[CS] Adjust Settings"
+    },
+    "test": {
+      "title": "[CS] Test System",
+      "description": "[CS] Run a test activation to verify everything works correctly",
+      "action": "[CS] Run Test"
+    },
+    "activity": {
+      "title": "[CS] Activity Log",
+      "description": "[CS] View recent system activity and activation history",
+      "action": "[CS] View History"
+    },
+    "override": {
+      "title": "[CS] Emergency Override",
+      "description": "[CS] Manually trigger emergency notification immediately",
+      "action": "[CS] Manual Trigger"
+    }
+  },
+  "activity": {
+    "title": "[CS] Recent Emergency Activity",
+    "noActivity": "[CS] No emergency activity recorded",
+    "activationType": "[CS] {{type}} activation",
+    "triggeredAt": "[CS] Triggered at {{time}}",
+    "status": {
+      "completed": "[CS] Completed",
+      "cancelled": "[CS] Cancelled",
+      "failed": "[CS] Failed",
+      "pending": "[CS] Pending",
+      "active": "[CS] Active"
+    }
+  },
+  "triggers": {
+    "deadManSwitch": "[CS] Dead Man's Switch",
+    "manualActivation": "[CS] Manual Activation",
+    "familyRequest": "[CS] Family Request",
+    "healthEvent": "[CS] Health Event",
+    "travelEmergency": "[CS] Travel Emergency",
+    "securityBreach": "[CS] Security Breach"
+  },
+  "notifications": {
+    "systemActivated": "[CS] Emergency system activated successfully",
+    "systemDeactivated": "[CS] Emergency system deactivated",
+    "testCompleted": "[CS] Emergency system test completed successfully",
+    "testFailed": "[CS] Emergency system test failed",
+    "contactAdded": "[CS] Emergency contact added",
+    "triggerConfigured": "[CS] Emergency trigger configured",
+    "manualTriggerSent": "[CS] Manual emergency notification sent"
+  },
+  "errors": {
+    "systemError": "[CS] Emergency system error",
+    "activationFailed": "[CS] Failed to activate emergency system",
+    "deactivationFailed": "[CS] Failed to deactivate emergency system",
+    "testFailed": "[CS] Emergency system test failed",
+    "noContacts": "[CS] No emergency contacts configured",
+    "invalidTrigger": "[CS] Invalid trigger configuration"
+  },
+  "warnings": {
+    "noContacts": "[CS] Warning: No emergency contacts configured",
+    "noTriggers": "[CS] Warning: No activation triggers configured",
+    "testOverdue": "[CS] Warning: System test is overdue",
+    "systemInactive": "[CS] Warning: Emergency system is currently inactive"
+  },
+  "protocols": {
+    "immediate": "[CS] Immediate Notification",
+    "escalated": "[CS] Escalated Response",
+    "delayed": "[CS] Delayed Activation",
+    "conditional": "[CS] Conditional Trigger"
+  }
+}

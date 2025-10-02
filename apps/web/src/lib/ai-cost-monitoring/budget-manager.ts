@@ -329,12 +329,13 @@ export class AIBudgetManager {
       const { data: activeUsers } = await supabase
         .from('ai_usage_tracking')
         .select('user_id')
-        .gte('created_at', new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString())
-        .group('user_id');
+        .gte('created_at', new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString());
 
       if (activeUsers) {
-        for (const user of activeUsers) {
-          await this.sendBudgetAlert(user.user_id, 'daily_reset', 0, this.DAILY_LIMIT);
+        // Get unique user IDs
+        const uniqueUserIds = [...new Set(activeUsers.map(u => u.user_id))];
+        for (const userId of uniqueUserIds) {
+          await this.sendBudgetAlert(userId, 'daily_reset', 0, this.DAILY_LIMIT);
         }
       }
 

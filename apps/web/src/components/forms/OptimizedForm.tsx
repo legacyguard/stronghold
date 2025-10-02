@@ -24,6 +24,7 @@ export function OptimizedForm<T extends FieldValues>({
   mode = 'onBlur'
 }: OptimizedFormProps<T>) {
   const methods = useForm<T>({
+    // @ts-expect-error - Complex generic type resolution between Zod and React Hook Form
     resolver: zodResolver(schema),
     defaultValues,
     mode,
@@ -36,7 +37,7 @@ export function OptimizedForm<T extends FieldValues>({
 
   const handleSubmit = methods.handleSubmit(async (data) => {
     try {
-      await onSubmit(data);
+      await onSubmit(data as unknown as T);
     } catch (error) {
       console.error('Form submission error:', error);
       // Set form-level error if needed

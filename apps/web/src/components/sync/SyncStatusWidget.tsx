@@ -9,7 +9,6 @@ import { Progress } from "@/components/ui/progress";
 import {
   Wifi,
   WifiOff,
-  Sync,
   Check,
   AlertTriangle,
   Clock,
@@ -171,7 +170,7 @@ export function SyncStatusWidget({ userId, className, compact = false }: SyncSta
             onClick={handleManualSync}
             disabled={syncStatus.syncInProgress || !syncStatus.isOnline}
           >
-            <Sync className="h-3 w-3 mr-1" />
+            <RefreshCw className="h-3 w-3 mr-1" />
             Sync
           </Button>
         </CardTitle>
@@ -241,7 +240,7 @@ export function SyncStatusWidget({ userId, className, compact = false }: SyncSta
             <AlertDescription>
               <div className="font-medium mb-1">Working Offline</div>
               <div className="text-sm">
-                Your changes are being saved locally and will sync when you're back online.
+                Your changes are being saved locally and will sync when you&apos;re back online.
               </div>
             </AlertDescription>
           </Alert>

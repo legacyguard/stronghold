@@ -121,7 +121,10 @@ export class ErrorRecoveryManager {
         'RECOVERY_FAILED',
         false,
         'Systém nie je momentálne dostupný. Kontaktujte podporu.',
-        { originalError: originalError.message, recoveryError: recoveryError.message }
+        { 
+          originalError: originalError.message, 
+          recoveryError: recoveryError instanceof Error ? recoveryError.message : String(recoveryError)
+        }
       );
     }
   }

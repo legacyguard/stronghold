@@ -5,21 +5,21 @@ Related Feature: WillGeneratorWizard (../Features%2065472ecceccf486fa4e2b758eb9d
 Status: Draft
 Type: Spec
 
-### Účel
+## Účel
 
 Špecifikácia kontraktov, stavov a interakcií WillGeneratorWizard bez pevne zakódovaných textov.
 
-### API
+## API
 
 - legal_rules.json: štruktúra a povinné polia
 - validation_rules.ts: signatúry validačných funkcií
 - i18n kľúče a namespaces
 
-### Stavy
+## Stavy
 
 - Načítavanie, chyba, pripravené
 - Validácia vstupov s okamžitou odozvou
 
-### Telemetria
+## Telemetria
 
 - Metriky úspešnosti krokov a chýb

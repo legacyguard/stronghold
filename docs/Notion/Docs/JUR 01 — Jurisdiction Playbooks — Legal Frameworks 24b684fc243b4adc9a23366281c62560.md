@@ -5,7 +5,7 @@ Related Feature: Content Repository (../Features%2065472ecceccf486fa4e2b758eb9d3
 Status: Draft
 Type: Spec
 
-# COMPLETE LEGAL FRAMEWORKS FOR ALL 40 COUNTRIES
+## COMPLETE LEGAL FRAMEWORKS FOR ALL 40 COUNTRIES
 
 ## TIER 1 MARKETS
 

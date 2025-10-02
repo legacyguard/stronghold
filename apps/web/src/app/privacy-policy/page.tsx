@@ -151,7 +151,7 @@ export default function PrivacyPolicyPage() {
           <section className="mb-xl">
             <h2 className="text-2xl font-bold text-text-dark mb-md">4. GDPR Rights (EU Users)</h2>
             <p className="text-gray-700 leading-relaxed mb-md">
-              If you're located in the European Union, you have the following rights:
+              If you&apos;re located in the European Union, you have the following rights:
             </p>
 
             <div className="space-y-md">
@@ -247,7 +247,7 @@ export default function PrivacyPolicyPage() {
             </ul>
             <p className="text-gray-700 leading-relaxed">
               You can manage cookie preferences in your browser settings.
-              Essential cookies cannot be disabled as they're required for platform functionality.
+              Essential cookies cannot be disabled as they&apos;re required for platform functionality.
             </p>
           </section>
 
@@ -284,7 +284,7 @@ export default function PrivacyPolicyPage() {
             <p className="text-gray-700 leading-relaxed">
               We may update this Privacy Policy to reflect changes in our practices or legal requirements.
               We will notify you of any material changes via email or through our platform.
-              The "Last updated" date at the top indicates when this policy was last modified.
+              The &quot;Last updated&quot; date at the top indicates when this policy was last modified.
             </p>
           </section>
 

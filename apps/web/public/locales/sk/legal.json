@@ -1,0 +1,71 @@
+{
+  "jurisdictions": {
+    "SK": "Slovakia",
+    "CZ": "Czech Republic", 
+    "AT": "Austria",
+    "DE": "Germany",
+    "PL": "Poland",
+    "EU": "European Union",
+    "US": "United States",
+    "CA": "Canada",
+    "UK": "United Kingdom"
+  },
+  "documents": {
+    "will": "Last Will and Testament",
+    "powerOfAttorney": "Power of Attorney",
+    "livingWill": "Living Will",
+    "trust": "Trust Agreement",
+    "guardianship": "Guardianship Designation"
+  },
+  "legalTerms": {
+    "testator": "Testator",
+    "beneficiary": "Beneficiary",
+    "executor": "Executor",
+    "guardian": "Guardian",
+    "trustee": "Trustee",
+    "heir": "Heir",
+    "estate": "Estate",
+    "probate": "Probate",
+    "intestate": "Intestate",
+    "codicil": "Codicil"
+  },
+  "requirements": {
+    "witnessRequired": "Witness signature required",
+    "notarizationRequired": "Notarization required",
+    "ageRequirement": "Must be {{age}} years or older",
+    "mentalCapacity": "Must be of sound mind",
+    "writtenForm": "Must be in written form",
+    "signature": "Must be personally signed"
+  },
+  "compliance": {
+    "title": "Legal Compliance Information",
+    "subtitle": "Important jurisdictional requirements",
+    "warning": "This document is provided for informational purposes only",
+    "disclaimer": "Consult with a qualified attorney for legal advice",
+    "lastUpdated": "Last updated: {{date}}",
+    "jurisdiction": "Jurisdiction: {{jurisdiction}}"
+  },
+  "validation": {
+    "invalidWitness": "Invalid witness information",
+    "missingSignature": "Signature is required",
+    "incompleteBeneficiary": "Beneficiary information incomplete",
+    "invalidDate": "Date does not meet legal requirements",
+    "duplicateExecutor": "Executor cannot also be primary beneficiary"
+  },
+  "statuses": {
+    "draft": "Draft",
+    "review": "Under Review",
+    "valid": "Legally Valid",
+    "expired": "Expired",
+    "revoked": "Revoked",
+    "superseded": "Superseded"
+  },
+  "actions": {
+    "validate": "Validate Document",
+    "review": "Legal Review",
+    "finalize": "Finalize Document",
+    "revoke": "Revoke Document",
+    "amend": "Create Amendment",
+    "archive": "Archive Document"
+  }
+}

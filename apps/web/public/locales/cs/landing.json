@@ -17,7 +17,13 @@
     "cta": {
       "primary": "Začít závěť dnes",
       "secondary": "Podívat jak funguje"
-    }
+    },
+    "title": "Nasaďte Váš Rodinný Štít s",
+    "titleHighlight": "Vojenskou Bezpečnosťou",
+    "titleSuffix": "a Právní Precizností",
+    "ctaPrimary": "Nasadit Rodinný Štít",
+    "ctaSecondary": "Zobrazit Architekturu Bezpečnosti",
+    "tagline": "[CS] KOMPLEXNÝ SYSTÉM OCHRANY RODINY"
   },
   "problemPromise": {
     "title": "Od chaosu k jistotě",
@@ -170,5 +176,84 @@
       "operational": "Všechny systémy funkční",
       "secure": "Zabezpečené připojení"
     }
+  },
+  "features": {
+    "title": "Strategická Architektura Ochrany",
+    "subtitle": "Vojenská bezpečnost se setkává s právní precizností v naší komplexní platformě ochrany rodiny",
+    "wills": {
+      "title": "Generátor Závětí",
+      "description": "AI-powered tvorba právních dokumentů s multi-jurisdikční shodou a automatickými aktualizacemi"
+    },
+    "emergency": {
+      "title": "Nouzový Protokol Reakce",
+      "description": "Dead man's switch systém s inteligentní eskalací a automatickými rodinnými notifikacemi"
+    },
+    "family": {
+      "title": "Síť Rodinného Štítu",
+      "description": "Bezpečná kolaborativní platforma spojující rodinné členy, poradce a důvěryhodné opatrovníky"
+    },
+    "vault": {
+      "title": "Digitální Trezor Aktiv",
+      "description": "Bankovní šifrování pro citlivé dokumenty, přihlašovací údaje a správu digitálního dědictví"
+    },
+    "guidance": {
+      "title": "Strategické Právní Vedení",
+      "description": "AI-powered poradní systém poskytující jurisdikčně specifická doporučení a sledování souladu"
+    },
+    "monitoring": {
+      "title": "Kontinuální Monitorování",
+      "description": "Real-time detekce hrozeb a automatické bezpečnostní aktualizace na ochranu digitálních aktiv vaší rodiny"
+    }
+  },
+  "security": {
+    "title": "Podniková Bezpečnost",
+    "subtitle": "Ochrana vaší rodiny vyžaduje nejvyšší bezpečnostní standardy",
+    "encryption": {
+      "title": "Vojenské Šifrování",
+      "description": "AES-256 šifrování s end-to-end bezpečnostními protokoly"
+    },
+    "compliance": {
+      "title": "Multi-jurisdikční Soulad",
+      "description": "Právní rámce ověřené napříč EU a mezinárodními jurisdikcemi"
+    },
+    "audit": {
+      "title": "Kontinuální Bezpečnostní Auditování",
+      "description": "Real-time monitorování a automatizované systémy detekce hrozeb"
+    },
+    "backup": {
+      "title": "Redundantní Záložní Systémy",
+      "description": "Geografické rozložení s 99,99% zárukou dostupnosti"
+    }
+  },
+  "testimonials": {
+    "title": "Důvěryhodní pro Strategické Lídry",
+    "subtitle": "Podívejte se, jak profesionálové zabezpečují budoucnost své rodiny",
+    "cta": "Připojit se ke Strategickým Lídrům"
+  },
+  "cta": {
+    "title": "Nasaďte Váš Rodinný Štít Dnes",
+    "subtitle": "Připojte se k tisícům strategických lídrů, kteří svěřují budoucnost své rodiny naší platformě",
+    "button": "Začít Nasazení",
+    "guarantee": "30denní strategické hodnotící období"
+  },
+  "navigation": {
+    "features": "Strategické Funkce",
+    "security": "Bezpečnostní Protokol",
+    "pricing": "Investiční Plány",
+    "resources": "Strategické Zdroje",
+    "contact": "Velitelství Mise"
+  },
+  "trust": {
+    "title": "Institucionální Indikátory Důvěry",
+    "bankGrade": "Bankovní Bezpečnost",
+    "compliance": "Multi-jurisdikční Soulad",
+    "uptime": "99,99% Uptime SLA",
+    "support": "24/7 Strategická Podpora"
+  },
+  "stats": {
+    "families": "{{count}}+ Chráněných Rodin",
+    "documents": "{{count}}+ Zabezpečených Právních Dokumentů",
+    "countries": "{{count}}+ Podporovaných Zemí",
+    "uptime": "{{percent}}% Dosažené Dostupnosti"
   }
 }

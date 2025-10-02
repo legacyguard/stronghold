@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import LayoutWrapper from "./LayoutWrapper";
-// Temporarily disabled i18n to fix createContext issue
-// import "@/lib/i18n"; // Initialize i18next
+// i18next initialized in I18nProvider (client-side only)
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

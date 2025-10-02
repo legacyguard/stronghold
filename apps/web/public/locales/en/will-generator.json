@@ -1,0 +1,95 @@
+{
+  "wizard": {
+    "title": "[EN] Will Generation Assistant",
+    "subtitle": "[EN] Create legally compliant will documents with AI guidance",
+    "progress": "[EN] Step {{current}} of {{total}}",
+    "continue": "[EN] Continue",
+    "back": "[EN] Previous",
+    "save": "[EN] Save Progress",
+    "generate": "[EN] Generate Will"
+  },
+  "steps": {
+    "personal": {
+      "title": "[EN] Personal Information",
+      "subtitle": "[EN] Basic details for will generation",
+      "fullName": "[EN] Full Legal Name",
+      "birthDate": "[EN] Date of Birth",
+      "birthPlace": "[EN] Place of Birth",
+      "address": "[EN] Current Address",
+      "nationality": "[EN] Nationality",
+      "maritalStatus": "[EN] Marital Status"
+    },
+    "beneficiaries": {
+      "title": "[EN] Beneficiaries",
+      "subtitle": "[EN] Define who will inherit your assets",
+      "addBeneficiary": "[EN] Add Beneficiary",
+      "name": "[EN] Beneficiary Name",
+      "relationship": "[EN] Relationship",
+      "share": "[EN] Inheritance Share",
+      "conditions": "[EN] Special Conditions"
+    },
+    "assets": {
+      "title": "[EN] Assets & Property",
+      "subtitle": "[EN] Document your estate for distribution",
+      "addAsset": "[EN] Add Asset",
+      "type": "[EN] Asset Type",
+      "description": "[EN] Description",
+      "value": "[EN] Estimated Value",
+      "location": "[EN] Location"
+    },
+    "executor": {
+      "title": "[EN] Executor Selection",
+      "subtitle": "[EN] Choose who will execute your will",
+      "primaryExecutor": "[EN] Primary Executor",
+      "backupExecutor": "[EN] Backup Executor",
+      "executorName": "[EN] Executor Name",
+      "executorAddress": "[EN] Executor Address",
+      "executorPhone": "[EN] Executor Phone"
+    },
+    "guardian": {
+      "title": "[EN] Guardian Designation",
+      "subtitle": "[EN] Appoint guardians for minor children",
+      "primaryGuardian": "[EN] Primary Guardian",
+      "backupGuardian": "[EN] Backup Guardian",
+      "guardianName": "[EN] Guardian Name",
+      "guardianAddress": "[EN] Guardian Address"
+    },
+    "review": {
+      "title": "[EN] Review & Generate",
+      "subtitle": "[EN] Review your will before generation",
+      "personalInfo": "[EN] Personal Information",
+      "beneficiariesInfo": "[EN] Beneficiaries",
+      "assetsInfo": "[EN] Assets",
+      "executorInfo": "[EN] Executor",
+      "guardianInfo": "[EN] Guardian"
+    }
+  },
+  "validation": {
+    "required": "[EN] This field is required",
+    "invalidDate": "[EN] Invalid date format",
+    "invalidEmail": "[EN] Invalid email address",
+    "invalidPhone": "[EN] Invalid phone number",
+    "minBeneficiaries": "[EN] At least one beneficiary is required",
+    "totalSharesError": "[EN] Total shares must equal 100%"
+  },
+  "assetTypes": {
+    "realEstate": "[EN] Real Estate",
+    "bankAccount": "[EN] Bank Account",
+    "investment": "[EN] Investment Account",
+    "vehicle": "[EN] Vehicle",
+    "jewelry": "[EN] Jewelry",
+    "artwork": "[EN] Artwork",
+    "business": "[EN] Business Interest",
+    "other": "[EN] Other"
+  },
+  "relationships": {
+    "spouse": "[EN] Spouse",
+    "child": "[EN] Child",
+    "parent": "[EN] Parent",
+    "sibling": "[EN] Sibling",
+    "grandchild": "[EN] Grandchild",
+    "friend": "[EN] Friend",
+    "charity": "[EN] Charity",
+    "other": "[EN] Other"
+  }
+}

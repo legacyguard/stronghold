@@ -4,7 +4,7 @@ Area: Backend, Frontend, Product
 Status: Draft
 Type: How-to
 
-### Účel
+## Účel
 
 Praktické recepty na zjednodušenie vývoja UI, správy stavu, formulárov a vývojového cyklu.
 

@@ -1,30 +1,52 @@
 export interface FamilyMember {
   id: string;
-  userId: string;
-  email: string;
-  name: string;
+  family_owner_id: string;
+  member_user_id?: string;
+  member_name: string;
+  member_email: string;
+  member_phone?: string;
   role: FamilyRole;
-  permissions: FamilyPermissions;
-  invitationStatus: 'pending' | 'accepted' | 'declined' | 'expired';
-  invitedAt: Date;
+  access_level: AccessLevel;
+  invitation_status: 'pending' | 'accepted' | 'declined' | 'revoked';
+  invitation_token?: string;
+  token_expires_at?: string;
+  invited_by_user_id?: string;
+  accepted_by_user_id?: string;
+  meta: Record<string, any>;
+  created_at: string;
+  updated_at: string;
+
+  // Tier restrictions (legacy, for backward compatibility)
+  availableInTier?: 'free' | 'paid' | 'family_edition';
+
+  // Legacy compatibility properties
+  userId?: string;
+  email?: string;
+  name?: string;
+  permissions?: FamilyPermissions;
+  invitedAt?: Date;
   acceptedAt?: Date;
-
-  // Tier restrictions
-  availableInTier: 'free' | 'paid' | 'family_edition';
-
-  // Contact information
   phone?: string;
   address?: string;
-  relationship: string; // e.g., "manžel/ka", "syn", "dcéra", "priateľ"
+  relationship?: string;
 }
 
+export type AccessLevel = 'minimal' | 'emergency' | 'health' | 'full';
+
 export type FamilyRole =
-  | 'guardian'           // Opatrovník detí
+  | 'spouse'            // Manžel/manželka
+  | 'child'             // Dieťa
+  | 'parent'            // Rodič
+  | 'sibling'           // Súrodenec
+  | 'guardian'          // Opatrovník detí
   | 'executor'          // Vykonávateľ závetu
+  | 'trustee'           // Správca trustu
+  | 'beneficiary'       // Beneficient
+  | 'advisor'           // Poradca
   | 'heir'              // Dedič
   | 'emergency_contact' // Núdzový kontakt
   | 'witness'           // Svedok
-  | 'advisor';          // Poradca
+  | 'other';            // Ostatné
 
 export interface FamilyPermissions {
   // Document access
@@ -92,41 +114,6 @@ export interface ProtocolAction {
   target: string; // Member ID, document ID, service info
   delay: number; // minutes after trigger
   message?: string;
-}
-
-export interface FamilyCalendarEvent {
-  id: string;
-  title: string;
-  description?: string;
-  type: 'milestone' | 'reminder' | 'meeting' | 'deadline';
-  date: Date;
-  duration?: number; // minutes
-
-  // Participants
-  organizer: string; // User ID
-  attendees: string[]; // User IDs
-
-  // Will-related events
-  relatedDocument?: string; // Document ID
-  relatedMilestone?: string; // Milestone ID
-}
-
-export interface FamilyMilestone {
-  id: string;
-  title: string;
-  description: string;
-  type: 'birthday' | 'anniversary' | 'graduation' | 'inheritance' | 'custom';
-  date: Date;
-
-  // Inheritance milestones
-  beneficiaryId?: string;
-  assetId?: string;
-  conditions?: string[];
-
-  // Completion tracking
-  completed: boolean;
-  completedAt?: Date;
-  completedBy?: string;
 }
 
 // Utility functions for role-based permissions
@@ -199,6 +186,49 @@ export function getDefaultPermissions(role: FamilyRole): FamilyPermissions {
   }
 }
 
+// Family Calendar Event types
+export interface FamilyCalendarEvent {
+  id: string;
+  family_owner_id: string;
+  title: string;
+  description?: string;
+  event_type: 'general' | 'milestone' | 'reminder' | 'meeting' | 'deadline';
+  start_at: string;
+  end_at?: string;
+  organizer_user_id?: string;
+  attendee_member_ids: string[];
+  related_document_id?: string;
+  related_milestone_id?: string;
+  created_at: string;
+  updated_at: string;
+}
+
+// Family Milestone types
+export interface FamilyMilestone {
+  id: string;
+  family_owner_id: string;
+  title: string;
+  description?: string;
+  milestone_type: 'general' | 'birthday' | 'anniversary' | 'graduation' | 'inheritance' | 'custom';
+  due_at?: string;
+  beneficiary_member_id?: string;
+  status: 'planned' | 'done' | 'skipped';
+  completed_at?: string;
+  completed_by?: string;
+  created_at: string;
+  updated_at: string;
+}
+
+// Request types for API calls
+export interface FamilyInvitationRequest {
+  memberName: string;
+  memberEmail: string;
+  memberPhone?: string;
+  role: FamilyRole;
+  accessLevel: AccessLevel;
+  meta?: Record<string, any>;
+}
+
 export function getTierLimits(userTier: 'free' | 'paid' | 'family_edition'): {
   maxMembers: number;
   maxGuardians: number;
@@ -245,7 +275,7 @@ export function canInviteMember(
 }
 
 export function getRoleDisplayName(role: FamilyRole, locale: string = 'sk'): string {
-  const names: Record<FamilyRole, Record<string, string>> = {
+  const names: Partial<Record<FamilyRole, Record<string, string>>> = {
     guardian: { sk: 'Opatrovník', en: 'Guardian', cs: 'Opatrovník' },
     executor: { sk: 'Vykonávateľ', en: 'Executor', cs: 'Vykonavatel' },
     heir: { sk: 'Dedič', en: 'Heir', cs: 'Dědic' },
@@ -254,11 +284,11 @@ export function getRoleDisplayName(role: FamilyRole, locale: string = 'sk'): str
     advisor: { sk: 'Poradca', en: 'Advisor', cs: 'Poradce' }
   };
 
-  return names[role][locale] || names[role]['en'];
+  return names[role]?.[locale] || names[role]?.['en'] || role;
 }
 
 export function getRoleDescription(role: FamilyRole, locale: string = 'sk'): string {
-  const descriptions: Record<FamilyRole, Record<string, string>> = {
+  const descriptions: Partial<Record<FamilyRole, Record<string, string>>> = {
     guardian: {
       sk: 'Osoba, ktorá sa postará o maloletých členov rodiny',
       en: 'Person who will care for minor family members',
@@ -291,5 +321,5 @@ export function getRoleDescription(role: FamilyRole, locale: string = 'sk'): str
     }
   };
 
-  return descriptions[role][locale] || descriptions[role]['en'];
+  return descriptions[role]?.[locale] || descriptions[role]?.['en'] || '';
 }

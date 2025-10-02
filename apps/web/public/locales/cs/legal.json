@@ -1,0 +1,71 @@
+{
+  "jurisdictions": {
+    "SK": "[CS] Slovakia",
+    "CZ": "[CS] Czech Republic",
+    "AT": "[CS] Austria",
+    "DE": "[CS] Germany",
+    "PL": "[CS] Poland",
+    "EU": "[CS] European Union",
+    "US": "[CS] United States",
+    "CA": "[CS] Canada",
+    "UK": "[CS] United Kingdom"
+  },
+  "documents": {
+    "will": "[CS] Last Will and Testament",
+    "powerOfAttorney": "[CS] Power of Attorney",
+    "livingWill": "[CS] Living Will",
+    "trust": "[CS] Trust Agreement",
+    "guardianship": "[CS] Guardianship Designation"
+  },
+  "legalTerms": {
+    "testator": "[CS] Testator",
+    "beneficiary": "[CS] Beneficiary",
+    "executor": "[CS] Executor",
+    "guardian": "[CS] Guardian",
+    "trustee": "[CS] Trustee",
+    "heir": "[CS] Heir",
+    "estate": "[CS] Estate",
+    "probate": "[CS] Probate",
+    "intestate": "[CS] Intestate",
+    "codicil": "[CS] Codicil"
+  },
+  "requirements": {
+    "witnessRequired": "[CS] Witness signature required",
+    "notarizationRequired": "[CS] Notarization required",
+    "ageRequirement": "[CS] Must be {{age}} years or older",
+    "mentalCapacity": "[CS] Must be of sound mind",
+    "writtenForm": "[CS] Must be in written form",
+    "signature": "[CS] Must be personally signed"
+  },
+  "compliance": {
+    "title": "[CS] Legal Compliance Information",
+    "subtitle": "[CS] Important jurisdictional requirements",
+    "warning": "[CS] This document is provided for informational purposes only",
+    "disclaimer": "[CS] Consult with a qualified attorney for legal advice",
+    "lastUpdated": "[CS] Last updated: {{date}}",
+    "jurisdiction": "[CS] Jurisdiction: {{jurisdiction}}"
+  },
+  "validation": {
+    "invalidWitness": "[CS] Invalid witness information",
+    "missingSignature": "[CS] Signature is required",
+    "incompleteBeneficiary": "[CS] Beneficiary information incomplete",
+    "invalidDate": "[CS] Date does not meet legal requirements",
+    "duplicateExecutor": "[CS] Executor cannot also be primary beneficiary"
+  },
+  "statuses": {
+    "draft": "[CS] Draft",
+    "review": "[CS] Under Review",
+    "valid": "[CS] Legally Valid",
+    "expired": "[CS] Expired",
+    "revoked": "[CS] Revoked",
+    "superseded": "[CS] Superseded"
+  },
+  "actions": {
+    "validate": "[CS] Validate Document",
+    "review": "[CS] Legal Review",
+    "finalize": "[CS] Finalize Document",
+    "revoke": "[CS] Revoke Document",
+    "amend": "[CS] Create Amendment",
+    "archive": "[CS] Archive Document"
+  }
+}

@@ -131,16 +131,19 @@ export class FamilyCollaborationManager {
       // Create family member
       const member: FamilyMember = {
         id: crypto.randomUUID(),
-        userId: accepterUserId,
-        email: invitation.inviteeEmail,
-        name: accepterName,
+        family_owner_id: this.userId,
+        member_user_id: accepterUserId,
+        member_name: accepterName,
+        member_email: invitation.inviteeEmail,
         role: invitation.role,
-        permissions: invitation.permissions,
-        invitationStatus: 'accepted',
-        invitedAt: invitation.createdAt,
-        acceptedAt: new Date(),
-        availableInTier: this.userTier,
-        relationship: 'Family Member' // In production, get from invitation
+        access_level: 'full',
+        invitation_status: 'accepted',
+        invited_by_user_id: this.userId,
+        accepted_by_user_id: accepterUserId,
+        meta: { permissions: invitation.permissions },
+        created_at: invitation.createdAt.toISOString(),
+        updated_at: new Date().toISOString(),
+        availableInTier: this.userTier
       };
 
       this.members.set(member.id, member);
@@ -269,7 +272,7 @@ export class FamilyCollaborationManager {
 
       // Notify all emergency contacts
       const emergencyMembers = Array.from(this.members.values())
-        .filter(member => member.permissions.accessEmergency);
+        .filter(member => member.permissions?.accessEmergency);
 
       console.log('🚨 Emergency protocol triggered:', {
         triggeredBy,
@@ -299,11 +302,14 @@ export class FamilyCollaborationManager {
 
     const event: FamilyCalendarEvent = {
       id: crypto.randomUUID(),
+      family_owner_id: this.userId,
       title,
-      date,
-      type,
-      organizer: this.userId,
-      attendees
+      event_type: type as 'general' | 'milestone' | 'reminder' | 'meeting' | 'deadline',
+      start_at: date.toISOString(),
+      organizer_user_id: this.userId,
+      attendee_member_ids: attendees,
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString()
     };
 
     this.calendarEvents.set(event.id, event);
@@ -328,12 +334,15 @@ export class FamilyCollaborationManager {
 
     const milestone: FamilyMilestone = {
       id: crypto.randomUUID(),
+      family_owner_id: this.userId,
       title,
       description: '',
-      type,
-      date,
-      beneficiaryId,
-      completed: false
+      milestone_type: type as 'general' | 'birthday' | 'anniversary' | 'graduation' | 'inheritance' | 'custom',
+      due_at: date.toISOString(),
+      beneficiary_member_id: beneficiaryId,
+      status: 'planned',
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString()
     };
 
     this.milestones.set(milestone.id, milestone);
@@ -361,16 +370,28 @@ export class FamilyCollaborationManager {
 
   getUpcomingEvents(days: number = 30): FamilyCalendarEvent[] {
     const cutoffDate = new Date(Date.now() + days * 24 * 60 * 60 * 1000);
+    const now = new Date();
     return Array.from(this.calendarEvents.values())
-      .filter(event => event.date <= cutoffDate && event.date >= new Date())
-      .sort((a, b) => a.date.getTime() - b.date.getTime());
+      .filter(event => {
+        const eventDate = new Date(event.start_at);
+        return eventDate <= cutoffDate && eventDate >= now;
+      })
+      .sort((a, b) => new Date(a.start_at).getTime() - new Date(b.start_at).getTime());
   }
 
   getUpcomingMilestones(days: number = 90): FamilyMilestone[] {
     const cutoffDate = new Date(Date.now() + days * 24 * 60 * 60 * 1000);
+    const now = new Date();
     return Array.from(this.milestones.values())
-      .filter(milestone => milestone.date <= cutoffDate && milestone.date >= new Date() && !milestone.completed)
-      .sort((a, b) => a.date.getTime() - b.date.getTime());
+      .filter(milestone => {
+        if (!milestone.due_at) return false;
+        const dueDate = new Date(milestone.due_at);
+        return dueDate <= cutoffDate && dueDate >= now && milestone.status === 'planned';
+      })
+      .sort((a, b) => {
+        if (!a.due_at || !b.due_at) return 0;
+        return new Date(a.due_at).getTime() - new Date(b.due_at).getTime();
+      });
   }
 
   getEmergencyStatus(): {

@@ -71,16 +71,29 @@ export function ProblemPromiseSection() {
                 <div className="relative h-64 flex items-center justify-center">
                   <div className="relative w-48 h-48">
                     {/* Scattered papers/documents */}
-                    {[...Array(12)].map((_, i) => (
+                    {[
+                      { left: 63.73, top: 9.09, rotate: 341.23 },
+                      { left: 49.70, top: 77.02, rotate: 354.64 },
+                      { left: 63.18, top: 45.62, rotate: 161.61 },
+                      { left: 27.23, top: 8.23, rotate: 177.46 },
+                      { left: 9.45, top: 5.83, rotate: 203.32 },
+                      { left: 18.96, top: 35.87, rotate: 187.65 },
+                      { left: 24.86, top: 47.65, rotate: 95.58 },
+                      { left: 29.19, top: 65.29, rotate: 324.36 },
+                      { left: 27.36, top: 55.47, rotate: 92.45 },
+                      { left: 49.83, top: 0.04, rotate: 286.99 },
+                      { left: 34.11, top: 42.63, rotate: 34.81 },
+                      { left: 13.03, top: 15.47, rotate: 3.89 },
+                    ].map((position, i) => (
                       <div
                         key={i}
                         className={`absolute w-8 h-10 bg-white/20 rounded border border-red-300/50 transition-all duration-3000 ${
                           transformStep >= 1 ? 'opacity-30' : 'opacity-100'
                         }`}
                         style={{
-                          left: `${Math.random() * 80}%`,
-                          top: `${Math.random() * 80}%`,
-                          transform: `rotate(${Math.random() * 360}deg)`,
+                          left: `${position.left}%`,
+                          top: `${position.top}%`,
+                          transform: `rotate(${position.rotate}deg)`,
                           animationDelay: `${i * 0.2}s`,
                         }}
                       />

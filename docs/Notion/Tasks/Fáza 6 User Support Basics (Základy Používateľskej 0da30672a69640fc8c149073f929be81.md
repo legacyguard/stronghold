@@ -9,31 +9,31 @@ Status: Backlog
 
 ---
 
-### Odporúčanie
+## Odporúčanie
 
 Vytvorte si v koreňovom priečinku projektu súbor [`FAQ.md`](/FAQ.md).
 
 ---
 
-### [FAQ.md](/FAQ.md)
+## [FAQ.md](/FAQ.md)
 
-### Často Kladené Otázky (FAQ)
+## Často Kladené Otázky (FAQ)
 
-### Téma: Bezpečnosť
+## Téma: Bezpečnosť
 
 - **Otázka:** Môže niekto z LegacyGuard čítať moje dokumenty?
-    - **Odpoveď:** Nie, nikdy. Používame end-to-end šifrovanie. Vaše dáta sú zašifrované vo vašom prehliadači a my k nim nemáme kľúč. Vaše súkromie je matematicky zaručené.
+  - **Odpoveď:** Nie, nikdy. Používame end-to-end šifrovanie. Vaše dáta sú zašifrované vo vašom prehliadači a my k nim nemáme kľúč. Vaše súkromie je matematicky zaručené.
 - **Otázka:** Čo sa stane, ak zabudnem svoje heslo?
-    - **Odpoveď:** Môžete si ho bezpečne obnoviť cez váš email. Pre prístup k šifrovaným dátam však budete potrebovať váš "Recovery Kit", ktorý ste si vygenerovali pri registrácii. Dôkladne si ho uschovajte.
+  - **Odpoveď:** Môžete si ho bezpečne obnoviť cez váš email. Pre prístup k šifrovaným dátam však budete potrebovať váš "Recovery Kit", ktorý ste si vygenerovali pri registrácii. Dôkladne si ho uschovajte.
 
-### Téma: Funkčnosť
+## Téma: Funkčnosť
 
 - **Otázka:** Je závet vytvorený v aplikácii právne platný?
-    - **Odpoveď:** Aplikácia vám vygeneruje dokument, ktorý obsahovo zodpovedá zákonným požiadavkám. Aby sa však stal právne platným, musíte dodržať formálne náležitosti – napríklad ho celý vlastnoručne prepísať a podpísať (holografný závet) alebo ho podpísať pred svedkami (alografný závet). Aplikácia vám po vygenerovaní poskytne presné inštrukcie. Pre 100% istotu odporúčame využiť našu službu kontroly právnikom.
+  - **Odpoveď:** Aplikácia vám vygeneruje dokument, ktorý obsahovo zodpovedá zákonným požiadavkám. Aby sa však stal právne platným, musíte dodržať formálne náležitosti – napríklad ho celý vlastnoručne prepísať a podpísať (holografný závet) alebo ho podpísať pred svedkami (alografný závet). Aplikácia vám po vygenerovaní poskytne presné inštrukcie. Pre 100% istotu odporúčame využiť našu službu kontroly právnikom.
 
 ---
 
-### "Safe Recovery" Kroky pre Používateľov
+## "Safe Recovery" Kroky pre Používateľov
 
 Toto môžete pridať na stránku `/help` alebo poslať ako automatickú odpoveď z emailu podpory.
 

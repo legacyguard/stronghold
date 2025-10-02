@@ -5,22 +5,22 @@ Related Feature: Content Repository (../Features%2065472ecceccf486fa4e2b758eb9d3
 Status: Draft
 Type: Dev Guidelines
 
-### Cieľ
+## Cieľ
 
 Definovať konvencie pre /content tak, aby boli konzistentné a validovateľné.
 
-### Konvencie
+## Konvencie
 
 - /jurisdictions/{code}/will_templates/*.md
 - /jurisdictions/{code}/legal_rules.json (schéma JSON)
 - /jurisdictions/{code}/validation_rules.ts (exportované funkcie)
 - /locales/{lang}/translation.json (i18next)
 
-### Kvalita
+## Kvalita
 
 - JSON schéma + CI validácia
 - TS typy pre importované moduly
 
-### Príklady
+## Príklady
 
 - SK a CZ ako referenčné implementácie

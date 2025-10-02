@@ -1,0 +1,124 @@
+{
+  "dashboard": {
+    "title": "[EN] Family Shield Command Center",
+    "subtitle": "[EN] Centralized management of your family protection network",
+    "stats": {
+      "members": "[EN] Family Members",
+      "documents": "[EN] Protected Documents",
+      "notifications": "[EN] Active Notifications",
+      "security": "[EN] Security Score"
+    }
+  },
+  "invitations": {
+    "title": "[EN] Family Network Invitations",
+    "subtitle": "[EN] Expand your Family Shield protection network",
+    "form": {
+      "title": "[EN] Invite Family Member",
+      "subtitle": "[EN] Add a trusted person to your Family Shield network",
+      "name": "[EN] Full Name",
+      "email": "[EN] Email Address",
+      "phone": "[EN] Phone Number (Optional)",
+      "role": "[EN] Family Role",
+      "accessLevel": "[EN] Access Level",
+      "send": "[EN] Send Invitation",
+      "sending": "[EN] Sending Invitation...",
+      "cancel": "[EN] Cancel"
+    },
+    "roles": {
+      "spouse": "[EN] Spouse/Partner",
+      "child": "[EN] Child",
+      "parent": "[EN] Parent",
+      "sibling": "[EN] Sibling",
+      "guardian": "[EN] Guardian",
+      "executor": "[EN] Executor",
+      "trustee": "[EN] Trustee",
+      "beneficiary": "[EN] Beneficiary",
+      "advisor": "[EN] Advisor",
+      "other": "[EN] Other"
+    },
+    "accessLevels": {
+      "minimal": {
+        "title": "[EN] Minimal Access",
+        "description": "[EN] Basic contact information only"
+      },
+      "emergency": {
+        "title": "[EN] Emergency Access",
+        "description": "[EN] Access to emergency information and contacts"
+      },
+      "health": {
+        "title": "[EN] Health Access",
+        "description": "[EN] Medical information and healthcare decisions"
+      },
+      "full": {
+        "title": "[EN] Full Access",
+        "description": "[EN] Complete access to all family protection information"
+      }
+    }
+  },
+  "tree": {
+    "title": "[EN] Family Protection Network",
+    "primaryFamily": "[EN] Primary Family",
+    "supportNetwork": "[EN] Professional Support Network",
+    "extendedNetwork": "[EN] Extended Network",
+    "pendingInvitations": "[EN] Pending Invitations ({{count}})",
+    "invitationPending": "[EN] Invitation Pending",
+    "expires": "[EN] Expires: {{date}}",
+    "empty": {
+      "title": "[EN] No Family Members Yet",
+      "description": "[EN] Start building your Family Shield by inviting trusted members"
+    },
+    "legend": {
+      "title": "[EN] Access Levels",
+      "fullAccess": "[EN] Full Access",
+      "healthAccess": "[EN] Health Access",
+      "emergencyAccess": "[EN] Emergency Access",
+      "minimalAccess": "[EN] Minimal Access"
+    }
+  },
+  "member": {
+    "details": "[EN] Member Details",
+    "contact": "[EN] Contact Information",
+    "permissions": "[EN] Access Permissions",
+    "documents": "[EN] Shared Documents",
+    "activity": "[EN] Recent Activity",
+    "edit": "[EN] Edit Member",
+    "remove": "[EN] Remove Member",
+    "resendInvitation": "[EN] Resend Invitation",
+    "cancelInvitation": "[EN] Cancel Invitation"
+  },
+  "permissions": {
+    "viewDocuments": "[EN] View Documents",
+    "editWills": "[EN] Edit Wills",
+    "downloadDocuments": "[EN] Download Documents",
+    "accessEmergency": "[EN] Emergency Access",
+    "triggerEmergencyProtocol": "[EN] Trigger Emergency Protocol",
+    "inviteMembers": "[EN] Invite Members",
+    "manageCalendar": "[EN] Manage Calendar",
+    "viewFamilyTree": "[EN] View Family Tree",
+    "manageRoles": "[EN] Manage Roles",
+    "accessBilling": "[EN] Access Billing"
+  },
+  "notifications": {
+    "invitationSent": "[EN] Invitation sent successfully",
+    "memberAdded": "[EN] Family member added to your network",
+    "memberRemoved": "[EN] Family member removed from network",
+    "accessUpdated": "[EN] Member access level updated",
+    "invitationCancelled": "[EN] Invitation cancelled",
+    "invitationResent": "[EN] Invitation resent successfully"
+  },
+  "errors": {
+    "invitationFailed": "[EN] Failed to send invitation",
+    "memberNotFound": "[EN] Family member not found",
+    "accessDenied": "[EN] You don't have permission for this action",
+    "emailAlreadyInvited": "[EN] This email address has already been invited",
+    "maxMembersReached": "[EN] Maximum number of family members reached"
+  },
+  "actions": {
+    "manageContacts": "[EN] Manage Contacts",
+    "configureTriggers": "[EN] Configure Triggers",
+    "adjustSettings": "[EN] Adjust Settings",
+    "runTest": "[EN] Run Test",
+    "viewHistory": "[EN] View History",
+    "manualTrigger": "[EN] Manual Trigger"
+  }
+}

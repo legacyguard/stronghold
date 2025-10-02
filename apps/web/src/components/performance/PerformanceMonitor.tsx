@@ -318,7 +318,10 @@ async function getRenderPerformance() {
         const fidObserver = new PerformanceObserver((entryList) => {
           const entries = entryList.getEntries();
           entries.forEach((entry) => {
-            metrics.fid = entry.processingStart - entry.startTime;
+            const eventEntry = entry as PerformanceEventTiming;
+            if (eventEntry.processingStart) {
+              metrics.fid = eventEntry.processingStart - entry.startTime;
+            }
           });
         });
         fidObserver.observe({ entryTypes: ['first-input'] });

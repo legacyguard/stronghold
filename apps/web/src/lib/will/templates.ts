@@ -72,7 +72,7 @@ export type WillFormData = {
   }>;
 
   // Legal specifics
-  jurisdiction: 'SK' | 'CZ' | 'DE' | 'EN';
+  jurisdiction: 'SK' | 'CZ' | 'DE' | 'EN' | 'AT' | 'PL';
   language: string;
 }
 
@@ -185,6 +185,8 @@ _________________________
     id: 'simple_single_cz',
     jurisdiction: 'CZ',
     scenario: 'single',
+    type: 'holographic',
+    userTier: 'free',
     template: `POSLEDNÍ VŮLE
 
 Já, {{fullName}}, narozený/á {{birthDate}} v {{birthPlace}}, s trvalým pobytem {{address}}, státní občan/ka {{citizenship}}, při plném vědomí a zdravém rozumu, bez nátlaku a donucení, tímto prohlašuji svou poslední vůli:
@@ -222,6 +224,8 @@ _________________________
     id: 'simple_single_de',
     jurisdiction: 'DE',
     scenario: 'single',
+    type: 'holographic',
+    userTier: 'free',
     template: `TESTAMENT
 
 Ich, {{fullName}}, geboren am {{birthDate}} in {{birthPlace}}, wohnhaft {{address}}, Staatsangehörigkeit {{citizenship}}, bei vollem Bewusstsein und gesundem Verstand, ohne Zwang und Nötigung, erkläre hiermit meinen letzten Willen:
@@ -259,6 +263,8 @@ _________________________
     id: 'simple_single_en',
     jurisdiction: 'EN',
     scenario: 'single',
+    type: 'holographic',
+    userTier: 'free',
     template: `LAST WILL AND TESTAMENT
 
 I, {{fullName}}, born {{birthDate}} in {{birthPlace}}, residing at {{address}}, citizen of {{citizenship}}, being of sound mind and memory, not under duress or undue influence, hereby declare this to be my Last Will and Testament:

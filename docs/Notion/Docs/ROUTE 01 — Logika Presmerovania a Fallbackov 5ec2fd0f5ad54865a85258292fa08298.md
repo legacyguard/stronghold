@@ -3,37 +3,37 @@
 Status: Draft
 Type: Dev Guidelines
 
-### Účel
+## Účel
 
 Popísať deterministickú logiku presmerovania medzi doménami a výber jazyka s jasnými fallbackmi, aby routing podporoval SEO, dôveru používateľov a konzistentný produktový zážitok.
 
-### Logika presmerovania a fallbackov
+## Logika presmerovania a fallbackov
 
-### Krok 1: Detekcia na úrovni servera/edge (Vercel Middleware)
+## Krok 1: Detekcia na úrovni servera/edge (Vercel Middleware)
 
 - Zisťovanie IP geolokácie: middleware zistí krajinu návštevníka.
 - Akcia: ak IP pochádza z trhu so samostatnou doménou, vykonaj serverové presmerovanie 308 na lokálnu doménu (napr. CZ IP → legacyguard.cz namiesto legacyguard.com).
-    - Prečo 308: trvalé presmerovanie zachová metódu a telo requestu, pomáha SEO a používateľovi okamžite ukazuje lokálnu doménu.
+  - Prečo 308: trvalé presmerovanie zachová metódu a telo requestu, pomáha SEO a používateľovi okamžite ukazuje lokálnu doménu.
 
-### Krok 2: Detekcia na úrovni klienta (na lokálnej doméne)
+## Krok 2: Detekcia na úrovni klienta (na lokálnej doméne)
 
 - Spustí sa LocalizationContext.
-    - currentJurisdiction: je pevne daná doménou, napr. legacyguard.cz → "cz". Táto hodnota sa už na kliente nemení.
-    - Detekcia jazyka prehliadača: prečíta sa navigator.language (napr. de-DE → "de").
-    - Kontrola voči matici jazykov pre danú doménu: ak je jazyk podporovaný, currentLanguage sa nastaví na daný jazyk (napr. "de").
+  - currentJurisdiction: je pevne daná doménou, napr. legacyguard.cz → "cz". Táto hodnota sa už na kliente nemení.
+  - Detekcia jazyka prehliadača: prečíta sa navigator.language (napr. de-DE → "de").
+  - Kontrola voči matici jazykov pre danú doménu: ak je jazyk podporovaný, currentLanguage sa nastaví na daný jazyk (napr. "de").
 
-### Krok 3: Nepodporovaný jazyk (fallback)
+## Krok 3: Nepodporovaný jazyk (fallback)
 
 - Ak jazyk prehliadača nie je pre doménu podporovaný, currentLanguage sa nastaví na hlavný jazyk danej krajiny/jurisdikcie (napr. na .cz doméne fallback na "cs").
 - Až ak ani ten nie je dostupný, použi "en" ako posledný fallback.
 
-### Krok 4: Nepodporovaná krajina/doména
+## Krok 4: Nepodporovaná krajina/doména
 
 - Ak IP geolokácia smeruje na krajinu bez vyhradenej domény/jurisdikcie, presmeruj na medzinárodnú doménu legacyguard.eu.
-    - Na .eu: predvolený jazyk je "en" (alebo podporovaný jazyk podľa prehliadača, ak je k dispozícii).
-    - Funkcia Tvorcu Závetu: deaktivovaná alebo s jasným upozornením: "Pre vašu krajinu zatiaľ neponúkame právne platné šablóny závetov. Môžete však využiť ostatné funkcie na organizáciu dokumentov a ochranu rodiny."
+  - Na .eu: predvolený jazyk je "en" (alebo podporovaný jazyk podľa prehliadača, ak je k dispozícii).
+  - Funkcia Tvorcu Závetu: deaktivovaná alebo s jasným upozornením: "Pre vašu krajinu zatiaľ neponúkame právne platné šablóny závetov. Môžete však využiť ostatné funkcie na organizáciu dokumentov a ochranu rodiny."
 
-### Pseudokód (Edge Middleware)
+## Pseudokód (Edge Middleware)
 
 ```tsx
 // Importuj mapy zo single source of truth (I18N 02 — Language Matrix per Domain)
@@ -112,7 +112,7 @@ export const currentJurisdiction = host.endsWith('.cz') ? 'cz' : host.endsWith('
 - UX: jazyk vychádza z preferencií prehliadača, no rešpektuje podporu na konkrétnej doméne.
 - Predvídateľnosť: jurisdikcia je vždy odvodená z domény, nie z jazyka.
 
-### Súvisiace
+## Súvisiace
 
 - [I18N 02 — Language Matrix per Domain](I18N%2002%20%E2%80%94%20Language%20Matrix%20per%20Domain%20774b6b5d04684661b827e714ab23e414.md)
 - Feature: Domain and Language Middleware, LocalizationContext

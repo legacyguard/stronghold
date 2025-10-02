@@ -141,9 +141,9 @@ export class LegalValidationEngine {
 
     // Check children rights
     if (userData.hasChildren && userData.children && userData.children.length > 0) {
-      const childNames = userData.children.map((c: any) => c.name.toLowerCase());
-      const childrenAssets = (userData.assets || []).filter((asset: any) =>
-        childNames.some(name => asset.beneficiary && asset.beneficiary.toLowerCase().includes(name))
+      const childNames = userData.children.map((c: { name: string }) => c.name.toLowerCase());
+      const childrenAssets = (userData.assets || []).filter((asset: { beneficiary?: string }) =>
+        childNames.some((name: string) => asset.beneficiary && asset.beneficiary.toLowerCase().includes(name))
       );
 
       if (childrenAssets.length === 0) {
@@ -199,13 +199,13 @@ export class LegalValidationEngine {
     const requirements = rules.witnessRequirements[willType as keyof typeof rules.witnessRequirements];
 
     if (requirements && requirements.required) {
-      if (willType === 'witnessed' && requirements.minWitnesses) {
+      if (willType === 'witnessed' && 'minWitnesses' in requirements && requirements.minWitnesses) {
         if (!userData.witnesses || userData.witnesses.length < requirements.minWitnesses) {
           issues.push(`${willType} will requires ${requirements.minWitnesses} witnesses`);
         }
       }
 
-      if (willType === 'notarized' && requirements.notaryRequired) {
+      if (willType === 'notarized' && 'notaryRequired' in requirements && requirements.notaryRequired) {
         if (!userData.notaryInfo) {
           issues.push('Notarized will requires notary information');
         }

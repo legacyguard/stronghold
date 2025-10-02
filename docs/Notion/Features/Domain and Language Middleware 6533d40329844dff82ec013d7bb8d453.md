@@ -4,17 +4,17 @@ Docs: ARCH 02 — Architektúra: Multi‑domain, Multi‑jurisdiction, Multi‑l
 Goal: Detegovať doménu a accept-language a naplniť LocalizationContext už pri štarte.
 Status: Idea
 
-### Cieľ
+## Cieľ
 
 Zabezpečiť deterministické mapovanie host -> currentJurisdiction a výber default currentLanguage.
 
-### Scope
+## Scope
 
 - Middleware na edge/server vrstve
 - Matica doména × jazyk prehliadača -> default language
 - Bezpečné prepisovanie url parametrom alebo užívateľským prepínačom
 
-### Akceptačné kritériá
+## Akceptačné kritériá
 
 - [legacyguard.sk](http://legacyguard.sk) => sk; [legacyguard.cz](http://legacyguard.cz) => cz
 - UI defaultuje správne aj pri accept-language=en

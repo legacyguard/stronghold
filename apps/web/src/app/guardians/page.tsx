@@ -1,4 +1,5 @@
 import { Suspense } from "react";
+export const dynamic = 'force-dynamic';
 import { AddGuardianForm } from "@/components/AddGuardianForm";
 import { GuardiansList } from "@/components/GuardiansList";
 import { Shield, Loader2 } from "lucide-react";

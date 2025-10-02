@@ -3,6 +3,7 @@
 
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+import Link from 'next/link';
 import { TrustSealVerificationWidget } from '@/components/trust-seal/TrustSealVerificationWidget';
 import { TrustSealVerifier } from '@/lib/trust-seal/verification';
 
@@ -66,6 +67,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         robots: 'noindex, nofollow'
       };
     }
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (error) {
     return {
       title: 'Trust Seal Verification - LegacyGuard',
@@ -186,12 +188,12 @@ export default async function TrustSealVerificationPage({ params }: PageProps) {
           <p className="text-blue-700 mb-4">
             LegacyGuard vám pomôže vytvoriť právne súladný závet s automatickým Trust Seal certifikátom.
           </p>
-          <a
+          <Link
             href="/"
             className="inline-flex items-center px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors"
           >
             Začať s LegacyGuard
-          </a>
+          </Link>
         </div>
       </div>
 

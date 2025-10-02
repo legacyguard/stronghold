@@ -64,5 +64,21 @@
     "completed": "Dokončený",
     "expired": "Vypršal",
     "draft": "Koncept"
+  },
+  "login": {
+    "title": "Prihlásenie",
+    "subtitle": "Prihláste sa do svojho účtu",
+    "google_button": "Pokračovať s Google",
+    "apple_button": "Pokračovať s Apple",
+    "email_label": "Email",
+    "email_placeholder": "Zadajte váš email",
+    "password_label": "Heslo",
+    "password_placeholder": "Zadajte vaše heslo",
+    "sign_in_button": "Prihlásiť sa",
+    "magic_link_button": "Pošlite mi prihlasovací odkaz",
+    "forgot_password_button": "Zabudli ste heslo?",
+    "no_account": "Nemáte účet?",
+    "create_account": "Vytvoriť účet",
+    "signing_in": "Prihlasuje sa..."
   }
 }

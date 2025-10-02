@@ -50,7 +50,12 @@
       "Bash(supabase link:*)",
       "Bash(VERCEL_ORG_ID=legacyguards-projects VERCEL_PROJECT_ID=stronghold vercel env add NEXT_PUBLIC_SUPABASE_URL production --token=sCQdHdoLVf8aAY50aDAa9dGm --yes)",
       "Bash(/Users/luborfedak/Documents/Github/stronghold/scripts/setup_vercel_env.sh:*)",
-      "WebFetch(domain:stronghold-j7x9kvy17-legacyguards-projects.vercel.app)"
+      "WebFetch(domain:stronghold-j7x9kvy17-legacyguards-projects.vercel.app)",
+      "Read(//Users/luborfedak/Documents/Github/schwalbe/docs/90-archive/hollywood-archive/**)",
+      "Bash(node:*)",
+      "Read(//private/tmp/**)",
+      "Bash(npm run test:e2e:*)",
+      "Read(//tmp/**)"
     ],
     "deny": [],
     "ask": []
