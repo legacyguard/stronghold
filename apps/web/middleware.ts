@@ -18,7 +18,8 @@ export async function middleware(req: NextRequest) {
     '/reset-password',
     '/terms-of-service',
     '/privacy-policy',
-    '/verify' // Trust seal verification
+    '/verify', // Trust seal verification
+    '/test-admin' // Test admin page for development
   ];
 
   const isPublicRoute = publicRoutes.some(route => {

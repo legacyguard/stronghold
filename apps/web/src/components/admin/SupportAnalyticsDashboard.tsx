@@ -98,16 +98,7 @@ export const SupportAnalyticsDashboard: React.FC<SupportAnalyticsDashboardProps>
 
   const supabase = createClient();
 
-  useEffect(() => {
-    loadAnalytics();
-
-    if (refreshInterval > 0) {
-      const interval = setInterval(loadAnalytics, refreshInterval);
-      return () => clearInterval(interval);
-    }
-  }, [selectedDateRange, refreshInterval]);
-
-  const loadAnalytics = async () => {
+  const loadAnalyticsCallback = React.useCallback(async () => {
     setIsLoading(true);
     try {
       await Promise.all([
@@ -123,7 +114,17 @@ export const SupportAnalyticsDashboard: React.FC<SupportAnalyticsDashboardProps>
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [selectedDateRange]);
+
+  useEffect(() => {
+    loadAnalyticsCallback();
+
+    if (refreshInterval > 0) {
+      const interval = setInterval(loadAnalyticsCallback, refreshInterval);
+      return () => clearInterval(interval);
+    }
+  }, [selectedDateRange, refreshInterval, loadAnalyticsCallback]);
+
 
   const loadSupportMetrics = async () => {
     const daysAgo = getDaysFromRange(selectedDateRange);
@@ -248,10 +249,10 @@ export const SupportAnalyticsDashboard: React.FC<SupportAnalyticsDashboardProps>
           acc[category].satisfactionCount++;
         }
         return acc;
-      }, {} as any);
+      }, {} as Record<string, { count: number; totalResolutionTime: number; totalSatisfaction: number; satisfactionCount: number }>);
 
       const totalTickets = ticketData.length;
-      const breakdown: CategoryBreakdown[] = Object.entries(categoryStats).map(([category, stats]: [string, any]) => ({
+      const breakdown: CategoryBreakdown[] = Object.entries(categoryStats).map(([category, stats]) => ({
         category,
         count: stats.count,
         percentage: Math.round((stats.count / totalTickets) * 100),
@@ -333,14 +334,6 @@ export const SupportAnalyticsDashboard: React.FC<SupportAnalyticsDashboardProps>
     }
   };
 
-  const getMetricTrend = (current: number, previous: number) => {
-    if (previous === 0) return { trend: 'neutral', percentage: 0 };
-    const change = ((current - previous) / previous) * 100;
-    return {
-      trend: change > 0 ? 'up' : change < 0 ? 'down' : 'neutral',
-      percentage: Math.abs(Math.round(change * 10) / 10)
-    };
-  };
 
   const COLORS = ['#6B8E23', '#8BA647', '#A4BE6A', '#BDD68E', '#D6EEB2'];
 
@@ -389,7 +382,7 @@ export const SupportAnalyticsDashboard: React.FC<SupportAnalyticsDashboardProps>
               <SelectItem value="1y">Last year</SelectItem>
             </SelectContent>
           </Select>
-          <Button variant="outline" onClick={loadAnalytics}>
+          <Button variant="outline" onClick={loadAnalyticsCallback}>
             <RefreshCw className="w-4 h-4 mr-2" />
             Refresh
           </Button>
@@ -541,8 +534,8 @@ export const SupportAnalyticsDashboard: React.FC<SupportAnalyticsDashboardProps>
                       fill="#8884d8"
                       dataKey="count"
                     >
-                      {categories.map((entry, index) => (
-                        <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                      {categories.map((entry, entryIndex) => (
+                        <Cell key={`cell-${entryIndex}`} fill={COLORS[entryIndex % COLORS.length]} />
                       ))}
                     </Pie>
                     <Tooltip />

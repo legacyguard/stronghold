@@ -1,8 +1,9 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { FileText, MoreHorizontal } from "lucide-react";
+import { FileText, MoreHorizontal, Sparkles, Calendar, AlertTriangle } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import {
   Table,
   TableBody,
@@ -24,7 +25,24 @@ interface Document {
   id: string;
   file_name: string;
   created_at: string;
+  description?: string;
+  ai_category?: string;
+  ai_confidence?: number;
+  expires_at?: string;
 }
+
+const CATEGORY_LABELS: Record<string, string> = {
+  'Insurance': 'Poistenie',
+  'Banking': 'Bankovníctvo',
+  'Legal': 'Právne',
+  'Medical': 'Zdravotné',
+  'Property': 'Nehnuteľnosti',
+  'Vehicles': 'Vozidlá',
+  'Education': 'Vzdelanie',
+  'Personal': 'Osobné',
+  'Business': 'Podnikanie',
+  'Other': 'Ostatné'
+};
 
 export const DocumentList = () => {
   const { t } = useNamespace('vault');
@@ -100,7 +118,9 @@ export const DocumentList = () => {
           <TableRow>
             <TableHead className="w-12"></TableHead>
             <TableHead>{t('document_list.document_name')}</TableHead>
+            <TableHead>Category</TableHead>
             <TableHead>{t('document_list.date_created')}</TableHead>
+            <TableHead>Status</TableHead>
             <TableHead className="w-12"></TableHead>
           </TableRow>
         </TableHeader>
@@ -109,14 +129,57 @@ export const DocumentList = () => {
             <TableRow key={document.id} className="hover:bg-background/50">
               <TableCell>
                 <div className="p-sm bg-background rounded-lg w-fit">
-                  <FileText className="w-4 h-4 text-primary" />
+                  {document.ai_category ? (
+                    <Sparkles className="w-4 h-4 text-primary" />
+                  ) : (
+                    <FileText className="w-4 h-4 text-primary" />
+                  )}
                 </div>
               </TableCell>
               <TableCell className="font-medium text-text-dark">
-                {document.file_name}
+                <div>
+                  <p className="truncate">{document.file_name}</p>
+                  {document.description && (
+                    <p className="text-caption text-text-light truncate mt-xs">
+                      {document.description}
+                    </p>
+                  )}
+                </div>
+              </TableCell>
+              <TableCell>
+                {document.ai_category ? (
+                  <div className="flex items-center gap-xs">
+                    <Badge variant="outline" className="text-xs">
+                      {CATEGORY_LABELS[document.ai_category] || document.ai_category}
+                    </Badge>
+                    {document.ai_confidence && (
+                      <span className="text-xs text-text-light">
+                        {Math.round(document.ai_confidence * 100)}%
+                      </span>
+                    )}
+                  </div>
+                ) : (
+                  <span className="text-caption text-text-light">Manually added</span>
+                )}
               </TableCell>
               <TableCell className="text-caption text-text-light">
                 {formatDate(document.created_at)}
+              </TableCell>
+              <TableCell>
+                <div className="flex items-center gap-xs">
+                  {document.expires_at && new Date(document.expires_at) < new Date() && (
+                    <div className="flex items-center gap-xs text-red-600">
+                      <AlertTriangle className="w-3 h-3" />
+                      <span className="text-xs">Expired</span>
+                    </div>
+                  )}
+                  {document.expires_at && new Date(document.expires_at) > new Date() && (
+                    <div className="flex items-center gap-xs text-yellow-600">
+                      <Calendar className="w-3 h-3" />
+                      <span className="text-xs">Expires</span>
+                    </div>
+                  )}
+                </div>
               </TableCell>
               <TableCell>
                 <DropdownMenu>

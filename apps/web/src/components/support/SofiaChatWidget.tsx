@@ -11,6 +11,32 @@ import { createSupportAIManager, type SupportAIResponse, type SupportContext } f
 import { useUser } from '@/hooks/useUser';
 import { cn } from '@/lib/utils';
 
+// Browser detection utilities
+const getBrowserName = (): string => {
+  const ua = navigator.userAgent;
+  if (ua.includes('Chrome')) return 'Chrome';
+  if (ua.includes('Firefox')) return 'Firefox';
+  if (ua.includes('Safari')) return 'Safari';
+  if (ua.includes('Edge')) return 'Edge';
+  return 'Unknown';
+};
+
+const getBrowserVersion = (): string => {
+  const ua = navigator.userAgent;
+  const match = ua.match(/(Chrome|Firefox|Safari|Edge)\/(\d+)/);
+  return match ? match[2] : 'Unknown';
+};
+
+const getOSName = (): string => {
+  const ua = navigator.userAgent;
+  if (ua.includes('Windows')) return 'Windows';
+  if (ua.includes('Mac')) return 'macOS';
+  if (ua.includes('Linux')) return 'Linux';
+  if (ua.includes('Android')) return 'Android';
+  if (ua.includes('iOS')) return 'iOS';
+  return 'Unknown';
+};
+
 interface ChatMessage {
   id: string;
   role: 'user' | 'assistant';
@@ -86,7 +112,7 @@ export default function SofiaChatWidget({
     if (isOpen && messages.length === 0) {
       addSystemMessage(getWelcomeMessage());
     }
-  }, [isOpen]);
+  }, [isOpen, messages.length]);
 
   // Focus input when widget opens
   useEffect(() => {
@@ -213,9 +239,8 @@ export default function SofiaChatWidget({
     const hour = new Date().getHours();
     const greeting = hour < 12 ? 'Dobré ráno' : hour < 18 ? 'Dobrý deň' : 'Dobrý večer';
 
-    const tierMessage = '';
 
-    return `${greeting}! 👋 Som Sofia, váš AI asistent pre LegacyGuard.${tierMessage}
+    return `${greeting}! 👋 Som Sofia, váš AI asistent pre LegacyGuard.
 
 Môžem vám pomôcť s:
 • 🔒 Otázkami o bezpečnosti a šifrovaní
@@ -227,7 +252,7 @@ Môžem vám pomôcť s:
 Čím vám môžem pomôcť?`;
   };
 
-  const getTriggeredWelcomeMessage = (trigger: any): string => {
+  const getTriggeredWelcomeMessage = (trigger: NonNullable<SofiaChatWidgetProps['triggerConditions']>): string => {
     if (trigger.errorDetected) {
       return `🔧 Všimla som si, že sa môže vyskytnúť problém. Môžem vám pomôcť vyriešiť ho?
 
@@ -491,28 +516,3 @@ Ak problém pretrváva, opíšte mi čo sa deje.`;
   );
 }
 
-// Helper functions
-function getBrowserName(): string {
-  const userAgent = navigator.userAgent;
-  if (userAgent.includes('Chrome')) return 'Chrome';
-  if (userAgent.includes('Firefox')) return 'Firefox';
-  if (userAgent.includes('Safari')) return 'Safari';
-  if (userAgent.includes('Edge')) return 'Edge';
-  return 'Unknown';
-}
-
-function getBrowserVersion(): string {
-  const userAgent = navigator.userAgent;
-  const match = userAgent.match(/(?:Chrome|Firefox|Safari|Edge)\/(\d+)/);
-  return match ? match[1] : 'Unknown';
-}
-
-function getOSName(): string {
-  const userAgent = navigator.userAgent;
-  if (userAgent.includes('Windows')) return 'Windows';
-  if (userAgent.includes('Mac')) return 'macOS';
-  if (userAgent.includes('Linux')) return 'Linux';
-  if (userAgent.includes('Android')) return 'Android';
-  if (userAgent.includes('iOS')) return 'iOS';
-  return 'Unknown';
-}

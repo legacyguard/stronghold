@@ -123,7 +123,7 @@ export const VideoTutorialSystem: React.FC<VideoTutorialSystemProps> = ({
   useEffect(() => {
     loadTutorials();
     loadUserProgress();
-  }, [selectedCategory, selectedDifficulty, searchQuery]);
+  }, [selectedCategory, selectedDifficulty, searchQuery, featured, maxResults]);
 
   useEffect(() => {
     if (currentTutorial && videoRef.current) {
