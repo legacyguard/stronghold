@@ -33,6 +33,10 @@ import {
 } from 'lucide-react';
 import { uxOptimizer, UXOptimization, OptimizationReport, OptimizationType, OptimizationPriority } from '@/lib/optimization/ux-optimizer';
 import { useComponentTracking } from '@/hooks/useBehaviorTracking';
+import { userJourneyAnalytics, JourneyAnalytics } from '@/lib/ux/user-journey-analytics';
+import { conversionFunnelTracker, FunnelAnalyticsData } from '@/lib/ux/conversion-funnel';
+import { abTestingEngine, ABTestResults } from '@/lib/ux/ab-testing';
+import { heatmapAnalytics, HeatmapAnalysis } from '@/lib/ux/heatmap-analytics';
 
 interface UXOptimizationDashboardProps {
   className?: string;
@@ -46,6 +50,10 @@ export function UXOptimizationDashboard({ className = '', autoRefresh = true }: 
   const [optimizations, setOptimizations] = useState<UXOptimization[]>([]);
   const [quickWins, setQuickWins] = useState<UXOptimization[]>([]);
   const [highImpact, setHighImpact] = useState<UXOptimization[]>([]);
+  const [journeyAnalytics, setJourneyAnalytics] = useState<JourneyAnalytics | null>(null);
+  const [funnelAnalytics, setFunnelAnalytics] = useState<FunnelAnalyticsData | null>(null);
+  const [abTestResults, setAbTestResults] = useState<ABTestResults[]>([]);
+  const [heatmapData, setHeatmapData] = useState<HeatmapAnalysis | null>(null);
   const [loading, setLoading] = useState(true);
   const [analyzing, setAnalyzing] = useState(false);
   const [activeTab, setActiveTab] = useState('overview');
@@ -58,15 +66,36 @@ export function UXOptimizationDashboard({ className = '', autoRefresh = true }: 
 
   const loadOptimizationData = async () => {
     try {
-      const [optimizationsData, quickWinsData, highImpactData] = await Promise.all([
+      const dateRange = {
+        start: new Date(Date.now() - 30 * 24 * 60 * 60 * 1000), // Last 30 days
+        end: new Date()
+      };
+
+      const [
+        optimizationsData,
+        quickWinsData,
+        highImpactData,
+        journeyData,
+        funnelData,
+        abTestData,
+        heatmapAnalysisData
+      ] = await Promise.all([
         uxOptimizer.getOptimizations(),
         uxOptimizer.getQuickWins(),
-        uxOptimizer.getHighImpactOpportunities()
+        uxOptimizer.getHighImpactOpportunities(),
+        userJourneyAnalytics.getJourneyAnalytics(dateRange).catch(() => null),
+        conversionFunnelTracker.getFunnelAnalytics('will_generator', dateRange).catch(() => null),
+        abTestingEngine.getTestResults('default_test').then(result => result ? [result] : []).catch(() => []),
+        heatmapAnalytics.getHeatmapData(window?.location?.pathname || '/', dateRange).catch(() => null)
       ]);
 
       setOptimizations(optimizationsData);
       setQuickWins(quickWinsData);
       setHighImpact(highImpactData);
+      setJourneyAnalytics(journeyData);
+      setFunnelAnalytics(funnelData);
+      setAbTestResults(abTestData);
+      setHeatmapData(heatmapAnalysisData);
     } catch (error) {
       console.error('Failed to load optimization data:', error);
     } finally {
@@ -243,12 +272,15 @@ export function UXOptimizationDashboard({ className = '', autoRefresh = true }: 
       )}
 
       <Tabs value={activeTab} onValueChange={setActiveTab}>
-        <TabsList className="grid w-full grid-cols-5">
+        <TabsList className="grid w-full grid-cols-8">
           <TabsTrigger value="overview">Overview</TabsTrigger>
-          <TabsTrigger value="optimizations">All Optimizations</TabsTrigger>
+          <TabsTrigger value="optimizations">Optimizations</TabsTrigger>
           <TabsTrigger value="quick-wins">Quick Wins</TabsTrigger>
           <TabsTrigger value="high-impact">High Impact</TabsTrigger>
-          <TabsTrigger value="insights">Insights</TabsTrigger>
+          <TabsTrigger value="journey">User Journey</TabsTrigger>
+          <TabsTrigger value="funnels">Funnels</TabsTrigger>
+          <TabsTrigger value="ab-tests">A/B Tests</TabsTrigger>
+          <TabsTrigger value="heatmaps">Heatmaps</TabsTrigger>
         </TabsList>
 
         <TabsContent value="overview" className="space-y-6">
@@ -612,77 +644,422 @@ export function UXOptimizationDashboard({ className = '', autoRefresh = true }: 
           </div>
         </TabsContent>
 
-        <TabsContent value="insights" className="space-y-6">
-          {report ? (
-            <>
-              <div className="grid gap-4">
+        <TabsContent value="journey" className="space-y-6">
+          {journeyAnalytics ? (
+            <div className="grid gap-6">
+              {/* Journey Overview */}
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
                 <Card>
-                  <CardHeader>
-                    <CardTitle>Performance Insights</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    {report.performance_insights.length > 0 ? (
-                      <ul className="space-y-2">
-                        {report.performance_insights.map((insight, index) => (
-                          <li key={index} className="flex items-start gap-2">
-                            <AlertCircle className="w-4 h-4 text-orange-500 mt-0.5 flex-shrink-0" />
-                            <span className="text-sm">{insight}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    ) : (
-                      <p className="text-gray-600">No performance insights available</p>
-                    )}
+                  <CardContent className="p-4">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <p className="text-sm text-gray-600">Total Sessions</p>
+                        <p className="text-2xl font-bold">{journeyAnalytics.total_sessions.toLocaleString()}</p>
+                      </div>
+                      <Users className="w-8 h-8 text-blue-600" />
+                    </div>
                   </CardContent>
                 </Card>
 
                 <Card>
-                  <CardHeader>
-                    <CardTitle>User Journey Issues</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    {report.user_journey_issues.length > 0 ? (
-                      <ul className="space-y-2">
-                        {report.user_journey_issues.map((issue, index) => (
-                          <li key={index} className="flex items-start gap-2">
-                            <Users className="w-4 h-4 text-blue-500 mt-0.5 flex-shrink-0" />
-                            <span className="text-sm">{issue}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    ) : (
-                      <p className="text-gray-600">No user journey issues detected</p>
-                    )}
+                  <CardContent className="p-4">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <p className="text-sm text-gray-600">Unique Users</p>
+                        <p className="text-2xl font-bold">{journeyAnalytics.unique_users.toLocaleString()}</p>
+                      </div>
+                      <Users className="w-8 h-8 text-green-600" />
+                    </div>
                   </CardContent>
                 </Card>
 
                 <Card>
-                  <CardHeader>
-                    <CardTitle>Recommendations Summary</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    {report.recommendations_summary.length > 0 ? (
-                      <ul className="space-y-2">
-                        {report.recommendations_summary.map((recommendation, index) => (
-                          <li key={index} className="flex items-start gap-2">
-                            <Lightbulb className="w-4 h-4 text-yellow-500 mt-0.5 flex-shrink-0" />
-                            <span className="text-sm">{recommendation}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    ) : (
-                      <p className="text-gray-600">No recommendations available</p>
-                    )}
+                  <CardContent className="p-4">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <p className="text-sm text-gray-600">Avg Session Duration</p>
+                        <p className="text-2xl font-bold">{Math.round(journeyAnalytics.average_session_duration / 1000 / 60)}m</p>
+                      </div>
+                      <Clock className="w-8 h-8 text-purple-600" />
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card>
+                  <CardContent className="p-4">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <p className="text-sm text-gray-600">Bounce Rate</p>
+                        <p className="text-2xl font-bold">{(journeyAnalytics.bounce_rate * 100).toFixed(1)}%</p>
+                      </div>
+                      <TrendingUp className="w-8 h-8 text-red-600" />
+                    </div>
                   </CardContent>
                 </Card>
               </div>
-            </>
+
+              {/* Most Common Paths */}
+              <Card>
+                <CardHeader>
+                  <CardTitle>Most Common User Paths</CardTitle>
+                  <CardDescription>Top user navigation patterns</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-4">
+                    {journeyAnalytics.most_common_paths.slice(0, 5).map((path, index) => (
+                      <div key={index} className="flex items-center justify-between p-3 border rounded-lg">
+                        <div className="flex-1">
+                          <div className="font-medium">{path.path.join(' → ')}</div>
+                          <div className="text-sm text-gray-600">
+                            {path.frequency} sessions • {(path.conversion_rate * 100).toFixed(1)}% conversion rate
+                          </div>
+                        </div>
+                        <Badge variant="outline">{path.frequency}</Badge>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Drop-off Points */}
+              <Card>
+                <CardHeader>
+                  <CardTitle>Drop-off Analysis</CardTitle>
+                  <CardDescription>Pages with highest exit rates</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-4">
+                    {journeyAnalytics.drop_off_points.slice(0, 5).map((point, index) => (
+                      <div key={index} className="flex items-center justify-between p-3 border rounded-lg">
+                        <div className="flex-1">
+                          <div className="font-medium">{point.page}</div>
+                          <div className="text-sm text-gray-600">{point.total_visits} total visits</div>
+                        </div>
+                        <div className="text-right">
+                          <div className="font-medium text-red-600">{(point.drop_rate * 100).toFixed(1)}%</div>
+                          <div className="text-sm text-gray-600">drop rate</div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          ) : (
+            <Card>
+              <CardContent className="p-8 text-center">
+                <Users className="w-12 h-12 text-gray-400 mx-auto mb-4" />
+                <h3 className="font-medium mb-2">No Journey Data</h3>
+                <p className="text-gray-600">User journey data will appear here once tracking is active</p>
+              </CardContent>
+            </Card>
+          )}
+        </TabsContent>
+
+        <TabsContent value="funnels" className="space-y-6">
+          {funnelAnalytics ? (
+            <div className="grid gap-6">
+              <Card>
+                <CardHeader>
+                  <CardTitle>Funnel Performance: {funnelAnalytics.funnel_name}</CardTitle>
+                  <CardDescription>Conversion funnel analysis</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                    <div className="text-center">
+                      <div className="text-2xl font-bold">{funnelAnalytics.total_entries.toLocaleString()}</div>
+                      <div className="text-sm text-gray-600">Total Entries</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-2xl font-bold">{funnelAnalytics.total_completions.toLocaleString()}</div>
+                      <div className="text-sm text-gray-600">Completions</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-2xl font-bold text-green-600">{(funnelAnalytics.completion_rate * 100).toFixed(1)}%</div>
+                      <div className="text-sm text-gray-600">Conversion Rate</div>
+                    </div>
+                  </div>
+
+                  <div className="space-y-4">
+                    {funnelAnalytics.step_performance.map((step, index) => (
+                      <div key={index} className="border rounded-lg p-4">
+                        <div className="flex items-center justify-between mb-2">
+                          <h4 className="font-medium">{step.step_name}</h4>
+                          <Badge className={step.conversion_rate > 0.5 ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}>
+                            {(step.conversion_rate * 100).toFixed(1)}%
+                          </Badge>
+                        </div>
+                        <div className="grid grid-cols-3 gap-4 text-sm">
+                          <div>
+                            <span className="text-gray-600">Entries:</span>
+                            <span className="ml-1 font-medium">{step.entries.toLocaleString()}</span>
+                          </div>
+                          <div>
+                            <span className="text-gray-600">Completions:</span>
+                            <span className="ml-1 font-medium">{step.completions.toLocaleString()}</span>
+                          </div>
+                          <div>
+                            <span className="text-gray-600">Drop-offs:</span>
+                            <span className="ml-1 font-medium">{step.drop_offs.toLocaleString()}</span>
+                          </div>
+                        </div>
+                        <Progress value={step.conversion_rate * 100} className="mt-2" />
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardHeader>
+                  <CardTitle>Optimization Recommendations</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-2">
+                    {funnelAnalytics.optimization_recommendations.map((rec, index) => (
+                      <div key={index} className="flex items-start gap-2">
+                        <Lightbulb className="w-4 h-4 text-yellow-500 mt-0.5 flex-shrink-0" />
+                        <span className="text-sm">{rec}</span>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          ) : (
+            <Card>
+              <CardContent className="p-8 text-center">
+                <Target className="w-12 h-12 text-gray-400 mx-auto mb-4" />
+                <h3 className="font-medium mb-2">No Funnel Data</h3>
+                <p className="text-gray-600">Funnel analytics will appear here once tracking is configured</p>
+              </CardContent>
+            </Card>
+          )}
+        </TabsContent>
+
+        <TabsContent value="ab-tests" className="space-y-6">
+          {abTestResults.length > 0 ? (
+            <div className="space-y-6">
+              {abTestResults.map((test, index) => (
+                <Card key={index}>
+                  <CardHeader>
+                    <CardTitle className="flex items-center justify-between">
+                      <span>{test.test_name}</span>
+                      <Badge className={
+                        test.statistical_significance > 0.95 ? 'bg-green-100 text-green-800' :
+                        test.statistical_significance > 0.8 ? 'bg-yellow-100 text-yellow-800' :
+                        'bg-red-100 text-red-800'
+                      }>
+                        {(test.statistical_significance * 100).toFixed(0)}% significant
+                      </Badge>
+                    </CardTitle>
+                    <CardDescription>
+                      {test.duration_days.toFixed(0)} days • {test.total_participants} participants
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="grid gap-4">
+                      {test.variants_performance.map((variant, vIndex) => (
+                        <div key={vIndex} className="border rounded-lg p-4">
+                          <div className="flex items-center justify-between mb-2">
+                            <h4 className="font-medium">{variant.variant_name}</h4>
+                            <div className="flex items-center gap-2">
+                              {variant.lift_vs_control !== undefined && (
+                                <Badge variant="outline">
+                                  {variant.lift_vs_control > 0 ? '+' : ''}{variant.lift_vs_control.toFixed(1)}% lift
+                                </Badge>
+                              )}
+                              <Badge className={variant.conversion_rate > 0.1 ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'}>
+                                {(variant.conversion_rate * 100).toFixed(2)}% CR
+                              </Badge>
+                            </div>
+                          </div>
+                          <div className="grid grid-cols-3 gap-4 text-sm">
+                            <div>
+                              <span className="text-gray-600">Participants:</span>
+                              <span className="ml-1 font-medium">{variant.participants.toLocaleString()}</span>
+                            </div>
+                            <div>
+                              <span className="text-gray-600">Conversions:</span>
+                              <span className="ml-1 font-medium">{variant.conversions.toLocaleString()}</span>
+                            </div>
+                            <div>
+                              <span className="text-gray-600">Significance:</span>
+                              <span className="ml-1 font-medium">{(variant.statistical_significance * 100).toFixed(1)}%</span>
+                            </div>
+                          </div>
+                          <Progress value={variant.conversion_rate * 1000} className="mt-2" />
+                        </div>
+                      ))}
+                    </div>
+
+                    <div className="mt-6 p-4 bg-blue-50 rounded-lg">
+                      <h4 className="font-medium mb-2">Recommendation</h4>
+                      <p className="text-sm text-blue-800">
+                        {test.recommended_action === 'stop_winner' && test.winner_variant_id &&
+                          `Implement ${test.variants_performance.find(v => v.variant_id === test.winner_variant_id)?.variant_name} as the winner`}
+                        {test.recommended_action === 'continue' && 'Continue running the test for more data'}
+                        {test.recommended_action === 'stop_no_winner' && 'Stop test - no clear winner found'}
+                        {test.recommended_action === 'need_more_data' && 'Collect more data before making decisions'}
+                      </p>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
           ) : (
             <Card>
               <CardContent className="p-8 text-center">
                 <BarChart3 className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-                <h3 className="font-medium mb-2">No Insights Available</h3>
-                <p className="text-gray-600">Run an analysis to generate insights and recommendations</p>
+                <h3 className="font-medium mb-2">No A/B Tests</h3>
+                <p className="text-gray-600">A/B test results will appear here once tests are running</p>
+              </CardContent>
+            </Card>
+          )}
+        </TabsContent>
+
+        <TabsContent value="heatmaps" className="space-y-6">
+          {heatmapData ? (
+            <div className="grid gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <Card>
+                  <CardContent className="p-4">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <p className="text-sm text-gray-600">Total Sessions</p>
+                        <p className="text-2xl font-bold">{heatmapData.total_sessions.toLocaleString()}</p>
+                      </div>
+                      <Users className="w-8 h-8 text-blue-600" />
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card>
+                  <CardContent className="p-4">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <p className="text-sm text-gray-600">Click Zones</p>
+                        <p className="text-2xl font-bold">{heatmapData.click_zones.length}</p>
+                      </div>
+                      <Target className="w-8 h-8 text-green-600" />
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card>
+                  <CardContent className="p-4">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <p className="text-sm text-gray-600">Rage Clicks</p>
+                        <p className="text-2xl font-bold text-red-600">{heatmapData.rage_clicks.length}</p>
+                      </div>
+                      <AlertCircle className="w-8 h-8 text-red-600" />
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card>
+                  <CardContent className="p-4">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <p className="text-sm text-gray-600">Avg Scroll Depth</p>
+                        <p className="text-2xl font-bold">{heatmapData.scroll_behavior.average_scroll_depth.toFixed(0)}%</p>
+                      </div>
+                      <ArrowDown className="w-8 h-8 text-purple-600" />
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+
+              <Card>
+                <CardHeader>
+                  <CardTitle>Scroll Behavior Analysis</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                    <div className="text-center">
+                      <div className="text-2xl font-bold">{(heatmapData.scroll_behavior.bounce_at_fold * 100).toFixed(1)}%</div>
+                      <div className="text-sm text-gray-600">Bounce at Fold</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-2xl font-bold">{(heatmapData.scroll_behavior.full_page_readers * 100).toFixed(1)}%</div>
+                      <div className="text-sm text-gray-600">Full Page Readers</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-2xl font-bold">{heatmapData.scroll_behavior.average_scroll_depth.toFixed(0)}%</div>
+                      <div className="text-sm text-gray-600">Avg Scroll Depth</div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {heatmapData.rage_clicks.length > 0 && (
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="text-red-600">Rage Click Analysis</CardTitle>
+                    <CardDescription>Areas of user frustration requiring attention</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-3">
+                      {heatmapData.rage_clicks.slice(0, 5).map((rageClick, index) => (
+                        <div key={index} className="flex items-center justify-between p-3 border border-red-200 rounded-lg">
+                          <div className="flex-1">
+                            <div className="font-medium">
+                              {rageClick.element_selector || `Position (${rageClick.x}, ${rageClick.y})`}
+                            </div>
+                            <div className="text-sm text-gray-600">
+                              {rageClick.count} rage clicks • {rageClick.sessions_affected} sessions affected
+                            </div>
+                          </div>
+                          <Badge className="bg-red-100 text-red-800">
+                            Priority
+                          </Badge>
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              )}
+
+              <Card>
+                <CardHeader>
+                  <CardTitle>Insights & Recommendations</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-4">
+                    <div>
+                      <h4 className="font-medium mb-2">Key Insights</h4>
+                      <div className="space-y-2">
+                        {heatmapData.insights.map((insight, index) => (
+                          <div key={index} className="flex items-start gap-2">
+                            <Lightbulb className="w-4 h-4 text-yellow-500 mt-0.5 flex-shrink-0" />
+                            <span className="text-sm">{insight}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div>
+                      <h4 className="font-medium mb-2">Recommendations</h4>
+                      <div className="space-y-2">
+                        {heatmapData.recommendations.map((rec, index) => (
+                          <div key={index} className="flex items-start gap-2">
+                            <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
+                            <span className="text-sm">{rec}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          ) : (
+            <Card>
+              <CardContent className="p-8 text-center">
+                <Target className="w-12 h-12 text-gray-400 mx-auto mb-4" />
+                <h3 className="font-medium mb-2">No Heatmap Data</h3>
+                <p className="text-gray-600">Heatmap analytics will appear here once tracking is active</p>
               </CardContent>
             </Card>
           )}
