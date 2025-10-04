@@ -1,4 +1,5 @@
 import { AnalyticsTracker } from './tracker';
+import { supabase } from '../supabase';
 
 export interface UserInteraction {
   id: string;
@@ -324,7 +325,18 @@ export class BehaviorTracker {
 
   private getCurrentUserId(): string | undefined {
     // This would integrate with your auth system
-    return undefined; // For now
+    if (typeof window !== 'undefined') {
+      const userSession = sessionStorage.getItem('user_session');
+      if (userSession) {
+        try {
+          const session = JSON.parse(userSession);
+          return session.user?.id;
+        } catch {
+          return undefined;
+        }
+      }
+    }
+    return undefined;
   }
 
   private startPeriodicFlush(): void {
@@ -340,12 +352,30 @@ export class BehaviorTracker {
     this.interactions = [];
 
     try {
-      // Send interactions to analytics
+      // Send interactions to analytics via Supabase
+      for (const interaction of interactionsToFlush) {
+        await supabase.from('user_interactions').insert({
+          id: interaction.id,
+          session_id: interaction.session_id,
+          user_id: interaction.user_id,
+          event_type: interaction.event_type,
+          element_selector: interaction.element_selector,
+          element_text: interaction.element_text,
+          page_path: interaction.page_path,
+          coordinates: interaction.coordinates,
+          scroll_position: interaction.scroll_position,
+          viewport_size: interaction.viewport_size,
+          timestamp: interaction.timestamp,
+          duration: interaction.duration,
+          metadata: interaction.metadata
+        });
+      }
+
+      // Also send to main analytics tracker
       await AnalyticsTracker.track('user_behavior', 'interactions_batch', this.getCurrentUserId(), {
         session_id: this.sessionId,
         interactions_count: interactionsToFlush.length,
-        batch_timestamp: new Date().toISOString(),
-        interactions: interactionsToFlush
+        batch_timestamp: new Date().toISOString()
       });
 
     } catch (error) {

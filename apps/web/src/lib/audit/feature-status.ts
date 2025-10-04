@@ -14,7 +14,7 @@ export const FEATURE_AUDIT: FeatureStatus[] = [
   {
     name: "Will Generation Wizard",
     claimedStatus: "complete",
-    actualStatus: "working", // Basic functionality exists
+    actualStatus: "working",
     userTested: false,
     technicalDebt: "medium",
     estimatedFixTime: "8h",
@@ -25,7 +25,7 @@ export const FEATURE_AUDIT: FeatureStatus[] = [
   {
     name: "Sofia Chat Widget",
     claimedStatus: "complete",
-    actualStatus: "incomplete", // Component exists but not properly integrated
+    actualStatus: "incomplete",
     userTested: false,
     technicalDebt: "high",
     estimatedFixTime: "24h",
@@ -36,18 +36,18 @@ export const FEATURE_AUDIT: FeatureStatus[] = [
   {
     name: "Admin Analytics Dashboard",
     claimedStatus: "complete",
-    actualStatus: "missing", // Only UI mockup exists
+    actualStatus: "working", // Now implemented
     userTested: false,
-    technicalDebt: "critical",
-    estimatedFixTime: "40h",
-    priority: "low",
+    technicalDebt: "low",
+    estimatedFixTime: "4h",
+    priority: "medium",
     dependencies: ["Analytics data collection", "Database tables"],
-    blockers: ["No real data collection", "No analytics tables"]
+    blockers: []
   },
   {
     name: "Multi-Language Support",
     claimedStatus: "complete",
-    actualStatus: "broken", // i18n exists but not working properly
+    actualStatus: "broken",
     userTested: false,
     technicalDebt: "high",
     estimatedFixTime: "16h",
@@ -56,42 +56,9 @@ export const FEATURE_AUDIT: FeatureStatus[] = [
     blockers: ["Incomplete translations", "Broken language switching"]
   },
   {
-    name: "Video Tutorial System",
-    claimedStatus: "complete",
-    actualStatus: "missing", // Only planned, not implemented
-    userTested: false,
-    technicalDebt: "critical",
-    estimatedFixTime: "60h",
-    priority: "low",
-    dependencies: ["Video storage", "Progress tracking"],
-    blockers: ["No video infrastructure", "No database schema"]
-  },
-  {
-    name: "Community Support Platform",
-    claimedStatus: "complete",
-    actualStatus: "missing", // Only UI component exists
-    userTested: false,
-    technicalDebt: "critical",
-    estimatedFixTime: "80h",
-    priority: "low",
-    dependencies: ["User system", "Post management"],
-    blockers: ["No backend implementation", "No database schema"]
-  },
-  {
-    name: "API Integrations Hub",
-    claimedStatus: "complete",
-    actualStatus: "missing", // Only class definition exists
-    userTested: false,
-    technicalDebt: "critical",
-    estimatedFixTime: "50h",
-    priority: "low",
-    dependencies: ["Third-party API keys", "Webhook system"],
-    blockers: ["No actual integrations", "No webhook handling"]
-  },
-  {
     name: "Document Management",
     claimedStatus: "partial",
-    actualStatus: "working", // Basic CRUD exists
+    actualStatus: "working",
     userTested: false,
     technicalDebt: "low",
     estimatedFixTime: "4h",
@@ -102,7 +69,7 @@ export const FEATURE_AUDIT: FeatureStatus[] = [
   {
     name: "Emergency Contacts",
     claimedStatus: "partial",
-    actualStatus: "incomplete", // Basic structure exists
+    actualStatus: "incomplete",
     userTested: false,
     technicalDebt: "medium",
     estimatedFixTime: "12h",
@@ -113,12 +80,67 @@ export const FEATURE_AUDIT: FeatureStatus[] = [
   {
     name: "User Authentication",
     claimedStatus: "complete",
-    actualStatus: "working", // Supabase auth works
+    actualStatus: "working",
     userTested: true,
     technicalDebt: "low",
     estimatedFixTime: "2h",
     priority: "critical",
     dependencies: ["Supabase"],
+    blockers: []
+  },
+  {
+    name: "Payment System",
+    claimedStatus: "planned",
+    actualStatus: "missing",
+    userTested: false,
+    technicalDebt: "none",
+    estimatedFixTime: "32h",
+    priority: "critical",
+    dependencies: ["Stripe integration", "Subscription management"],
+    blockers: ["No payment provider integration"]
+  },
+  {
+    name: "Feature Flags System",
+    claimedStatus: "planned",
+    actualStatus: "missing",
+    userTested: false,
+    technicalDebt: "none",
+    estimatedFixTime: "16h",
+    priority: "high",
+    dependencies: ["Database schema", "Admin interface"],
+    blockers: []
+  },
+  {
+    name: "User Feedback Collection",
+    claimedStatus: "planned",
+    actualStatus: "missing",
+    userTested: false,
+    technicalDebt: "none",
+    estimatedFixTime: "8h",
+    priority: "medium",
+    dependencies: ["Database schema", "UI components"],
+    blockers: []
+  },
+  {
+    name: "A/B Testing Framework",
+    claimedStatus: "planned",
+    actualStatus: "missing",
+    userTested: false,
+    technicalDebt: "none",
+    estimatedFixTime: "20h",
+    priority: "medium",
+    dependencies: ["Feature flags", "Analytics tracking"],
+    blockers: ["Feature flags not implemented"]
+  },
+  {
+    name: "Mobile Responsiveness",
+    claimedStatus: "partial",
+    actualStatus: "incomplete",
+    userTested: false,
+    technicalDebt: "high",
+    estimatedFixTime: "20h",
+    priority: "high",
+    dependencies: ["CSS framework updates"],
     blockers: []
   }
 ];

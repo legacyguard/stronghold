@@ -6,25 +6,19 @@ import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Badge } from '@/components/ui/badge';
 import { TrendingUp, TrendingDown, Users, Activity, AlertCircle, DollarSign } from 'lucide-react';
+import { BusinessMetrics, type BusinessMetricsData } from '@/lib/monitoring/business-metrics';
+import { ProductMetrics, type FeatureUsage, type JourneyMetrics } from '@/lib/monitoring/product-metrics';
 import { AnalyticsTracker } from '@/lib/analytics/tracker';
 import { FeatureAuditor } from '@/lib/audit/feature-status';
 
 interface DashboardMetrics {
+  business: BusinessMetricsData;
+  features: FeatureUsage[];
+  journey: JourneyMetrics;
   dailyActiveUsers: number[];
   featureAdoption: Record<string, number>;
   errorRate: number;
   pagePerformance: Record<string, number>;
-  conversionRate: number;
-  churnRate: number;
-  revenue: {
-    mrr: number;
-    arpu: number;
-    ltv: number;
-  };
-  userSatisfaction: {
-    average: number;
-    responses: number;
-  };
 }
 
 interface MetricCardProps {
@@ -195,40 +189,33 @@ export function RealAnalyticsDashboard() {
 
       const days = parseInt(dateRange.replace('d', ''));
 
-      // Load real metrics from analytics system
+      // Load real metrics from new monitoring system
       const [
+        business,
+        features,
+        journey,
         dauData,
         featureAdoption,
         errorRate,
         pagePerformance
       ] = await Promise.all([
+        BusinessMetrics.getBusinessMetricsSnapshot(),
+        ProductMetrics.getFeatureUsageMetrics(),
+        ProductMetrics.getUserJourneyMetrics(),
         AnalyticsTracker.getDailyActiveUsers(days),
         AnalyticsTracker.getFeatureAdoption(),
         AnalyticsTracker.getErrorRate(24),
         AnalyticsTracker.getPagePerformance()
       ]);
 
-      // Calculate derived metrics
-      const currentDAU = dauData[dauData.length - 1] || 0;
-      const previousDAU = dauData[dauData.length - 2] || 0;
-      const dauChange = previousDAU > 0 ? ((currentDAU - previousDAU) / previousDAU) * 100 : 0;
-
       setMetrics({
+        business,
+        features,
+        journey,
         dailyActiveUsers: dauData,
         featureAdoption,
         errorRate,
-        pagePerformance,
-        conversionRate: 0, // Will be calculated when we have subscription data
-        churnRate: 0,
-        revenue: {
-          mrr: 0, // Will be calculated from real subscription data
-          arpu: 0,
-          ltv: 0
-        },
-        userSatisfaction: {
-          average: 0, // Will be calculated from feedback data
-          responses: 0
-        }
+        pagePerformance
       });
 
       setLastUpdated(new Date());
@@ -333,7 +320,7 @@ export function RealAnalyticsDashboard() {
         />
         <MetricCard
           title="Monthly Revenue"
-          value={`€${metrics?.revenue.mrr || 0}`}
+          value={`€${metrics?.business.mrr || 0}`}
           icon={<DollarSign className="w-4 h-4" />}
           description="Actual MRR, not projections"
         />
@@ -436,7 +423,7 @@ export function RealAnalyticsDashboard() {
               </div>
             )}
 
-            {(metrics?.revenue.mrr || 0) === 0 && (
+            {(metrics?.business.mrr || 0) === 0 && (
               <div className="flex items-center p-3 bg-purple-50 rounded-lg border border-purple-200">
                 <AlertCircle className="w-4 h-4 text-purple-600 mr-2" />
                 <span className="text-sm text-purple-700">

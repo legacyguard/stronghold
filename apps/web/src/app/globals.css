@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Mobile responsiveness styles */
+@import '../styles/mobile.css';
+
 /* Custom styles for warm beige theme */
 @layer base {
   :root {
