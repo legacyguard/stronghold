@@ -596,3 +596,8 @@ export class OnboardingExperiment {
     );
   }
 }
+
+/**
+ * Alias for backward compatibility
+ */
+export const ExperimentManager = ABTesting;

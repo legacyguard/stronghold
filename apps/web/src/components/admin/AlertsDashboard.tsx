@@ -93,7 +93,7 @@ function ConfigDialog({ config, onSave }: { config: AlertConfig; onSave: (config
           <div className="mt-2">
             <Slider
               value={[localConfig.errorRateThreshold]}
-              onValueChange={([value]) => setLocalConfig(prev => ({ ...prev, errorRateThreshold: value }))}
+              onValueChange={([value]: number[]) => setLocalConfig(prev => ({ ...prev, errorRateThreshold: value }))}
               max={20}
               min={1}
               step={0.5}
@@ -112,7 +112,7 @@ function ConfigDialog({ config, onSave }: { config: AlertConfig; onSave: (config
           <div className="mt-2">
             <Slider
               value={[localConfig.conversionDropThreshold]}
-              onValueChange={([value]) => setLocalConfig(prev => ({ ...prev, conversionDropThreshold: value }))}
+              onValueChange={([value]: number[]) => setLocalConfig(prev => ({ ...prev, conversionDropThreshold: value }))}
               max={50}
               min={10}
               step={5}
@@ -131,7 +131,7 @@ function ConfigDialog({ config, onSave }: { config: AlertConfig; onSave: (config
           <div className="mt-2">
             <Slider
               value={[localConfig.satisfactionThreshold]}
-              onValueChange={([value]) => setLocalConfig(prev => ({ ...prev, satisfactionThreshold: value }))}
+              onValueChange={([value]: number[]) => setLocalConfig(prev => ({ ...prev, satisfactionThreshold: value }))}
               max={5}
               min={1}
               step={0.1}
@@ -150,7 +150,7 @@ function ConfigDialog({ config, onSave }: { config: AlertConfig; onSave: (config
           <div className="mt-2">
             <Slider
               value={[localConfig.churnRateThreshold]}
-              onValueChange={([value]) => setLocalConfig(prev => ({ ...prev, churnRateThreshold: value }))}
+              onValueChange={([value]: number[]) => setLocalConfig(prev => ({ ...prev, churnRateThreshold: value }))}
               max={25}
               min={1}
               step={1}
@@ -169,7 +169,7 @@ function ConfigDialog({ config, onSave }: { config: AlertConfig; onSave: (config
           <div className="mt-2">
             <Slider
               value={[localConfig.responseTimeThreshold]}
-              onValueChange={([value]) => setLocalConfig(prev => ({ ...prev, responseTimeThreshold: value }))}
+              onValueChange={([value]: number[]) => setLocalConfig(prev => ({ ...prev, responseTimeThreshold: value }))}
               max={10000}
               min={1000}
               step={500}

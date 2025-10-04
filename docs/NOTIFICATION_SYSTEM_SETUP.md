@@ -11,8 +11,9 @@ Implementovaná je "kostra" notifikačného systému pre LegacyGuard projekt, kt
 
 ## 🏗️ Architektúra
 
-### Súbory a štruktúra:
-```
+### Súbory a štruktúra
+
+```text
 stronghold/
 ├── vercel.json                              # Vercel konfigurácia s cron jobmi
 ├── apps/web/src/
@@ -27,12 +28,14 @@ stronghold/
 ## 🔧 Implementované funkcie
 
 ### ✅ Core Infrastructure
+
 - **CRON_SECRET authentication** - Zabezpečenie endpointov
 - **Supabase Service Role integration** - Admin prístup k databáze
 - **Error handling a logging** - Robustné error handling
 - **Production build compatibility** - Pripravené na deployment
 
 ### ✅ NotificationService Class
+
 ```typescript
 // Hlavné metódy
 - findExpiringDocuments()        // Vyhľadá expirujúce dokumenty
@@ -42,6 +45,7 @@ stronghold/
 ```
 
 ### ✅ Email Templates
+
 ```typescript
 EMAIL_TEMPLATES = {
   document_expiration: {
@@ -60,12 +64,14 @@ EMAIL_TEMPLATES = {
 ```
 
 ## 🕒 Cron Schedule
+
 - **Daily Expiration Check**: Každý deň o 9:00 UTC (`0 9 * * *`)
 - **Dead Man's Switch**: Každý deň o 10:00 UTC (`0 10 * * *`)
 
 ## 🧪 Testovanie
 
-### Lokálne testovanie:
+### Lokálne testovanie
+
 ```bash
 # Štart development servera
 npm run dev
@@ -89,8 +95,9 @@ curl -X GET "http://localhost:3000/api/cron/check-expirations" \
 }
 ```
 
-### Logovanie v konzole:
-```
+### Logovanie v konzole
+
+```text
 🔍 Starting daily expiration check... 2025-09-30T14:28:34.927Z
 📄 Checking for expiring documents...
 🔍 Checking for expiring documents...
@@ -114,33 +121,40 @@ curl -X GET "http://localhost:3000/api/cron/check-expirations" \
 ## 🚀 Deployment na Vercel
 
 ### 1. Environment Variables
+
 V Vercel dashboard pridať:
-```
+
+```text
 CRON_SECRET = stronghold_cron_secret_2024_secure_token_xyz789
 NEXT_PUBLIC_SUPABASE_URL = [your_supabase_url]
 SUPABASE_SERVICE_ROLE_KEY = [your_service_role_key]
 DATABASE_URL = [your_database_url]
 ```
 
-### 2. Deploy projekt:
+### 2. Deploy projekt
+
 ```bash
 vercel deploy
 ```
 
-### 3. Overiť cron job execution:
+### 3. Overiť cron job execution
+
 - V Vercel dashboard → Functions → Cron môžete monitorovať execution
 - Check logs pre výstup z console.log statements
 
 ## 📊 Monitoring a Logging
 
-### Cron Job Logs:
+### Cron Job Logs
+
 Všetky cron joby logujú do Vercel Function logs:
+
 - ✅ Successful execution messages
 - ❌ Error messages s detailami
 - 📊 Summary statistics (documents_checked, notifications_sent, etc.)
 
-### Key Log Messages:
-```
+### Key Log Messages
+
+```text
 🔍 Starting daily expiration check...
 📧 [SKELETON] Would send document expiration notification: {...}
 ✅ Expiration check completed: {...}
@@ -149,14 +163,16 @@ Všetky cron joby logujú do Vercel Function logs:
 
 ## 💀 Dead Man's Switch Implementation - COMPLETED
 
-### ✅ Enhanced Dead Man's Switch Features:
+### ✅ Enhanced Dead Man's Switch Features
+
 - **Multi-level Crisis Detection**: Warning (30d), Critical (60d), Emergency (90d)
 - **Guardian Notification System**: Automated crisis alerts to assigned guardians
 - **Escalation Procedures**: Progressive response based on inactivity severity
 - **Comprehensive Logging**: Detailed console output for monitoring
 - **Flexible Constructor**: Accepts external Supabase client or creates own
 
-### 📊 Dead Man's Switch Configuration:
+### 📊 Dead Man's Switch Configuration
+
 ```typescript
 DEAD_MANS_SWITCH_CONFIG = {
   WARNING_THRESHOLD_DAYS: 30,   // First alert after 30 days
@@ -166,16 +182,19 @@ DEAD_MANS_SWITCH_CONFIG = {
 }
 ```
 
-### 🚨 Crisis Email Templates:
+### 🚨 Crisis Email Templates
+
 - `crisis_warning`: Guardian notification for 30+ day inactivity
 - `crisis_critical`: Critical alert for 60+ day inactivity
 - `crisis_emergency`: Emergency activation for 90+ day inactivity
 
-### 🕒 Cron Schedule:
+### 🕒 Cron Schedule Configuration
+
 - **Dead Man's Switch**: Daily at 10:00 UTC (`0 10 * * *`)
 - **Expiration Check**: Daily at 9:00 UTC (`0 9 * * *`)
 
-### ✅ Local Testing Verified:
+### ✅ Local Testing Verified
+
 ```bash
 # Dead Man's Switch Test
 curl -X GET "http://localhost:3001/api/cron/dead-mans-switch" \
@@ -194,7 +213,8 @@ curl -X POST "http://localhost:3001/api/generate-pdf" \
 
 ## 🔮 Next Steps (Future Implementation)
 
-### 🚧 TODO:
+### 🚧 TODO
+
 - [ ] **Skutočná email integrácia** (Resend, SendGrid, AWS SES)
 - [ ] **Database schema updates** pre will table a guardian assignments
 - [ ] **Komplexná expiration logic** based on business rules
@@ -210,7 +230,8 @@ curl -X POST "http://localhost:3001/api/generate-pdf" \
 - [ ] **Document storage** pre generated PDFs
 - [ ] **PDF generation queue** pre batch processing
 
-### 📧 Email Provider Integration:
+### 📧 Email Provider Integration
+
 ```typescript
 // Placeholder pre budúcu implementáciu
 async function sendActualEmail(recipient: string, template: string, data: any) {
@@ -239,14 +260,16 @@ async function sendActualEmail(recipient: string, template: string, data: any) {
 
 **Kompletný notifikačný systém + Dead Man's Switch kostra je úspešne implementovaná!**
 
-### Expiration Check System ✅:
+### Expiration Check System ✅
+
 - [x] Vytvorený `/app/api/cron/check-expirations/route.ts`
 - [x] Implementovaná základná logika s CRON_SECRET overením
 - [x] Vytvorený Supabase client so service_role_key
 - [x] Implementované console.log správy namiesto reálnych emailov
 - [x] Ready pre deployment na Vercel s denným spúšťaním
 
-### Dead Man's Switch System ✅:
+### Dead Man's Switch System ✅
+
 - [x] Enhanced `/app/api/cron/dead-mans-switch/route.ts` s DeadMansSwitchService
 - [x] Multi-level crisis detection (Warning/Critical/Emergency)
 - [x] Guardian notification triggers a escalation procedures
@@ -254,7 +277,8 @@ async function sendActualEmail(recipient: string, template: string, data: any) {
 - [x] Vercel cron job konfigurácia (daily 10:00 UTC)
 - [x] Lokálne testovanie úspešne dokončené
 
-### PDF Generation System ✅:
+### PDF Generation System ✅
+
 - [x] Vytvorený `/app/api/generate-pdf/route.ts` endpoint
 - [x] Implementovaná Supabase JWT authentication
 - [x] GET a POST metódy s rôznymi response patterns

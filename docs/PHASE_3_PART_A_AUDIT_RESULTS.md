@@ -5,6 +5,7 @@
 ## ✅ **Implementované funkcie:**
 
 ### 1. **API Endpoint pre Analýzu Dokumentov** ✅
+
 - **Súbor**: `/app/api/analyze-document/route.ts` ✅
 - **Funkcie**:
   - Prijíma súbor od používateľa ✅
@@ -15,15 +16,18 @@
   - Validácia súborov ✅
 
 ### 2. **LangSmith Integrácia** ✅
+
 - **Environment variables**: `LANGCHAIN_TRACING_V2=true`, `LANGCHAIN_API_KEY` ✅
 - **Project**: `legacyguard-documents` ✅
 
 ### 3. **Frontend Komponenty** ✅
+
 - **AIDocumentUploader**: Hlavný komponent s drag & drop ✅
 - **AIAnalysisConfirmation**: Potvrdzovaciu obrazovka pre AI výsledky ✅
 - **Flow**: Upload → AI Analysis → Confirmation → Save ✅
 
 ### 4. **Databázová Integrácia** ✅
+
 - **AI metadata columns**: `ai_category`, `ai_metadata`, `ai_confidence`, `ai_suggestions`, `extracted_text` ✅
 - **Server Action**: `saveDocumentWithAI()` ✅
 - **Storage**: Supabase Storage pre súbory ✅
@@ -31,16 +35,19 @@
 ## ⚠️ **Čiastočne implementované/chýbajúce funkcie:**
 
 ### 1. **LangGraph Chain** ⚠️
+
 - **Stav**: Implementácia používa priame volania namiesto LangGraph orchestrácie
 - **Chýba**: `@langchain/langgraph` package
 - **Riešenie**: Potrebné pridať LangGraph dependency a refaktorovať `/api/analyze-document` na používanie LangGraph workflow
 
 ### 2. **AI Chain orchestrácia** ⚠️
+
 - **Súčasný stav**: Sekvenciálne volania (OCR → LLM)
 - **Špecifikácia**: Požadované LangGraph chain s tracing
 - **Problém**: Kód funguje, ale nesleduje pattern z požiadaviek
 
 ### 3. **Error handling** ⚠️
+
 - **API endpoint**: Nedokončené error handling v produkcii
 - **Testovanie**: API volania zlyhávajú (possible auth issues)
 
@@ -64,7 +71,8 @@
 
 **Celkovo je Časť A vo veľmi dobrom stave s funkčnou implementáciou, ale chýba špecificky požadované LangGraph orchestrovanie.**
 
-## Status emočných funkcií (Časť B):
+## Status emočných funkcií (Časť B)
+
 - ✅ Kompletne implementované a funkčné
 - ✅ Time Capsules, Legacy Garden, Progress Tracking, Recognition System
 - ✅ Všetky komponenty integrované do dashboardu

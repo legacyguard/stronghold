@@ -2,12 +2,14 @@
 
 ## 📋 Zhrnutie analýzy
 
-### Súčasný stav po auditoch:
+### Súčasný stav po auditoch
+
 - **Časť A (Document AI)**: 82% hotová, chýba LangGraph orchestrácia
 - **Časť B (Emočné jadro)**: 100% hotová a funkčná
 - **Infraštruktúra**: Stabilná Next.js 15 + Supabase + LangSmith setup
 
-### Kľúčové obchodné požiadavky:
+### Kľúčové obchodné požiadavky
+
 1. **Minimalizovať AI náklady** - OpenAI API calls môžu byť 80% rozpočtu
 2. **Maximalizovať hodnotu pre používateľa** - prémiové funkcie musia byť komerčne atraktívne
 3. **Zabezpečiť technickú udržateľnosť** - architektúra musí byť škálovateľná
@@ -18,7 +20,7 @@
 
 ### **Tier-based AI Strategy (inšpirované Sofia AI System)**
 
-```
+```text
 ┌─────────────────────────────────────────────────────────┐
 │                   AI COST OPTIMIZATION                  │
 ├─────────────────────────────────────────────────────────┤
@@ -41,7 +43,8 @@
 
 **Cieľ**: Minimalizovať AI náklady pomocou predgenerovaných template a smart substitution
 
-#### **Architektúra**:
+#### **Architektúra**
+
 ```typescript
 // Cost-optimized approach
 interface WillTemplate {
@@ -61,7 +64,7 @@ interface WillVariable {
 }
 ```
 
-#### **Implementation Strategy**:
+#### **Implementation Strategy**
 
 1. **FREE TIER (základný wizard)**:
    - Predpísané šablóny pre 90% prípadov
@@ -81,8 +84,9 @@ interface WillVariable {
    - Personalized recommendations
    - Cost: ~$0.20 per will
 
-#### **Komponenty**:
-```
+#### **Komponenty**
+
+```text
 src/components/will-generator/
 ├── WillGeneratorWizard.tsx          # Main orchestrator
 ├── steps/
@@ -102,6 +106,7 @@ src/components/will-generator/
 ### **C.1.2 Režim Sústredenia (Focus Mode)**
 
 **Implementácia**: Jednoduché UI state management bez AI nákladov
+
 ```typescript
 interface FocusMode {
   enabled: boolean
@@ -121,6 +126,7 @@ interface FocusMode {
 ### **C.1.3 PDF Generation Engine**
 
 **Cost-optimized approach**:
+
 ```typescript
 // Puppeteer only for final generation, not for previews
 class PDFGenerationService {
@@ -140,7 +146,8 @@ class PDFGenerationService {
 
 **Inšpirované Sofia AI System draft**, ale adaptované na našu architektúru:
 
-#### **Sofia Router Architecture**:
+#### **Sofia Router Architecture**
+
 ```typescript
 interface SofiaCommand {
   id: string
@@ -179,7 +186,8 @@ class SofiaRouter {
 }
 ```
 
-#### **Knowledge Base System**:
+#### **Knowledge Base System**
+
 ```typescript
 // Lokálna znalostná báza namiesto AI calls
 interface KnowledgeBase {
@@ -349,6 +357,7 @@ class ProgressiveAIEnhancement {
 ## 📊 Success Metrics & Cost Control
 
 ### **Cost Monitoring Dashboard**
+
 ```typescript
 interface CostMetrics {
   dailyAICost: number
@@ -361,6 +370,7 @@ interface CostMetrics {
 ```
 
 ### **User Value Metrics**
+
 ```typescript
 interface ValueMetrics {
   timeToFirstValue: number // Target: <2 min
@@ -376,24 +386,28 @@ interface ValueMetrics {
 ## 🚀 Implementation Roadmap
 
 ### **Phase 1: Foundation (1 týždeň)**
+
 1. Implementovať Sofia Router s free-tier actions
 2. Vytvoriť základné Will Template system
 3. Nastaviť cost monitoring infrastructure
 4. Pridať LangGraph dependency s cost-aware wrapper
 
 ### **Phase 2: Smart Features (1 týždeň)**
+
 1. Implementovať intelligent caching
 2. Vytvoriť knowledge base system
 3. Pridať template-based will generation
 4. Implementovať basic PDF generation
 
 ### **Phase 3: Premium Features (1 týždeň)**
+
 1. Sofia AI tools implementation
 2. Advanced will generation with AI review
 3. Personalized recommendations
 4. Premium PDF generation with legal validation
 
 ### **Phase 4: Optimization (1 týždeň)**
+
 1. Performance optimization
 2. Cost monitoring dashboard
 3. A/B testing infrastructure
@@ -404,16 +418,19 @@ interface ValueMetrics {
 ## 🔧 Technical Architecture Decisions
 
 ### **1. Hybrid AI Approach**
+
 - **Local processing** pre basic operácie
 - **Template-based generation** pre common scenarios
 - **AI enhancement** iba pre premium features alebo complex edge cases
 
 ### **2. Progressive Loading**
+
 - Základné funkcie sa načítajú okamžite
 - AI features sa načítajú on-demand
 - Expensive AI calls sa deferujú až po user confirmation
 
 ### **3. Graceful Degradation**
+
 - Aplikácia funguje aj bez AI API keys
 - Fallback na predpísané responses
 - Clear user communication o available features
@@ -430,6 +447,7 @@ interface ValueMetrics {
 4. **User choice** kedy použiť expensive AI features
 
 Tento prístup zabezpečí:
+
 - ✅ Kontrolované náklady
 - ✅ Vysoká user satisfaction
 - ✅ Škálovateľný business model

@@ -9,7 +9,8 @@
 ## 🎭 UX Innovation Layer - "WOW" Moments
 
 ### 🌟 **The Sofia Awakening Sequence**
-```
+
+```text
 Sofia sa "prebúdza" postupne počas onboardingu:
 1. Prvé stretnutie: Len text bubble s "..."
 2. Po 1. otázke: Objaví sa jej silueta
@@ -18,6 +19,7 @@ Sofia sa "prebúdza" postupne počas onboardingu:
 ```
 
 ### 🎨 **Immersive 3D Environment Transitions**
+
 ```typescript
 const sceneTransitions = {
   welcome: {
@@ -86,13 +88,15 @@ const guardianCalling: StoryBasedQuestion = {
 ## 1. Architektonický Prehľad
 
 ### 1.1 Základné Princípy
+
 - **Rule-Based Logic**: Žiadne GenAI volania, len preddefinované scenáre
 - **Instant Value**: Personalizovaný dashboard do 30 sekúnd
 - **Progressive Disclosure**: Postupné odhaľovanie funkcií
 - **Context-Aware**: Scenáre založené na odpovediach používateľa
 
 ### 1.2 Kľúčové Komponenty
-```
+
+```text
 Magic Onboarding System
 ├── Questionnaire Engine (2 otázky)
 ├── Scenario Matcher (rule-based)
@@ -104,6 +108,7 @@ Magic Onboarding System
 ## 2. Dátová Architektúra
 
 ### 2.1 User Profile Schema
+
 ```typescript
 interface OnboardingProfile {
   id: string;
@@ -133,6 +138,7 @@ interface OnboardingProfile {
 ```
 
 ### 2.2 Predefined Scenarios
+
 ```typescript
 interface DashboardScenario {
   id: string;
@@ -159,6 +165,7 @@ interface DashboardScenario {
 ## 3. Questionnaire Design
 
 ### 3.1 Otázka 1: Rodinná Situácia & Priorita
+
 ```typescript
 interface Question1 {
   type: 'card-selection';
@@ -203,6 +210,7 @@ interface Question1 {
 ```
 
 ### 3.2 Otázka 2: Urgentnosť & Časová Dostupnosť
+
 ```typescript
 interface Question2 {
   type: 'priority-matrix';
@@ -236,6 +244,7 @@ interface Question2 {
 ### 4.1 Hlavné Scenáre
 
 #### A. "Protective Parent" (Mladá rodina + Vysoká urgentnosť)
+
 ```typescript
 const protectiveParentScenario: DashboardScenario = {
   id: 'protective_parent',
@@ -279,6 +288,7 @@ const protectiveParentScenario: DashboardScenario = {
 ```
 
 #### B. "Efficient Organizer" (Profesionál + Stredná urgentnosť)
+
 ```typescript
 const efficientOrganizerScenario: DashboardScenario = {
   id: 'efficient_organizer',
@@ -322,6 +332,7 @@ const efficientOrganizerScenario: DashboardScenario = {
 ```
 
 #### C. "Legacy Builder" (Zavedený pár + Komplexnosť)
+
 ```typescript
 const legacyBuilderScenario: DashboardScenario = {
   id: 'legacy_builder',
@@ -380,6 +391,7 @@ const legacyBuilderScenario: DashboardScenario = {
 ## 5. Dashboard Generation Engine
 
 ### 5.1 Widget System
+
 ```typescript
 interface WidgetConfig {
   id: string;
@@ -424,6 +436,7 @@ const widgetLibrary: WidgetConfig[] = [
 ```
 
 ### 5.2 Dashboard Layout Engine
+
 ```typescript
 class DashboardGenerator {
   generateLayout(scenarioId: string, userProfile: OnboardingProfile): DashboardLayout {
@@ -455,6 +468,7 @@ class DashboardGenerator {
 ## 6. Mission System
 
 ### 6.1 Mission Categories
+
 ```typescript
 type MissionCategory =
   | 'document_management'    // Nahrávanie, organizácia dokumentov
@@ -490,6 +504,7 @@ interface Mission {
 ```
 
 ### 6.2 Mission Templates Pre Scenáre
+
 ```typescript
 const missionTemplates = {
   protective_parent: [
@@ -686,6 +701,7 @@ const immediateRewards = {
 ```
 
 ### 7.1 Enhanced Personality Modes
+
 ```typescript
 interface SofiaPersonality {
   mode: 'protective_guide' | 'efficiency_coach' | 'supportive_friend';
@@ -758,6 +774,7 @@ const sofiaPersonalities = {
 ## 8. Technická Implementácia
 
 ### 8.1 Database Schema
+
 ```sql
 -- Onboarding profily
 CREATE TABLE onboarding_profiles (
@@ -824,7 +841,8 @@ CREATE TABLE user_missions (
 ```
 
 ### 8.2 React Components Structure
-```
+
+```text
 src/components/onboarding/
 ├── OnboardingWizard.tsx          # Main orchestrator
 ├── questionnaire/
@@ -1125,7 +1143,6 @@ const calculateFamilyProtectionValue = (answers: QuestionnaireAnswers): number =
 };
 ```
 
-
 ### 9.5 🏆 Instant Gratification & Reward System
 
 **Okamžité odmeňovanie pokroku:**
@@ -1342,6 +1359,7 @@ const OnboardingStoryArc = () => {
 ```
 
 ### 8.3 State Management (Zustand)
+
 ```typescript
 interface OnboardingStore {
   // Questionnaire state
@@ -1456,19 +1474,22 @@ const useOnboardingStore = create<OnboardingStore>((set, get) => ({
 
 ### 10.1 Development Phases
 
-**Phase 1: Core Magic Experience (2-3 týždne)**
+### Phase 1: Core Magic Experience (2-3 týždne)
+
 - Sofia Awakening Sequence
 - Basic 3D environment transitions
 - Story-based question framework
 - Achievement system with visual rewards
 
-**Phase 2: Audio & Advanced UX (1-2 týždne)**
+### Phase 2: Audio & Advanced UX (1-2 týždne)
+
 - Immersive audio landscape
 - Advanced micro-interactions
 - Real-time value demonstration
 - Haptic feedback integration
 
-**Phase 3: Polish & Optimization (1 týždeň)**
+### Phase 3: Polish & Optimization (1 týždeň)
+
 - Performance optimization
 - Mobile responsiveness
 - Accessibility features
@@ -1477,12 +1498,14 @@ const useOnboardingStore = create<OnboardingStore>((set, get) => ({
 ### 10.2 🎯 Success Metrics
 
 **Engagement Metrics:**
+
 - Onboarding completion rate > 85%
 - Time to first action < 30 sekúnd
 - User session duration > 8 minút
 - Return rate within 24 hodín > 60%
 
 **Emotional Response Indicators:**
+
 - Achievement unlock rate
 - Audio engagement (users who enable sound)
 - Choice interaction depth
@@ -1491,6 +1514,7 @@ const useOnboardingStore = create<OnboardingStore>((set, get) => ({
 ### 10.3 🔧 Technical Requirements
 
 **Dependencies:**
+
 ```json
 {
   "framer-motion": "^10.x",
@@ -1504,6 +1528,7 @@ const useOnboardingStore = create<OnboardingStore>((set, get) => ({
 ```
 
 **Performance Optimizations:**
+
 - Lazy loading pre 3D assets
 - Audio preloading strategies
 - Progressive enhancement pre mobile
@@ -1542,12 +1567,14 @@ const useOnboardingStore = create<OnboardingStore>((set, get) => ({
 ## 🏆 EXPECTED OUTCOMES
 
 **Pre Používateľov:**
+
 - Emotívne zapojenie namiesto nudného formulára
 - Okamžité pochopenie hodnoty produktu
 - Silná motivácia dokončiť setup
 - Pocit exkluzivity a dôležitosti
 
 **Pre Business:**
+
 - Výrazne vyššia conversion rate
 - Nižší churn rate v prvých dňoch
 - Vyšší lifetime value
@@ -1555,6 +1582,8 @@ const useOnboardingStore = create<OnboardingStore>((set, get) => ({
 
 **Diferenciácia:**
 Magic Onboarding robí z Stronghold premium produkt, ktorý sa už pri prvom kontakte odlišuje od všetkých konkurentov svojou kinematografickou kvalitou a emocionálnym dopadom.
+
+```typescript
       await new Promise(resolve => setTimeout(resolve, 500));
       set({ generationProgress: 50 });
 
@@ -1578,12 +1607,14 @@ Magic Onboarding robí z Stronghold premium produkt, ktorý sa už pri prvom kon
 ## 9. UI/UX Dizajn Špecifikácie
 
 ### 9.1 Questionnaire UX
+
 - **Card-based Selection**: Veľké, vizuálne karty s ikonami
 - **Progressive Disclosure**: Len 2 otázky, žiadne overwhelm
 - **Visual Feedback**: Progress bar, hover stavy, plynulé transitions
 - **Accessibility**: Keyboard navigation, screen reader support
 
 ### 9.2 Dashboard Generation Animation
+
 ```typescript
 const generationSteps = [
   {
@@ -1618,6 +1649,7 @@ const generationSteps = [
 ```
 
 ### 9.3 Sofia Integration Points
+
 - **Welcome Message**: Personalizovaný podľa scenára
 - **Contextual Tips**: Inline pomocník v každom kroku
 - **Progress Celebrations**: Pozitívny feedback po dokončení
@@ -1626,18 +1658,21 @@ const generationSteps = [
 ## 10. Deployment & Testing Strategy
 
 ### 10.1 Implementation Phases
+
 1. **Phase 1**: Questionnaire + Scenario Matching (1 týždeň)
 2. **Phase 2**: Dashboard Generation Engine (1 týždeň)
 3. **Phase 3**: Mission System + Sofia Integration (1 týždeň)
 4. **Phase 4**: Polish + Analytics (3 dni)
 
 ### 10.2 A/B Testing Points
+
 - **Question Wording**: Testovanie clarity otázok
 - **Scenario Names**: User-friendly vs. descriptive názvy
 - **Sofia Personality**: Warm vs. Professional ton
 - **Mission Ordering**: Critical-first vs. Quick-win first
 
 ### 10.3 Success Metrics
+
 - **Completion Rate**: % používateľov, ktorí dokončia onboarding
 - **Time to First Value**: Priemerný čas do prvej dokončenej misie
 - **Dashboard Engagement**: Čas strávený na dashboard po onboardingu

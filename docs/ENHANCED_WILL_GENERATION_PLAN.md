@@ -7,11 +7,13 @@
 ## 🎯 **CORE STRATÉGIE A ROZHODNUTIA**
 
 ### Cost-First Approach
+
 - **AI Budget**: ~$0.10/deň (20x úspora oproti súčasnému limitu)
 - **Single API Call Strategy**: Zber všetkých údajov → jeden veľký optimalizovaný prompt
 - **Smart Batching**: Využitie existujúceho Sofia AI Router systému
 
 ### Simplicity-First Approach
+
 - **External Redirects**: Minimalizácia API integračných bodov
 - **Database-Only Trust Seals**: Bez NFT complexity
 - **Hard-Coded Templates**: Pre rýchlejší štart, admin panel neskôr
@@ -19,6 +21,7 @@
 ## 📋 **AKTUALIZOVANÁ ARCHITEKTÚRA**
 
 ### 1. Optimized Will Template Engine
+
 ```typescript
 interface EnhancedWillTemplate {
   id: string;
@@ -40,6 +43,7 @@ interface EnhancedWillTemplate {
 ```
 
 ### 2. Simplified Trust Seal System
+
 ```typescript
 interface TrustSeal {
   id: string;
@@ -65,6 +69,7 @@ interface TrustSeal {
 ```
 
 ### 3. Streamlined Family Collaboration
+
 ```typescript
 interface FamilyMember {
   id: string;
@@ -88,8 +93,10 @@ interface FamilyMember {
 ### FÁZA 1: Foundation + Cost Optimization (3 dni)
 
 #### 1.1 Enhanced Sofia AI Router
+
 - Rozšírenie existujúceho `src/lib/sofia/router.ts`
 - **Single-Call Legal Generation**:
+
 ```typescript
 // Nová metoda pre optimalizované generovanie
 async generateWillSingleCall(userData: CompleteWillData): Promise<WillGenerationResult> {
@@ -107,6 +114,7 @@ async generateWillSingleCall(userData: CompleteWillData): Promise<WillGeneration
 ```
 
 #### 1.2 Simplified Legal Framework
+
 - `src/lib/legal/jurisdictions/` - Hard-coded pravidlá pre SK/CZ
 - `src/lib/legal/trust-calculator.ts` - Trust score algoritmus
 - `src/lib/legal/validation-rules.ts` - Základné validačné pravidlá
@@ -114,6 +122,7 @@ async generateWillSingleCall(userData: CompleteWillData): Promise<WillGeneration
 ### FÁZA 2: Enhanced Will Generation UI (2-3 dni)
 
 #### 2.1 Tier-Based Will Generator
+
 ```typescript
 interface WillGeneratorConfig {
   tier: 'free' | 'paid' | 'family_edition';
@@ -129,6 +138,7 @@ interface WillGeneratorConfig {
 ```
 
 #### 2.2 Data Collection Wizard
+
 - **Smart Data Collection**: Postupné zbieranie údajov namiesto komplexných formulárov
 - **Context Building**: Príprava na single AI call
 - **Real-time Validation**: Client-side validácia pred AI call
@@ -136,6 +146,7 @@ interface WillGeneratorConfig {
 ### FÁZA 3: Trust Seal & Partnership Integration (2 dni)
 
 #### 3.1 Database-Only Trust Seals
+
 ```sql
 -- Jednoduchá databázová schéma
 CREATE TABLE trust_seals (
@@ -152,6 +163,7 @@ CREATE TABLE trust_seals (
 ```
 
 #### 3.2 Simple Partnership Links
+
 ```typescript
 interface PartnershipLink {
   firm: 'brno-advokati.cz';
@@ -168,11 +180,13 @@ interface PartnershipLink {
 ### FÁZA 4: Family Collaboration MVP (2 dni)
 
 #### 4.1 Basic Family Features
+
 - **Free Tier**: 1 guardian/executor
 - **Paid Tier**: Unlimited guardians + guided mode
 - **Family Edition**: Full collaboration + expert mode
 
 #### 4.2 Emergency Access System
+
 ```typescript
 interface EmergencyAccess {
   triggerType: 'dead_mans_switch' | 'manual_activation';
@@ -188,10 +202,12 @@ interface EmergencyAccess {
 ### FÁZA 5: Advanced Features & Future-Proofing (2-3 dni)
 
 #### 5.1 Multi-Jurisdiction Support
+
 - Template system rozšírený pre AT, DE, PL
 - Quarterly releases pre legal updates
 
 #### 5.2 B2B Dashboard Foundation
+
 ```typescript
 interface LawyerDashboard {
   firmId: string;
@@ -208,6 +224,7 @@ interface LawyerDashboard {
 ## 💰 **COST OPTIMIZATION STRATEGY**
 
 ### AI Usage Optimization
+
 ```typescript
 // Single optimized prompt template
 const OPTIMIZED_WILL_PROMPT = `
@@ -230,6 +247,7 @@ Return structured JSON with: {will_text, confidence_score, validation_notes}
 ```
 
 ### Trust Seal Algorithm (Free)
+
 ```typescript
 function calculateTrustScore(userData: WillFormData, generatedWill: string): number {
   let score = 0;
@@ -262,16 +280,19 @@ function calculateTrustScore(userData: WillFormData, generatedWill: string): num
 ## 📊 **EXPECTED OUTCOMES**
 
 ### Cost Efficiency
+
 - **AI Budget**: $0.10/deň namiesto $5/deň (98% úspora)
 - **Development Time**: 2-3 týždne namiesto 4-6 týždňov
 - **Maintenance**: Minimálne API dependencies
 
 ### User Value
+
 - **Trust Seals**: Immediate confidence boost
 - **Family Collaboration**: Tier-appropriate functionality
 - **Future-Proof**: EU-ready architecture
 
 ### Business Model Support
+
 - **Free to Paid Conversion**: Clear upgrade path
 - **Family Edition Positioning**: Premium collaborative features
 - **B2B Ready**: Foundation pre lawyer dashboard
@@ -279,12 +300,14 @@ function calculateTrustScore(userData: WillFormData, generatedWill: string): num
 ## 🔗 **PARTNERSHIP INTEGRATION**
 
 ### Legal Firm Integration (brno-advokati.cz)
-- **Contact Page**: https://brnoadvokati.cz/kontakt/
-- **Facebook**: https://www.facebook.com/brnoadvokati
+
+- **Contact Page**: <https://brnoadvokati.cz/kontakt/>
+- **Facebook**: <https://www.facebook.com/brnoadvokati>
 - **Integration Type**: External redirect links
 - **User Flow**: LegacyGuard → Generate Will → Option to "Get Professional Review" → Redirect to partner firm
 
 ### Trust Seal Enhancement via Legal Review
+
 - **Process**: User pays partner firm directly for review
 - **Result**: Enhanced Trust Seal level (Gold → Platinum)
 - **Implementation**: Simple status update in our database after manual confirmation
@@ -292,12 +315,14 @@ function calculateTrustScore(userData: WillFormData, generatedWill: string): num
 ## 📋 **USER EXPERIENCE CONSIDERATIONS**
 
 ### GDPR & Privacy
+
 - **Data Retention**: 365 days for drafts, permanent for final wills (with user consent)
 - **AI Processing**: Clear consent for OpenAI processing
 - **Family Sharing**: Granular permission controls
 - **Right to Erasure**: Full data deletion capability
 
 ### Collaborative Features
+
 - **Free Tier**: 1 guardian/executor invitation
 - **Paid Tier**: Unlimited family members with role-based permissions
 - **Family Edition**: Full collaboration with shared calendars and milestones
@@ -315,16 +340,19 @@ function calculateTrustScore(userData: WillFormData, generatedWill: string): num
 ## ✅ **SUCCESS METRICS**
 
 ### Technical
+
 - AI cost per will: < $0.05
 - Average generation time: < 30 seconds
 - Trust Seal accuracy: > 85%
 
 ### Business
+
 - Free-to-Paid conversion: > 15%
 - Legal partner referrals: > 5 per month
 - User satisfaction: > 4.5/5
 
 ### Legal
+
 - Zero legal liability incidents
 - 100% GDPR compliance
 - Clear disclaimers and user education
@@ -334,6 +362,7 @@ function calculateTrustScore(userData: WillFormData, generatedWill: string): num
 ## 🏭 **PRODUCTION-READY ENHANCEMENTS**
 
 ### Database Schema & Migrations
+
 ```sql
 -- Core tables for production deployment
 CREATE TABLE will_documents (
@@ -385,6 +414,7 @@ CREATE TABLE partnership_analytics (
 ```
 
 ### Enhanced Error Handling & Recovery
+
 ```typescript
 // src/lib/error-handling/will-generation-errors.ts
 export class WillGenerationError extends Error {
@@ -414,6 +444,7 @@ export class ErrorRecoveryManager {
 ```
 
 ### Legal Disclaimer & Compliance System
+
 ```typescript
 // src/components/legal/DisclaimerModal.tsx
 export function LegalDisclaimerModal({ jurisdiction }: { jurisdiction: string }) {
@@ -448,6 +479,7 @@ export function LegalDisclaimerModal({ jurisdiction }: { jurisdiction: string })
 ```
 
 ### AI Cost Monitoring & Budget Alerts
+
 ```typescript
 // src/lib/ai-cost-monitoring/budget-manager.ts
 export class AIBudgetManager {
@@ -478,6 +510,7 @@ export class AIBudgetManager {
 ```
 
 ### Jurisdiction Content Update System
+
 ```typescript
 // src/lib/content-management/jurisdiction-updater.ts
 export class JurisdictionContentUpdater {
@@ -506,6 +539,7 @@ export class JurisdictionContentUpdater {
 ```
 
 ### Trust Seal Verification System
+
 ```typescript
 // src/lib/trust-seal/verification.ts
 export class TrustSealVerifier {
@@ -542,6 +576,7 @@ export class TrustSealVerifier {
 ```
 
 ### Multi-Device Sync & Offline Support
+
 ```typescript
 // src/lib/sync/document-sync.ts
 export class DocumentSyncManager {
@@ -568,6 +603,7 @@ export class DocumentSyncManager {
 ```
 
 ### Advanced Security & Document Encryption
+
 ```typescript
 // src/lib/security/document-encryption.ts
 export class DocumentEncryptionManager {
@@ -595,6 +631,7 @@ export class DocumentEncryptionManager {
 ```
 
 ### User Onboarding & Education Components
+
 ```typescript
 // src/components/onboarding/WillEducationWizard.tsx
 export function WillEducationWizard() {
@@ -621,6 +658,7 @@ export function WillEducationWizard() {
 ```
 
 ### Performance Optimization & Caching
+
 ```typescript
 // src/lib/performance/cache-manager.ts
 export class CacheManager {
@@ -657,25 +695,29 @@ export class CacheManager {
 ## 🎯 **PRODUCTION IMPLEMENTATION PRIORITY**
 
 ### Priority 1: Critical Infrastructure
+
 1. Database schema and migrations
 2. Enhanced error handling and recovery
 3. Legal disclaimer and compliance system
 4. AI cost monitoring and budget alerts
 
 ### Priority 2: Core Features
-5. Trust Seal verification system
-6. Jurisdiction content update system
-7. Multi-device sync functionality
+
+1. Trust Seal verification system
+2. Jurisdiction content update system
+3. Multi-device sync functionality
 
 ### Priority 3: Advanced Features
-8. Advanced security with document encryption
-9. User onboarding and education components
-10. Performance optimization with caching
+
+1. Advanced security with document encryption
+2. User onboarding and education components
+3. Performance optimization with caching
 
 ### Priority 4: Monitoring & Analytics
-11. Partnership analytics and tracking
-12. User behavior analytics
-13. System performance monitoring
+
+1. Partnership analytics and tracking
+2. User behavior analytics
+3. System performance monitoring
 
 ---
 

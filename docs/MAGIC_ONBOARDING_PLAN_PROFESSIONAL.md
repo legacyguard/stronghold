@@ -8,16 +8,19 @@
 ## 🎯 CORE PRINCIPLES PRE PROFESIONÁLNY ONBOARDING
 
 ### 1. **Efektívnosť nad showom**
+
 - Maximum 2 otázky, žiadne zbytočné kroky
 - Rýchly prechod k hodnote (< 3 minúty)
 - Profesionálne rozhranie bez detských prvkov
 
 ### 2. **Dôveryhodnosť**
+
 - Sofia ako kompetentná poradkyňa, nie priateľka
 - Business-focused jazyk a terminológia
 - Vizuály pripomínajúce kvalitný finančný software
 
 ### 3. **Kontrola a transparentnosť**
+
 - Jasné vysvetlenie každého kroku
 - Viditeľný progress a čo nasleduje
 - Možnosť preskočiť animácie
@@ -27,6 +30,7 @@
 ## 📋 OPTIMALIZOVANÉ 2-OTÁZKY FLOW
 
 ### Otázka 1: Rodinná situácia (30 sekúnd)
+
 **Účel:** Určiť základný protection scope
 
 ```typescript
@@ -67,6 +71,7 @@ const familyStatusQuestion = {
 ```
 
 ### Otázka 2: Hlavné priority (30 sekúnd)
+
 **Účel:** Určiť dashboard scenár a mission focus
 
 ```typescript
@@ -115,6 +120,7 @@ const prioritiesQuestion = {
 ## 🎨 PROFESIONÁLNY VISUAL DESIGN
 
 ### Color Palette
+
 ```css
 :root {
   /* Primary - Professional Blue */
@@ -141,6 +147,7 @@ const prioritiesQuestion = {
 ```
 
 ### Typography Scale
+
 ```css
 .text-executive { font-size: 28px; font-weight: 600; line-height: 1.2; }
 .text-heading { font-size: 20px; font-weight: 600; line-height: 1.3; }
@@ -154,12 +161,14 @@ const prioritiesQuestion = {
 ## 🚀 SOFIA PROFESSIONAL PERSONA
 
 ### Personality Traits
+
 - **Kompetentná poradkyňa**, nie priateľská asistentka
 - **Expertka na dedičské právo** s praktickými skúsenosťami
 - **Efektívna komunikácia** - stručne, presne, bez zbytočností
 - **Dôveryhodná** - používa fakty, štatistiky, relevantné príklady
 
 ### Communication Style
+
 ```typescript
 const sofiaMessages = {
   welcome: "Dobrý deň. Som Sofia, vaša digitálna poradkyňa pre ochranu dedičstva. Pomôžem vám pripraviť optimálnu stratégiu za menej než 3 minúty.",
@@ -181,6 +190,7 @@ const sofiaMessages = {
 ## 📊 REAL-TIME VALUE CALCULATOR
 
 ### Professional Value Display
+
 ```typescript
 const ProfessionalValueCalculator = ({ answers }: { answers: OnboardingAnswers }) => {
   const [stats, setStats] = useState({
@@ -239,6 +249,7 @@ const ProfessionalValueCalculator = ({ answers }: { answers: OnboardingAnswers }
 ## 🎯 PROFESSIONAL ANIMATIONS
 
 ### Subtle, Business-Appropriate Transitions
+
 ```typescript
 // No flashy effects - professional slide transitions
 const professionalTransitions = {
@@ -293,22 +304,26 @@ const ProfessionalLoadingStates = {
 ### "Executive Legacy Setup" - 2:30 demo
 
 **[0:00-0:15] Professional Introduction**
+
 - Clean Sofia materialization (no particles, professional fade-in)
 - "Dobrý deň. Som Sofia, vaša digitálna poradkyňa pre ochranu dedičstva."
 - Professional interface appears with clear value proposition
 
 **[0:15-0:45] Question 1: Family Status**
+
 - Clean card interface with business-like icons
 - Value calculator starts showing in corner
 - Choice impact clearly displayed
 - Immediate transition to question 2
 
 **[0:45-1:15] Question 2: Priorities**
+
 - Second strategic question with professional choices
 - Protection value and risk reduction updating in real-time
 - Achievement unlock: "Strategická analýza kompletná"
 
 **[1:15-2:30] Dashboard Generation**
+
 - Professional loading sequence with business terminology
 - Clean dashboard reveal with mission cards
 - Sofia: "Váš personalizovaný plán ochrany je pripravený. Máte {X} prioritných úloh."
@@ -319,12 +334,14 @@ const ProfessionalLoadingStates = {
 ## 🎯 SUCCESS METRICS PRE PROFESSIONAL AUDIENCE
 
 ### Primary KPIs
+
 - **Completion Rate**: > 92% (vyšší než štandard vďaka kratšiemu flow)
 - **Time to Dashboard**: < 2:30 minút
 - **Question Response Time**: < 15 sekúnd na otázku
 - **First Mission Engagement**: > 75% začne prvú úlohu hneď
 
 ### Professional Engagement Indicators
+
 - Value calculator interaction rate
 - Choice confidence (time spent deliberating)
 - Dashboard feature exploration depth
@@ -335,18 +352,21 @@ const ProfessionalLoadingStates = {
 ## 💼 EXPECTED OUTCOMES PRE MUŽOV 35-65
 
 ### Pre používateľov
+
 - **Efektívny proces** - žiadne stratené čas na zbytočnosti
 - **Okamžité ROI** - vidia hodnotu už počas onboardingu
 - **Profesionálny pocit** - nástroj hodný ich statusu a času
 - **Kontrola procesu** - jasne vedia, kde sú a čo nasleduje
 
 ### Pre business
+
 - **Vyššia konverzia** vďaka relevantnosti pre target audience
 - **Nižší bounce rate** - obsah rezonuje s potrebami
 - **Lepší brand positioning** - seriózny, nie hračka
 - **Vyšší ARPU** - professional users majú vyšší LTV
 
 ### Diferenciácia
+
 Magic Onboarding v professional verzii pozicionuje Stronghold ako **premium B2C nástroj pre úspešných mužov**, nie ako všeobecnú consumer aplikáciu. Konkurencia má buď detské rozhrania, alebo komplikované enterprise riešenia - my máme sweet spot.
 
 ---
@@ -354,6 +374,7 @@ Magic Onboarding v professional verzii pozicionuje Stronghold ako **premium B2C 
 ## 🔧 TECHNICAL IMPLEMENTATION NOTES
 
 ### Minimálne dependencies
+
 ```json
 {
   "framer-motion": "^10.x",    // Len pre smooth transitions
@@ -363,12 +384,14 @@ Magic Onboarding v professional verzii pozicionuje Stronghold ako **premium B2C 
 ```
 
 ### Performance priorities
+
 - Žiadne 3D efekty na mobile
 - Optimalizované pre desktop (primary usage)
 - Prefetching dashboard components počas otázok
 - Instant transitions (< 100ms response time)
 
 ### Accessibility for business users
+
 - High contrast ratios (WCAG AAA)
 - Keyboard navigation throughout
 - Screen reader optimized
